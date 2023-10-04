@@ -15,19 +15,12 @@ public class FaqBoardService {
 	private FaqBoardMapper faqBoardMapper;
 	
 	
-	public FaqBoard getFaqBoard(String userId) {
+	public FaqBoard getFaqBoard(int idx) {
 		if(faqBoardMapper==null) {return null;}
 		
-		FaqBoard faqBoard = faqBoardMapper.getFaqBoard(userId);
+		FaqBoard faqBoard = faqBoardMapper.getFaqBoard(idx);
 		
 		return faqBoard;
 	}
-	public FaqBoard getFaqBoardByEmail(String emailAddress) {
-		if(faqBoardMapper==null) {return null;}
-		
-		FaqBoard faqBoard = faqBoardMapper.getFaqBoardByEmail(emailAddress);
-		
-		return faqBoard;
-	}
-
+	
 }

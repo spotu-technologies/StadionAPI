@@ -15,19 +15,12 @@ public class CategoryInfoService {
 	private CategoryInfoMapper categoryInfoMapper;
 	
 	
-	public CategoryInfo getCategoryInfo(String userId) {
+	public CategoryInfo getCategoryInfo(int idx) {
 		if(categoryInfoMapper==null) {return null;}
 		
-		CategoryInfo categoryInfo = categoryInfoMapper.getCategoryInfo(userId);
+		CategoryInfo categoryInfo = categoryInfoMapper.getCategoryInfo(idx);
 		
 		return categoryInfo;
 	}
-	public CategoryInfo getCategoryInfoByEmail(String emailAddress) {
-		if(categoryInfoMapper==null) {return null;}
-		
-		CategoryInfo categoryInfo = categoryInfoMapper.getCategoryInfoByEmail(emailAddress);
-		
-		return categoryInfo;
-	}
-
+	
 }

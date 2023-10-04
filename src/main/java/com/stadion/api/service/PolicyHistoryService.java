@@ -15,19 +15,12 @@ public class PolicyHistoryService {
 	private PolicyHistoryMapper policyHistoryMapper;
 	
 	
-	public PolicyHistory getPolicyHistory(String userId) {
+	public PolicyHistory getPolicyHistory(int idx) {
 		if(policyHistoryMapper==null) {return null;}
 		
-		PolicyHistory policyHistory = policyHistoryMapper.getPolicyHistory(userId);
+		PolicyHistory policyHistory = policyHistoryMapper.getPolicyHistory(idx);
 		
 		return policyHistory;
 	}
-	public PolicyHistory getPolicyHistoryByEmail(String emailAddress) {
-		if(policyHistoryMapper==null) {return null;}
-		
-		PolicyHistory policyHistory = policyHistoryMapper.getPolicyHistoryByEmail(emailAddress);
-		
-		return policyHistory;
-	}
-
+	
 }

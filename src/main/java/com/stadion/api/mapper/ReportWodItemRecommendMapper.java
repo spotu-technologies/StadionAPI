@@ -11,10 +11,7 @@ import com.stadion.api.entity.ReportWodItemRecommend;
 public interface ReportWodItemRecommendMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public ReportWodItemRecommend getReportWodItemRecommend(String accountID);
+	public ReportWodItemRecommend getReportWodItemRecommend(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public ReportWodItemRecommend getReportWodItemRecommendByEmail(String emailAddress);
-	    
 
 }

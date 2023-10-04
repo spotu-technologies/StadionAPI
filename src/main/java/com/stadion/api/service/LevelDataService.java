@@ -15,19 +15,12 @@ public class LevelDataService {
 	private LevelDataMapper levelDataMapper;
 	
 	
-	public LevelData getLevelData(String userId) {
+	public LevelData getLevelData(int idx) {
 		if(levelDataMapper==null) {return null;}
 		
-		LevelData levelData = levelDataMapper.getLevelData(userId);
+		LevelData levelData = levelDataMapper.getLevelData(idx);
 		
 		return levelData;
 	}
-	public LevelData getLevelDataByEmail(String emailAddress) {
-		if(levelDataMapper==null) {return null;}
-		
-		LevelData levelData = levelDataMapper.getLevelDataByEmail(emailAddress);
-		
-		return levelData;
-	}
-
+	
 }

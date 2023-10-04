@@ -11,10 +11,7 @@ import com.stadion.api.entity.BoxAccountLinkInfo;
 public interface BoxAccountLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BoxAccountLinkInfo getBoxAccountLinkInfo(String accountID);
-	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public BoxAccountLinkInfo getBoxAccountLinkInfoByEmail(String emailAddress);
+	public BoxAccountLinkInfo getBoxAccountLinkInfo(int idx);
 	    
 
 }

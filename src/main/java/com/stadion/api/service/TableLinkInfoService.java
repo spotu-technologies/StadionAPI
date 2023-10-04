@@ -15,19 +15,12 @@ public class TableLinkInfoService {
 	private TableLinkInfoMapper tableLinkInfoMapper;
 	
 	
-	public TableLinkInfo getTableLinkInfo(String userId) {
+	public TableLinkInfo getTableLinkInfo(int idx) {
 		if(tableLinkInfoMapper==null) {return null;}
 		
-		TableLinkInfo tableLinkInfo = tableLinkInfoMapper.getTableLinkInfo(userId);
+		TableLinkInfo tableLinkInfo = tableLinkInfoMapper.getTableLinkInfo(idx);
 		
 		return tableLinkInfo;
 	}
-	public TableLinkInfo getTableLinkInfoByEmail(String emailAddress) {
-		if(tableLinkInfoMapper==null) {return null;}
-		
-		TableLinkInfo tableLinkInfo = tableLinkInfoMapper.getTableLinkInfoByEmail(emailAddress);
-		
-		return tableLinkInfo;
-	}
-
+	
 }

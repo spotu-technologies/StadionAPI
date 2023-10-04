@@ -15,19 +15,12 @@ public class WodBoxLinkInfoService {
 	private WodBoxLinkInfoMapper wodBoxLinkInfoMapper;
 	
 	
-	public WodBoxLinkInfo getWodBoxLinkInfo(String userId) {
+	public WodBoxLinkInfo getWodBoxLinkInfo(int idx) {
 		if(wodBoxLinkInfoMapper==null) {return null;}
 		
-		WodBoxLinkInfo wodBoxLinkInfo = wodBoxLinkInfoMapper.getWodBoxLinkInfo(userId);
+		WodBoxLinkInfo wodBoxLinkInfo = wodBoxLinkInfoMapper.getWodBoxLinkInfo(idx);
 		
 		return wodBoxLinkInfo;
 	}
-	public WodBoxLinkInfo getWodBoxLinkInfoByEmail(String emailAddress) {
-		if(wodBoxLinkInfoMapper==null) {return null;}
-		
-		WodBoxLinkInfo wodBoxLinkInfo = wodBoxLinkInfoMapper.getWodBoxLinkInfoByEmail(emailAddress);
-		
-		return wodBoxLinkInfo;
-	}
-
+	
 }

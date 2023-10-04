@@ -15,19 +15,12 @@ public class WithdrawDataService {
 	private WithdrawDataMapper withdrawDataMapper;
 	
 	
-	public WithdrawData getWithdrawData(String userId) {
+	public WithdrawData getWithdrawData(int idx) {
 		if(withdrawDataMapper==null) {return null;}
 		
-		WithdrawData withdrawData = withdrawDataMapper.getWithdrawData(userId);
+		WithdrawData withdrawData = withdrawDataMapper.getWithdrawData(idx);
 		
 		return withdrawData;
 	}
-	public WithdrawData getWithdrawDataByEmail(String emailAddress) {
-		if(withdrawDataMapper==null) {return null;}
-		
-		WithdrawData withdrawData = withdrawDataMapper.getWithdrawDataByEmail(emailAddress);
-		
-		return withdrawData;
-	}
-
+	
 }

@@ -15,19 +15,12 @@ public class ReportWodItemRecommendService {
 	private ReportWodItemRecommendMapper reportWodItemRecommendMapper;
 	
 	
-	public ReportWodItemRecommend getReportWodItemRecommend(String userId) {
+	public ReportWodItemRecommend getReportWodItemRecommend(int idx) {
 		if(reportWodItemRecommendMapper==null) {return null;}
 		
-		ReportWodItemRecommend reportWodItemRecommend = reportWodItemRecommendMapper.getReportWodItemRecommend(userId);
+		ReportWodItemRecommend reportWodItemRecommend = reportWodItemRecommendMapper.getReportWodItemRecommend(idx);
 		
 		return reportWodItemRecommend;
 	}
-	public ReportWodItemRecommend getReportWodItemRecommendByEmail(String emailAddress) {
-		if(reportWodItemRecommendMapper==null) {return null;}
-		
-		ReportWodItemRecommend reportWodItemRecommend = reportWodItemRecommendMapper.getReportWodItemRecommendByEmail(emailAddress);
-		
-		return reportWodItemRecommend;
-	}
-
+	
 }

@@ -11,10 +11,7 @@ import com.stadion.api.entity.ReportWodItems;
 public interface ReportWodItemsMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public ReportWodItems getReportWodItems(String accountID);
+	public ReportWodItems getReportWodItems(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public ReportWodItems getReportWodItemsByEmail(String emailAddress);
-	    
 
 }

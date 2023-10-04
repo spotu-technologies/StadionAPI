@@ -11,10 +11,7 @@ import com.stadion.api.entity.TableLinkInfo;
 public interface TableLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TableLinkInfo getTableLinkInfo(String accountID);
+	public TableLinkInfo getTableLinkInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public TableLinkInfo getTableLinkInfoByEmail(String emailAddress);
-	    
 
 }

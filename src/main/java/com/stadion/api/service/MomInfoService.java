@@ -15,19 +15,12 @@ public class MomInfoService {
 	private MomInfoMapper momInfoMapper;
 	
 	
-	public MomInfo getMomInfo(String userId) {
+	public MomInfo getMomInfo(int idx) {
 		if(momInfoMapper==null) {return null;}
 		
-		MomInfo momInfo = momInfoMapper.getMomInfo(userId);
+		MomInfo momInfo = momInfoMapper.getMomInfo(idx);
 		
 		return momInfo;
 	}
-	public MomInfo getMomInfoByEmail(String emailAddress) {
-		if(momInfoMapper==null) {return null;}
-		
-		MomInfo momInfo = momInfoMapper.getMomInfoByEmail(emailAddress);
-		
-		return momInfo;
-	}
-
+	
 }

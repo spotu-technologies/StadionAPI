@@ -12,13 +12,9 @@
     <select id="getWodItemRecordData" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
         FROM wodItemRecordData
-        	WHERE wodItemRecordData.accountID = #{userID}
+        	WHERE wodItemRecordData.idx = #{idx}
     </select>
 
-    <select id="getWodItemRecordDataByEmail" resultType="com.stadion.api.entity.WodItemRecordData">
-    SELECT * FROM wodItemRecordData WHERE wodItemRecordData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

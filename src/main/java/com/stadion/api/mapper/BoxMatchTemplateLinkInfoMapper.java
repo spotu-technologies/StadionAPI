@@ -11,10 +11,7 @@ import com.stadion.api.entity.BoxMatchTemplateLinkInfo;
 public interface BoxMatchTemplateLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(String accountID);
-	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfoByEmail(String emailAddress);
+	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(int idx);
 	    
 
 }

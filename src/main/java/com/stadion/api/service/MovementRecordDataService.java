@@ -15,19 +15,12 @@ public class MovementRecordDataService {
 	private MovementRecordDataMapper movementRecordDataMapper;
 	
 	
-	public MovementRecordData getMovementRecordData(String userId) {
+	public MovementRecordData getMovementRecordData(int idx) {
 		if(movementRecordDataMapper==null) {return null;}
 		
-		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordData(userId);
+		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordData(idx);
 		
 		return movementRecordData;
 	}
-	public MovementRecordData getMovementRecordDataByEmail(String emailAddress) {
-		if(movementRecordDataMapper==null) {return null;}
-		
-		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordDataByEmail(emailAddress);
-		
-		return movementRecordData;
-	}
-
+	
 }

@@ -11,10 +11,6 @@ import com.stadion.api.entity.GuideBoard;
 public interface GuideBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public GuideBoard getGuideBoard(String accountID);
+	public GuideBoard getGuideBoard(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public GuideBoard getGuideBoardByEmail(String emailAddress);
-	    
-
 }

@@ -11,10 +11,6 @@ import com.stadion.api.entity.TokenList;
 public interface TokenListMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TokenList getTokenList(String accountID);
+	public TokenList getTokenList(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public TokenList getTokenListByEmail(String emailAddress);
-	    
-
 }

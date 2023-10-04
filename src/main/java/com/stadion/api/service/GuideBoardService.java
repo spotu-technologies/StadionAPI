@@ -15,19 +15,12 @@ public class GuideBoardService {
 	private GuideBoardMapper guideBoardMapper;
 	
 	
-	public GuideBoard getGuideBoard(String userId) {
+	public GuideBoard getGuideBoard(int idx) {
 		if(guideBoardMapper==null) {return null;}
 		
-		GuideBoard guideBoard = guideBoardMapper.getGuideBoard(userId);
+		GuideBoard guideBoard = guideBoardMapper.getGuideBoard(idx);
 		
 		return guideBoard;
 	}
-	public GuideBoard getGuideBoardByEmail(String emailAddress) {
-		if(guideBoardMapper==null) {return null;}
-		
-		GuideBoard guideBoard = guideBoardMapper.getGuideBoardByEmail(emailAddress);
-		
-		return guideBoard;
-	}
-
+	
 }

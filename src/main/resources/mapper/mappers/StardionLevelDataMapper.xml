@@ -12,13 +12,9 @@
     <select id="getStardionLevelData" resultType="com.stadion.api.entity.StardionLevelData">	
         SELECT *
         FROM stardionLevelData
-        	WHERE stardionLevelData.accountID = #{userID}
+        	WHERE stardionLevelData.idx = #{idx}
     </select>
 
-    <select id="getStardionLevelDataByEmail" resultType="com.stadion.api.entity.StardionLevelData">
-    SELECT * FROM stardionLevelData WHERE stardionLevelData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

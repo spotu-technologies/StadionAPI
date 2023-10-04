@@ -12,13 +12,9 @@
     <select id="getTableLinkInfo" resultType="com.stadion.api.entity.TableLinkInfo">	
         SELECT *
         FROM tableLinkInfo 
-        	WHERE tableLinkInfo.accountID = #{userID}
+        	WHERE tableLinkInfo.idx = #{idx}
     </select>
 
-    <select id="getTableLinkInfoByEmail" resultType="com.stadion.api.entity.TableLinkInfo">
-    SELECT * FROM tableLinkInfo WHERE tableLinkInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

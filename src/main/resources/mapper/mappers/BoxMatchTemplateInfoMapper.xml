@@ -12,13 +12,9 @@
     <select id="getBoxMatchTemplateInfo" resultType="com.stadion.api.entity.BoxMatchTemplateInfo">	
         SELECT *
         FROM boxMatchTemplateInfo
-        	WHERE boxMatchTemplateInfo.accountID = #{userID}
+        	WHERE boxMatchTemplateInfo.idx = #{idx}
     </select>
 
-    <select id="getBoxMatchTemplateInfoByEmail" resultType="com.stadion.api.entity.BoxMatchTemplateInfo">
-    SELECT * FROM boxMatchTemplateInfo WHERE boxMatchTemplateInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

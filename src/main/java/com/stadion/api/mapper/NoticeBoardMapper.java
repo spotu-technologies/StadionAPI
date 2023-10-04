@@ -11,10 +11,6 @@ import com.stadion.api.entity.NoticeBoard;
 public interface NoticeBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public NoticeBoard getNoticeBoard(String accountID);
+	public NoticeBoard getNoticeBoard(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public NoticeBoard getNoticeBoardByEmail(String emailAddress);
-	    
-
 }

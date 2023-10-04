@@ -11,10 +11,7 @@ import com.stadion.api.entity.LikeData;
 public interface LikeDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public LikeData getLikeData(String accountID);
+	public LikeData getLikeData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public LikeData getLikeDataByEmail(String emailAddress);
-	    
 
 }

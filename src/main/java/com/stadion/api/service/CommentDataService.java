@@ -15,19 +15,12 @@ public class CommentDataService {
 	private CommentDataMapper commentDataMapper;
 	
 	
-	public CommentData getCommentData(String userId) {
+	public CommentData getCommentData(int idx) {
 		if(commentDataMapper==null) {return null;}
 		
-		CommentData commentData = commentDataMapper.getCommentData(userId);
+		CommentData commentData = commentDataMapper.getCommentData(idx);
 		
 		return commentData;
 	}
-	public CommentData getCommentDataByEmail(String emailAddress) {
-		if(commentDataMapper==null) {return null;}
-		
-		CommentData commentData = commentDataMapper.getCommentDataByEmail(emailAddress);
-		
-		return commentData;
-	}
-
+	
 }

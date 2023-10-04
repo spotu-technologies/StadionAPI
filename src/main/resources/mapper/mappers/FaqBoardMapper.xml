@@ -12,12 +12,7 @@
     <select id="getFaqBoard" resultType="com.stadion.api.entity.FaqBoard">	
         SELECT *
         FROM faqBoard 
-        	WHERE faqBoard.accountID = #{userID}
-    </select>
-
-    <select id="getFaqBoardByEmail" resultType="com.stadion.api.entity.FaqBoard">
-    SELECT * FROM faqBoard WHERE faqBoard.emailAddress =
-    #{userEmail}
+        	WHERE faqBoard.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

@@ -12,12 +12,7 @@
     <select id="getMovementRecordData" resultType="com.stadion.api.entity.MovementRecordData">	
         SELECT *
         FROM movementRecordData
-        	WHERE movementRecordData.accountID = #{userID}
-    </select>
-
-    <select id="getMovementRecordDataByEmail" resultType="com.stadion.api.entity.MovementRecordData">
-    SELECT * FROM movementRecordData WHERE movementRecordData.emailAddress =
-    #{userEmail}
+        	WHERE movementRecordData.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

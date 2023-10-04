@@ -12,12 +12,7 @@
     <select id="getMomRankData" resultType="com.stadion.api.entity.MomRankData">	
         SELECT *
         FROM momRankData 
-        	WHERE momRankData.accountID = #{userID}
-    </select>
-
-    <select id="getMomRankDataByEmail" resultType="com.stadion.api.entity.MomRankData">
-    SELECT * FROM momRankData WHERE momRankData.emailAddress =
-    #{userEmail}
+        	WHERE momRankData.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

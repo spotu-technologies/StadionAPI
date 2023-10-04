@@ -11,10 +11,7 @@ import com.stadion.api.entity.MomParticipantLinkInfo;
 public interface MomParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MomParticipantLinkInfo getMomParticipantLinkInfo(String accountID);
+	public MomParticipantLinkInfo getMomParticipantLinkInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public MomParticipantLinkInfo getMomParticipantLinkInfoByEmail(String emailAddress);
-	    
 
 }

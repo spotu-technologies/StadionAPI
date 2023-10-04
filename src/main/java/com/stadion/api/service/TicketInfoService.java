@@ -15,19 +15,12 @@ public class TicketInfoService {
 	private TicketInfoMapper ticketInfoMapper;
 	
 	
-	public TicketInfo getTicketInfo(String userId) {
+	public TicketInfo getTicketInfo(int idx) {
 		if(ticketInfoMapper==null) {return null;}
 		
-		TicketInfo ticketInfo = ticketInfoMapper.getTicketInfo(userId);
+		TicketInfo ticketInfo = ticketInfoMapper.getTicketInfo(idx);
 		
 		return ticketInfo;
 	}
-	public TicketInfo getTicketInfoByEmail(String emailAddress) {
-		if(ticketInfoMapper==null) {return null;}
-		
-		TicketInfo ticketInfo = ticketInfoMapper.getTicketInfoByEmail(emailAddress);
-		
-		return ticketInfo;
-	}
-
+	
 }

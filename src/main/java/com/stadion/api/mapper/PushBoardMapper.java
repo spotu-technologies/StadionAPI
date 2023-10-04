@@ -11,10 +11,7 @@ import com.stadion.api.entity.PushBoard;
 public interface PushBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public PushBoard getPushBoard(String accountID);
+	public PushBoard getPushBoard(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public PushBoard getPushBoardByEmail(String emailAddress);
-	    
 
 }

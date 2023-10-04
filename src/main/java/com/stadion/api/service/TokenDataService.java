@@ -15,19 +15,12 @@ public class TokenDataService {
 	private TokenDataMapper tokenDataMapper;
 	
 	
-	public TokenData getTokenData(String userId) {
+	public TokenData getTokenData(int idx) {
 		if(tokenDataMapper==null) {return null;}
 		
-		TokenData tokenData =tokenDataMapper.getTokenData(userId);
+		TokenData tokenData =tokenDataMapper.getTokenData(idx);
 		
 		return tokenData;
 	}
-	public TokenData getTokenDataByEmail(String emailAddress) {
-		if(tokenDataMapper==null) {return null;}
-		
-		TokenData tokenData = tokenDataMapper.getTokenDataByEmail(emailAddress);
-		
-		return tokenData;
-	}
-
+	
 }

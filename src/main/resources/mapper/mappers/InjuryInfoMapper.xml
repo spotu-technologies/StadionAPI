@@ -12,12 +12,7 @@
     <select id="getInjuryInfo" resultType="com.stadion.api.entity.InjuryInfo">	
         SELECT *
         FROM injuryInfo
-        	WHERE injuryInfo.accountID = #{userID}
-    </select>
-
-    <select id="getInjuryInfoByEmail" resultType="com.stadion.api.entity.InjuryInfo">
-    SELECT * FROM injuryInfo WHERE injuryInfo.emailAddress =
-    #{userEmail}
+        	WHERE injuryInfo.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

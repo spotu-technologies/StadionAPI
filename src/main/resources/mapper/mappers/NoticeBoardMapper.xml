@@ -12,13 +12,9 @@
     <select id="getNoticeBoard" resultType="com.stadion.api.entity.NoticeBoard">	
         SELECT *
         FROM noticeBoard
-        	WHERE noticeBoard.accountID = #{userID}
+        	WHERE noticeBoard.idx = #{idx}
     </select>
 
-    <select id="getNoticeBoardByEmail" resultType="com.stadion.api.entity.NoticeBoard">
-    SELECT * FROM noticeBoard WHERE noticeBoard.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

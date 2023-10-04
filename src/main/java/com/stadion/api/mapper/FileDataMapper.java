@@ -11,10 +11,7 @@ import com.stadion.api.entity.FileData;
 public interface FileDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public FileData getFileData(String accountID);
+	public FileData getFileData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public FileData getFileDataByEmail(String emailAddress);
-	    
 
 }

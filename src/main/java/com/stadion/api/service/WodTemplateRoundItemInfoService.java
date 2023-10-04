@@ -15,19 +15,12 @@ public class WodTemplateRoundItemInfoService {
 	private WodTemplateRoundItemInfoMapper wodTemplateRoundItemInfoMapper;
 	
 	
-	public WodTemplateRoundItemInfo getWodTemplateRoundItemInfo(String userId) {
+	public WodTemplateRoundItemInfo getWodTemplateRoundItemInfo(int idx) {
 		if(wodTemplateRoundItemInfoMapper==null) {return null;}
 		
-		WodTemplateRoundItemInfo wodTemplateRoundItemInfo = wodTemplateRoundItemInfoMapper.getWodTemplateRoundItemInfo(userId);
+		WodTemplateRoundItemInfo wodTemplateRoundItemInfo = wodTemplateRoundItemInfoMapper.getWodTemplateRoundItemInfo(idx);
 		
 		return wodTemplateRoundItemInfo;
 	}
-	public WodTemplateRoundItemInfo getWodTemplateRoundItemInfoByEmail(String emailAddress) {
-		if(wodTemplateRoundItemInfoMapper==null) {return null;}
-		
-		WodTemplateRoundItemInfo wodTemplateRoundItemInfo = wodTemplateRoundItemInfoMapper.getWodTemplateRoundItemInfoByEmail(emailAddress);
-		
-		return wodTemplateRoundItemInfo;
-	}
-
+	
 }

@@ -11,10 +11,7 @@ import com.stadion.api.entity.BwHistory;
 public interface BwHistoryMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BwHistory getBwHistory(String accountID);
-	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public BwHistory getBwHistoryByEmail(String emailAddress);
-	    
+	public BwHistory getBwHistory(int idx);
+
 
 }

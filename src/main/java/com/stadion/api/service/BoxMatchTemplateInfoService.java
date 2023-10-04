@@ -15,17 +15,10 @@ public class BoxMatchTemplateInfoService {
 	private BoxMatchTemplateInfoMapper boxMatchTemplateInfoMapper;
 	
 	
-	public BoxMatchTemplateInfo getBoxMatchTemplateInfo(String userId) {
+	public BoxMatchTemplateInfo getBoxMatchTemplateInfo(int idx) {
 		if(boxMatchTemplateInfoMapper==null) {return null;}
 		
-		BoxMatchTemplateInfo boxMatchTemplateInfo = boxMatchTemplateInfoMapper.getBoxMatchTemplateInfo(userId);
-		
-		return boxMatchTemplateInfo;
-	}
-	public BoxMatchTemplateInfo getBoxMatchTemplateInfoByEmail(String emailAddress) {
-		if(boxMatchTemplateInfoMapper==null) {return null;}
-		
-		BoxMatchTemplateInfo boxMatchTemplateInfo = boxMatchTemplateInfoMapper.getBoxMatchTemplateInfoByEmail(emailAddress);
+		BoxMatchTemplateInfo boxMatchTemplateInfo = boxMatchTemplateInfoMapper.getBoxMatchTemplateInfo(idx);
 		
 		return boxMatchTemplateInfo;
 	}

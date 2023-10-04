@@ -15,19 +15,12 @@ public class MemoDataService {
 	private MemoDataMapper memoDataMapper;
 	
 	
-	public MemoData getMemoData(String userId) {
+	public MemoData getMemoData(int idx) {
 		if(memoDataMapper==null) {return null;}
 		
-		MemoData memoData = memoDataMapper.getMemoData(userId);
+		MemoData memoData = memoDataMapper.getMemoData(idx);
 		
 		return memoData;
 	}
-	public MemoData getMemoDataByEmail(String emailAddress) {
-		if(memoDataMapper==null) {return null;}
-		
-		MemoData memoData = memoDataMapper.getMemoDataByEmail(emailAddress);
-		
-		return memoData;
-	}
-
+	
 }

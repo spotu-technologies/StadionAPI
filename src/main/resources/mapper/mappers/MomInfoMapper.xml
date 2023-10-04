@@ -12,13 +12,9 @@
     <select id="getMomInfo" resultType="com.stadion.api.entity.MomInfo">	
         SELECT *
         FROM momInfo
-        	WHERE momInfo.accountID = #{userID}
+        	WHERE momInfo.idx = #{idx}
     </select>
 
-    <select id="getMomInfoByEmail" resultType="com.stadion.api.entity.MomInfo">
-    SELECT * FROM momInfo WHERE momInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

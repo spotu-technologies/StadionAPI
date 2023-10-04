@@ -11,10 +11,6 @@ import com.stadion.api.entity.WodParticipantLinkInfo;
 public interface WodParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodParticipantLinkInfo getWodParticipantLinkInfo(String accountID);
+	public WodParticipantLinkInfo getWodParticipantLinkInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public WodParticipantLinkInfo getWodParticipantLinkInfoByEmail(String emailAddress);
-	    
-
 }

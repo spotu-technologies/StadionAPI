@@ -12,13 +12,9 @@
     <select id="getWodCategoryInfo" resultType="com.stadion.api.entity.WodCategoryInfo">	
         SELECT *
         FROM wodCategoryInfo
-        	WHERE wodCategoryInfo.accountID = #{userID}
+        	WHERE wodCategoryInfo.idx = #{idx}
     </select>
 
-    <select id="getWodCategoryInfoByEmail" resultType="com.stadion.api.entity.WodCategoryInfo">
-    SELECT * FROM wodCategoryInfo WHERE wodCategoryInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

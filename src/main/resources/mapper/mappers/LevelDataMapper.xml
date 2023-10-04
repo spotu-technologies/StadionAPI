@@ -12,13 +12,9 @@
     <select id="getLevelData" resultType="com.stadion.api.entity.LevelData">	
         SELECT *
         FROM levelData
-        	WHERE levelData.accountID = #{userID}
+        	WHERE levelData.idx = #{idx}
     </select>
 
-    <select id="getLevelDataByEmail" resultType="com.stadion.api.entity.LevelData">
-    SELECT * FROM levelData WHERE levelData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

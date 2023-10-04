@@ -15,19 +15,12 @@ public class WodItemRecordDataService {
 	private WodItemRecordDataMapper wodItemRecordDataMapper;
 	
 	
-	public WodItemRecordData getWodItemRecordData(String userId) {
+	public WodItemRecordData getWodItemRecordData(int idx) {
 		if(wodItemRecordDataMapper==null) {return null;}
 		
-		WodItemRecordData wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordData(userId);
+		WodItemRecordData wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordData(idx);
 		
 		return wodItemRecordData;
 	}
-	public WodItemRecordData getWodItemRecordDataByEmail(String emailAddress) {
-		if(wodItemRecordDataMapper==null) {return null;}
-		
-		WodItemRecordData wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordDataByEmail(emailAddress);
-		
-		return wodItemRecordData;
-	}
-
+	
 }

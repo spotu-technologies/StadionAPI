@@ -16,10 +16,7 @@
  
     </select>
 
-    <select id="getActionHistoryByEmail" resultType="com.stadion.api.entity.ActionHistory">
-    SELECT * FROM actionHistory WHERE actionHistory.emailAddress =
-    #{userEmail}
-    </select>
+    
 
         <!-- SQL문 작성
                 SELECT *

@@ -15,19 +15,12 @@ public class WodParticipantLinkInfoService {
 	private WodParticipantLinkInfoMapper wodParticipantLinkInfoMapper;
 	
 	
-	public WodParticipantLinkInfo getWodParticipantLinkInfo(String userId) {
+	public WodParticipantLinkInfo getWodParticipantLinkInfo(int idx) {
 		if(wodParticipantLinkInfoMapper==null) {return null;}
 		
-		WodParticipantLinkInfo wodParticipantLinkInfo = wodParticipantLinkInfoMapper.getWodParticipantLinkInfo(userId);
+		WodParticipantLinkInfo wodParticipantLinkInfo = wodParticipantLinkInfoMapper.getWodParticipantLinkInfo(idx);
 		
 		return wodParticipantLinkInfo;
 	}
-	public WodParticipantLinkInfo getWodParticipantLinkInfoByEmail(String emailAddress) {
-		if(wodParticipantLinkInfoMapper==null) {return null;}
-		
-		WodParticipantLinkInfo wodParticipantLinkInfo = wodParticipantLinkInfoMapper.getWodParticipantLinkInfoByEmail(emailAddress);
-		
-		return wodParticipantLinkInfo;
-	}
-
+	
 }

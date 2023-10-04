@@ -15,19 +15,12 @@ public class PolicyAgreeDataService {
 	private PolicyAgreeDataMapper policyAgreeDataMapper;
 	
 	
-	public PolicyAgreeData getPolicyAgreeData(String userId) {
+	public PolicyAgreeData getPolicyAgreeData(int idx) {
 		if(policyAgreeDataMapper==null) {return null;}
 		
-		PolicyAgreeData policyAgreeData = policyAgreeDataMapper.getPolicyAgreeData(userId);
+		PolicyAgreeData policyAgreeData = policyAgreeDataMapper.getPolicyAgreeData(idx);
 		
 		return policyAgreeData;
 	}
-	public PolicyAgreeData getPolicyAgreeDataByEmail(String emailAddress) {
-		if(policyAgreeDataMapper==null) {return null;}
-		
-		PolicyAgreeData policyAgreeData = policyAgreeDataMapper.getPolicyAgreeDataByEmail(emailAddress);
-		
-		return policyAgreeData;
-	}
-
+	
 }

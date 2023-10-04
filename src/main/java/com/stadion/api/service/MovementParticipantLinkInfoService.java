@@ -15,19 +15,12 @@ public class MovementParticipantLinkInfoService {
 	private MovementParticipantLinkInfoMapper movementParticipantLinkInfoMapper;
 	
 	
-	public MovementParticipantLinkInfo getMovementParticipantLinkInfo(String userId) {
+	public MovementParticipantLinkInfo getMovementParticipantLinkInfo(int idx) {
 		if(movementParticipantLinkInfoMapper==null) {return null;}
 		
-		MovementParticipantLinkInfo movementParticipantLinkInfo = movementParticipantLinkInfoMapper.getMovementParticipantLinkInfo(userId);
+		MovementParticipantLinkInfo movementParticipantLinkInfo = movementParticipantLinkInfoMapper.getMovementParticipantLinkInfo(idx);
 		
 		return movementParticipantLinkInfo;
 	}
-	public MovementParticipantLinkInfo getMovementParticipantLinkInfoByEmail(String emailAddress) {
-		if(movementParticipantLinkInfoMapper==null) {return null;}
-		
-		MovementParticipantLinkInfo movementParticipantLinkInfo = movementParticipantLinkInfoMapper.getMovementParticipantLinkInfoByEmail(emailAddress);
-		
-		return movementParticipantLinkInfo;
-	}
-
+	
 }

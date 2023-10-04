@@ -15,19 +15,12 @@ public class WodRoundItemInfoService {
 	private WodRoundItemInfoMapper wodRoundItemInfoMapper;
 	
 	
-	public WodRoundItemInfo getWodRoundItemInfo(String userId) {
+	public WodRoundItemInfo getWodRoundItemInfo(int idx) {
 		if(wodRoundItemInfoMapper==null) {return null;}
 		
-		WodRoundItemInfo wodRoundItemInfo = wodRoundItemInfoMapper.getWodRoundItemInfo(userId);
+		WodRoundItemInfo wodRoundItemInfo = wodRoundItemInfoMapper.getWodRoundItemInfo(idx);
 		
 		return wodRoundItemInfo;
 	}
-	public WodRoundItemInfo getWodRoundItemInfoByEmail(String emailAddress) {
-		if(wodRoundItemInfoMapper==null) {return null;}
-		
-		WodRoundItemInfo wodRoundItemInfo = wodRoundItemInfoMapper.getWodRoundItemInfoByEmail(emailAddress);
-		
-		return wodRoundItemInfo;
-	}
-
+	
 }

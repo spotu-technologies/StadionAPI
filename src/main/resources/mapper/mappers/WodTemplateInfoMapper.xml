@@ -12,13 +12,9 @@
     <select id="getWodTemplateInfo" resultType="com.stadion.api.entity.WodTemplateInfo">	
         SELECT *
         FROM wodTemplateInfo
-        	WHERE wodTemplateInfo.accountID = #{userID}
+        	WHERE wodTemplateInfo.idx = #{idx}
     </select>
 
-    <select id="getWodTemplateInfoByEmail" resultType="com.stadion.api.entity.WodTemplateInfo">
-    SELECT * FROM wodTemplateInfo WHERE wodTemplateInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

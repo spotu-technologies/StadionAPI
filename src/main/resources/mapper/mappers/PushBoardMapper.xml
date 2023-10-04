@@ -12,13 +12,9 @@
     <select id="getPushBoard" resultType="com.stadion.api.entity.PushBoard">	
         SELECT *
         FROM pushBoard
-        	WHERE pushBoard.accountID = #{userID}
+        	WHERE pushBoard.idx = #{idx}
     </select>
 
-    <select id="getPushBoardByEmail" resultType="com.stadion.api.entity.PushBoard">
-    SELECT * FROM pushBoard WHERE pushBoard.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

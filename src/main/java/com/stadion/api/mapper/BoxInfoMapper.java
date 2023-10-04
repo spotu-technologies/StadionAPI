@@ -11,10 +11,7 @@ import com.stadion.api.entity.BoxInfo;
 public interface BoxInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BoxInfo getBoxInfo(String accountID);
+	public BoxInfo getBoxInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public BoxInfo getBoxInfoByEmail(String emailAddress);
-	    
 
 }

@@ -11,10 +11,7 @@ import com.stadion.api.entity.PolicyAgreeData;
 public interface PolicyAgreeDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public PolicyAgreeData getPolicyAgreeData(String accountID);
+	public PolicyAgreeData getPolicyAgreeData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public PolicyAgreeData getPolicyAgreeDataByEmail(String emailAddress);
-	    
 
 }

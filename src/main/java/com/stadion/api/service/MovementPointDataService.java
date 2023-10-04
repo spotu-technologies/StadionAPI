@@ -15,19 +15,12 @@ public class MovementPointDataService {
 	private MovementPointDataMapper movementPointDataMapper;
 	
 	
-	public MovementPointData getMovementPointData(String userId) {
+	public MovementPointData getMovementPointData(int idx) {
 		if(movementPointDataMapper==null) {return null;}
 		
-		MovementPointData movementPointData = movementPointDataMapper.getMovementPointData(userId);
+		MovementPointData movementPointData = movementPointDataMapper.getMovementPointData(idx);
 		
 		return movementPointData;
 	}
-	public MovementPointData getMovementPointDataByEmail(String emailAddress) {
-		if(movementPointDataMapper==null) {return null;}
-		
-		MovementPointData movementPointData = movementPointDataMapper.getMovementPointDataByEmail(emailAddress);
-		
-		return movementPointData;
-	}
-
+	
 }

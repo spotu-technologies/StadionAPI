@@ -12,12 +12,7 @@
     <select id="getBwHistory" resultType="com.stadion.api.entity.BwHistory">	
         SELECT *
         FROM bwHistory 
-        	WHERE bwHistory.accountID = #{userID}
-    </select>
-
-    <select id="getBwHistoryByEmail" resultType="com.stadion.api.entity.BwHistory">
-    SELECT * FROM bwHistory WHERE bwHistory.emailAddress =
-    #{userEmail}
+        	WHERE bwHistory.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

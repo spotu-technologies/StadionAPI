@@ -15,19 +15,12 @@ public class MomRankDataService {
 	private MomRankDataMapper momRankDataMapper;
 	
 	
-	public MomRankData getMomRankData(String userId) {
+	public MomRankData getMomRankData(int idx) {
 		if(momRankDataMapper==null) {return null;}
 		
-		MomRankData momRankData = momRankDataMapper.getMomRankData(userId);
+		MomRankData momRankData = momRankDataMapper.getMomRankData(idx);
 		
 		return momRankData;
 	}
-	public MomRankData getMomRankDataByEmail(String emailAddress) {
-		if(momRankDataMapper==null) {return null;}
-		
-		MomRankData momRankData = momRankDataMapper.getMomRankDataByEmail(emailAddress);
-		
-		return momRankData;
-	}
-
+	
 }

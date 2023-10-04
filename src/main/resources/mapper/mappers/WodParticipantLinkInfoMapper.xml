@@ -12,13 +12,9 @@
     <select id="getWodParticipantLinkInfo" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
         SELECT *
         FROM wodParticipantLinkInfo
-        	WHERE wodParticipantLinkInfo.accountID = #{userID}
+        	WHERE wodParticipantLinkInfo.idx = #{idx}
     </select>
 
-    <select id="getWodParticipantLinkInfoByEmail" resultType="com.stadion.api.entity.WodParticipantLinkInfo">
-    SELECT * FROM wodParticipantLinkInfo WHERE wodParticipantLinkInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

@@ -12,13 +12,9 @@
     <select id="getGuideBoard" resultType="com.stadion.api.entity.GuideBoard">	
         SELECT *
         FROM guideBoard 
-        	WHERE guideBoard.accountID = #{userID}
+        	WHERE guideBoard.idx = #{idx}
     </select>
 
-    <select id="getGuideBoardByEmail" resultType="com.stadion.api.entity.GuideBoard">
-    SELECT * FROM guideBoard WHERE guideBoard.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

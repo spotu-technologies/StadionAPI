@@ -12,12 +12,7 @@
     <select id="getLikeData" resultType="com.stadion.api.entity.LikeData">	
         SELECT *
         FROM likeData
-        	WHERE likeData.accountID = #{userID}
-    </select>
-
-    <select id="getLikeDataByEmail" resultType="com.stadion.api.entity.LikeData">
-    SELECT * FROM likeData WHERE likeData.emailAddress =
-    #{userEmail}
+        	WHERE likeData.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

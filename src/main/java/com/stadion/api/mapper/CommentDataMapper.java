@@ -11,10 +11,7 @@ import com.stadion.api.entity.CommentData;
 public interface CommentDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public CommentData getCommentData(String accountID);
+	public CommentData getCommentData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public CommentData getCommentDataByEmail(String emailAddress);
-	    
 
 }

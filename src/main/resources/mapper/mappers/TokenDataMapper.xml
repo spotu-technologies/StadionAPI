@@ -12,13 +12,9 @@
     <select id="getTokenData" resultType="com.stadion.api.entity.TokenData">	
         SELECT *
         FROM tokenData 
-        	WHERE tokenData.accountID = #{userID}
+        	WHERE tokenData.idx = #{idx}
     </select>
 
-    <select id="getTokenDataByEmail" resultType="com.stadion.api.entity.TokenData">
-    SELECT * FROM tokenData WHERE tokenData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

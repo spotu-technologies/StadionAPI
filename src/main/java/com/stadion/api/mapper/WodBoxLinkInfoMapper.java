@@ -11,10 +11,7 @@ import com.stadion.api.entity.WodBoxLinkInfo;
 public interface WodBoxLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodBoxLinkInfo getWodBoxLinkInfo(String accountID);
+	public WodBoxLinkInfo getWodBoxLinkInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public WodBoxLinkInfo getWodBoxLinkInfoByEmail(String emailAddress);
-	    
 
 }

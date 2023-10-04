@@ -12,12 +12,7 @@
     <select id="getBoxInfo" resultType="com.stadion.api.entity.BoxInfo">	
         SELECT *
         FROM boxInfo
-        	WHERE boxInfo.accountID = #{userID}
-    </select>
-
-    <select id="getBoxInfoByEmail" resultType="com.stadion.api.entity.BoxInfo">
-    SELECT * FROM boxInfo WHERE boxInfo.emailAddress =
-    #{userEmail}
+        	WHERE boxInfo.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

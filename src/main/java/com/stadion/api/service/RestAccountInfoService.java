@@ -15,19 +15,13 @@ public class RestAccountInfoService {
 	private RestAccountInfoMapper restAccountInfoMapper;
 	
 	
-	public RestAccountInfo getRestAccountInfo(String userId) {
+	public RestAccountInfo getRestAccountInfo(int idx) {
 		if(restAccountInfoMapper==null) {return null;}
 		
-		RestAccountInfo restAccountInfo = restAccountInfoMapper.getRestAccountInfo(userId);
+		RestAccountInfo restAccountInfo = restAccountInfoMapper.getRestAccountInfo(idx);
 		
 		return restAccountInfo;
 	}
-	public RestAccountInfo getRestAccountInfoByEmail(String emailAddress) {
-		if(restAccountInfoMapper==null) {return null;}
-		
-		RestAccountInfo restAccountInfo = restAccountInfoMapper.getRestAccountInfoByEmail(emailAddress);
-		
-		return restAccountInfo;
-	}
+	
 
 }

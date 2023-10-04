@@ -15,19 +15,12 @@ public class PushBoardService {
 	private PushBoardMapper pushBoardMapper;
 	
 	
-	public PushBoard getPushBoard(String userId) {
+	public PushBoard getPushBoard(int idx) {
 		if(pushBoardMapper==null) {return null;}
 		
-		PushBoard pushBoard = pushBoardMapper.getPushBoard(userId);
+		PushBoard pushBoard = pushBoardMapper.getPushBoard(idx);
 		
 		return pushBoard;
 	}
-	public PushBoard getPushBoardByEmail(String emailAddress) {
-		if(pushBoardMapper==null) {return null;}
-		
-		PushBoard pushBoard = pushBoardMapper.getPushBoardByEmail(emailAddress);
-		
-		return pushBoard;
-	}
-
+	
 }

@@ -15,19 +15,12 @@ public class WodTemplateStepInfoService {
 	private WodTemplateStepInfoMapper wodTemplateStepInfoMapper;
 	
 	
-	public WodTemplateStepInfo getWodTemplateStepInfo(String userId) {
+	public WodTemplateStepInfo getWodTemplateStepInfo(int idx) {
 		if(wodTemplateStepInfoMapper==null) {return null;}
 		
-		WodTemplateStepInfo wodTemplateStepInfo = wodTemplateStepInfoMapper.getWodTemplateStepInfo(userId);
+		WodTemplateStepInfo wodTemplateStepInfo = wodTemplateStepInfoMapper.getWodTemplateStepInfo(idx);
 		
 		return wodTemplateStepInfo;
 	}
-	public WodTemplateStepInfo getWodTemplateStepInfoByEmail(String emailAddress) {
-		if(wodTemplateStepInfoMapper==null) {return null;}
-		
-		WodTemplateStepInfo wodTemplateStepInfo = wodTemplateStepInfoMapper.getWodTemplateStepInfoByEmail(emailAddress);
-		
-		return wodTemplateStepInfo;
-	}
-
+	
 }

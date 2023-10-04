@@ -12,13 +12,9 @@
     <select id="getWodBoxLinkInfo" resultType="com.stadion.api.entity.WodBoxLinkInfo">	
         SELECT *
         FROM wodBoxLinkInfo
-        	WHERE wodBoxLinkInfo.accountID = #{userID}
+        	WHERE wodBoxLinkInfo.idx = #{idx}
     </select>
 
-    <select id="getWodBoxLinkInfoByEmail" resultType="com.stadion.api.entity.WodBoxLinkInfo">
-    SELECT * FROM wodBoxLinkInfo WHERE wodBoxLinkInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

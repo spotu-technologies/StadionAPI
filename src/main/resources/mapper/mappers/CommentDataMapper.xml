@@ -12,13 +12,9 @@
     <select id="getCommentData" resultType="com.stadion.api.entity.CommentData">	
         SELECT *
         FROM commentData 
-        	WHERE commentData.accountID = #{userID}
+        	WHERE commentData.idx = #{idx}
     </select>
 
-    <select id="getCommentDataByEmail" resultType="com.stadion.api.entity.CommentData">
-    SELECT * FROM commentData WHERE commentData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

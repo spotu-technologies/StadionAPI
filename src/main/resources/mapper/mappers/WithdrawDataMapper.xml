@@ -12,13 +12,9 @@
     <select id="getWithdrawData" resultType="com.stadion.api.entity.WithdrawData">	
         SELECT *
         FROM withdrawData
-        	wHERE WithdrawData.accountID = #{userID}
+        	wHERE WithdrawData.idx = #{idx}
     </select>
 
-    <select id="getWithdrawDataByEmail" resultType="com.stadion.api.entity.WithdrawData">
-    SELECT * FROM withdrawData WHERE withdrawData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

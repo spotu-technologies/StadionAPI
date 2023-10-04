@@ -15,19 +15,12 @@ public class WodItemRankDataService {
 	private WodItemRankDataMapper wodItemRankDataMapper;
 	
 	
-	public WodItemRankData getWodItemRankData(String userId) {
+	public WodItemRankData getWodItemRankData(int idx) {
 		if(wodItemRankDataMapper==null) {return null;}
 		
-		WodItemRankData wodItemRankData = wodItemRankDataMapper.getWodItemRankData(userId);
+		WodItemRankData wodItemRankData = wodItemRankDataMapper.getWodItemRankData(idx);
 		
 		return wodItemRankData;
 	}
-	public WodItemRankData getWodItemRankDataByEmail(String emailAddress) {
-		if(wodItemRankDataMapper==null) {return null;}
-		
-		WodItemRankData wodItemRankData = wodItemRankDataMapper.getWodItemRankDataByEmail(emailAddress);
-		
-		return wodItemRankData;
-	}
-
+	
 }

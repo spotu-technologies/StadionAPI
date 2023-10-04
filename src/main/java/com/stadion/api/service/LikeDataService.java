@@ -15,19 +15,12 @@ public class LikeDataService {
 	private LikeDataMapper likeDataMapper;
 	
 	
-	public LikeData getLikeData(String userId) {
+	public LikeData getLikeData(int idx) {
 		if(likeDataMapper==null) {return null;}
 		
-		LikeData likeData = likeDataMapper.getLikeData(userId);
+		LikeData likeData = likeDataMapper.getLikeData(idx);
 		
 		return likeData;
 	}
-	public LikeData getLikeDataByEmail(String emailAddress) {
-		if(likeDataMapper==null) {return null;}
-		
-		LikeData likeData = likeDataMapper.getLikeDataByEmail(emailAddress);
-		
-		return likeData;
-	}
-
+	
 }

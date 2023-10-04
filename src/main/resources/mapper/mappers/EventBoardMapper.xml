@@ -12,13 +12,9 @@
     <select id="getEventBoard" resultType="com.stadion.api.entity.EventBoard">	
         SELECT *
         FROM eventBoard 
-        	WHERE eventBoard.accountID = #{userID}
+        	WHERE eventBoard.idx = #{idx}
     </select>
 
-    <select id="getEventBoardByEmail" resultType="com.stadion.api.entity.EventBoard">
-    SELECT * FROM eventBoard WHERE eventBoard.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

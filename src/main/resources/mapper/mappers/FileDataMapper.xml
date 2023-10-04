@@ -12,13 +12,9 @@
     <select id="getFileData" resultType="com.stadion.api.entity.FileData">	
         SELECT *
         FROM fileData 
-        	WHERE fileData.accountID = #{userID}
+        	WHERE fileData.idx = #{idx}
     </select>
 
-    <select id="getFileDataByEmail" resultType="com.stadion.api.entity.FileData">
-    SELECT * FROM fileData WHERE fileData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

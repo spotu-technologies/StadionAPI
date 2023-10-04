@@ -15,19 +15,12 @@ public class TicketPaymentDataService {
 	private TicketPaymentDataMapper ticketPaymentDataMapper;
 	
 	
-	public TicketPaymentData getTicketPaymentData(String userId) {
+	public TicketPaymentData getTicketPaymentData(int idx) {
 		if(ticketPaymentDataMapper==null) {return null;}
 		
-		TicketPaymentData ticketPaymentData = ticketPaymentDataMapper.getTicketPaymentData(userId);
+		TicketPaymentData ticketPaymentData = ticketPaymentDataMapper.getTicketPaymentData(idx);
 		
 		return ticketPaymentData;
 	}
-	public TicketPaymentData getTicketPaymentDataByEmail(String emailAddress) {
-		if(ticketPaymentDataMapper==null) {return null;}
-		
-		TicketPaymentData ticketPaymentData = ticketPaymentDataMapper.getTicketPaymentDataByEmail(emailAddress);
-		
-		return ticketPaymentData;
-	}
-
+	
 }

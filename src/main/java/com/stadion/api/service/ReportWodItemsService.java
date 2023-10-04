@@ -15,19 +15,12 @@ public class ReportWodItemsService {
 	private ReportWodItemsMapper reportWodItemsMapper;
 	
 	
-	public ReportWodItems getReportWodItems(String userId) {
+	public ReportWodItems getReportWodItems(int idx) {
 		if(reportWodItemsMapper==null) {return null;}
 		
-		ReportWodItems reportWodItems = reportWodItemsMapper.getReportWodItems(userId);
+		ReportWodItems reportWodItems = reportWodItemsMapper.getReportWodItems(idx);
 		
 		return reportWodItems;
 	}
-	public ReportWodItems getReportWodItemsByEmail(String emailAddress) {
-		if(reportWodItemsMapper==null) {return null;}
-		
-		ReportWodItems reportWodItems = reportWodItemsMapper.getReportWodItemsByEmail(emailAddress);
-		
-		return reportWodItems;
-	}
-
+	
 }

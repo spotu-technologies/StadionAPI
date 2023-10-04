@@ -11,10 +11,7 @@ import com.stadion.api.entity.QnaBoard;
 public interface QnaBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public QnaBoard getQnaBoard(String accountID);
+	public QnaBoard getQnaBoard(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public QnaBoard getQnaBoardByEmail(String emailAddress);
-	    
 
 }

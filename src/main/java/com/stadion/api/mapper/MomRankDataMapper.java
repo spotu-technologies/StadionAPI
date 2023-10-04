@@ -11,10 +11,7 @@ import com.stadion.api.entity.MomRankData;
 public interface MomRankDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MomRankData getMomRankData(String accountID);
+	public MomRankData getMomRankData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public MomRankData getMomRankDataByEmail(String emailAddress);
-	    
 
 }

@@ -15,19 +15,12 @@ public class WodInfoService {
 	private WodInfoMapper wodInfoMapper;
 	
 	
-	public WodInfo getWodInfo(String userId) {
+	public WodInfo getWodInfo(int idx) {
 		if(wodInfoMapper==null) {return null;}
 		
-		WodInfo wodInfo = wodInfoMapper.getWodInfo(userId);
+		WodInfo wodInfo = wodInfoMapper.getWodInfo(idx);
 		
 		return wodInfo;
 	}
-	public WodInfo getWodInfoByEmail(String emailAddress) {
-		if(wodInfoMapper==null) {return null;}
-		
-		WodInfo wodInfo = wodInfoMapper.getWodInfoByEmail(emailAddress);
-		
-		return wodInfo;
-	}
-
+	
 }

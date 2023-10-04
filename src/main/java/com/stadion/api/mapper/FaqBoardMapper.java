@@ -11,10 +11,7 @@ import com.stadion.api.entity.FaqBoard;
 public interface FaqBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public FaqBoard getFaqBoard(String accountID);
+	public FaqBoard getFaqBoard(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public FaqBoard getFaqBoardByEmail(String emailAddress);
-	    
 
 }

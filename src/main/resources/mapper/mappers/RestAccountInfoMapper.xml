@@ -12,13 +12,9 @@
     <select id="getRestAccountInfo" resultType="com.stadion.api.entity.RestAccountInfo">	
         SELECT *
         FROM restAccountInfo 
-        	WHERE restAccountInfo.accountID = #{userID}
+        	WHERE restAccountInfo.idx = #{idx}
     </select>
 
-    <select id="getRestAccountInfoByEmail" resultType="com.stadion.api.entity.RestAccountInfo">
-    SELECT * FROM restAccountInfo WHERE restAccountInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

@@ -12,13 +12,9 @@
     <select id="getMomMovementLinkInfo" resultType="com.stadion.api.entity.MomMovementLinkInfo">	
         SELECT *
         FROM momMovementLinkInfo
-        	WHERE momMovementLinkInfo.accountID = #{userID}
+        	WHERE momMovementLinkInfo.idx = #{idx}
     </select>
 
-    <select id="getMomMovementLinkInfoByEmail" resultType="com.stadion.api.entity.MomMovementLinkInfo">
-    SELECT * FROM momMovementLinkInfo WHERE momMovementLinkInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

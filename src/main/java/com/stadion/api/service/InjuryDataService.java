@@ -15,19 +15,12 @@ public class InjuryDataService {
 	private InjuryDataMapper injuryDataMapper;
 	
 	
-	public InjuryData getInjuryData(String userId) {
+	public InjuryData getInjuryData(int idx) {
 		if(injuryDataMapper==null) {return null;}
 		
-		InjuryData injuryData = injuryDataMapper.getInjuryData(userId);
+		InjuryData injuryData = injuryDataMapper.getInjuryData(idx);
 		
 		return injuryData;
 	}
-	public InjuryData getInjuryDataByEmail(String emailAddress) {
-		if(injuryDataMapper==null) {return null;}
-		
-		InjuryData injuryData = injuryDataMapper.getInjuryDataByEmail(emailAddress);
-		
-		return injuryData;
-	}
-
+	
 }

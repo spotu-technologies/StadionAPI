@@ -15,19 +15,12 @@ public class BoxMatchTemplateLinkInfoService {
 	private BoxMatchTemplateLinkInfoMapper boxMatchTemplateLinkInfoMapper;
 	
 	
-	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(String userId) {
+	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(int idx) {
 		if(boxMatchTemplateLinkInfoMapper==null) {return null;}
 		
-		BoxMatchTemplateLinkInfo boxMatchTemplateLinkInfo = boxMatchTemplateLinkInfoMapper.getBoxMatchTemplateLinkInfo(userId);
+		BoxMatchTemplateLinkInfo boxMatchTemplateLinkInfo = boxMatchTemplateLinkInfoMapper.getBoxMatchTemplateLinkInfo(idx);
 		
 		return boxMatchTemplateLinkInfo;
 	}
-	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfoByEmail(String emailAddress) {
-		if(boxMatchTemplateLinkInfoMapper==null) {return null;}
-		
-		BoxMatchTemplateLinkInfo boxMatchTemplateLinkInfo = boxMatchTemplateLinkInfoMapper.getBoxMatchTemplateLinkInfoByEmail(emailAddress);
-		
-		return boxMatchTemplateLinkInfo;
-	}
-
+	
 }

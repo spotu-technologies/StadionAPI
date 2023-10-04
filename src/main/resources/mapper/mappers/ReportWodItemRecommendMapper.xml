@@ -12,13 +12,9 @@
     <select id="getReportWodItemRecommend" resultType="com.stadion.api.entity.ReportWodItemRecommend">	
         SELECT *
         FROM reportWodItemRecommend
-        	WHERE reportWodItemRecommend.accountID = #{userID}
+        	WHERE reportWodItemRecommend.idx = #{idx}
     </select>
 
-    <select id="getReportWodItemRecommendByEmail" resultType="com.stadion.api.entity.ReportWodItemRecommend">
-    SELECT * FROM reportWodItemRecommend WHERE reportWodItemRecommend.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

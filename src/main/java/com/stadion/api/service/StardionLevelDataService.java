@@ -15,19 +15,12 @@ public class StardionLevelDataService {
 	private StardionLevelDataMapper stardionLevelDataMapper;
 	
 	
-	public StardionLevelData getStardionLevelData(String userId) {
+	public StardionLevelData getStardionLevelData(int idx) {
 		if(stardionLevelDataMapper==null) {return null;}
 		
-		StardionLevelData stardionLevelData = stardionLevelDataMapper.getStardionLevelData(userId);
+		StardionLevelData stardionLevelData = stardionLevelDataMapper.getStardionLevelData(idx);
 		
 		return stardionLevelData;
 	}
-	public StardionLevelData getStardionLevelDataByEmail(String emailAddress) {
-		if(stardionLevelDataMapper==null) {return null;}
-		
-		StardionLevelData stardionLevelData = stardionLevelDataMapper.getStardionLevelDataByEmail(emailAddress);
-		
-		return stardionLevelData;
-	}
-
+	
 }

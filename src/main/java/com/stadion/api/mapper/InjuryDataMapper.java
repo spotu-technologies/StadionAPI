@@ -11,10 +11,7 @@ import com.stadion.api.entity.InjuryData;
 public interface InjuryDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public InjuryData getInjuryData(String accountID);
+	public InjuryData getInjuryData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public InjuryData getInjuryDataByEmail(String emailAddress);
-	    
 
 }

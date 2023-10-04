@@ -15,19 +15,12 @@ public class PolicyBoardService {
 	private PolicyBoardMapper policyBoardMapper;
 	
 	
-	public PolicyBoard getPolicyBoard(String userId) {
+	public PolicyBoard getPolicyBoard(int idx) {
 		if(policyBoardMapper==null) {return null;}
 		
-		PolicyBoard policyBoard = policyBoardMapper.getPolicyBoard(userId);
+		PolicyBoard policyBoard = policyBoardMapper.getPolicyBoard(idx);
 		
 		return policyBoard;
 	}
-	public PolicyBoard getPolicyBoardByEmail(String emailAddress) {
-		if(policyBoardMapper==null) {return null;}
-		
-		PolicyBoard policyBoard = policyBoardMapper.getPolicyBoardByEmail(emailAddress);
-		
-		return policyBoard;
-	}
-
+	
 }

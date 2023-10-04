@@ -15,17 +15,10 @@ public class BwHistoryService {
 	private BwHistoryMapper bwHistoryMapper;
 	
 	
-	public BwHistory getBwHistory(String userId) {
+	public BwHistory getBwHistory(int idx) {
 		if(bwHistoryMapper==null) {return null;}
 		
-		BwHistory bwHistory = bwHistoryMapper.getBwHistory(userId);
-		
-		return bwHistory;
-	}
-	public BwHistory getBwHistoryByEmail(String emailAddress) {
-		if(bwHistoryMapper==null) {return null;}
-		
-		BwHistory bwHistory = bwHistoryMapper.getBwHistoryByEmail(emailAddress);
+		BwHistory bwHistory = bwHistoryMapper.getBwHistory(idx);
 		
 		return bwHistory;
 	}

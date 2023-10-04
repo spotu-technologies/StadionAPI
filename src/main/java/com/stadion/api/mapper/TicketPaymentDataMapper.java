@@ -11,10 +11,7 @@ import com.stadion.api.entity.TicketPaymentData;
 public interface TicketPaymentDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TicketPaymentData getTicketPaymentData(String accountID);
+	public TicketPaymentData getTicketPaymentData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public TicketPaymentData getTicketPaymentDataByEmail(String emailAddress);
-	    
 
 }

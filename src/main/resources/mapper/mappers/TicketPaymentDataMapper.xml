@@ -12,13 +12,9 @@
     <select id="getTicketPaymentData" resultType="com.stadion.api.entity.TicketPaymentData">	
         SELECT *
         FROM ticketPaymentData 
-        	WHERE ticketPaymentData.accountID = #{userID}
+        	WHERE ticketPaymentData.idx = #{idx}
     </select>
 
-    <select id="getTicketPaymentDataByEmail" resultType="com.stadion.api.entity.TicketPaymentData">
-    SELECT * FROM ticketPaymentData WHERE ticketPaymentData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

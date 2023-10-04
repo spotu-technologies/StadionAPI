@@ -15,19 +15,12 @@ public class WodItemCategoryInfoService {
 	private WodItemCategoryInfoMapper wodItemCategoryInfoMapper;
 	
 	
-	public WodItemCategoryInfo getWodItemCategoryInfo(String userId) {
+	public WodItemCategoryInfo getWodItemCategoryInfo(int idx) {
 		if(wodItemCategoryInfoMapper==null) {return null;}
 		
-		WodItemCategoryInfo wodItemCategoryInfo = wodItemCategoryInfoMapper.getWodItemCategoryInfo(userId);
+		WodItemCategoryInfo wodItemCategoryInfo = wodItemCategoryInfoMapper.getWodItemCategoryInfo(idx);
 		
 		return wodItemCategoryInfo;
 	}
-	public WodItemCategoryInfo getWodItemCategoryInfoByEmail(String emailAddress) {
-		if(wodItemCategoryInfoMapper==null) {return null;}
-		
-		WodItemCategoryInfo wodItemCategoryInfo = wodItemCategoryInfoMapper.getWodItemCategoryInfoByEmail(emailAddress);
-		
-		return wodItemCategoryInfo;
-	}
-
+	
 }

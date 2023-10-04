@@ -15,19 +15,13 @@ public class BoxInfoService {
 	private BoxInfoMapper boxInfoMapper;
 	
 	
-	public BoxInfo getBoxInfo(String userId) {
+	public BoxInfo getBoxInfo(int idx) {
 		if(boxInfoMapper==null) {return null;}
 		
-		BoxInfo boxInfo = boxInfoMapper.getBoxInfo(userId);
+		BoxInfo boxInfo = boxInfoMapper.getBoxInfo(idx);
 		
 		return boxInfo;
 	}
-	public BoxInfo getBoxInfoByEmail(String emailAddress) {
-		if(boxInfoMapper==null) {return null;}
-		
-		BoxInfo boxInfo = boxInfoMapper.getBoxInfoByEmail(emailAddress);
-		
-		return boxInfo;
-	}
+	
 
 }

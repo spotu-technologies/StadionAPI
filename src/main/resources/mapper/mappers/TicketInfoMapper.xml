@@ -12,13 +12,9 @@
     <select id="getTicketInfo" resultType="com.stadion.api.entity.TicketInfo">	
         SELECT *
         FROM ticketInfo 
-        	WHERE ticketInfo.accountID = #{userID}
+        	WHERE ticketInfo.idx = #{idx}
     </select>
 
-    <select id="getTicketInfoByEmail" resultType="com.stadion.api.entity.TicketInfo">
-    SELECT * FROM ticketInfo WHERE ticketInfo.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

@@ -15,19 +15,12 @@ public class BoxAccountLinkInfoService {
 	private BoxAccountLinkInfoMapper boxAccountLinkInfoMapper;
 	
 	
-	public BoxAccountLinkInfo getBoxAccountLinkInfo(String userId) {
+	public BoxAccountLinkInfo getBoxAccountLinkInfo(int idx) {
 		if(boxAccountLinkInfoMapper==null) {return null;}
 		
-		BoxAccountLinkInfo boxAccountLinkInfo = boxAccountLinkInfoMapper.getBoxAccountLinkInfo(userId);
+		BoxAccountLinkInfo boxAccountLinkInfo = boxAccountLinkInfoMapper.getBoxAccountLinkInfo(idx);
 		
 		return boxAccountLinkInfo;
 	}
-	public BoxAccountLinkInfo getBoxAccountLinkInfoByEmail(String emailAddress) {
-		if(boxAccountLinkInfoMapper==null) {return null;}
-		
-		BoxAccountLinkInfo boxAccountLinkInfo = boxAccountLinkInfoMapper.getBoxAccountLinkInfoByEmail(emailAddress);
-		
-		return boxAccountLinkInfo;
-	}
-
+	
 }

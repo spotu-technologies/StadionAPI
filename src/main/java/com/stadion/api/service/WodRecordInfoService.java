@@ -15,19 +15,12 @@ public class WodRecordInfoService {
 	private WodRecordInfoMapper wodRecordInfoMapper;
 	
 	
-	public WodRecordInfo getWodRecordInfo(String userId) {
+	public WodRecordInfo getWodRecordInfo(int idx) {
 		if(wodRecordInfoMapper==null) {return null;}
 		
-		WodRecordInfo wodRecordInfo = wodRecordInfoMapper.getWodRecordInfo(userId);
+		WodRecordInfo wodRecordInfo = wodRecordInfoMapper.getWodRecordInfo(idx);
 		
 		return wodRecordInfo;
 	}
-	public WodRecordInfo getWodRecordInfoByEmail(String emailAddress) {
-		if(wodRecordInfoMapper==null) {return null;}
-		
-		WodRecordInfo wodRecordInfo = wodRecordInfoMapper.getWodRecordInfoByEmail(emailAddress);
-		
-		return wodRecordInfo;
-	}
-
+	
 }

@@ -15,19 +15,12 @@ public class MomParticipantLinkInfoService {
 	private MomParticipantLinkInfoMapper momParticipantLinkInfoMapper;
 	
 	
-	public MomParticipantLinkInfo getMomParticipantLinkInfo(String userId) {
+	public MomParticipantLinkInfo getMomParticipantLinkInfo(int idx) {
 		if(momParticipantLinkInfoMapper==null) {return null;}
 		
-		MomParticipantLinkInfo momParticipantLinkInfo = momParticipantLinkInfoMapper.getMomParticipantLinkInfo(userId);
+		MomParticipantLinkInfo momParticipantLinkInfo = momParticipantLinkInfoMapper.getMomParticipantLinkInfo(idx);
 		
 		return momParticipantLinkInfo;
 	}
-	public MomParticipantLinkInfo getMomParticipantLinkInfoByEmail(String emailAddress) {
-		if(momParticipantLinkInfoMapper==null) {return null;}
-		
-		MomParticipantLinkInfo momParticipantLinkInfo = momParticipantLinkInfoMapper.getMomParticipantLinkInfoByEmail(emailAddress);
-		
-		return momParticipantLinkInfo;
-	}
-
+	
 }

@@ -11,10 +11,7 @@ import com.stadion.api.entity.WodCategoryInfo;
 public interface WodCategoryInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodCategoryInfo getWodCategoryInfo(String accountID);
+	public WodCategoryInfo getWodCategoryInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public WodCategoryInfo getWodCategoryInfoByEmail(String emailAddress);
-	    
 
 }

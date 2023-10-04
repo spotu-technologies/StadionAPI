@@ -15,19 +15,12 @@ public class TokenListService {
 	private TokenListMapper tokenListMapper;
 	
 	
-	public TokenList getTokenList(String userId) {
+	public TokenList getTokenList(int idx) {
 		if(tokenListMapper==null) {return null;}
 		
-		TokenList tokenList = tokenListMapper.getTokenList(userId);
+		TokenList tokenList = tokenListMapper.getTokenList(idx);
 		
 		return tokenList;
 	}
-	public TokenList getTokenListByEmail(String emailAddress) {
-		if(tokenListMapper==null) {return null;}
-		
-		TokenList tokenList = tokenListMapper.getTokenListByEmail(emailAddress);
-		
-		return tokenList;
-	}
-
+	
 }

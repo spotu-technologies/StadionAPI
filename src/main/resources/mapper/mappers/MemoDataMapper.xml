@@ -12,12 +12,7 @@
     <select id="getMemoData" resultType="com.stadion.api.entity.MemoData">	
         SELECT *
         FROM memoData
-        	WHERE memoData.accountID = #{userID}
-    </select>
-
-    <select id="getMemoDataByEmail" resultType="com.stadion.api.entity.MemoData">
-    SELECT * FROM memoData WHERE memoData.emailAddress =
-    #{userEmail}
+        	WHERE memoData.idx = #{idx}
     </select>
 
         <!-- SQL문 작성

@@ -15,19 +15,12 @@ public class NoticeBoardService {
 	private NoticeBoardMapper noticeBoardMapper;
 	
 	
-	public NoticeBoard getNoticeBoard(String userId) {
+	public NoticeBoard getNoticeBoard(int idx) {
 		if(noticeBoardMapper==null) {return null;}
 		
-		NoticeBoard noticeBoard = noticeBoardMapper.getNoticeBoard(userId);
+		NoticeBoard noticeBoard = noticeBoardMapper.getNoticeBoard(idx);
 		
 		return noticeBoard;
 	}
-	public NoticeBoard getNoticeBoardByEmail(String emailAddress) {
-		if(noticeBoardMapper==null) {return null;}
-		
-		NoticeBoard noticeBoard = noticeBoardMapper.getNoticeBoardByEmail(emailAddress);
-		
-		return noticeBoard;
-	}
-
+	
 }

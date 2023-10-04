@@ -11,10 +11,7 @@ import com.stadion.api.entity.WodItemRankData;
 public interface WodItemRankDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodItemRankData getWodItemRankData(String accountID);
-	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public WodItemRankData getWodItemRankDataByEmail(String emailAddress);
-	    
+	public WodItemRankData getWodItemRankData(int idx);
+	  
 
 }

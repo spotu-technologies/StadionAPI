@@ -11,10 +11,7 @@ import com.stadion.api.entity.WodTemplateStepInfo;
 public interface WodTemplateStepInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodTemplateStepInfo getWodTemplateStepInfo(String accountID);
+	public WodTemplateStepInfo getWodTemplateStepInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public WodTemplateStepInfo getWodTemplateStepInfoByEmail(String emailAddress);
-	    
 
 }

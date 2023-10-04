@@ -15,19 +15,12 @@ public class WodCategoryInfoService {
 	private WodCategoryInfoMapper wodCategoryInfoMapper;
 	
 	
-	public WodCategoryInfo getWodCategoryInfo(String userId) {
+	public WodCategoryInfo getWodCategoryInfo(int idx) {
 		if(wodCategoryInfoMapper==null) {return null;}
 		
-		WodCategoryInfo wodCategoryInfo = wodCategoryInfoMapper.getWodCategoryInfo(userId);
+		WodCategoryInfo wodCategoryInfo = wodCategoryInfoMapper.getWodCategoryInfo(idx);
 		
 		return wodCategoryInfo;
 	}
-	public WodCategoryInfo getWodCategoryInfoByEmail(String emailAddress) {
-		if(wodCategoryInfoMapper==null) {return null;}
-		
-		WodCategoryInfo wodCategoryInfo = wodCategoryInfoMapper.getWodCategoryInfoByEmail(emailAddress);
-		
-		return wodCategoryInfo;
-	}
-
+	
 }

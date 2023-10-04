@@ -12,13 +12,9 @@
     <select id="getQnaBoard" resultType="com.stadion.api.entity.QnaBoard">	
         SELECT *
         FROM qnaBoard
-        	WHERE qnaBoard.accountID = #{userID}
+        	WHERE qnaBoard.idx = #{idx}
     </select>
 
-    <select id="getQnaBoardByEmail" resultType="com.stadion.api.entity.QnaBoard">
-    SELECT * FROM qnaBoard WHERE qnaBoard.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

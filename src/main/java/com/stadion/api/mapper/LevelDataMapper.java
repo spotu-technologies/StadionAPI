@@ -11,10 +11,6 @@ import com.stadion.api.entity.LevelData;
 public interface LevelDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public LevelData getLevelData(String accountID);
+	public LevelData getLevelData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public LevelData getLevelDataByEmail(String emailAddress);
-	    
-
 }

@@ -11,10 +11,7 @@ import com.stadion.api.entity.CategoryInfo;
 public interface CategoryInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public CategoryInfo getCategoryInfo(String accountID);
-	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public CategoryInfo getCategoryInfoByEmail(String emailAddress);
-	    
+	public CategoryInfo getCategoryInfo(int idx);
+
 
 }

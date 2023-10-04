@@ -15,19 +15,12 @@ public class EventBoardService {
 	private EventBoardMapper eventBoardMapper;
 	
 	
-	public EventBoard getEventBoard(String userId) {
+	public EventBoard getEventBoard(int idx) {
 		if(eventBoardMapper==null) {return null;}
 		
-		EventBoard eventBoard = eventBoardMapper.getEventBoard(userId);
+		EventBoard eventBoard = eventBoardMapper.getEventBoard(idx);
 		
 		return eventBoard;
 	}
-	public EventBoard getEventBoardByEmail(String emailAddress) {
-		if(eventBoardMapper==null) {return null;}
-		
-		EventBoard eventBoard = eventBoardMapper.getEventBoardByEmail(emailAddress);
-		
-		return eventBoard;
-	}
-
+	
 }

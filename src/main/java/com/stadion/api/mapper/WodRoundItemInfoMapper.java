@@ -11,10 +11,6 @@ import com.stadion.api.entity.WodRoundItemInfo;
 public interface WodRoundItemInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodRoundItemInfo getWodRoundItemInfo(String accountID);
+	public WodRoundItemInfo getWodRoundItemInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public WodRoundItemInfo getWodRoundItemInfoByEmail(String emailAddress);
-	    
-
 }

@@ -15,19 +15,12 @@ public class FileDataService {
 	private FileDataMapper fileDataMapper;
 	
 	
-	public FileData getFileData(String userId) {
+	public FileData getFileData(int idx) {
 		if(fileDataMapper==null) {return null;}
 		
-		FileData fileData = fileDataMapper.getFileData(userId);
+		FileData fileData = fileDataMapper.getFileData(idx);
 		
 		return fileData;
 	}
-	public FileData getFileDataByEmail(String emailAddress) {
-		if(fileDataMapper==null) {return null;}
-		
-		FileData fileData = fileDataMapper.getFileDataByEmail(emailAddress);
-		
-		return fileData;
-	}
-
+	
 }

@@ -12,13 +12,9 @@
     <select id="getPolicyBoard" resultType="com.stadion.api.entity.PolicyBoard">	
         SELECT *
         FROM policyBoard
-        	WHERE policyBoard.accountID = #{userID}
+        	WHERE policyBoard.idx = #{idx}
     </select>
 
-    <select id="getPolicyBoardByEmail" resultType="com.stadion.api.entity.PolicyBoard">
-    SELECT * FROM policyBoard WHERE policyBoard.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *

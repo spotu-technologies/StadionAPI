@@ -11,10 +11,6 @@ import com.stadion.api.entity.MovementInfo;
 public interface MovementInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MovementInfo getMovementInfo(String accountID);
+	public MovementInfo getMovementInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public MovementInfo getMovementInfoByEmail(String emailAddress);
-	    
-
 }

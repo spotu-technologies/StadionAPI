@@ -15,19 +15,12 @@ public class MovementInfoService {
 	private MovementInfoMapper movementInfoMapper;
 	
 	
-	public MovementInfo getMovementInfo(String userId) {
+	public MovementInfo getMovementInfo(int idx) {
 		if(movementInfoMapper==null) {return null;}
 		
-		MovementInfo movementInfo = movementInfoMapper.getMovementInfo(userId);
+		MovementInfo movementInfo = movementInfoMapper.getMovementInfo(idx);
 		
 		return movementInfo;
 	}
-	public MovementInfo getMovementInfoByEmail(String emailAddress) {
-		if(movementInfoMapper==null) {return null;}
-		
-		MovementInfo movementInfo = movementInfoMapper.getMovementInfoByEmail(emailAddress);
-		
-		return movementInfo;
-	}
-
+	
 }

@@ -15,19 +15,12 @@ public class QnaBoardService {
 	private QnaBoardMapper qnaBoardMapper;
 	
 	
-	public QnaBoard getQnaBoard(String userId) {
+	public QnaBoard getQnaBoard(int idx) {
 		if(qnaBoardMapper==null) {return null;}
 		
-		QnaBoard qnaBoard = qnaBoardMapper.getQnaBoard(userId);
+		QnaBoard qnaBoard = qnaBoardMapper.getQnaBoard(idx);
 		
 		return qnaBoard;
 	}
-	public QnaBoard getQnaBoardByEmail(String emailAddress) {
-		if(qnaBoardMapper==null) {return null;}
-		
-		QnaBoard qnaBoard = qnaBoardMapper.getQnaBoardByEmail(emailAddress);
-		
-		return qnaBoard;
-	}
-
+	
 }

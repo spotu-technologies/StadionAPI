@@ -11,10 +11,6 @@ import com.stadion.api.entity.MemoData;
 public interface MemoDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MemoData getMemoData(String accountID);
+	public MemoData getMemoData(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public MemoData getMemoDataByEmail(String emailAddress);
-	    
-
 }

@@ -275,36 +275,15 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	BoxAccountLinkInfo jsonResult = boxAccountLinkInfoService.getBoxAccountLinkInfo(userID);
+    	BoxAccountLinkInfo jsonResult = boxAccountLinkInfoService.getBoxAccountLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
-	}
-
-
-    @PostMapping("/getboxAccountLinkInfobyemail")
-	public String getBoxAccountLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	BoxAccountLinkInfo jsonResult = boxAccountLinkInfoService.getBoxAccountLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
 	}
     
     
@@ -325,38 +304,17 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	BoxInfo jsonResult = boxInfoService.getBoxInfo(userID);
+    	BoxInfo jsonResult = boxInfoService.getBoxInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
-
-    @PostMapping("/getboxInfobyemail")
-	public String getBoxInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	BoxInfo jsonResult = boxInfoService.getBoxInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public BoxMatchTemplateInfoService boxMatchTemplateInfoService;
@@ -375,38 +333,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	BoxMatchTemplateInfo jsonResult = boxMatchTemplateInfoService.getBoxMatchTemplateInfo(userID);
+    	BoxMatchTemplateInfo jsonResult = boxMatchTemplateInfoService.getBoxMatchTemplateInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getboxMatchTemplateInfobyemail")
-	public String getBoxMatchTemplateInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	BoxMatchTemplateInfo jsonResult = boxMatchTemplateInfoService.getBoxMatchTemplateInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public BoxMatchTemplateLinkInfoService boxMatchTemplateLinkInfoService;
@@ -425,39 +363,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	BoxMatchTemplateLinkInfo jsonResult = boxMatchTemplateLinkInfoService.getBoxMatchTemplateLinkInfo(userID);
+    	BoxMatchTemplateLinkInfo jsonResult = boxMatchTemplateLinkInfoService.getBoxMatchTemplateLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getboxMatchTemplateLinkInfobyemail")
-	public String getBoxMatchTemplateLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	BoxMatchTemplateLinkInfo jsonResult = boxMatchTemplateLinkInfoService.getBoxMatchTemplateLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
-    
     @Autowired
     public BwHistoryService bwHistoryService;
      
@@ -475,38 +392,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	BwHistory jsonResult = bwHistoryService.getBwHistory(userID);
+    	BwHistory jsonResult = bwHistoryService.getBwHistory(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getbwHistorybyemail")
-	public String getBwHistoryByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	BwHistory jsonResult = bwHistoryService.getBwHistoryByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public CategoryInfoService categoryInfoService;
@@ -525,38 +422,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	CategoryInfo jsonResult = categoryInfoService.getCategoryInfo(userID);
+    	CategoryInfo jsonResult = categoryInfoService.getCategoryInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getcategoryInfobyemail")
-	public String getCategoryInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	CategoryInfo jsonResult = categoryInfoService.getCategoryInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public CommentDataService commentDataService;
@@ -575,39 +452,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	CommentData jsonResult = commentDataService.getCommentData(userID);
+    	CommentData jsonResult = commentDataService.getCommentData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getcommentDatabyemail")
-	public String getCommentDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	CommentData jsonResult = commentDataService.getCommentDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
-    
     @Autowired
     public EventBoardService eventBoardService;
      
@@ -625,38 +481,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	EventBoard jsonResult = eventBoardService.getEventBoard(userID);
+    	EventBoard jsonResult = eventBoardService.getEventBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/geteventBoardbyemail")
-	public String getEventBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	EventBoard jsonResult = eventBoardService.getEventBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public FaqBoardService faqBoardService;
@@ -675,39 +511,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	FaqBoard jsonResult = faqBoardService.getFaqBoard(userID);
+    	FaqBoard jsonResult = faqBoardService.getFaqBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getfaqBoardbyemail")
-	public String getFaqBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	FaqBoard jsonResult = faqBoardService.getFaqBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
-    
     @Autowired
     public FileDataService fileDataService;
      
@@ -725,39 +540,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	FileData jsonResult = fileDataService.getFileData(userID);
+    	FileData jsonResult = fileDataService.getFileData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getfileDatabyemail")
-	public String getFileDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	FileData jsonResult = fileDataService.getFileDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
-    
     @Autowired
     public GuideBoardService guideBoardService;
      
@@ -775,38 +569,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	GuideBoard jsonResult = guideBoardService.getGuideBoard(userID);
+    	GuideBoard jsonResult = guideBoardService.getGuideBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getguideBoardbyemail")
-	public String getGuideBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	GuideBoard jsonResult = guideBoardService.getGuideBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public InjuryDataService injuryDataService;
@@ -825,38 +599,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	InjuryData jsonResult = injuryDataService.getInjuryData(userID);
+    	InjuryData jsonResult = injuryDataService.getInjuryData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getinjuryDatabyemail")
-	public String getInjuryDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	InjuryData jsonResult = injuryDataService.getInjuryDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public InjuryInfoService injuryInfoService;
@@ -875,38 +629,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	InjuryInfo jsonResult = injuryInfoService.getInjuryInfo(userID);
+    	InjuryInfo jsonResult = injuryInfoService.getInjuryInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getinjuryInfobyemail")
-	public String getInjuryInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	InjuryInfo jsonResult = injuryInfoService.getInjuryInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public LevelDataService levelDataService;
@@ -925,38 +659,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	LevelData jsonResult = levelDataService.getLevelData(userID);
+    	LevelData jsonResult = levelDataService.getLevelData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getlevelDatabyemail")
-	public String getLevelDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	LevelData jsonResult = levelDataService.getLevelDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public LikeDataService likeDataService;
@@ -975,38 +689,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	LikeData jsonResult = likeDataService.getLikeData(userID);
+    	LikeData jsonResult = likeDataService.getLikeData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getlikeDatabyemail")
-	public String getLikeDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	LikeData jsonResult = likeDataService.getLikeDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MemoDataService memoDataService;
@@ -1025,38 +719,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MemoData jsonResult = memoDataService.getMemoData(userID);
+    	MemoData jsonResult = memoDataService.getMemoData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmemoDatabyemail")
-	public String getMemoDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MemoData jsonResult = memoDataService.getMemoDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MomInfoService momInfoService;
@@ -1075,38 +749,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MomInfo jsonResult = momInfoService.getMomInfo(userID);
+    	MomInfo jsonResult = momInfoService.getMomInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmomInfobyemail")
-	public String getMomInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MomInfo jsonResult = momInfoService.getMomInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MomMovementLinkInfoService momMovementLinkInfoService;
@@ -1125,38 +779,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MomMovementLinkInfo jsonResult = momMovementLinkInfoService.getMomMovementLinkInfo(userID);
+    	MomMovementLinkInfo jsonResult = momMovementLinkInfoService.getMomMovementLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmomMovementLinkInfobyemail")
-	public String getMomMovementLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MomMovementLinkInfo jsonResult = momMovementLinkInfoService.getMomMovementLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MomParticipantLinkInfoService momParticipantLinkInfoService;
@@ -1175,38 +809,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MomParticipantLinkInfo jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfo(userID);
+    	MomParticipantLinkInfo jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmomParticipantLinkInfobyemail")
-	public String getMomParticipantLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MomParticipantLinkInfo jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MomRankDataService momRankDataService;
@@ -1225,38 +839,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MomRankData jsonResult = momRankDataService.getMomRankData(userID);
+    	MomRankData jsonResult = momRankDataService.getMomRankData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmomRankDatabyemail")
-	public String getMomRankDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MomRankData jsonResult = momRankDataService.getMomRankDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MovementInfoService movementInfoService;
@@ -1275,38 +869,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MovementInfo jsonResult = movementInfoService.getMovementInfo(userID);
+    	MovementInfo jsonResult = movementInfoService.getMovementInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmovementInfobyemail")
-	public String getMovementInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MovementInfo jsonResult = movementInfoService.getMovementInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MovementParticipantLinkInfoService movementParticipantLinkInfoService;
@@ -1325,38 +899,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MovementParticipantLinkInfo jsonResult = movementParticipantLinkInfoService.getMovementParticipantLinkInfo(userID);
+    	MovementParticipantLinkInfo jsonResult = movementParticipantLinkInfoService.getMovementParticipantLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmovementParticipantLinkInfobyemail")
-	public String getMovementParticipantLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MovementParticipantLinkInfo jsonResult = movementParticipantLinkInfoService.getMovementParticipantLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MovementPointDataService movementPointDataService;
@@ -1375,38 +929,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MovementPointData jsonResult = movementPointDataService.getMovementPointData(userID);
+    	MovementPointData jsonResult = movementPointDataService.getMovementPointData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmovementPointDatabyemail")
-	public String getMovementPointDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MovementPointData jsonResult = movementPointDataService.getMovementPointDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public MovementRecordDataService movementRecordDataService;
@@ -1425,38 +959,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	MovementRecordData jsonResult = movementRecordDataService.getMovementRecordData(userID);
+    	MovementRecordData jsonResult = movementRecordDataService.getMovementRecordData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getmovementRecordDatabyemail")
-	public String getMovementRecordDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	MovementRecordData jsonResult = movementRecordDataService.getMovementRecordDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public NoticeBoardService noticeBoardService;
@@ -1475,38 +989,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	NoticeBoard jsonResult = noticeBoardService.getNoticeBoard(userID);
+    	NoticeBoard jsonResult = noticeBoardService.getNoticeBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getgetnoticeBoardbyemail")
-	public String getNoticeBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	NoticeBoard jsonResult = noticeBoardService.getNoticeBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public PolicyAgreeDataService policyAgreeDataService;
@@ -1525,38 +1019,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	PolicyAgreeData jsonResult = policyAgreeDataService.getPolicyAgreeData(userID);
+    	PolicyAgreeData jsonResult = policyAgreeDataService.getPolicyAgreeData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getpolicyAgreeDatabyemail")
-	public String getPolicyAgreeDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	PolicyAgreeData jsonResult = policyAgreeDataService.getPolicyAgreeDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public PolicyBoardService policyBoardService;
@@ -1575,38 +1049,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	PolicyBoard jsonResult = policyBoardService.getPolicyBoard(userID);
+    	PolicyBoard jsonResult = policyBoardService.getPolicyBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getgetpolicyBoardbyemail")
-	public String getPolicyBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	PolicyBoard jsonResult = policyBoardService.getPolicyBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public PolicyHistoryService policyHistoryService;
@@ -1625,38 +1079,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	PolicyHistory jsonResult = policyHistoryService.getPolicyHistory(userID);
+    	PolicyHistory jsonResult = policyHistoryService.getPolicyHistory(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getpolicyHistorybyemail")
-	public String getgetPolicyHistoryByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	PolicyHistory jsonResult = policyHistoryService.getPolicyHistoryByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public PushBoardService pushBoardService;
@@ -1675,38 +1109,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	PushBoard jsonResult = pushBoardService.getPushBoard(userID);
+    	PushBoard jsonResult = pushBoardService.getPushBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getpushBoardbyemail")
-	public String getPushBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	PushBoard jsonResult = pushBoardService.getPushBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public QnaBoardService qnaBoardService;
@@ -1725,38 +1139,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	QnaBoard jsonResult = qnaBoardService.getQnaBoard(userID);
+    	QnaBoard jsonResult = qnaBoardService.getQnaBoard(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getqnaBoardbyemail")
-	public String getQnaBoardByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	QnaBoard jsonResult = qnaBoardService.getQnaBoardByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public ReportWodItemRecommendService reportWodItemRecommendService;
@@ -1775,38 +1169,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	ReportWodItemRecommend jsonResult = reportWodItemRecommendService.getReportWodItemRecommend(userID);
+    	ReportWodItemRecommend jsonResult = reportWodItemRecommendService.getReportWodItemRecommend(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getreportWodItemRecommendbyemail")
-	public String getReportWodItemRecommendByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	ReportWodItemRecommend jsonResult = reportWodItemRecommendService.getReportWodItemRecommendByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public ReportWodItemsService reportWodItemsService;
@@ -1825,38 +1199,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	ReportWodItems jsonResult = reportWodItemsService.getReportWodItems(userID);
+    	ReportWodItems jsonResult = reportWodItemsService.getReportWodItems(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getreportWodItemsbyemail")
-	public String getReportWodItemsByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	ReportWodItems jsonResult = reportWodItemsService.getReportWodItemsByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public RestAccountInfoService restAccountInfoService;
@@ -1875,38 +1229,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfo(userID);
+    	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getrestAccountInfobyemail")
-	public String getRestAccountInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public StardionLevelDataService stardionLevelDataService;
@@ -1925,38 +1259,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	StardionLevelData jsonResult = stardionLevelDataService.getStardionLevelData(userID);
+    	StardionLevelData jsonResult = stardionLevelDataService.getStardionLevelData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getstardionLevelDatabyemail")
-	public String getStardionLevelDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	StardionLevelData jsonResult = stardionLevelDataService.getStardionLevelDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public TableLinkInfoService tableLinkInfoService;
@@ -1975,38 +1289,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TableLinkInfo jsonResult = tableLinkInfoService.getTableLinkInfo(userID);
+    	TableLinkInfo jsonResult = tableLinkInfoService.getTableLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/gettableLinkInfobyemail")
-	public String getTableLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	TableLinkInfo jsonResult = tableLinkInfoService.getTableLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public TicketInfoService ticketInfoService;
@@ -2025,38 +1319,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TicketInfo jsonResult = ticketInfoService.getTicketInfo(userID);
+    	TicketInfo jsonResult = ticketInfoService.getTicketInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getticketInfobyemail")
-	public String getTicketInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	TicketInfo jsonResult = ticketInfoService.getTicketInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public TicketPaymentDataService ticketPaymentDataService;
@@ -2075,38 +1349,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentData(userID);
+    	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getticketPaymentDatabyemail")
-	public String getTicketPaymentDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public TokenDataService tokenDataService;
@@ -2125,38 +1379,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TokenData jsonResult = tokenDataService.getTokenData(userID);
+    	TokenData jsonResult = tokenDataService.getTokenData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/gettokenDatabyemail")
-	public String getTokenDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	TokenData jsonResult = tokenDataService.getTokenDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public TokenListService tokenListService;
@@ -2175,38 +1409,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TokenList jsonResult = tokenListService.getTokenList(userID);
+    	TokenList jsonResult = tokenListService.getTokenList(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/gettokenListbyemail")
-	public String getTokenListByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	TokenList jsonResult = tokenListService.getTokenListByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WithdrawDataService withdrawDataService;
@@ -2225,38 +1439,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WithdrawData jsonResult = withdrawDataService.getWithdrawData(userID);
+    	WithdrawData jsonResult = withdrawDataService.getWithdrawData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwithdrawDatabyemail")
-	public String getWithdrawDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WithdrawData jsonResult = withdrawDataService.getWithdrawDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodBoxLinkInfoService wodBoxLinkInfoService;
@@ -2275,38 +1469,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodBoxLinkInfo jsonResult = wodBoxLinkInfoService.getWodBoxLinkInfo(userID);
+    	WodBoxLinkInfo jsonResult = wodBoxLinkInfoService.getWodBoxLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodBoxLinkInfobyemail")
-	public String getgetWodBoxLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodBoxLinkInfo jsonResult = wodBoxLinkInfoService.getWodBoxLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodCategoryInfoService wodCategoryInfoService;
@@ -2325,38 +1499,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodCategoryInfo jsonResult = wodCategoryInfoService.getWodCategoryInfo(userID);
+    	WodCategoryInfo jsonResult = wodCategoryInfoService.getWodCategoryInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodCategoryInfobyemail")
-	public String getWodCategoryInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodCategoryInfo jsonResult = wodCategoryInfoService.getWodCategoryInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodInfoService wodInfoService;
@@ -2375,38 +1529,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodInfo jsonResult = wodInfoService.getWodInfo(userID);
+    	WodInfo jsonResult = wodInfoService.getWodInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getgetwodInfobyemail")
-	public String getWodInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodInfo jsonResult = wodInfoService.getWodInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItem3RmDataService wodItem3RmDataService;
@@ -2425,38 +1559,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItem3RmData jsonResult = wodItem3RmDataService.getWodItem3RmData(userID);
+    	WodItem3RmData jsonResult = wodItem3RmDataService.getWodItem3RmData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItem3RmDatabyemail")
-	public String getWodItem3RmDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItem3RmData jsonResult = wodItem3RmDataService.getWodItem3RmDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItem5RmDataService wodItem5RmDataService;
@@ -2475,38 +1589,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItem5RmData jsonResult = wodItem5RmDataService.getWodItem5RmData(userID);
+    	WodItem5RmData jsonResult = wodItem5RmDataService.getWodItem5RmData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItem5RmDatabyemail")
-	public String getWodItem5RmDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItem5RmData jsonResult = wodItem5RmDataService.getWodItem5RmDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItemCategoryInfoService wodItemCategoryInfoService;
@@ -2525,38 +1619,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItemCategoryInfo jsonResult = wodItemCategoryInfoService.getWodItemCategoryInfo(userID);
+    	WodItemCategoryInfo jsonResult = wodItemCategoryInfoService.getWodItemCategoryInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItemCategoryInfobyemail")
-	public String getWodItemCategoryInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItemCategoryInfo jsonResult = wodItemCategoryInfoService.getWodItemCategoryInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItemInfoService wodItemInfoService;
@@ -2575,38 +1649,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItemInfo jsonResult = wodItemInfoService.getWodItemInfo(userID);
+    	WodItemInfo jsonResult = wodItemInfoService.getWodItemInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItemInfobyemail")
-	public String getWodItemInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItemInfo jsonResult = wodItemInfoService.getWodItemInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItemOneRmDataService wodItemOneRmDataService;
@@ -2625,38 +1679,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItemOneRmData jsonResult = wodItemOneRmDataService.getWodItemOneRmData(userID);
+    	WodItemOneRmData jsonResult = wodItemOneRmDataService.getWodItemOneRmData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItemOneRmDatabyemail")
-	public String getWodItemOneRmDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItemOneRmData jsonResult = wodItemOneRmDataService.getWodItemOneRmDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItemRankDataService wodItemRankDataService;
@@ -2675,38 +1709,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItemRankData jsonResult = wodItemRankDataService.getWodItemRankData(userID);
+    	WodItemRankData jsonResult = wodItemRankDataService.getWodItemRankData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItemRankDatabyemail")
-	public String getWodItemRankDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItemRankData jsonResult = wodItemRankDataService.getWodItemRankDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodItemRecordDataService wodItemRecordDataService;
@@ -2725,38 +1739,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItemRecordData jsonResult = wodItemRecordDataService.getWodItemRecordData(userID);
+    	WodItemRecordData jsonResult = wodItemRecordDataService.getWodItemRecordData(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodItemRecordDatabyemail")
-	public String getWodItemRecordDataByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodItemRecordData jsonResult = wodItemRecordDataService.getWodItemRecordDataByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodParticipantLinkInfoService wodParticipantLinkInfoService;
@@ -2775,38 +1769,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodParticipantLinkInfo jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfo(userID);
+    	WodParticipantLinkInfo jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodParticipantLinkInfobyemail")
-	public String getgetWodParticipantLinkInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodParticipantLinkInfo jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodRecordInfoService wodRecordInfoService;
@@ -2825,38 +1799,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodRecordInfo jsonResult = wodRecordInfoService.getWodRecordInfo(userID);
+    	WodRecordInfo jsonResult = wodRecordInfoService.getWodRecordInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodRecordInfobyemail")
-	public String getWodRecordInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodRecordInfo jsonResult = wodRecordInfoService.getWodRecordInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodRoundInfoService wodRoundInfoService;
@@ -2875,38 +1829,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodRoundInfo jsonResult = wodRoundInfoService.getWodRoundInfo(userID);
+    	WodRoundInfo jsonResult = wodRoundInfoService.getWodRoundInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodRoundInfobyemail")
-	public String getWodRoundInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodRoundInfo jsonResult = wodRoundInfoService.getWodRoundInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodRoundItemInfoService wodRoundItemInfoService;
@@ -2925,38 +1859,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodRoundItemInfo jsonResult = wodRoundItemInfoService.getWodRoundItemInfo(userID);
+    	WodRoundItemInfo jsonResult = wodRoundItemInfoService.getWodRoundItemInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodRoundItemInfobyemail")
-	public String getWodRoundItemInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodRoundItemInfo jsonResult = wodRoundItemInfoService.getWodRoundItemInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodStepInfoService wodStepInfoService;
@@ -2975,38 +1889,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodStepInfo jsonResult = wodStepInfoService.getWodStepInfo(userID);
+    	WodStepInfo jsonResult = wodStepInfoService.getWodStepInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodStepInfobyemail")
-	public String getWodStepInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodStepInfo jsonResult = wodStepInfoService.getWodStepInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodTemplateInfoService wodTemplateInfoService;
@@ -3025,38 +1919,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodTemplateInfo jsonResult = wodTemplateInfoService.getWodTemplateInfo(userID);
+    	WodTemplateInfo jsonResult = wodTemplateInfoService.getWodTemplateInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodTemplateInfobyemail")
-	public String getWodTemplateInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodTemplateInfo jsonResult = wodTemplateInfoService.getWodTemplateInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodTemplateRecordInfoService wodTemplateRecordInfoService;
@@ -3075,38 +1949,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodTemplateRecordInfo jsonResult = wodTemplateRecordInfoService.getWodTemplateRecordInfo(userID);
+    	WodTemplateRecordInfo jsonResult = wodTemplateRecordInfoService.getWodTemplateRecordInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodTemplateRecordInfobyemail")
-	public String getWodTemplateRecordInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodTemplateRecordInfo jsonResult = wodTemplateRecordInfoService.getWodTemplateRecordInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodTemplateRoundInfoService wodTemplateRoundInfoService;
@@ -3125,38 +1979,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodTemplateRoundInfo jsonResult = wodTemplateRoundInfoService.getWodTemplateRoundInfo(userID);
+    	WodTemplateRoundInfo jsonResult = wodTemplateRoundInfoService.getWodTemplateRoundInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodTemplateRoundInfobyemail")
-	public String getWodTemplateRoundInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodTemplateRoundInfo jsonResult = wodTemplateRoundInfoService.getWodTemplateRoundInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodTemplateRoundItemInfoService wodTemplateRoundItemInfoService;
@@ -3175,38 +2009,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodTemplateRoundItemInfo jsonResult = wodTemplateRoundItemInfoService.getWodTemplateRoundItemInfo(userID);
+    	WodTemplateRoundItemInfo jsonResult = wodTemplateRoundItemInfoService.getWodTemplateRoundItemInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    @PostMapping("/getwodTemplateRoundItemInfobyemail")
-	public String getWodTemplateRoundItemInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodTemplateRoundItemInfo jsonResult = wodTemplateRoundItemInfoService.getWodTemplateRoundItemInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
     
     @Autowired
     public WodTemplateStepInfoService wodTemplateStepInfoService;
@@ -3225,36 +2039,15 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	int idx = (int) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodTemplateStepInfo jsonResult = wodTemplateStepInfoService.getWodTemplateStepInfo(userID);
+    	WodTemplateStepInfo jsonResult = wodTemplateStepInfoService.getWodTemplateStepInfo(idx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
-
-    @PostMapping("/getwodTemplateStepInfobyemail")
-	public String getWodTemplateStepInfoByEmailAddress(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값을 get 해서 전달
-    	String emailAddress = (String) object.get("emailAddress");
-    	String result;
-    	Gson gson = new Gson();
-    	WodTemplateStepInfo jsonResult = wodTemplateStepInfoService.getWodTemplateStepInfoByEmail(emailAddress);
-
-    	result = gson.toJson(jsonResult);
-    	
-		return result;
-	}
-    
 }

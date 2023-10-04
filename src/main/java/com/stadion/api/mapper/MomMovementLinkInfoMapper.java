@@ -11,10 +11,7 @@ import com.stadion.api.entity.MomMovementLinkInfo;
 public interface MomMovementLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MomMovementLinkInfo getMomMovementLinkInfo(String accountID);
+	public MomMovementLinkInfo getMomMovementLinkInfo(int idx);
 	
-	//이메일 주소로 아이디 찾기가 필요하다면..
-	public MomMovementLinkInfo getMomMovementLinkInfoByEmail(String emailAddress);
-	    
 
 }

@@ -12,13 +12,9 @@
     <select id="getPolicyAgreeData" resultType="com.stadion.api.entity.PolicyAgreeData">	
         SELECT *
         FROM policyAgreeData
-        	WHERE policyAgreeData.accountID = #{userID}
+        	WHERE policyAgreeData.idx = #{idx}
     </select>
 
-    <select id="getPolicyAgreeDataByEmail" resultType="com.stadion.api.entity.PolicyAgreeData">
-    SELECT * FROM policyAgreeData WHERE policyAgreeData.emailAddress =
-    #{userEmail}
-    </select>
 
         <!-- SQL문 작성
                 SELECT *
