@@ -1,0 +1,33 @@
+package com.stadion.api.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.stadion.api.entity.WodItemRankData;
+import com.stadion.api.mapper.WodItemRankDataMapper;
+
+
+@Service
+public class WodItemRankDataService {
+	@Autowired
+	private WodItemRankDataMapper wodItemRankDataMapper;
+	
+	
+	public WodItemRankData getWodItemRankData(String userId) {
+		if(wodItemRankDataMapper==null) {return null;}
+		
+		WodItemRankData wodItemRankData = wodItemRankDataMapper.getWodItemRankData(userId);
+		
+		return wodItemRankData;
+	}
+	public WodItemRankData getWodItemRankDataByEmail(String emailAddress) {
+		if(wodItemRankDataMapper==null) {return null;}
+		
+		WodItemRankData wodItemRankData = wodItemRankDataMapper.getWodItemRankDataByEmail(emailAddress);
+		
+		return wodItemRankData;
+	}
+
+}

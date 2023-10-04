@@ -1,0 +1,33 @@
+package com.stadion.api.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.stadion.api.entity.MomMovementLinkInfo;
+import com.stadion.api.mapper.MomMovementLinkInfoMapper;
+
+
+@Service
+public class MomMovementLinkInfoService {
+	@Autowired
+	private MomMovementLinkInfoMapper momMovementLinkInfoMapper;
+	
+	
+	public MomMovementLinkInfo getMomMovementLinkInfo(String userId) {
+		if(momMovementLinkInfoMapper==null) {return null;}
+		
+		MomMovementLinkInfo momMovementLinkInfo = momMovementLinkInfoMapper.getMomMovementLinkInfo(userId);
+		
+		return momMovementLinkInfo;
+	}
+	public MomMovementLinkInfo getMomMovementLinkInfoByEmail(String emailAddress) {
+		if(momMovementLinkInfoMapper==null) {return null;}
+		
+		MomMovementLinkInfo momMovementLinkInfo = momMovementLinkInfoMapper.getMomMovementLinkInfoByEmail(emailAddress);
+		
+		return momMovementLinkInfo;
+	}
+
+}
