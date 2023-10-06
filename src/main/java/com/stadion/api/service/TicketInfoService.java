@@ -15,7 +15,7 @@ public class TicketInfoService {
 	private TicketInfoMapper ticketInfoMapper;
 	
 	
-	public TicketInfo getTicketInfo(int idx) {
+	public TicketInfo getTicketInfo(long idx) {
 		if(ticketInfoMapper==null) {return null;}
 		
 		TicketInfo ticketInfo = ticketInfoMapper.getTicketInfo(idx);

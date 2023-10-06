@@ -15,7 +15,7 @@ public class MomInfoService {
 	private MomInfoMapper momInfoMapper;
 	
 	
-	public MomInfo getMomInfo(int idx) {
+	public MomInfo getMomInfo(long idx) {
 		if(momInfoMapper==null) {return null;}
 		
 		MomInfo momInfo = momInfoMapper.getMomInfo(idx);

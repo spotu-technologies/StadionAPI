@@ -11,7 +11,7 @@ import com.stadion.api.entity.PolicyHistory;
 public interface PolicyHistoryMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public PolicyHistory getPolicyHistory(int idx);
+	public PolicyHistory getPolicyHistory(long idx);
 	
 
 }

@@ -15,7 +15,7 @@ public class WodTemplateRecordInfoService {
 	private WodTemplateRecordInfoMapper wodTemplateRecordInfoMapper;
 	
 	
-	public WodTemplateRecordInfo getWodTemplateRecordInfo(int idx) {
+	public WodTemplateRecordInfo getWodTemplateRecordInfo(long idx) {
 		if(wodTemplateRecordInfoMapper==null) {return null;}
 		
 		WodTemplateRecordInfo wodTemplateRecordInfo = wodTemplateRecordInfoMapper.getWodTemplateRecordInfo(idx);

@@ -15,7 +15,7 @@ public class WodItemCategoryInfoService {
 	private WodItemCategoryInfoMapper wodItemCategoryInfoMapper;
 	
 	
-	public WodItemCategoryInfo getWodItemCategoryInfo(int idx) {
+	public WodItemCategoryInfo getWodItemCategoryInfo(long idx) {
 		if(wodItemCategoryInfoMapper==null) {return null;}
 		
 		WodItemCategoryInfo wodItemCategoryInfo = wodItemCategoryInfoMapper.getWodItemCategoryInfo(idx);

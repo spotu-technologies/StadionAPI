@@ -15,7 +15,7 @@ public class MovementPointDataService {
 	private MovementPointDataMapper movementPointDataMapper;
 	
 	
-	public MovementPointData getMovementPointData(int idx) {
+	public MovementPointData getMovementPointData(long idx) {
 		if(movementPointDataMapper==null) {return null;}
 		
 		MovementPointData movementPointData = movementPointDataMapper.getMovementPointData(idx);

@@ -11,7 +11,7 @@ import com.stadion.api.entity.BoxInfo;
 public interface BoxInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BoxInfo getBoxInfo(int idx);
+	public BoxInfo getBoxInfo(long idx);
 	
 
 }

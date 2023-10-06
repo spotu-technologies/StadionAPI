@@ -15,7 +15,7 @@ public class WodItemRecordDataService {
 	private WodItemRecordDataMapper wodItemRecordDataMapper;
 	
 	
-	public WodItemRecordData getWodItemRecordData(int idx) {
+	public WodItemRecordData getWodItemRecordData(long idx) {
 		if(wodItemRecordDataMapper==null) {return null;}
 		
 		WodItemRecordData wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordData(idx);

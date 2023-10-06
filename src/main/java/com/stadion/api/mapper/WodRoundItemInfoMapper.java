@@ -11,6 +11,6 @@ import com.stadion.api.entity.WodRoundItemInfo;
 public interface WodRoundItemInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodRoundItemInfo getWodRoundItemInfo(int idx);
+	public WodRoundItemInfo getWodRoundItemInfo(long idx);
 	
 }

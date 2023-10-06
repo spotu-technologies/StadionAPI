@@ -15,7 +15,7 @@ public class FileDataService {
 	private FileDataMapper fileDataMapper;
 	
 	
-	public FileData getFileData(int idx) {
+	public FileData getFileData(long idx) {
 		if(fileDataMapper==null) {return null;}
 		
 		FileData fileData = fileDataMapper.getFileData(idx);

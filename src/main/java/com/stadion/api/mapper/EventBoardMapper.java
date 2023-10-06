@@ -11,7 +11,7 @@ import com.stadion.api.entity.EventBoard;
 public interface EventBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public EventBoard getEventBoard(int idx);
+	public EventBoard getEventBoard(long idx);
 	
 
 }

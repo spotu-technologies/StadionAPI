@@ -11,7 +11,7 @@ import com.stadion.api.entity.PushBoard;
 public interface PushBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public PushBoard getPushBoard(int idx);
+	public PushBoard getPushBoard(long idx);
 	
 
 }

@@ -15,7 +15,7 @@ public class WodBoxLinkInfoService {
 	private WodBoxLinkInfoMapper wodBoxLinkInfoMapper;
 	
 	
-	public WodBoxLinkInfo getWodBoxLinkInfo(int idx) {
+	public WodBoxLinkInfo getWodBoxLinkInfo(long idx) {
 		if(wodBoxLinkInfoMapper==null) {return null;}
 		
 		WodBoxLinkInfo wodBoxLinkInfo = wodBoxLinkInfoMapper.getWodBoxLinkInfo(idx);

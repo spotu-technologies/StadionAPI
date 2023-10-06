@@ -15,7 +15,7 @@ public class TokenDataService {
 	private TokenDataMapper tokenDataMapper;
 	
 	
-	public TokenData getTokenData(int idx) {
+	public TokenData getTokenData(long idx) {
 		if(tokenDataMapper==null) {return null;}
 		
 		TokenData tokenData =tokenDataMapper.getTokenData(idx);

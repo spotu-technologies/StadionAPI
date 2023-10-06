@@ -11,7 +11,7 @@ import com.stadion.api.entity.WodInfo;
 public interface WodInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodInfo getWodInfo(int idx);
+	public WodInfo getWodInfo(long idx);
 	
 
 }

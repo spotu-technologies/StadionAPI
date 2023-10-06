@@ -15,7 +15,7 @@ public class TokenListService {
 	private TokenListMapper tokenListMapper;
 	
 	
-	public TokenList getTokenList(int idx) {
+	public TokenList getTokenList(long idx) {
 		if(tokenListMapper==null) {return null;}
 		
 		TokenList tokenList = tokenListMapper.getTokenList(idx);

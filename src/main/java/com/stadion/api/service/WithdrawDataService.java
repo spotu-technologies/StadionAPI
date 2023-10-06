@@ -15,7 +15,7 @@ public class WithdrawDataService {
 	private WithdrawDataMapper withdrawDataMapper;
 	
 	
-	public WithdrawData getWithdrawData(int idx) {
+	public WithdrawData getWithdrawData(long idx) {
 		if(withdrawDataMapper==null) {return null;}
 		
 		WithdrawData withdrawData = withdrawDataMapper.getWithdrawData(idx);

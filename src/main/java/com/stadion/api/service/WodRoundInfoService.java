@@ -15,7 +15,7 @@ public class WodRoundInfoService {
 	private WodRoundInfoMapper wodRoundInfoMapper;
 	
 	
-	public WodRoundInfo getWodRoundInfo(int idx) {
+	public WodRoundInfo getWodRoundInfo(long idx) {
 		if(wodRoundInfoMapper==null) {return null;}
 		
 		WodRoundInfo wodRoundInfo = wodRoundInfoMapper.getWodRoundInfo(idx);

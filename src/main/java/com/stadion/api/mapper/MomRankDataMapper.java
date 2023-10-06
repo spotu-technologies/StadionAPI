@@ -11,7 +11,7 @@ import com.stadion.api.entity.MomRankData;
 public interface MomRankDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MomRankData getMomRankData(int idx);
+	public MomRankData getMomRankData(long idx);
 	
 
 }

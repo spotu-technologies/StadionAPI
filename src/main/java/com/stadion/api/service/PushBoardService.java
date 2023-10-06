@@ -15,7 +15,7 @@ public class PushBoardService {
 	private PushBoardMapper pushBoardMapper;
 	
 	
-	public PushBoard getPushBoard(int idx) {
+	public PushBoard getPushBoard(long idx) {
 		if(pushBoardMapper==null) {return null;}
 		
 		PushBoard pushBoard = pushBoardMapper.getPushBoard(idx);

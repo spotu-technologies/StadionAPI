@@ -15,7 +15,7 @@ public class TableLinkInfoService {
 	private TableLinkInfoMapper tableLinkInfoMapper;
 	
 	
-	public TableLinkInfo getTableLinkInfo(int idx) {
+	public TableLinkInfo getTableLinkInfo(long idx) {
 		if(tableLinkInfoMapper==null) {return null;}
 		
 		TableLinkInfo tableLinkInfo = tableLinkInfoMapper.getTableLinkInfo(idx);

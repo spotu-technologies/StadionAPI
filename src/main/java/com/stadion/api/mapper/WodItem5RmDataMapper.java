@@ -11,7 +11,7 @@ import com.stadion.api.entity.WodItem5RmData;
 public interface WodItem5RmDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodItem5RmData getWodItem5RmData(int idx);
+	public WodItem5RmData getWodItem5RmData(long idx);
 	
 
 }

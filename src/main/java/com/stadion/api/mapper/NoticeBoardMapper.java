@@ -11,6 +11,6 @@ import com.stadion.api.entity.NoticeBoard;
 public interface NoticeBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public NoticeBoard getNoticeBoard(int idx);
+	public NoticeBoard getNoticeBoard(long idx);
 	
 }

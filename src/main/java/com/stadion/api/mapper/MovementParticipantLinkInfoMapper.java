@@ -11,6 +11,6 @@ import com.stadion.api.entity.MovementParticipantLinkInfo;
 public interface MovementParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MovementParticipantLinkInfo getMovementParticipantLinkInfo(int idx);
+	public MovementParticipantLinkInfo getMovementParticipantLinkInfo(long idx);
 	
 }

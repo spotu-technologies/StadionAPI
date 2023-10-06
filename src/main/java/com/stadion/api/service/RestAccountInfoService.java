@@ -15,7 +15,7 @@ public class RestAccountInfoService {
 	private RestAccountInfoMapper restAccountInfoMapper;
 	
 	
-	public RestAccountInfo getRestAccountInfo(int idx) {
+	public RestAccountInfo getRestAccountInfo(long idx) {
 		if(restAccountInfoMapper==null) {return null;}
 		
 		RestAccountInfo restAccountInfo = restAccountInfoMapper.getRestAccountInfo(idx);

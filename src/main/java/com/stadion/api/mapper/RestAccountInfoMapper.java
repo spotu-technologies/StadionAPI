@@ -11,7 +11,7 @@ import com.stadion.api.entity.RestAccountInfo;
 public interface RestAccountInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public RestAccountInfo getRestAccountInfo(int idx);
+	public RestAccountInfo getRestAccountInfo(long idx);
 	  
 
 }

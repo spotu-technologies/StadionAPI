@@ -11,6 +11,6 @@ import com.stadion.api.entity.MemoData;
 public interface MemoDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MemoData getMemoData(int idx);
+	public MemoData getMemoData(long idx);
 	
 }

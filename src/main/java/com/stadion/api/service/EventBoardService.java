@@ -15,7 +15,7 @@ public class EventBoardService {
 	private EventBoardMapper eventBoardMapper;
 	
 	
-	public EventBoard getEventBoard(int idx) {
+	public EventBoard getEventBoard(long idx) {
 		if(eventBoardMapper==null) {return null;}
 		
 		EventBoard eventBoard = eventBoardMapper.getEventBoard(idx);

@@ -15,7 +15,7 @@ public class GuideBoardService {
 	private GuideBoardMapper guideBoardMapper;
 	
 	
-	public GuideBoard getGuideBoard(int idx) {
+	public GuideBoard getGuideBoard(long idx) {
 		if(guideBoardMapper==null) {return null;}
 		
 		GuideBoard guideBoard = guideBoardMapper.getGuideBoard(idx);

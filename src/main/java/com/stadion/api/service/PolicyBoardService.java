@@ -15,7 +15,7 @@ public class PolicyBoardService {
 	private PolicyBoardMapper policyBoardMapper;
 	
 	
-	public PolicyBoard getPolicyBoard(int idx) {
+	public PolicyBoard getPolicyBoard(long idx) {
 		if(policyBoardMapper==null) {return null;}
 		
 		PolicyBoard policyBoard = policyBoardMapper.getPolicyBoard(idx);

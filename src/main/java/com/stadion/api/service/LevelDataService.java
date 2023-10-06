@@ -15,7 +15,7 @@ public class LevelDataService {
 	private LevelDataMapper levelDataMapper;
 	
 	
-	public LevelData getLevelData(int idx) {
+	public LevelData getLevelData(long idx) {
 		if(levelDataMapper==null) {return null;}
 		
 		LevelData levelData = levelDataMapper.getLevelData(idx);

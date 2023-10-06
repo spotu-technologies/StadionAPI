@@ -11,7 +11,7 @@ import com.stadion.api.entity.StardionLevelData;
 public interface StardionLevelDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public StardionLevelData getStardionLevelData(int idx);
+	public StardionLevelData getStardionLevelData(long idx);
 
 
 }

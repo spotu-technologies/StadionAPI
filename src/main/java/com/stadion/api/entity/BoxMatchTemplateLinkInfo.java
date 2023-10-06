@@ -6,7 +6,7 @@ public class BoxMatchTemplateLinkInfo {
 	private Integer templateIdx;
 	private Integer boxIdx;
 	private Integer coachIdx;
-	private Integer progressTime;
+	private String progressTime;
 	private Integer limitCount;
 	private Integer writer;
 	private Integer status;

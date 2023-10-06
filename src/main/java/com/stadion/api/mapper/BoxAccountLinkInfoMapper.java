@@ -11,7 +11,7 @@ import com.stadion.api.entity.BoxAccountLinkInfo;
 public interface BoxAccountLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BoxAccountLinkInfo getBoxAccountLinkInfo(int idx);
+	public BoxAccountLinkInfo getBoxAccountLinkInfo(long idx);
 	    
 
 }

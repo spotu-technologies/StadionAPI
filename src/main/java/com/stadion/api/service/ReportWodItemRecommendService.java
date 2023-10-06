@@ -15,7 +15,7 @@ public class ReportWodItemRecommendService {
 	private ReportWodItemRecommendMapper reportWodItemRecommendMapper;
 	
 	
-	public ReportWodItemRecommend getReportWodItemRecommend(int idx) {
+	public ReportWodItemRecommend getReportWodItemRecommend(long idx) {
 		if(reportWodItemRecommendMapper==null) {return null;}
 		
 		ReportWodItemRecommend reportWodItemRecommend = reportWodItemRecommendMapper.getReportWodItemRecommend(idx);

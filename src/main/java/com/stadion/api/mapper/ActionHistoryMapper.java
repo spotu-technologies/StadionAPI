@@ -11,7 +11,7 @@ import com.stadion.api.entity.ActionHistory;
 public interface ActionHistoryMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public ActionHistory getActionHistory(int idx);
+	public ActionHistory getActionHistory(long idx);
 	
 
 

@@ -15,7 +15,7 @@ public class NoticeBoardService {
 	private NoticeBoardMapper noticeBoardMapper;
 	
 	
-	public NoticeBoard getNoticeBoard(int idx) {
+	public NoticeBoard getNoticeBoard(long idx) {
 		if(noticeBoardMapper==null) {return null;}
 		
 		NoticeBoard noticeBoard = noticeBoardMapper.getNoticeBoard(idx);

@@ -15,7 +15,7 @@ public class StardionLevelDataService {
 	private StardionLevelDataMapper stardionLevelDataMapper;
 	
 	
-	public StardionLevelData getStardionLevelData(int idx) {
+	public StardionLevelData getStardionLevelData(long idx) {
 		if(stardionLevelDataMapper==null) {return null;}
 		
 		StardionLevelData stardionLevelData = stardionLevelDataMapper.getStardionLevelData(idx);

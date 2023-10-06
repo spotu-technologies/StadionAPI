@@ -15,7 +15,7 @@ public class MomMovementLinkInfoService {
 	private MomMovementLinkInfoMapper momMovementLinkInfoMapper;
 	
 	
-	public MomMovementLinkInfo getMomMovementLinkInfo(int idx) {
+	public MomMovementLinkInfo getMomMovementLinkInfo(long idx) {
 		if(momMovementLinkInfoMapper==null) {return null;}
 		
 		MomMovementLinkInfo momMovementLinkInfo = momMovementLinkInfoMapper.getMomMovementLinkInfo(idx);

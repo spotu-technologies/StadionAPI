@@ -15,7 +15,7 @@ public class BoxInfoService {
 	private BoxInfoMapper boxInfoMapper;
 	
 	
-	public BoxInfo getBoxInfo(int idx) {
+	public BoxInfo getBoxInfo(long idx) {
 		if(boxInfoMapper==null) {return null;}
 		
 		BoxInfo boxInfo = boxInfoMapper.getBoxInfo(idx);

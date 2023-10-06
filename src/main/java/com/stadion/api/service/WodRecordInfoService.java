@@ -15,7 +15,7 @@ public class WodRecordInfoService {
 	private WodRecordInfoMapper wodRecordInfoMapper;
 	
 	
-	public WodRecordInfo getWodRecordInfo(int idx) {
+	public WodRecordInfo getWodRecordInfo(long idx) {
 		if(wodRecordInfoMapper==null) {return null;}
 		
 		WodRecordInfo wodRecordInfo = wodRecordInfoMapper.getWodRecordInfo(idx);

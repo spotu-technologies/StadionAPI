@@ -11,7 +11,7 @@ import com.stadion.api.entity.MomInfo;
 public interface MomInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MomInfo getMomInfo(int idx);
+	public MomInfo getMomInfo(long idx);
 	 
 
 }

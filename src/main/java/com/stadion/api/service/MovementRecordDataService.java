@@ -15,7 +15,7 @@ public class MovementRecordDataService {
 	private MovementRecordDataMapper movementRecordDataMapper;
 	
 	
-	public MovementRecordData getMovementRecordData(int idx) {
+	public MovementRecordData getMovementRecordData(long idx) {
 		if(movementRecordDataMapper==null) {return null;}
 		
 		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordData(idx);

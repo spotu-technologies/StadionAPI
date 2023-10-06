@@ -11,7 +11,7 @@ import com.stadion.api.entity.TableLinkInfo;
 public interface TableLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TableLinkInfo getTableLinkInfo(int idx);
+	public TableLinkInfo getTableLinkInfo(long idx);
 	
 
 }

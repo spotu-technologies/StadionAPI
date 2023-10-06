@@ -15,7 +15,7 @@ public class TicketPaymentDataService {
 	private TicketPaymentDataMapper ticketPaymentDataMapper;
 	
 	
-	public TicketPaymentData getTicketPaymentData(int idx) {
+	public TicketPaymentData getTicketPaymentData(long idx) {
 		if(ticketPaymentDataMapper==null) {return null;}
 		
 		TicketPaymentData ticketPaymentData = ticketPaymentDataMapper.getTicketPaymentData(idx);

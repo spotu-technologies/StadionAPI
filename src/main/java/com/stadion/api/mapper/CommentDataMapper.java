@@ -11,7 +11,7 @@ import com.stadion.api.entity.CommentData;
 public interface CommentDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public CommentData getCommentData(int idx);
+	public CommentData getCommentData(long idx);
 	
 
 }

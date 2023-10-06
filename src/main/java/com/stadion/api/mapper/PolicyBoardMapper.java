@@ -11,7 +11,7 @@ import com.stadion.api.entity.PolicyBoard;
 public interface PolicyBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public PolicyBoard getPolicyBoard(int idx);
+	public PolicyBoard getPolicyBoard(long idx);
 	
 
 }

@@ -11,7 +11,7 @@ import com.stadion.api.entity.QnaBoard;
 public interface QnaBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public QnaBoard getQnaBoard(int idx);
+	public QnaBoard getQnaBoard(long idx);
 	
 
 }

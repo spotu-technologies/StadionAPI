@@ -15,7 +15,7 @@ public class CommentDataService {
 	private CommentDataMapper commentDataMapper;
 	
 	
-	public CommentData getCommentData(int idx) {
+	public CommentData getCommentData(long idx) {
 		if(commentDataMapper==null) {return null;}
 		
 		CommentData commentData = commentDataMapper.getCommentData(idx);

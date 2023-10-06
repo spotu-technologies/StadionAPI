@@ -11,7 +11,7 @@ import com.stadion.api.entity.FaqBoard;
 public interface FaqBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public FaqBoard getFaqBoard(int idx);
+	public FaqBoard getFaqBoard(long idx);
 	
 
 }

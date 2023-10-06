@@ -11,7 +11,7 @@ import com.stadion.api.entity.WodTemplateStepInfo;
 public interface WodTemplateStepInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodTemplateStepInfo getWodTemplateStepInfo(int idx);
+	public WodTemplateStepInfo getWodTemplateStepInfo(long idx);
 	
 
 }

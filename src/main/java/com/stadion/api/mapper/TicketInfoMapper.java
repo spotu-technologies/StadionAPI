@@ -11,7 +11,7 @@ import com.stadion.api.entity.TicketInfo;
 public interface TicketInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TicketInfo getTicketInfo(int idx);
+	public TicketInfo getTicketInfo(long idx);
 	
 
 }

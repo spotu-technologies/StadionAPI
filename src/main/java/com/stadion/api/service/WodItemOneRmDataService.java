@@ -15,7 +15,7 @@ public class WodItemOneRmDataService {
 	private WodItemOneRmDataMapper wodItemOneRmDataMapper;
 	
 	
-	public WodItemOneRmData getWodItemOneRmData(int idx) {
+	public WodItemOneRmData getWodItemOneRmData(long idx) {
 		if(wodItemOneRmDataMapper==null) {return null;}
 		
 		WodItemOneRmData wodItemOneRmData = wodItemOneRmDataMapper.getWodItemOneRmData(idx);

@@ -15,7 +15,7 @@ public class WodStepInfoService {
 	private WodStepInfoMapper wodStepInfoMapper;
 	
 	
-	public WodStepInfo getWodStepInfo(int idx) {
+	public WodStepInfo getWodStepInfo(long idx) {
 		if(wodStepInfoMapper==null) {return null;}
 		
 		WodStepInfo wodStepInfo = wodStepInfoMapper.getWodStepInfo(idx);

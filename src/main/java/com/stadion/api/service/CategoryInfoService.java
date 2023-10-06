@@ -15,7 +15,7 @@ public class CategoryInfoService {
 	private CategoryInfoMapper categoryInfoMapper;
 	
 	
-	public CategoryInfo getCategoryInfo(int idx) {
+	public CategoryInfo getCategoryInfo(long idx) {
 		if(categoryInfoMapper==null) {return null;}
 		
 		CategoryInfo categoryInfo = categoryInfoMapper.getCategoryInfo(idx);

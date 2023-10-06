@@ -11,7 +11,7 @@ import com.stadion.api.entity.WodTemplateRoundItemInfo;
 public interface WodTemplateRoundItemInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodTemplateRoundItemInfo getWodTemplateRoundItemInfo(int idx);
+	public WodTemplateRoundItemInfo getWodTemplateRoundItemInfo(long idx);
 	 
 
 }

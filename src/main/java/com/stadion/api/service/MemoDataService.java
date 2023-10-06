@@ -15,7 +15,7 @@ public class MemoDataService {
 	private MemoDataMapper memoDataMapper;
 	
 	
-	public MemoData getMemoData(int idx) {
+	public MemoData getMemoData(long idx) {
 		if(memoDataMapper==null) {return null;}
 		
 		MemoData memoData = memoDataMapper.getMemoData(idx);

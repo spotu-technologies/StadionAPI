@@ -11,6 +11,6 @@ import com.stadion.api.entity.LevelData;
 public interface LevelDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public LevelData getLevelData(int idx);
+	public LevelData getLevelData(long idx);
 	
 }

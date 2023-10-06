@@ -15,7 +15,7 @@ public class WodItemInfoService {
 	private WodItemInfoMapper wodItemInfoMapper;
 	
 	
-	public WodItemInfo getWodItemInfo(int idx) {
+	public WodItemInfo getWodItemInfo(long idx) {
 		if(wodItemInfoMapper==null) {return null;}
 		
 		WodItemInfo wodItemInfo = wodItemInfoMapper.getWodItemInfo(idx);

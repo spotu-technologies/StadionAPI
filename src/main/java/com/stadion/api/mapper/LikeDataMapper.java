@@ -11,7 +11,7 @@ import com.stadion.api.entity.LikeData;
 public interface LikeDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public LikeData getLikeData(int idx);
+	public LikeData getLikeData(long idx);
 	
 
 }

@@ -10,7 +10,7 @@ import com.stadion.api.entity.TokenData;
 public interface TokenDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TokenData getTokenData(int idx);
+	public TokenData getTokenData(long idx);
 	  
 
 }

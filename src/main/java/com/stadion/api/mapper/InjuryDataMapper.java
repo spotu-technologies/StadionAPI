@@ -11,7 +11,7 @@ import com.stadion.api.entity.InjuryData;
 public interface InjuryDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public InjuryData getInjuryData(int idx);
+	public InjuryData getInjuryData(long idx);
 	
 
 }

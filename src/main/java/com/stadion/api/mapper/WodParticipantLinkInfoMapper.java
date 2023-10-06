@@ -11,6 +11,6 @@ import com.stadion.api.entity.WodParticipantLinkInfo;
 public interface WodParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodParticipantLinkInfo getWodParticipantLinkInfo(int idx);
+	public WodParticipantLinkInfo getWodParticipantLinkInfo(long idx);
 	
 }

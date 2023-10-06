@@ -15,7 +15,7 @@ public class MovementInfoService {
 	private MovementInfoMapper movementInfoMapper;
 	
 	
-	public MovementInfo getMovementInfo(int idx) {
+	public MovementInfo getMovementInfo(long idx) {
 		if(movementInfoMapper==null) {return null;}
 		
 		MovementInfo movementInfo = movementInfoMapper.getMovementInfo(idx);

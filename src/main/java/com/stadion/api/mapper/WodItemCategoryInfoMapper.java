@@ -11,7 +11,7 @@ import com.stadion.api.entity.WodItemCategoryInfo;
 public interface WodItemCategoryInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodItemCategoryInfo getWodItemCategoryInfo(int idx);
+	public WodItemCategoryInfo getWodItemCategoryInfo(long idx);
 	
 
 }

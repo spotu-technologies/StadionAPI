@@ -15,7 +15,7 @@ public class WodItemRankDataService {
 	private WodItemRankDataMapper wodItemRankDataMapper;
 	
 	
-	public WodItemRankData getWodItemRankData(int idx) {
+	public WodItemRankData getWodItemRankData(long idx) {
 		if(wodItemRankDataMapper==null) {return null;}
 		
 		WodItemRankData wodItemRankData = wodItemRankDataMapper.getWodItemRankData(idx);

@@ -11,7 +11,7 @@ import com.stadion.api.entity.ReportWodItemRecommend;
 public interface ReportWodItemRecommendMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public ReportWodItemRecommend getReportWodItemRecommend(int idx);
+	public ReportWodItemRecommend getReportWodItemRecommend(long idx);
 	
 
 }

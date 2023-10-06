@@ -15,7 +15,7 @@ public class WodTemplateStepInfoService {
 	private WodTemplateStepInfoMapper wodTemplateStepInfoMapper;
 	
 	
-	public WodTemplateStepInfo getWodTemplateStepInfo(int idx) {
+	public WodTemplateStepInfo getWodTemplateStepInfo(long idx) {
 		if(wodTemplateStepInfoMapper==null) {return null;}
 		
 		WodTemplateStepInfo wodTemplateStepInfo = wodTemplateStepInfoMapper.getWodTemplateStepInfo(idx);

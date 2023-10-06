@@ -15,7 +15,7 @@ public class QnaBoardService {
 	private QnaBoardMapper qnaBoardMapper;
 	
 	
-	public QnaBoard getQnaBoard(int idx) {
+	public QnaBoard getQnaBoard(long idx) {
 		if(qnaBoardMapper==null) {return null;}
 		
 		QnaBoard qnaBoard = qnaBoardMapper.getQnaBoard(idx);

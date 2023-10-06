@@ -11,7 +11,7 @@ import com.stadion.api.entity.CategoryInfo;
 public interface CategoryInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public CategoryInfo getCategoryInfo(int idx);
+	public CategoryInfo getCategoryInfo(long idx);
 
 
 }

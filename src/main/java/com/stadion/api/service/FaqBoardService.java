@@ -15,7 +15,7 @@ public class FaqBoardService {
 	private FaqBoardMapper faqBoardMapper;
 	
 	
-	public FaqBoard getFaqBoard(int idx) {
+	public FaqBoard getFaqBoard(long idx) {
 		if(faqBoardMapper==null) {return null;}
 		
 		FaqBoard faqBoard = faqBoardMapper.getFaqBoard(idx);

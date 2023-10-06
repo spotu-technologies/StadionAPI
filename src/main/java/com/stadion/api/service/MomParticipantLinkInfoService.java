@@ -15,7 +15,7 @@ public class MomParticipantLinkInfoService {
 	private MomParticipantLinkInfoMapper momParticipantLinkInfoMapper;
 	
 	
-	public MomParticipantLinkInfo getMomParticipantLinkInfo(int idx) {
+	public MomParticipantLinkInfo getMomParticipantLinkInfo(long idx) {
 		if(momParticipantLinkInfoMapper==null) {return null;}
 		
 		MomParticipantLinkInfo momParticipantLinkInfo = momParticipantLinkInfoMapper.getMomParticipantLinkInfo(idx);

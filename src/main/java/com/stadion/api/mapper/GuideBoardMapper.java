@@ -11,6 +11,6 @@ import com.stadion.api.entity.GuideBoard;
 public interface GuideBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public GuideBoard getGuideBoard(int idx);
+	public GuideBoard getGuideBoard(long idx);
 	
 }

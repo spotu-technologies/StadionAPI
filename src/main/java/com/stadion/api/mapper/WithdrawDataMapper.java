@@ -11,7 +11,7 @@ import com.stadion.api.entity.WithdrawData;
 public interface WithdrawDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WithdrawData getWithdrawData(int idx);
+	public WithdrawData getWithdrawData(long idx);
 	
 
 }

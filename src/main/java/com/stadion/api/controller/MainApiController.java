@@ -246,7 +246,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx  = (int) object.get("idx");
+    	long idx  = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -275,7 +275,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -304,7 +304,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -333,7 +333,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -363,7 +363,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -392,7 +392,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -422,7 +422,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -452,7 +452,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -481,7 +481,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -511,7 +511,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -540,7 +540,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -569,7 +569,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -599,7 +599,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -629,7 +629,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -659,7 +659,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -689,7 +689,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -719,7 +719,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -749,7 +749,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -779,7 +779,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -809,7 +809,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -839,7 +839,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -869,7 +869,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -899,7 +899,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -929,7 +929,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -959,7 +959,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -989,7 +989,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1019,7 +1019,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1049,7 +1049,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1079,7 +1079,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1109,7 +1109,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1139,7 +1139,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1169,7 +1169,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1199,7 +1199,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1229,7 +1229,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1259,7 +1259,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1289,7 +1289,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1319,7 +1319,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1349,7 +1349,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1379,7 +1379,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1409,7 +1409,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1439,7 +1439,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1469,7 +1469,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1499,7 +1499,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1529,7 +1529,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1559,7 +1559,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1589,7 +1589,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1619,7 +1619,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1649,7 +1649,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1679,7 +1679,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1709,7 +1709,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1739,7 +1739,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1769,7 +1769,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1799,7 +1799,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1829,7 +1829,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1859,7 +1859,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1889,7 +1889,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1919,7 +1919,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1949,7 +1949,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -1979,7 +1979,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -2009,7 +2009,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();
@@ -2039,7 +2039,7 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	int idx = (int) object.get("idx");
+    	long idx = (long) object.get("idx");
     	
     	String result;
     	Gson gson = new Gson();

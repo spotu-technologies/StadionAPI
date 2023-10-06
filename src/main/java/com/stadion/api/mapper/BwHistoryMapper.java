@@ -11,7 +11,7 @@ import com.stadion.api.entity.BwHistory;
 public interface BwHistoryMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BwHistory getBwHistory(int idx);
+	public BwHistory getBwHistory(long idx);
 
 
 }

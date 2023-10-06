@@ -11,7 +11,7 @@ import com.stadion.api.entity.ReportWodItems;
 public interface ReportWodItemsMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public ReportWodItems getReportWodItems(int idx);
+	public ReportWodItems getReportWodItems(long idx);
 	
 
 }

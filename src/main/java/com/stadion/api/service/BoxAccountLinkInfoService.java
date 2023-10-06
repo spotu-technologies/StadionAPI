@@ -15,7 +15,7 @@ public class BoxAccountLinkInfoService {
 	private BoxAccountLinkInfoMapper boxAccountLinkInfoMapper;
 	
 	
-	public BoxAccountLinkInfo getBoxAccountLinkInfo(int idx) {
+	public BoxAccountLinkInfo getBoxAccountLinkInfo(long idx) {
 		if(boxAccountLinkInfoMapper==null) {return null;}
 		
 		BoxAccountLinkInfo boxAccountLinkInfo = boxAccountLinkInfoMapper.getBoxAccountLinkInfo(idx);

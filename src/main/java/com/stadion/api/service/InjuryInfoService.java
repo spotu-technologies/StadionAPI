@@ -15,7 +15,7 @@ public class InjuryInfoService {
 	private InjuryInfoMapper injuryInfoMapper;
 	
 	
-	public InjuryInfo getInjuryInfo(int idx) {
+	public InjuryInfo getInjuryInfo(long idx) {
 		if(injuryInfoMapper==null) {return null;}
 		
 		InjuryInfo injuryInfo = injuryInfoMapper.getInjuryInfo(idx);

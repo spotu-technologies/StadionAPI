@@ -11,7 +11,7 @@ import com.stadion.api.entity.FileData;
 public interface FileDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public FileData getFileData(int idx);
+	public FileData getFileData(long idx);
 	
 
 }

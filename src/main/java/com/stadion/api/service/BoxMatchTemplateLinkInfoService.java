@@ -15,7 +15,7 @@ public class BoxMatchTemplateLinkInfoService {
 	private BoxMatchTemplateLinkInfoMapper boxMatchTemplateLinkInfoMapper;
 	
 	
-	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(int idx) {
+	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(long idx) {
 		if(boxMatchTemplateLinkInfoMapper==null) {return null;}
 		
 		BoxMatchTemplateLinkInfo boxMatchTemplateLinkInfo = boxMatchTemplateLinkInfoMapper.getBoxMatchTemplateLinkInfo(idx);

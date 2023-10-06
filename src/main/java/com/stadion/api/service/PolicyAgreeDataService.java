@@ -15,7 +15,7 @@ public class PolicyAgreeDataService {
 	private PolicyAgreeDataMapper policyAgreeDataMapper;
 	
 	
-	public PolicyAgreeData getPolicyAgreeData(int idx) {
+	public PolicyAgreeData getPolicyAgreeData(long idx) {
 		if(policyAgreeDataMapper==null) {return null;}
 		
 		PolicyAgreeData policyAgreeData = policyAgreeDataMapper.getPolicyAgreeData(idx);

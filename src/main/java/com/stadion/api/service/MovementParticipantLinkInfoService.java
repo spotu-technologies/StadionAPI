@@ -15,7 +15,7 @@ public class MovementParticipantLinkInfoService {
 	private MovementParticipantLinkInfoMapper movementParticipantLinkInfoMapper;
 	
 	
-	public MovementParticipantLinkInfo getMovementParticipantLinkInfo(int idx) {
+	public MovementParticipantLinkInfo getMovementParticipantLinkInfo(long idx) {
 		if(movementParticipantLinkInfoMapper==null) {return null;}
 		
 		MovementParticipantLinkInfo movementParticipantLinkInfo = movementParticipantLinkInfoMapper.getMovementParticipantLinkInfo(idx);

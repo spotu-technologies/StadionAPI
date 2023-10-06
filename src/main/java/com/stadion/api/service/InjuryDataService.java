@@ -15,7 +15,7 @@ public class InjuryDataService {
 	private InjuryDataMapper injuryDataMapper;
 	
 	
-	public InjuryData getInjuryData(int idx) {
+	public InjuryData getInjuryData(long idx) {
 		if(injuryDataMapper==null) {return null;}
 		
 		InjuryData injuryData = injuryDataMapper.getInjuryData(idx);

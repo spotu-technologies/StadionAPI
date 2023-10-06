@@ -15,7 +15,7 @@ public class MomRankDataService {
 	private MomRankDataMapper momRankDataMapper;
 	
 	
-	public MomRankData getMomRankData(int idx) {
+	public MomRankData getMomRankData(long idx) {
 		if(momRankDataMapper==null) {return null;}
 		
 		MomRankData momRankData = momRankDataMapper.getMomRankData(idx);

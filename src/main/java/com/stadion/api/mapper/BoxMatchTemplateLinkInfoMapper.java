@@ -11,7 +11,7 @@ import com.stadion.api.entity.BoxMatchTemplateLinkInfo;
 public interface BoxMatchTemplateLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(int idx);
+	public BoxMatchTemplateLinkInfo getBoxMatchTemplateLinkInfo(long idx);
 	    
 
 }

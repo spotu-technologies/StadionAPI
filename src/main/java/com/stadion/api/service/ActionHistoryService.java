@@ -14,7 +14,7 @@ public class ActionHistoryService {
 	private ActionHistoryMapper actionHistoryMapper;
 	
 	
-	public ActionHistory getActionHistory(int idx ) {
+	public ActionHistory getActionHistory(long idx ) {
 		if(actionHistoryMapper==null) {return null;}
 		
 		ActionHistory actionHistory = actionHistoryMapper.getActionHistory(idx);

@@ -11,7 +11,7 @@ import com.stadion.api.entity.PolicyAgreeData;
 public interface PolicyAgreeDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public PolicyAgreeData getPolicyAgreeData(int idx);
+	public PolicyAgreeData getPolicyAgreeData(long idx);
 	
 
 }

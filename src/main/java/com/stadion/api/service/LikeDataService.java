@@ -15,7 +15,7 @@ public class LikeDataService {
 	private LikeDataMapper likeDataMapper;
 	
 	
-	public LikeData getLikeData(int idx) {
+	public LikeData getLikeData(long idx) {
 		if(likeDataMapper==null) {return null;}
 		
 		LikeData likeData = likeDataMapper.getLikeData(idx);

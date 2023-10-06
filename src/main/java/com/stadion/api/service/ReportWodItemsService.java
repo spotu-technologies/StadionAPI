@@ -15,7 +15,7 @@ public class ReportWodItemsService {
 	private ReportWodItemsMapper reportWodItemsMapper;
 	
 	
-	public ReportWodItems getReportWodItems(int idx) {
+	public ReportWodItems getReportWodItems(long idx) {
 		if(reportWodItemsMapper==null) {return null;}
 		
 		ReportWodItems reportWodItems = reportWodItemsMapper.getReportWodItems(idx);

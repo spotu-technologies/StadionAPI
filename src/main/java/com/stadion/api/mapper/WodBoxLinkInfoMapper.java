@@ -11,7 +11,7 @@ import com.stadion.api.entity.WodBoxLinkInfo;
 public interface WodBoxLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodBoxLinkInfo getWodBoxLinkInfo(int idx);
+	public WodBoxLinkInfo getWodBoxLinkInfo(long idx);
 	
 
 }

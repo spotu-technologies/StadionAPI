@@ -11,7 +11,7 @@ import com.stadion.api.entity.TicketPaymentData;
 public interface TicketPaymentDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TicketPaymentData getTicketPaymentData(int idx);
+	public TicketPaymentData getTicketPaymentData(long idx);
 	
 
 }

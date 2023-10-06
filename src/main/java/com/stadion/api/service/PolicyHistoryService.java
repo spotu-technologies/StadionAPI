@@ -15,7 +15,7 @@ public class PolicyHistoryService {
 	private PolicyHistoryMapper policyHistoryMapper;
 	
 	
-	public PolicyHistory getPolicyHistory(int idx) {
+	public PolicyHistory getPolicyHistory(long idx) {
 		if(policyHistoryMapper==null) {return null;}
 		
 		PolicyHistory policyHistory = policyHistoryMapper.getPolicyHistory(idx);

@@ -15,7 +15,7 @@ public class BwHistoryService {
 	private BwHistoryMapper bwHistoryMapper;
 	
 	
-	public BwHistory getBwHistory(int idx) {
+	public BwHistory getBwHistory(long idx) {
 		if(bwHistoryMapper==null) {return null;}
 		
 		BwHistory bwHistory = bwHistoryMapper.getBwHistory(idx);

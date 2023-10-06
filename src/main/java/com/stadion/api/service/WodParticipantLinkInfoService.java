@@ -15,7 +15,7 @@ public class WodParticipantLinkInfoService {
 	private WodParticipantLinkInfoMapper wodParticipantLinkInfoMapper;
 	
 	
-	public WodParticipantLinkInfo getWodParticipantLinkInfo(int idx) {
+	public WodParticipantLinkInfo getWodParticipantLinkInfo(long idx) {
 		if(wodParticipantLinkInfoMapper==null) {return null;}
 		
 		WodParticipantLinkInfo wodParticipantLinkInfo = wodParticipantLinkInfoMapper.getWodParticipantLinkInfo(idx);
