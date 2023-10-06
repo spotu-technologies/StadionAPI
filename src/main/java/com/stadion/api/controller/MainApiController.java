@@ -1229,15 +1229,36 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	long idx = (long) object.get("idx");
+    	String userID = (String) object.get("userID");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfo(idx);
+    	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfo(userID);
 
     	result = gson.toJson(jsonResult);
     	return result;
+	}
+
+
+    @PostMapping("/getrestAccountInfobyemail")
+	public String getRestAccountInfoByEmailAddress(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값을 get 해서 전달
+    	String emailAddress = (String) object.get("emailAddress");
+    	String result;
+    	Gson gson = new Gson();
+    	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfoByEmail(emailAddress);
+
+    	result = gson.toJson(jsonResult);
+    	
+		return result;
 	}
 
 
