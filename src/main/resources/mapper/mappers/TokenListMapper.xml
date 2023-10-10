@@ -12,7 +12,7 @@
     <select id="getTokenList" resultType="com.stadion.api.entity.TokenList">	
         SELECT *
         FROM tokenList 
-        	WHERE tokenList.idx = #{idx}
+        	WHERE tokenList.accountID = #{userID}
     </select>
 
 

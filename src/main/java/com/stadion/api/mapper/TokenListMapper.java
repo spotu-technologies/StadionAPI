@@ -11,6 +11,6 @@ import com.stadion.api.entity.TokenList;
 public interface TokenListMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public TokenList getTokenList(long idx);
+		public TokenList getTokenList(String accountID);
 	
 }

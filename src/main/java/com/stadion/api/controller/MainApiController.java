@@ -180,7 +180,7 @@ public class MainApiController {
 
     
     @Autowired
-    public AccountInfoService acountInfoService;
+    public AccountInfoService accountInfoService;
      
     // POST는 @PostMapping 사용
     @PostMapping("/getaccountinfo")
@@ -201,7 +201,7 @@ public class MainApiController {
     	String result;
     	Gson gson = new Gson();
     	
-    	AccountInfo jsonResult = acountInfoService.getAccountInfo(userID);
+    	AccountInfo jsonResult = accountInfoService.getAccountInfo(userID);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -221,7 +221,7 @@ public class MainApiController {
     	String emailAddress = (String) object.get("emailAddress");
     	String result;
     	Gson gson = new Gson();
-    	AccountInfo jsonResult = acountInfoService.getAccountInfoByEmail(emailAddress);
+    	AccountInfo jsonResult = accountInfoService.getAccountInfoByEmail(emailAddress);
 
     	result = gson.toJson(jsonResult);
     	
@@ -1416,7 +1416,7 @@ public class MainApiController {
     @Autowired
     public TokenListService tokenListService;
      
-    // POST는 @PostMapping 사용
+ // POST는 @PostMapping 사용
     @PostMapping("/gettokenList")
 	public String getTokenList(
 			// 인자 전달, json으로 옴
@@ -1430,17 +1430,16 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	long idx = (long) object.get("idx");
+    	String userID = (String) object.get("userID");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TokenList jsonResult = tokenListService.getTokenList(idx);
+    	TokenList jsonResult = tokenListService.getTokenList(userID);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-
 
     
     @Autowired
