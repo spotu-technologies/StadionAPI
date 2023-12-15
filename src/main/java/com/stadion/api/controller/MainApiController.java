@@ -7,6 +7,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -196,17 +198,18 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	String userID = (String) object.get("userID");
+    	String accountID = (String) object.get("accountID");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	AccountInfo jsonResult = accountInfoService.getAccountInfo(userID);
+    	AccountInfo jsonResult = accountInfoService.getAccountInfo(accountID);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
+    
 
     @PostMapping("/getaccountinfobyemail")
 	public String getAccountInfoByEmailAddress(
@@ -314,6 +317,30 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getboxInfoName")
+	public String getBoxInfoName(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	String name = (String) object.get("name");
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<BoxInfo> jsonResult = boxInfoService.getBoxInfoName(name);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
     
     @Autowired
@@ -321,7 +348,7 @@ public class MainApiController {
      
     // POST는 @PostMapping 사용
     @PostMapping("/getboxMatchTemplateInfo")
-	public String getBoxMatchTemplateInfo(
+	public @ResponseBody String getBoxMatchTemplateInfo(
 			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
@@ -432,6 +459,34 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+   
+    @PostMapping(value="/getcategoryInfoName", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getCategoryInfoName(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String name = (String) object.get("name");
+    	//System.out.println("date? " + progressDate);
+    
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<CategoryInfo> jsonResult = categoryInfoService.getCategoryInfoName(name);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -468,8 +523,8 @@ public class MainApiController {
     public EventBoardService eventBoardService;
      
     // POST는 @PostMapping 사용
-    @PostMapping("/geteventBoard")
-	public String getEventBoard(
+    @PostMapping(value="/geteventBoard", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getEventBoard(
 			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
@@ -487,6 +542,22 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	EventBoard jsonResult = eventBoardService.getEventBoard(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/geteventBoardAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getEventBoardAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<EventBoard> jsonResult = eventBoardService.getEventBoardAll();
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -521,6 +592,22 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    
+    @PostMapping(value="/getfaqBoardAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFaqBoardAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<FaqBoard> jsonResult = faqBoardService.getFaqBoardAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     @Autowired
@@ -546,6 +633,34 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	FileData jsonResult = fileDataService.getFileData(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getfileDataFile", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFileDataFile(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String fileKind = (String) object.get("fileKind");
+    	long tableLinkIdx = (long) object.get("tableLinkIdx");
+    	long pIdx = (long) object.get("pIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<FileData> jsonResult = fileDataService.getFileDataFile(fileKind, tableLinkIdx, pIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -665,6 +780,32 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	LevelData jsonResult = levelDataService.getLevelData(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getlevelDataLevel")
+	public String getLevelDataLevel(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	long longYear = (long) object.get("year");
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<LevelData> jsonResult = levelDataService.getLevelDataLevel(accountIdx, longYear);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -999,7 +1140,46 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+   
+    @PostMapping(value="/getnoticeBoardAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getNoticeBoardAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	/*
+    	String hash = BCrypt.hashpw("only4u%!62", "TmekEldhszmfhTmvltdlqslEk");
+    	boolean s = BCrypt.checkpw("$2y$12$wmCug.Pp3Abt3Z61236VUet83RJmkOMvLgzbD.9UyQKthJST.K0Vy", hash);
 
+    	System.out.println(hash);
+    	System.out.println("match ?" + s);
+    	  */  	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<NoticeBoard> jsonResult = noticeBoardService.getNoticeBoardAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    /*
+    @RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeForm.mwav")
+	public ModelAndView insertPmtNtmForm(CommandMap commandMap, 
+    		HttpServletRequest request, , HttpServletResponse response) throws Exception {
+
+		//ModelAndView 생성
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
+        
+		//Service를 호출하여 insertPmtNtmForm() 실행
+		BoardNoticeAdminsService.insertPmtNtmForm(commandMap.getMap());
+		
+		 // 공지사항 등록 후 리스트 화면으로 이동
+		response.sendRedirect("/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1");
+		
+		// view에 결과 넘김
+		return mv;
+	}
+}*/
 
     
     @Autowired
@@ -1559,6 +1739,34 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    
+    @PostMapping(value="/getwodInfoClass", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodInfoClass(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String progressDate = (String) object.get("progressDate");
+    	System.out.println("date? " + progressDate);
+    	long orderNo = (long) object.get("orderNo");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfo> jsonResult = wodInfoService.getWodInfoClass(progressDate, orderNo);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -1795,6 +2003,31 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	WodParticipantLinkInfo jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfo(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getWodParticipantLinkInfoIsAttend")
+	public String getWodParticipantLinkInfoIsAttend(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String isAttend = (String) object.get("isAttend");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodParticipantLinkInfo> jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsAttend(isAttend);
 
     	result = gson.toJson(jsonResult);
     	return result;

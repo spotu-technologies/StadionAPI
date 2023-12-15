@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.BoxInfo;
+import com.stadion.api.entity.EventBoard;
 import com.stadion.api.mapper.BoxInfoMapper;
 
 
@@ -14,6 +15,13 @@ public class BoxInfoService {
 	@Autowired
 	private BoxInfoMapper boxInfoMapper;
 	
+	public List<BoxInfo> getBoxInfoName(String name) {
+		if(boxInfoMapper==null) {return null;}
+		
+		List<BoxInfo> boxInfoList = boxInfoMapper.getBoxInfoName(name);
+		
+		return boxInfoList;
+	}
 	
 	public BoxInfo getBoxInfo(long idx) {
 		if(boxInfoMapper==null) {return null;}

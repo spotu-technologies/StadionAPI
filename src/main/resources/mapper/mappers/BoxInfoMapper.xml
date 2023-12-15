@@ -14,6 +14,13 @@
         FROM boxInfo
         	WHERE boxInfo.idx = #{idx}
     </select>
+    
+    <select id="getBoxInfoName" resultType="com.stadion.api.entity.BoxInfo">	
+        SELECT *
+        FROM boxInfo WHERE boxInfo.name = #{name};
+        	
+    </select>
+
 
         <!-- SQL문 작성
                 SELECT *

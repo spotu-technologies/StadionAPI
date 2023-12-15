@@ -14,6 +14,8 @@
         FROM accountInfo 
         	WHERE accountInfo.accountID = #{userID}
     </select>
+    
+    
 
     <select id="getAccountInfoByEmail" resultType="com.stadion.api.entity.AccountInfo">
     SELECT * FROM accountInfo WHERE accountInfo.emailAddress =

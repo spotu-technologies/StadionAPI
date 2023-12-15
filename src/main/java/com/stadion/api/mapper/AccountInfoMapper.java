@@ -12,6 +12,8 @@ public interface AccountInfoMapper {
 	//public List<AccountInfo> getAccountInfoList();
 	public AccountInfo getAccountInfo(String accountID);
 	
+	
+	
 	//이메일 주소로 아이디 찾기가 필요하다면..
 	public AccountInfo getAccountInfoByEmail(String emailAddress);
 	    

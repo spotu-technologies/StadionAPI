@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.CategoryInfo;
+import com.stadion.api.entity.WodInfo;
 import com.stadion.api.mapper.CategoryInfoMapper;
 
 
@@ -13,6 +14,14 @@ import com.stadion.api.mapper.CategoryInfoMapper;
 public class CategoryInfoService {
 	@Autowired
 	private CategoryInfoMapper categoryInfoMapper;
+	
+	public List<CategoryInfo> getCategoryInfoName(String name) {
+		if(categoryInfoMapper==null) {return null;}
+		
+		List<CategoryInfo> categoryInfoList = categoryInfoMapper.getCategoryInfoName(name);
+		
+		return categoryInfoList;
+	}
 	
 	
 	public CategoryInfo getCategoryInfo(long idx) {

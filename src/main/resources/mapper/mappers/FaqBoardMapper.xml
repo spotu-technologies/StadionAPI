@@ -14,6 +14,12 @@
         FROM faqBoard 
         	WHERE faqBoard.idx = #{idx}
     </select>
+    
+    <select id="getFaqBoardAll" resultType="com.stadion.api.entity.FaqBoard">	
+        SELECT *
+        FROM faqBoard ORDER BY lastUpdatetime DESC LIMIT 1;
+        	
+    </select>
 
         <!-- SQL문 작성
                 SELECT *

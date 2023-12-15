@@ -15,6 +15,11 @@
         	WHERE noticeBoard.idx = #{idx}
     </select>
 
+    <select id="getNoticeBoardAll" resultType="com.stadion.api.entity.NoticeBoard">	
+        SELECT *
+        FROM noticeBoard ORDER BY lastUpdatetime DESC LIMIT 1;
+        	
+    </select>
 
         <!-- SQL문 작성
                 SELECT *

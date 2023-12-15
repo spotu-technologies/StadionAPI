@@ -14,6 +14,13 @@
         FROM fileData 
         	WHERE fileData.idx = #{idx}
     </select>
+    
+    <select id="getFileDataFile" parameterType="map" resultType="com.stadion.api.entity.FileData">	
+        SELECT *
+        FROM fileData WHERE 
+        fileData.fileKind = #{fileKind} and fileData.tableLinkIdx = #{tableLinkIdx} and fileData.pIdx = #{pIdx};
+        	
+    </select>
 
 
         <!-- SQL문 작성

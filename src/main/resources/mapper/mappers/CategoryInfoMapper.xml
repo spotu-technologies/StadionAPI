@@ -14,6 +14,12 @@
         FROM categoryInfo 
         	WHERE categoryInfo.idx = #{idx}
     </select>
+    
+    <select id="getCategoryInfoName" parameterType="String" resultType="com.stadion.api.entity.CategoryInfo">	
+        SELECT *
+        FROM categoryInfo WHERE categoryInfo.name = #{name};
+        	
+    </select>
 
 
         <!-- SQL문 작성

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.EventBoard;
+import com.stadion.api.entity.NoticeBoard;
 import com.stadion.api.mapper.EventBoardMapper;
 
 
@@ -14,6 +15,13 @@ public class EventBoardService {
 	@Autowired
 	private EventBoardMapper eventBoardMapper;
 	
+	public List<EventBoard> getEventBoardAll() {
+		if(eventBoardMapper==null) {return null;}
+		
+		List<EventBoard> eventBoardList = eventBoardMapper.getEventBoardAll();
+		
+		return eventBoardList;
+	}
 	
 	public EventBoard getEventBoard(long idx) {
 		if(eventBoardMapper==null) {return null;}
@@ -22,5 +30,6 @@ public class EventBoardService {
 		
 		return eventBoard;
 	}
+
 	
 }

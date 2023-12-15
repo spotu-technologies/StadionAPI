@@ -12,7 +12,13 @@
     <select id="getLevelData" resultType="com.stadion.api.entity.LevelData">	
         SELECT *
         FROM levelData
-        	WHERE levelData.idx = #{idx}
+        	WHERE levelData.idx = #{idx};
+    </select>
+    
+    <select id="getLevelDataLevel" parameterType="long" resultType="com.stadion.api.entity.LevelData">	
+        SELECT *
+        FROM levelData WHERE levelData.year = #{longYear} and levelData.accountIdx = #{accountIdx};
+        	
     </select>
 
 

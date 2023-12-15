@@ -12,5 +12,6 @@ public interface NoticeBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public NoticeBoard getNoticeBoard(long idx);
+	public List<NoticeBoard> getNoticeBoardAll();
 	
 }

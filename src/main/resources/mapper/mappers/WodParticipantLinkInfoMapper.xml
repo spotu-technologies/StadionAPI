@@ -14,6 +14,12 @@
         FROM wodParticipantLinkInfo
         	WHERE wodParticipantLinkInfo.idx = #{idx}
     </select>
+    
+    <select id="getWodParticipantLinkInfoIsAttend" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
+        SELECT *
+        FROM wodParticipantLinkInfo WHERE wodParticipantLinkInfo.isAttend = #{isAttend};
+        	
+    </select>
 
 
         <!-- SQL문 작성

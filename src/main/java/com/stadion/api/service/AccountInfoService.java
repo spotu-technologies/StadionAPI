@@ -14,13 +14,15 @@ public class AccountInfoService {
 	private AccountInfoMapper accountInfoMapper;
 	
 	
-	public AccountInfo getAccountInfo(String userId) {
+	public AccountInfo getAccountInfo(String accountID) {
 		if(accountInfoMapper==null) {return null;}
 		
-		AccountInfo accountInfo = accountInfoMapper.getAccountInfo(userId);
+		AccountInfo accountInfo = accountInfoMapper.getAccountInfo(accountID);
 		
 		return accountInfo;
 	}
+	
+	
 	public AccountInfo getAccountInfoByEmail(String emailAddress) {
 		if(accountInfoMapper==null) {return null;}
 		

@@ -12,7 +12,7 @@
     <select id="getWithdrawData" resultType="com.stadion.api.entity.WithdrawData">	
         SELECT *
         FROM withdrawData
-        	wHERE WithdrawData.idx = #{idx}
+        WHERE withdrawData.idx = #{idx}
     </select>
 
 

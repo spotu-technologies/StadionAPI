@@ -14,6 +14,13 @@ public class NoticeBoardService {
 	@Autowired
 	private NoticeBoardMapper noticeBoardMapper;
 	
+	public List<NoticeBoard> getNoticeBoardAll() {
+		if(noticeBoardMapper==null) {return null;}
+		
+		List<NoticeBoard> noticeBoardList = noticeBoardMapper.getNoticeBoardAll();
+		
+		return noticeBoardList;
+	}
 	
 	public NoticeBoard getNoticeBoard(long idx) {
 		if(noticeBoardMapper==null) {return null;}
