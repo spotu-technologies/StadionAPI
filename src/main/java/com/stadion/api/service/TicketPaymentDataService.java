@@ -15,10 +15,10 @@ public class TicketPaymentDataService {
 	private TicketPaymentDataMapper ticketPaymentDataMapper;
 	
 	
-	public TicketPaymentData getTicketPaymentData(long idx) {
+	public TicketPaymentData getTicketPaymentData(long accountIdx) {
 		if(ticketPaymentDataMapper==null) {return null;}
 		
-		TicketPaymentData ticketPaymentData = ticketPaymentDataMapper.getTicketPaymentData(idx);
+		TicketPaymentData ticketPaymentData = ticketPaymentDataMapper.getTicketPaymentData(accountIdx);
 		
 		return ticketPaymentData;
 	}

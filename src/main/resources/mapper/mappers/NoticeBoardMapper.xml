@@ -17,7 +17,7 @@
 
     <select id="getNoticeBoardAll" resultType="com.stadion.api.entity.NoticeBoard">	
         SELECT *
-        FROM noticeBoard ORDER BY lastUpdatetime DESC LIMIT 1;
+        FROM noticeBoard ORDER BY lastUpdatetime DESC;
         	
     </select>
 

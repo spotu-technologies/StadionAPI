@@ -185,8 +185,9 @@ public class MainApiController {
     public AccountInfoService accountInfoService;
      
     // POST는 @PostMapping 사용
-    @PostMapping("/getaccountinfo")
-	public String getAccountInfo(
+    
+    @PostMapping(value="/getaccountinfo", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getAccountInfo(
 			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
@@ -1550,12 +1551,12 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	// 필요값 userID
-    	long idx = (long) object.get("idx");
+    	long accountIdx = (long) object.get("accountIdx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentData(idx);
+    	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentData(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

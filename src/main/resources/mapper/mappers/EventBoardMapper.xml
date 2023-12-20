@@ -17,7 +17,7 @@
     
     <select id="getEventBoardAll" resultType="com.stadion.api.entity.EventBoard">	
         SELECT *
-        FROM eventBoard ORDER BY lastUpdatetime DESC LIMIT 1;
+        FROM eventBoard ORDER BY lastUpdatetime DESC;
         	
     </select>
     
