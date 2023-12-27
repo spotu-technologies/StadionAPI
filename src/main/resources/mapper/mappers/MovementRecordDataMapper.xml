@@ -14,6 +14,30 @@
         FROM movementRecordData
         	WHERE movementRecordData.idx = #{idx}
     </select>
+    
+    <select id="getMovementRecordDataAll" resultType="com.stadion.api.entity.MovementRecordData">	
+        SELECT *
+        FROM movementRecordData ORDER BY lastUpdatetime DESC;
+        	
+    </select>
+    
+    <select id="getMovementRecordDataRecent" resultType="com.stadion.api.entity.MovementRecordData">	
+        SELECT *
+        FROM movementRecordData WHERE movementRecordData.accountIdx = #{accountIdx} ORDER BY lastUpdatetime DESC;
+        	
+    </select>
+    
+    <select id="getMovementRecordDataBest" resultType="com.stadion.api.entity.MovementRecordData">	
+        SELECT *
+        FROM movementRecordData WHERE movementRecordData.accountIdx = #{accountIdx} ORDER BY value;
+        	
+    </select>
+    
+    <select id="getMovementRecordDataYearBest" parameterType="long" resultType="com.stadion.api.entity.MovementRecordData">	
+        SELECT *
+        FROM movementRecordData WHERE movementRecordData.accountIdx = #{accountIdx} AND YEAR(movementRecordData.dateYmd) = #{currentYear} ORDER BY value;
+        	
+    </select>
 
         <!-- SQL문 작성
                 SELECT *

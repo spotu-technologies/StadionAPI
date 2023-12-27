@@ -200,6 +200,7 @@ public class MainApiController {
 
     	// 필요값 userID
     	String accountID = (String) object.get("accountID");
+    	System.out.println("accountInfo " + accountID);
     	
     	String result;
     	Gson gson = new Gson();
@@ -212,8 +213,9 @@ public class MainApiController {
 
     
 
-    @PostMapping("/getaccountinfobyemail")
-	public String getAccountInfoByEmailAddress(
+    
+    @PostMapping(value="/getaccountinfobyemail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getAccountInfoByEmailAddress(
 			// 인자 전달, json으로 옴
 						@RequestBody String paramJson
 			) throws ParseException {
@@ -1107,6 +1109,88 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	MovementRecordData jsonResult = movementRecordDataService.getMovementRecordData(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getmovementRecordDataAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDataAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	/*
+    	String hash = BCrypt.hashpw("only4u%!62", "TmekEldhszmfhTmvltdlqslEk");
+    	boolean s = BCrypt.checkpw("$2y$12$wmCug.Pp3Abt3Z61236VUet83RJmkOMvLgzbD.9UyQKthJST.K0Vy", hash);
+
+    	System.out.println(hash);
+    	System.out.println("match ?" + s);
+    	  */  	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getmovementRecordDataRecent", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDataRecent(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataRecent(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getmovementRecordDataBest", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDataBest(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataBest(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getmovementRecordDataYearBest", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDataYearBest(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    	long currentYear = (long) object.get("currentYear");
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataYearBest(accountIdx, currentYear);
 
     	result = gson.toJson(jsonResult);
     	return result;
