@@ -14,6 +14,12 @@
         FROM policyBoard
         	WHERE policyBoard.idx = #{idx}
     </select>
+    
+    <select id="getPolicyBoardAll" resultType="com.stadion.api.entity.PolicyBoard">	
+        SELECT *
+        FROM policyBoard WHERE policyBoard.policyType = #{policyType} and policyBoard.isOpen = #{isOpen};
+        	
+    </select>
 
 
         <!-- SQL문 작성

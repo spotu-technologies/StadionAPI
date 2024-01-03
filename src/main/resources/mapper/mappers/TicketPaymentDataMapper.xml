@@ -9,7 +9,7 @@
 <!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.TicketPaymentDataMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
-    <select id="getTicketPaymentData" resultType="com.stadion.api.entity.TicketPaymentData">
+     <select id="getTicketPaymentData" resultType="com.stadion.api.entity.TicketPaymentData">
     <![CDATA[
         SELECT *
         FROM ticketPaymentData 
@@ -17,7 +17,13 @@
         	 and ticketPaymentData.status=1 
         and ticketPaymentData.startDate <= date_format(now(),"%Y-%m-%d") and ticketPaymentData.endDate >= date_format(now(),"%Y-%m-%d")
         	 ]]>
-        	 </select>
+        	 </select> 
+        	 
+    <select id="getTicketPaymentDataBox" resultType="com.stadion.api.entity.TicketPaymentData">	
+        SELECT *
+        FROM ticketPaymentData WHERE ticketPaymentData.accountIdx = #{accountIdx} ;
+        	
+    </select>
 
         <!-- SQL문 작성
         	 and ticketPaymentData.startDate <= #{dateNow}

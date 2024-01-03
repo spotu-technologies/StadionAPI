@@ -321,25 +321,16 @@ public class MainApiController {
     	return result;
 	}
     
-    @PostMapping("/getboxInfoName")
-	public String getBoxInfoName(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
+    @PostMapping(value="/getboxInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getBoxInfoAll(
 			) throws ParseException {
     	
     	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
-    	String name = (String) object.get("name");
     	    	
     	String result;
     	Gson gson = new Gson();
     	
-    	List<BoxInfo> jsonResult = boxInfoService.getBoxInfoName(name);
+    	List<BoxInfo> jsonResult = boxInfoService.getBoxInfoAll();
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -1145,6 +1136,7 @@ public class MainApiController {
 
     	// 필요값 userID
     	long accountIdx = (long) object.get("accountIdx");
+    	System.out.println("getmovementRecordDataRecent" + accountIdx);
     
     	String result;
     	Gson gson = new Gson();
@@ -1165,6 +1157,7 @@ public class MainApiController {
 
     	// 필요값 userID
     	long accountIdx = (long) object.get("accountIdx");
+    	System.out.println("movementRecord" + accountIdx);
     
     	String result;
     	Gson gson = new Gson();
@@ -1324,7 +1317,35 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
 
+
+    @PostMapping(value="/getpolicyBoardAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getPolicyBoardAll(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String isOpen = (String) object.get("isOpen");
+    	long policyType = (long) object.get("policyType");
+    	
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<PolicyBoard> jsonResult = policyBoardService.getPolicyBoardAll(policyType, isOpen);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
     
     @Autowired
@@ -1615,6 +1636,21 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getticketInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getTicketInfoAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<TicketInfo> jsonResult = ticketInfoService.getTicketInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -1641,6 +1677,27 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentData(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getticketPaymentDataBox", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getTicketPaymentDataBox(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    	System.out.println("ticketPaymentDataBox" + accountIdx);
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<TicketPaymentData> jsonResult = ticketPaymentDataService.getTicketPaymentDataBox(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

@@ -15,10 +15,10 @@ public class BoxInfoService {
 	@Autowired
 	private BoxInfoMapper boxInfoMapper;
 	
-	public List<BoxInfo> getBoxInfoName(String name) {
+	public List<BoxInfo> getBoxInfoAll() {
 		if(boxInfoMapper==null) {return null;}
 		
-		List<BoxInfo> boxInfoList = boxInfoMapper.getBoxInfoName(name);
+		List<BoxInfo> boxInfoList = boxInfoMapper.getBoxInfoAll();
 		
 		return boxInfoList;
 	}

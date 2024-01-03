@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.stadion.api.entity.AccountInfo;
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.LevelData;
+import com.stadion.api.entity.MovementRecordData;
 
 @Mapper
 public interface LevelDataMapper {

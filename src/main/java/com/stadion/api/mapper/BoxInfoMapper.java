@@ -13,7 +13,7 @@ public interface BoxInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public BoxInfo getBoxInfo(long idx);
-	public List<BoxInfo> getBoxInfoName(String name);
+	public List<BoxInfo> getBoxInfoAll();
 	
 
 }

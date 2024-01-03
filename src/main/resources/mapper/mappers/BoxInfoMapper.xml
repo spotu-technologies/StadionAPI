@@ -15,9 +15,9 @@
         	WHERE boxInfo.idx = #{idx}
     </select>
     
-    <select id="getBoxInfoName" resultType="com.stadion.api.entity.BoxInfo">	
+    <select id="getBoxInfoAll" resultType="com.stadion.api.entity.BoxInfo">	
         SELECT *
-        FROM boxInfo WHERE boxInfo.name = #{name};
+        FROM boxInfo;
         	
     </select>
 

@@ -17,7 +17,7 @@
     
     <select id="getFaqBoardAll" resultType="com.stadion.api.entity.FaqBoard">	
         SELECT *
-        FROM faqBoard;
+        FROM faqBoard; 
         	
     </select>
 
