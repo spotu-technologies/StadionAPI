@@ -15,6 +15,14 @@ public class FileDataService {
 	@Autowired
 	private FileDataMapper fileDataMapper;
 	
+	public List<FileData> getFileDataImage(String fileKind, long tableLinkIdx, long pIdx) {
+		if(fileDataMapper==null) {return null;}
+		
+		List<FileData> fileDataList = fileDataMapper.getFileDataImage(fileKind, tableLinkIdx, pIdx);
+		
+		return fileDataList;
+	}
+	
 	public List<FileData> getFileDataFile(String fileKind, long tableLinkIdx, long pIdx) {
 		if(fileDataMapper==null) {return null;}
 		

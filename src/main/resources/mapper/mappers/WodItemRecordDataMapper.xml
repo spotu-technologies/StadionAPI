@@ -14,6 +14,12 @@
         FROM wodItemRecordData
         	WHERE wodItemRecordData.idx = #{idx}
     </select>
+    
+    <select id="getWodItemRecordDataRecent" resultType="com.stadion.api.entity.WodItemRecordData">	
+        SELECT *
+        FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx} ORDER BY lastUpdatetime DESC;
+        	
+    </select>
 
 
         <!-- SQL문 작성

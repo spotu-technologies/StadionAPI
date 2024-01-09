@@ -14,6 +14,12 @@
         FROM injuryInfo
         	WHERE injuryInfo.idx = #{idx}
     </select>
+    
+    <select id="getInjuryInfoAll" resultType="com.stadion.api.entity.InjuryInfo">	
+        SELECT *
+        FROM injuryInfo;
+        	
+    </select>
 
         <!-- SQL문 작성
                 SELECT *

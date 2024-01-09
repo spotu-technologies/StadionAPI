@@ -19,5 +19,10 @@ public interface FileDataMapper {
 			@Param ("tableLinkIdx") long tableLinkIdx, 
 			@Param ("pIdx") long pIdx);
 	
+	public List<FileData> getFileDataImage( 
+			@Param ("fileKind") String fileKind, 
+			@Param ("tableLinkIdx") long tableLinkIdx, 
+			@Param ("pIdx") long pIdx);
+	
 
 }

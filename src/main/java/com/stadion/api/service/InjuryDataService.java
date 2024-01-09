@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.InjuryData;
+import com.stadion.api.entity.LevelData;
 import com.stadion.api.mapper.InjuryDataMapper;
 
 
@@ -13,6 +14,14 @@ import com.stadion.api.mapper.InjuryDataMapper;
 public class InjuryDataService {
 	@Autowired
 	private InjuryDataMapper injuryDataMapper;
+	
+	public List<InjuryData> getInjuryDataLook(long accountIdx) {
+		if(injuryDataMapper==null) {return null;}
+		
+		List<InjuryData> injuryDataList = injuryDataMapper.getInjuryDataLook(accountIdx);
+		
+		return injuryDataList;
+	}
 	
 	
 	public InjuryData getInjuryData(long idx) {

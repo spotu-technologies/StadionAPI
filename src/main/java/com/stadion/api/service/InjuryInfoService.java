@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.InjuryInfo;
 import com.stadion.api.mapper.InjuryInfoMapper;
 
@@ -13,6 +14,14 @@ import com.stadion.api.mapper.InjuryInfoMapper;
 public class InjuryInfoService {
 	@Autowired
 	private InjuryInfoMapper injuryInfoMapper;
+	
+	public List<InjuryInfo> getInjuryInfoAll() {
+		if(injuryInfoMapper==null) {return null;}
+		
+		List<InjuryInfo> injuryInfoList = injuryInfoMapper.getInjuryInfoAll();
+		
+		return injuryInfoList;
+	}
 	
 	
 	public InjuryInfo getInjuryInfo(long idx) {

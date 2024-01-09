@@ -659,6 +659,33 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getfileDataImage", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFileDataImage(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String fileKind = (String) object.get("fileKind");
+    	long tableLinkIdx = (long) object.get("tableLinkIdx");
+    	long pIdx = (long) object.get("pIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<FileData> jsonResult = fileDataService.getFileDataImage(fileKind, tableLinkIdx, pIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     @Autowired
@@ -718,6 +745,26 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getinjuryDataLook", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getInjuryDataLook(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<InjuryData> jsonResult = injuryDataService.getInjuryDataLook(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -748,6 +795,22 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getinjuryInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getInjuryInfoAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<InjuryInfo> jsonResult = injuryInfoService.getInjuryInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
 
 
     
@@ -2119,6 +2182,28 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getwodItemRecordDataRecent", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemRecordDataRecent(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+ 
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordDataRecent(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
 
 
     
