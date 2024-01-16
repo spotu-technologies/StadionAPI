@@ -14,6 +14,12 @@
         FROM momInfo
         	WHERE momInfo.idx = #{idx}
     </select>
+    
+    <select id="getMomInfoAll" resultType="com.stadion.api.entity.MomInfo">	
+        SELECT *
+        FROM momInfo where isOpen = "Y" ORDER BY lastUpdatetime DESC;
+        	
+    </select>
 
 
         <!-- SQL문 작성

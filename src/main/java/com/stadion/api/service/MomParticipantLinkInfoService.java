@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.MomParticipantLinkInfo;
+import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.mapper.MomParticipantLinkInfoMapper;
 
 
@@ -13,6 +14,14 @@ import com.stadion.api.mapper.MomParticipantLinkInfoMapper;
 public class MomParticipantLinkInfoService {
 	@Autowired
 	private MomParticipantLinkInfoMapper momParticipantLinkInfoMapper;
+	
+	public List<MomParticipantLinkInfo> getMomParticipantLinkInfoName(long accountIdx) {
+		if(momParticipantLinkInfoMapper==null) {return null;}
+		
+		List<MomParticipantLinkInfo> momParticipantLinkInfoList = momParticipantLinkInfoMapper.getMomParticipantLinkInfoName(accountIdx);
+		
+		return momParticipantLinkInfoList;
+	}
 	
 	
 	public MomParticipantLinkInfo getMomParticipantLinkInfo(long idx) {

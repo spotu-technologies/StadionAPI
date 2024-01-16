@@ -36,6 +36,17 @@
         ;
         	
     </select>
+    
+    <select id="getFileDataMts" parameterType="map" resultType="com.stadion.api.entity.FileData">	
+        SELECT *
+        FROM fileData WHERE 
+        fileData.fileKind = #{fileKind} 
+        and fileData.tableLinkIdx = #{tableLinkIdx} 
+        and fileData.pIdx IN (SELECT momParticipantLinkInfo.momIdx FROM stadion_db_dev.momParticipantLinkInfo)
+        and status=1
+        ;
+        	
+    </select>
 
 
         <!-- SQL문 작성

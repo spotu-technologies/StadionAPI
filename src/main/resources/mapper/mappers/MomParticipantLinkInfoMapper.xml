@@ -14,6 +14,12 @@
         FROM momParticipantLinkInfo
         	WHERE momParticipantLinkInfo.idx = #{idx}
     </select>
+    
+    <select id="getMomParticipantLinkInfoName" resultType="com.stadion.api.entity.MomParticipantLinkInfo">	
+        SELECT *
+        FROM momParticipantLinkInfo WHERE momParticipantLinkInfo.accountIdx = #{accountIdx} ORDER BY lastUpdatetime DESC;
+        	
+    </select>
 
 
         <!-- SQL문 작성

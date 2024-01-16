@@ -686,6 +686,33 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getfileDataMts", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFileDataMts(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	String fileKind = (String) object.get("fileKind");
+    	long tableLinkIdx = (long) object.get("tableLinkIdx");
+    	long pIdx = (long) object.get("pIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<FileData> jsonResult = fileDataService.getFileDataMts(fileKind, tableLinkIdx, pIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     @Autowired
@@ -957,6 +984,22 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getmomInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMomInfoAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MomInfo> jsonResult = momInfoService.getMomInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
 
 
     
@@ -1013,6 +1056,27 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	MomParticipantLinkInfo jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfo(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getmomParticipantLinkInfoName", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMomParticipantLinkInfoName(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    	System.out.println("getmomParticipantLinkInfoName" + accountIdx);
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MomParticipantLinkInfo> jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfoName(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
