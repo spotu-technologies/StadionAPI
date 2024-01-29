@@ -49,8 +49,3 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-bootWar {        
-archiveName("ROOT.war")
-}
-

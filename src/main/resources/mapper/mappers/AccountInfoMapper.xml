@@ -21,6 +21,8 @@
     SELECT * FROM accountInfo WHERE accountInfo.emailAddress =
     #{userEmail}
     </select>
+    
+    
 
         <!-- SQL문 작성
                 SELECT *

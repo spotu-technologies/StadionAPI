@@ -15,6 +15,15 @@ public class MovementRecordDataService {
 	@Autowired
 	private MovementRecordDataMapper movementRecordDataMapper;
 	
+	public MovementRecordData getMovementRecordData(long idx) {
+		if(movementRecordDataMapper==null) {return null;}
+		
+		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordData(idx);
+		
+		return movementRecordData;
+	}
+	
+	
 	public List<MovementRecordData> getMovementRecordDataAll() {
 		if(movementRecordDataMapper==null) {return null;}
 		
@@ -22,6 +31,7 @@ public class MovementRecordDataService {
 		
 		return movementRecordDataList;
 	}
+	
 	
 	public List<MovementRecordData> getMovementRecordDataRecent(long accountIdx) {
 		if(movementRecordDataMapper==null) {return null;}
@@ -31,6 +41,7 @@ public class MovementRecordDataService {
 		return movementRecordDataList;
 	}
 	
+	
 	public List<MovementRecordData> getMovementRecordDataBest(long accountIdx) {
 		if(movementRecordDataMapper==null) {return null;}
 		
@@ -38,6 +49,7 @@ public class MovementRecordDataService {
 		
 		return movementRecordDataList;
 	}
+	
 	
 	public List<MovementRecordData> getMovementRecordDataYearBest(long accountIdx, long dateYear) {
 		if(movementRecordDataMapper==null) {return null;}
@@ -48,12 +60,42 @@ public class MovementRecordDataService {
 	}
 	
 	
-	public MovementRecordData getMovementRecordData(long idx) {
+	public List<MovementRecordData> getMovementRecordDataDetail(long accountIdx, long movementIdx) {
 		if(movementRecordDataMapper==null) {return null;}
 		
-		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordData(idx);
+		List<MovementRecordData> movementRecordDataList = movementRecordDataMapper.getMovementRecordDataDetail(accountIdx, movementIdx);
 		
-		return movementRecordData;
+		return movementRecordDataList;
 	}
+	
+	
+	public List<MovementRecordData> getMovementRecordDataRecentDetail(long accountIdx, long movementIdx) {
+		if(movementRecordDataMapper==null) {return null;}
+		
+		List<MovementRecordData> movementRecordDataList = movementRecordDataMapper.getMovementRecordDataRecentDetail(accountIdx, movementIdx);
+		
+		return movementRecordDataList;
+	}
+	
+	
+	public List<MovementRecordData> getMovementRecordDatMomLevel(long accountIdx) {
+		if(movementRecordDataMapper==null) {return null;}
+		
+		List<MovementRecordData> movementRecordDataList = movementRecordDataMapper.getMovementRecordDatMomLevel(accountIdx);
+		
+		return movementRecordDataList;
+	}
+	
+	
+	public List<MovementRecordData> getMovementRecordDatChallenge(long accountIdx) {
+		if(movementRecordDataMapper==null) {return null;}
+		
+		List<MovementRecordData> movementRecordDataList = movementRecordDataMapper.getMovementRecordDatChallenge(accountIdx);
+		
+		return movementRecordDataList;
+	}
+	
+	
+	
 	
 }

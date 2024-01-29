@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.WodItem5RmData;
+import com.stadion.api.entity.WodItemOneRmData;
 import com.stadion.api.mapper.WodItem5RmDataMapper;
 
 
@@ -21,6 +22,15 @@ public class WodItem5RmDataService {
 		WodItem5RmData wodItem5RmData = wodItem5RmDataMapper.getWodItem5RmData(idx);
 		
 		return wodItem5RmData;
+	}
+	
+	
+	public List<WodItem5RmData> getWodItem5RmDataPersonalDetail(long accountIdx) {
+		if(wodItem5RmDataMapper==null) {return null;}
+		
+		List<WodItem5RmData> wodItem5RmDataList = wodItem5RmDataMapper.getWodItem5RmDataPersonalDetail(accountIdx);
+		
+		return wodItem5RmDataList;
 	}
 	
 }

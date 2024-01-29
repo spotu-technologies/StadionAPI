@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.AccountInfo;
+import com.stadion.api.entity.EventBoard;
 import com.stadion.api.mapper.AccountInfoMapper;
 
 @Service
@@ -30,5 +31,8 @@ public class AccountInfoService {
 		
 		return accountInfo;
 	}
+	
+	
+
 
 }

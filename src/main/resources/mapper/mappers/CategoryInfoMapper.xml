@@ -15,11 +15,12 @@
         	WHERE categoryInfo.idx = #{idx}
     </select>
     
-    <select id="getCategoryInfoName" parameterType="String" resultType="com.stadion.api.entity.CategoryInfo">	
+    <select id="getCategoryInfoName" parameterType="long" resultType="com.stadion.api.entity.CategoryInfo">	
         SELECT *
-        FROM categoryInfo WHERE categoryInfo.name = #{name};
+        FROM categoryInfo WHERE categoryInfo.tableLinkIdx = #{tableLinkIdx} and categoryInfo.depth = #{depth} and status = 1;
         	
     </select>
+    
 
 
         <!-- SQL문 작성

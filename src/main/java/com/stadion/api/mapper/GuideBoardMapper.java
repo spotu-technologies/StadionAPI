@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.stadion.api.entity.AccountInfo;
+import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.GuideBoard;
 
 @Mapper
@@ -12,5 +13,6 @@ public interface GuideBoardMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public GuideBoard getGuideBoard(long idx);
+	public List<GuideBoard> getGuideBoardAll();
 	
 }

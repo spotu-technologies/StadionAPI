@@ -17,7 +17,7 @@
     
     <select id="getWodItemRecordDataRecent" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
-        FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx} ORDER BY lastUpdatetime DESC;
+        FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx} AND wodItemRecordData.wodItemIdx IS NOT NULL ORDER BY lastUpdatetime DESC;
         	
     </select>
 

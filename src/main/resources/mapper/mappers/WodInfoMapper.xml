@@ -15,11 +15,7 @@
         	WHERE wodInfo.idx = #{idx}
     </select>
     
-    <select id="getWodInfoClass" parameterType="map" resultType="com.stadion.api.entity.WodInfo">	
-        SELECT *
-        FROM wodInfo WHERE wodInfo.progressDate = #{progressDate} and wodInfo.orderNo = (select MIN(orderNo) from wodInfo);
-        	
-    </select>
+    
 
 
         <!-- SQL문 작성

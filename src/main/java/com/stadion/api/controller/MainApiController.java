@@ -233,6 +233,7 @@ public class MainApiController {
     	
 		return result;
 	}
+    
 
     
     @Autowired
@@ -468,7 +469,8 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	
     	// 필요값 userID
-    	String name = (String) object.get("name");
+    	long tableLinkIdx = (long) object.get("tableLinkIdx");
+    	long depth = (long) object.get("depth");
     	//System.out.println("date? " + progressDate);
     
     
@@ -476,7 +478,7 @@ public class MainApiController {
     	String result;
     	Gson gson = new Gson();
     	
-    	List<CategoryInfo> jsonResult = categoryInfoService.getCategoryInfoName(name);
+    	List<CategoryInfo> jsonResult = categoryInfoService.getCategoryInfoName(tableLinkIdx, depth);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -738,6 +740,21 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	GuideBoard jsonResult = guideBoardService.getGuideBoard(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getguideBoardAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getGuideBoardAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<GuideBoard> jsonResult = guideBoardService.getGuideBoardAll();
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -1141,6 +1158,20 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    
+    @PostMapping(value="/getmovementInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementInfoAll(
+			) throws ParseException {
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementInfo> jsonResult = movementInfoService.getMovementInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -1315,6 +1346,95 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    
+    @PostMapping(value="/getmovementRecordDataDetail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDataDetail(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    	long movementIdx = (long) object.get("movementIdx");
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataDetail(accountIdx, movementIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getmovementRecordDataRecentDetail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDataRecentDetail(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    	long movementIdx = (long) object.get("movementIdx");
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataRecentDetail(accountIdx, movementIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getmovementRecordDatMomLevel", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDatMomLevel(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+  
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDatMomLevel(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getmovementRecordDatChallenge", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMovementRecordDatChallenge(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+  
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDatChallenge(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
 
 
     
@@ -2010,33 +2130,7 @@ public class MainApiController {
 	}
     
     
-    @PostMapping(value="/getwodInfoClass", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getWodInfoClass(
-			// 인자 전달, json으로 옴
-						@RequestBody String paramJson
-			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-    	
-    	// 필요값 userID
-    	String progressDate = (String) object.get("progressDate");
-    	System.out.println("date? " + progressDate);
-    	long orderNo = (long) object.get("orderNo");
-    
-    	    	
-    	String result;
-    	Gson gson = new Gson();
-    	
-    	List<WodInfo> jsonResult = wodInfoService.getWodInfoClass(progressDate, orderNo);
-
-    	result = gson.toJson(jsonResult);
-    	return result;
-	}
-
+   
 
     
     @Autowired
@@ -2062,6 +2156,28 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	WodItem3RmData jsonResult = wodItem3RmDataService.getWodItem3RmData(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItem3RmDataPersonalDetail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItem3RmDataPersonalDetail(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+ 
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItem3RmData> jsonResult = wodItem3RmDataService.getWodItem3RmDataPersonalDetail(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -2092,6 +2208,28 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	WodItem5RmData jsonResult = wodItem5RmDataService.getWodItem5RmData(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItem5RmDataPersonalDetail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItem5RmDataPersonalDetail(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+ 
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItem5RmData> jsonResult = wodItem5RmDataService.getWodItem5RmDataPersonalDetail(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -2156,6 +2294,20 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    
+    @PostMapping(value="/getwodItemInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemInfoAll(
+			) throws ParseException {
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemInfo> jsonResult = wodItemInfoService.getWodItemInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -2182,6 +2334,50 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	WodItemOneRmData jsonResult = wodItemOneRmDataService.getWodItemOneRmData(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItemOneRmDataPersonal", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataPersonal(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+ 
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataPersonal(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItemOneRmDataPersonalDetail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataPersonalDetail(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+ 
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataPersonalDetail(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -2299,7 +2495,7 @@ public class MainApiController {
     	return result;
 	}
     
-    @PostMapping("/getWodParticipantLinkInfoIsAttend")
+    @PostMapping("/getwodParticipantLinkInfoIsAttend")
 	public String getWodParticipantLinkInfoIsAttend(
 			// 인자 전달, json으로 옴
 						@RequestBody String paramJson

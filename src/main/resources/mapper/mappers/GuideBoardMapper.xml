@@ -14,6 +14,12 @@
         FROM guideBoard 
         	WHERE guideBoard.idx = #{idx}
     </select>
+    
+    <select id="getGuideBoardAll" resultType="com.stadion.api.entity.GuideBoard">	
+        SELECT *
+        FROM guideBoard WHERE status = 1; 
+        	
+    </select>
 
 
         <!-- SQL문 작성

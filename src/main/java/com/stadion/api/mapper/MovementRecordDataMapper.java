@@ -19,6 +19,10 @@ public interface MovementRecordDataMapper {
 	public List<MovementRecordData> getMovementRecordDataRecent(long accountIdx);
 	public List<MovementRecordData> getMovementRecordDataBest(long accountIdx);
 	public List<MovementRecordData> getMovementRecordDataYearBest(@Param ("accountIdx") long accountIdx, @Param ("currentYear") long dateYear);
-	
+	public List<MovementRecordData> getMovementRecordDataDetail(@Param ("accountIdx") long accountIdx, @Param ("movementIdx") long movementIdx);
+	public List<MovementRecordData> getMovementRecordDataRecentDetail(@Param ("accountIdx") long accountIdx, @Param ("movementIdx") long movementIdx);
+	public List<MovementRecordData> getMovementRecordDatMomLevel(long accountIdx);
+	public List<MovementRecordData> getMovementRecordDatChallenge(long accountIdx);
 
+	
 }

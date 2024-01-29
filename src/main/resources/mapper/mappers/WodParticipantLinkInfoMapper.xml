@@ -17,7 +17,7 @@
     
     <select id="getWodParticipantLinkInfoIsAttend" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
         SELECT *
-        FROM wodParticipantLinkInfo WHERE wodParticipantLinkInfo.isAttend = #{isAttend};
+        FROM wodParticipantLinkInfo WHERE isAttend = #{isAttend};
         	
     </select>
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.MovementInfo;
+import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.mapper.MovementInfoMapper;
 
 
@@ -21,6 +22,15 @@ public class MovementInfoService {
 		MovementInfo movementInfo = movementInfoMapper.getMovementInfo(idx);
 		
 		return movementInfo;
+	}
+	
+	
+	public List<MovementInfo> getMovementInfoAll() {
+		if(movementInfoMapper==null) {return null;}
+		
+		List<MovementInfo> movementInfoList = movementInfoMapper.getMovementInfoAll();
+		
+		return movementInfoList;
 	}
 	
 }

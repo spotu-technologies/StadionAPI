@@ -14,6 +14,25 @@
         FROM wodItem3RmData
         	WHERE wodItem3RmData.idx = #{idx}
     </select>
+    
+    
+    <select id="getWodItem3RmDataPersonalDetail" resultType="com.stadion.api.entity.WodItem3RmData">	
+        WITH RankedData AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (PARTITION BY wodItemIdx ORDER BY value2 DESC) AS rnk
+    FROM wodItem3RmData
+    WHERE accountIdx = #{accountIdx}
+      AND wodItemIdx IN (15, 12, 11, 23, 4, 35, 25, 14, 7, 3)
+    )
+    SELECT
+        *
+    FROM RankedData
+    WHERE rnk = 1
+    ORDER BY FIELD(wodItemIdx, 15, 12, 11, 23, 4, 35, 25, 14, 7, 3), value2 DESC;
+        	
+    </select>
+    
 
 
         <!-- SQL문 작성
