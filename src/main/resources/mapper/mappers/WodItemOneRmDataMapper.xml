@@ -39,6 +39,123 @@
     ORDER BY FIELD(wodItemIdx, 15, 12, 11, 23, 4, 35, 25, 14, 7, 3), value2 DESC;
         	
     </select>
+    
+    
+    <select id="getWodItemOneRmDataClub" resultType="com.stadion.api.entity.WodItemOneRmData">	
+        WITH RankedData AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (PARTITION BY wodItemIdx ORDER BY value2 DESC) AS rnk
+    FROM wodItemOneRmData
+    WHERE accountIdx = #{accountIdx}
+      AND wodItemIdx IN (15, 12, 4)
+    )
+    SELECT
+        *
+    FROM RankedData
+    WHERE rnk = 1
+    ORDER BY FIELD(wodItemIdx, 15, 12, 4), value2 DESC;
+        	
+    </select>
+    
+    
+    <select id="getWodItemOneRmDataClubMan" resultType="com.stadion.api.entity.WodItemOneRmData">	
+         WITH RankedData AS (
+    SELECT
+        wr.accountIdx,
+        wr.wodItemIdx,
+        MAX(wr.value2) AS max_value2,
+        ROW_NUMBER() OVER (PARTITION BY wr.accountIdx, wr.wodItemIdx ORDER BY MAX(wr.value2) DESC) AS rnk
+    FROM wodItemOneRmData wr
+    JOIN accountInfo ai ON wr.accountIdx = ai.idx
+    WHERE wr.wodItemIdx IN (15, 12, 4) AND ai.gender = 'M'
+    GROUP BY wr.accountIdx, wr.wodItemIdx
+    )
+
+    SELECT
+       accountIdx,
+       wodItemIdx,
+       MAX(CASE WHEN rnk = 1 THEN max_value2 END) AS value2,
+       NULL AS total_value2
+   FROM RankedData
+   GROUP BY accountIdx, wodItemIdx
+
+   UNION ALL
+
+   SELECT
+      accountIdx,
+      NULL AS wodItemIdx,
+      NULL AS value2,
+      SUM(max_value2) AS total_value2
+   FROM (
+      SELECT
+         accountIdx,
+         MAX(max_value2) AS max_value2
+      FROM RankedData
+      WHERE rnk = 1
+      GROUP BY accountIdx, wodItemIdx
+      ) AS Subquery
+      GROUP BY accountIdx
+      ORDER BY total_value2 DESC, accountIdx, wodItemIdx DESC, value2;
+        	
+    </select>
+    
+    
+    <select id="getWodItemOneRmDataClubWoman" resultType="com.stadion.api.entity.WodItemOneRmData">	
+         WITH RankedData AS (
+    SELECT
+        wr.accountIdx,
+        wr.wodItemIdx,
+        MAX(wr.value2) AS max_value2,
+        ROW_NUMBER() OVER (PARTITION BY wr.accountIdx, wr.wodItemIdx ORDER BY MAX(wr.value2) DESC) AS rnk
+    FROM wodItemOneRmData wr
+    JOIN accountInfo ai ON wr.accountIdx = ai.idx
+    WHERE wr.wodItemIdx IN (15, 12, 4) AND ai.gender = 'W'
+    GROUP BY wr.accountIdx, wr.wodItemIdx
+    )
+
+    SELECT
+       accountIdx,
+       wodItemIdx,
+       MAX(CASE WHEN rnk = 1 THEN max_value2 END) AS value2,
+       NULL AS total_value2
+   FROM RankedData
+   GROUP BY accountIdx, wodItemIdx
+
+   UNION ALL
+
+   SELECT
+      accountIdx,
+      NULL AS wodItemIdx,
+      NULL AS value2,
+      SUM(max_value2) AS total_value2
+   FROM (
+      SELECT
+         accountIdx,
+         MAX(max_value2) AS max_value2
+      FROM RankedData
+      WHERE rnk = 1
+      GROUP BY accountIdx, wodItemIdx
+      ) AS Subquery
+      GROUP BY accountIdx
+      ORDER BY total_value2 DESC, accountIdx, wodItemIdx DESC, value2 DESC;
+        	
+    </select>
+    
+    
+    <select id="getWodItemOneRmDataClubAll" resultType="com.stadion.api.entity.WodItemOneRmData">	
+        WITH RankedData AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (PARTITION BY wodItemIdx ORDER BY value2 DESC) AS rnk
+    FROM wodItemOneRmData
+    WHERE wodItemIdx IN (15, 12, 4)
+    )
+    SELECT
+        *
+    FROM RankedData ORDER BY FIELD(wodItemIdx, 15, 12, 4), value2;
+        	
+    </select>
 
 
         <!-- SQL문 작성

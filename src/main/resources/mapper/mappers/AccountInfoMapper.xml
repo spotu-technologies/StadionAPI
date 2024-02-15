@@ -18,9 +18,16 @@
     
 
     <select id="getAccountInfoByEmail" resultType="com.stadion.api.entity.AccountInfo">
-    SELECT * FROM accountInfo WHERE accountInfo.emailAddress =
-    #{userEmail}
+    SELECT * FROM accountInfo WHERE accountInfo.emailAddress = #{userEmail}
     </select>
+    
+    
+    <select id="getAccountInfoAll" resultType="com.stadion.api.entity.AccountInfo">	
+        SELECT *
+        FROM accountInfo; 
+        	
+    </select>
+    
     
     
 

@@ -14,6 +14,7 @@ public interface WodParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodParticipantLinkInfo getWodParticipantLinkInfo(long idx);
-	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsAttend(String isAttend);
+	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsAttend(long accountIdx);
+	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsNonappearance(long accountIdx);
 	
 }

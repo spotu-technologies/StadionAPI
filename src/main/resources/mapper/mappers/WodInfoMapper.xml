@@ -16,6 +16,13 @@
     </select>
     
     
+    <select id="getWodInfoAll" resultType="com.stadion.api.entity.WodInfo">	
+        SELECT *
+        FROM wodInfo ORDER BY lastUpdatetime DESC;
+        	
+    </select>
+    
+    
 
 
         <!-- SQL문 작성

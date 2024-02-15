@@ -15,10 +15,21 @@ public class WodParticipantLinkInfoService {
 	@Autowired
 	private WodParticipantLinkInfoMapper wodParticipantLinkInfoMapper;
 	
-	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsAttend(String isAttend) {
+	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsAttend(long accountIdx) {
 		if(wodParticipantLinkInfoMapper==null) {return null;}
 		
-		List<WodParticipantLinkInfo> wodParticipantLinkInfoList = wodParticipantLinkInfoMapper.getWodParticipantLinkInfoIsAttend(isAttend);
+		List<WodParticipantLinkInfo> wodParticipantLinkInfoList 
+		   = wodParticipantLinkInfoMapper.getWodParticipantLinkInfoIsAttend(accountIdx);
+		
+		return wodParticipantLinkInfoList;
+	}
+	
+	
+	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsNonappearance(long accountIdx) {
+		if(wodParticipantLinkInfoMapper==null) {return null;}
+		
+		List<WodParticipantLinkInfo> wodParticipantLinkInfoList 
+		   = wodParticipantLinkInfoMapper.getWodParticipantLinkInfoIsNonappearance(accountIdx);
 		
 		return wodParticipantLinkInfoList;
 	}

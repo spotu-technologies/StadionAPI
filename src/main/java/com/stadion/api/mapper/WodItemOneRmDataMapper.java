@@ -15,6 +15,12 @@ public interface WodItemOneRmDataMapper {
 	public WodItemOneRmData getWodItemOneRmData(long idx);
 	public List<WodItemOneRmData> getWodItemOneRmDataPersonal(long accountIdx);
 	public List<WodItemOneRmData> getWodItemOneRmDataPersonalDetail(long accountIdx);
+	public List<WodItemOneRmData> getWodItemOneRmDataClub(long accountIdx);
+	public List<WodItemOneRmData> getWodItemOneRmDataClubMan();
+	public List<WodItemOneRmData> getWodItemOneRmDataClubWoman();
+	public List<WodItemOneRmData> getWodItemOneRmDataClubAll();
+
+
 
 
 }

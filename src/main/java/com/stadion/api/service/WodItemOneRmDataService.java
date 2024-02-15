@@ -42,4 +42,41 @@ public class WodItemOneRmDataService {
 		return wodItemOneRmDataList;
 	}
 	
+	
+	public List<WodItemOneRmData> getWodItemOneRmDataClub(long accountIdx) {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		
+		List<WodItemOneRmData> wodItemOneRmDataList = wodItemOneRmDataMapper.getWodItemOneRmDataClub(accountIdx);
+		
+		return wodItemOneRmDataList;
+	}
+	
+	
+	public List<WodItemOneRmData> getWodItemOneRmDataClubMan() {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		
+		List<WodItemOneRmData> wodItemOneRmDataList = wodItemOneRmDataMapper.getWodItemOneRmDataClubMan();
+		
+		return wodItemOneRmDataList;
+	}
+	
+	
+	public List<WodItemOneRmData> getWodItemOneRmDataClubWoman() {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		
+		List<WodItemOneRmData> wodItemOneRmDataList = wodItemOneRmDataMapper.getWodItemOneRmDataClubWoman();
+		
+		return wodItemOneRmDataList;
+	}
+	
+	
+	public List<WodItemOneRmData> getWodItemOneRmDataClubAll() {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		
+		List<WodItemOneRmData> wodItemOneRmDataList = wodItemOneRmDataMapper.getWodItemOneRmDataClubAll();
+		
+		return wodItemOneRmDataList;
+	}
+	
+	
 }

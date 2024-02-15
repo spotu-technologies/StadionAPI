@@ -34,6 +34,7 @@ import com.stadion.api.entity.CommentData;
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.FileData;
+import com.stadion.api.entity.FollowLinkInfo;
 import com.stadion.api.entity.GuideBoard;
 import com.stadion.api.entity.InjuryData;
 import com.stadion.api.entity.InjuryInfo;
@@ -97,6 +98,7 @@ import com.stadion.api.service.CommentDataService;
 import com.stadion.api.service.EventBoardService;
 import com.stadion.api.service.FaqBoardService;
 import com.stadion.api.service.FileDataService;
+import com.stadion.api.service.FollowLinkInfoService;
 import com.stadion.api.service.GuideBoardService;
 import com.stadion.api.service.InjuryDataService;
 import com.stadion.api.service.InjuryInfoService;
@@ -232,6 +234,21 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	
 		return result;
+	}
+    
+    
+    @PostMapping(value="/getaccountInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getAccountInfoAll(
+			) throws ParseException {
+    	
+
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<AccountInfo> jsonResult = accountInfoService.getAccountInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
 	}
     
 
@@ -420,6 +437,30 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	BwHistory jsonResult = bwHistoryService.getBwHistory(idx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping("/getbwHistorWeight")
+	public String getBwHistorWeight(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<BwHistory> jsonResult = bwHistoryService.getBwHistorWeight(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -711,6 +752,61 @@ public class MainApiController {
     	Gson gson = new Gson();
     	
     	List<FileData> jsonResult = fileDataService.getFileDataMts(fileKind, tableLinkIdx, pIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @Autowired
+    public FollowLinkInfoService followLinkInfoService;
+     
+    @PostMapping(value="/getfollowLinkInfoFollow", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFollowLinkInfoFollow(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	long followAccountIdx = (long) object.get("followAccountIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<FollowLinkInfo> jsonResult = followLinkInfoService.getFollowLinkInfoFollow(followAccountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getfollowLinkInfoReg", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFollowLinkInfoReg(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	long regAccountIdx = (long) object.get("regAccountIdx");
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<FollowLinkInfo> jsonResult = followLinkInfoService.getFollowLinkInfoReg(regAccountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -2130,6 +2226,20 @@ public class MainApiController {
 	}
     
     
+    @PostMapping(value="/gewodInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodInfoAll(
+			) throws ParseException {
+    	
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfo> jsonResult = wodInfoService.getWodInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
    
 
     
@@ -2382,6 +2492,73 @@ public class MainApiController {
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    
+    @PostMapping(value="/getwodItemOneRmDataClub", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataClub(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+ 
+    
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataClub(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItemOneRmDataClubMan", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataClubMan(
+			) throws ParseException {
+    	
+
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataClubMan();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItemOneRmDataClubWoman", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataClubWoman(
+			) throws ParseException {
+    	
+
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataClubWoman();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodItemOneRmDataClubAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataClubAll(
+			) throws ParseException {
+    	
+
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataClubAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
 
     
@@ -2495,8 +2672,9 @@ public class MainApiController {
     	return result;
 	}
     
-    @PostMapping("/getwodParticipantLinkInfoIsAttend")
-	public String getWodParticipantLinkInfoIsAttend(
+    
+    @PostMapping(value="/getwodParticipantLinkInfoIsAttend", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodParticipantLinkInfoIsAttend(
 			// 인자 전달, json으로 옴
 						@RequestBody String paramJson
 			) throws ParseException {
@@ -2508,20 +2686,47 @@ public class MainApiController {
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	
     	// 필요값 userID
-    	String isAttend = (String) object.get("isAttend");
+    	long accountIdx = (long) object.get("accountIdx");
+    
     
     	    	
     	String result;
     	Gson gson = new Gson();
     	
-    	List<WodParticipantLinkInfo> jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsAttend(isAttend);
+    	List<WodParticipantLinkInfo> jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsAttend(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @PostMapping(value="/getwodParticipantLinkInfoIsNonappearance", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodParticipantLinkInfoIsNonappearance(
+			// 인자 전달, json으로 옴
+						@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	
+    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodParticipantLinkInfo> jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsNonappearance(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
 
-    
     @Autowired
     public WodRecordInfoService wodRecordInfoService;
      

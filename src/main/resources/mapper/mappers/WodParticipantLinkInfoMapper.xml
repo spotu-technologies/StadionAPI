@@ -17,7 +17,34 @@
     
     <select id="getWodParticipantLinkInfoIsAttend" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
         SELECT *
-        FROM wodParticipantLinkInfo WHERE isAttend = #{isAttend};
+        FROM (
+        SELECT wpli2.*, ROW_NUMBER() OVER (PARTITION BY wpli2.accountIdx ORDER BY wpli2.accountIdx) AS rn
+        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
+        INNER JOIN stadion_db_dev.wodParticipantLinkInfo wpli2 ON wpli1.wodIdx = wpli2.wodIdx
+        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+        WHERE wpli1.accountIdx = #{accountIdx}
+        AND wpli2.isAttend = 'Y'
+        AND YEAR(wi.progressDate) = YEAR(CURRENT_DATE())
+        AND MONTH(wi.progressDate) = MONTH(CURRENT_DATE())
+        ) AS subquery
+        WHERE rn = 1;
+        	
+    </select>
+    
+    
+    <select id="getWodParticipantLinkInfoIsNonappearance" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
+        SELECT *
+        FROM (
+        SELECT wpli2.*, ROW_NUMBER() OVER (PARTITION BY wpli2.accountIdx ORDER BY wpli2.accountIdx) AS rn
+        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
+        INNER JOIN stadion_db_dev.wodParticipantLinkInfo wpli2 ON wpli1.wodIdx = wpli2.wodIdx
+        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+        WHERE wpli1.accountIdx = #{accountIdx}
+        AND wpli2.isAttend = 'N'
+        AND YEAR(wi.progressDate) = YEAR(CURRENT_DATE())
+        AND MONTH(wi.progressDate) = MONTH(CURRENT_DATE())
+        ) AS subquery
+        WHERE rn = 1;
         	
     </select>
 

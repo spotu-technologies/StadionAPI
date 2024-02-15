@@ -7,20 +7,19 @@
 <!-- SQL Mapping -->
 
 <!-- mapper 인터페이스가 위치하는 경로 -->
-<mapper namespace="com.stadion.api.mapper.BwHistoryMapper">	
+<mapper namespace="com.stadion.api.mapper.FollowLinkInfoMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
-    <select id="getBwHistory" resultType="com.stadion.api.entity.BwHistory">	
-        SELECT *
-        FROM bwHistory 
-        	WHERE bwHistory.idx = #{idx}
+    <select id="getFollowLinkInfoFollow" resultType="com.stadion.api.entity.FollowLinkInfo">	
+        SELECT * FROM followLinkInfo WHERE followLinkInfo.followAccountIdx = #{followAccountIdx};
+    </select>
+    
+    <select id="getFollowLinkInfoReg" resultType="com.stadion.api.entity.FollowLinkInfo">	
+        SELECT * FROM followLinkInfo WHERE followLinkInfo.regAccountIdx = #{regAccountIdx};
     </select>
     
     
-    <select id="getBwHistorWeight" parameterType="long" resultType="com.stadion.api.entity.BwHistory">	
-        SELECT *
-        FROM bwHistory WHERE bwHistory.accountIdx = #{accountIdx};
-        	
-    </select>
+    
+
 
         <!-- SQL문 작성
                 SELECT *

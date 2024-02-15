@@ -52,6 +52,8 @@ public class AccountInfo {
 	private Integer lastRecordUnixtime;
 	private Integer restUnixtime;
 	private Integer selCoach;
+	private String welcomeStr;
+	private Integer firstMenu;
 
 	
 }

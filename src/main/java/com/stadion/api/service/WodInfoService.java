@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodInfo;
 import com.stadion.api.mapper.WodInfoMapper;
@@ -23,6 +24,15 @@ public class WodInfoService {
 		WodInfo wodInfo = wodInfoMapper.getWodInfo(idx);
 		
 		return wodInfo;
+	}
+	
+	
+	public List<WodInfo> getWodInfoAll() {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfo> wodInfoList = wodInfoMapper.getWodInfoAll();
+		
+		return wodInfoList;
 	}
 	
 }

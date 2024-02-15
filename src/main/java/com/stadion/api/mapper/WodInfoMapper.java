@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.stadion.api.entity.AccountInfo;
+import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.InjuryData;
 import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodInfo;
@@ -16,6 +17,7 @@ public interface WodInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodInfo getWodInfo(long idx);
+	public List<WodInfo> getWodInfoAll();
 	
 
 }
