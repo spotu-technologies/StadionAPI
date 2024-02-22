@@ -24,6 +24,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.stadion.api.entity.AccountInfo;
 import com.stadion.api.entity.ActionHistory;
+import com.stadion.api.entity.BadgeAccountLinkInfo;
+import com.stadion.api.entity.BadgeInfo;
 import com.stadion.api.entity.BoxAccountLinkInfo;
 import com.stadion.api.entity.BoxInfo;
 import com.stadion.api.entity.BoxMatchTemplateInfo;
@@ -88,6 +90,8 @@ import com.stadion.api.entity.WodTemplateRoundItemInfo;
 import com.stadion.api.entity.WodTemplateStepInfo;
 import com.stadion.api.service.AccountInfoService;
 import com.stadion.api.service.ActionHistoryService;
+import com.stadion.api.service.BadgeAccountLinkInfoService;
+import com.stadion.api.service.BadgeInfoService;
 import com.stadion.api.service.BoxAccountLinkInfoService;
 import com.stadion.api.service.BoxInfoService;
 import com.stadion.api.service.BoxMatchTemplateInfoService;
@@ -312,6 +316,44 @@ public class MainApiController {
     
     
     @Autowired
+    public BadgeInfoService badgeInfoService;
+    
+    @PostMapping(value="/getbadgeInfo", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getBadgeInfo(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<BadgeInfo> jsonResult = badgeInfoService.getBadgeInfo();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @Autowired
+    public BadgeAccountLinkInfoService badgeAccountLinkInfoService;
+    
+    @PostMapping(value="/getbadgeAccountLinkInfo", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getBadgeAccountLinkInfo(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<BadgeAccountLinkInfo> jsonResult = badgeAccountLinkInfoService.getBadgeAccountLinkInfo();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    
+    @Autowired
     public BoxInfoService boxInfoService;
      
     // POST는 @PostMapping 사용
@@ -497,8 +539,8 @@ public class MainApiController {
 	}
     
    
-    @PostMapping(value="/getcategoryInfoName", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getCategoryInfoName(
+    @PostMapping(value="/getcategoryInfoBadgeName", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getCategoryInfoBadgeName(
 			// 인자 전달, json으로 옴
 						@RequestBody String paramJson
 			) throws ParseException {
@@ -511,15 +553,11 @@ public class MainApiController {
     	
     	// 필요값 userID
     	long tableLinkIdx = (long) object.get("tableLinkIdx");
-    	long depth = (long) object.get("depth");
-    	//System.out.println("date? " + progressDate);
-    
-    
     	    	
     	String result;
     	Gson gson = new Gson();
     	
-    	List<CategoryInfo> jsonResult = categoryInfoService.getCategoryInfoName(tableLinkIdx, depth);
+    	List<CategoryInfo> jsonResult = categoryInfoService.getCategoryInfoBadgeName(tableLinkIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

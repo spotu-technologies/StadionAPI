@@ -15,7 +15,7 @@ public interface CategoryInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public CategoryInfo getCategoryInfo(long idx);
-	public List<CategoryInfo> getCategoryInfoName(@Param ("tableLinkIdx") long tableLinkIdx, @Param ("depth") long depth);
+	public List<CategoryInfo> getCategoryInfoBadgeName(long tableLinkIdx);
 
 
 }
