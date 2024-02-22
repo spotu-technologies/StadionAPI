@@ -15,9 +15,9 @@
         	WHERE categoryInfo.idx = #{idx}
     </select>
     
-    <select id="getCategoryInfoName" parameterType="long" resultType="com.stadion.api.entity.CategoryInfo">	
+    <select id="getCategoryInfoBadgeName" parameterType="long" resultType="com.stadion.api.entity.CategoryInfo">	
         SELECT *
-        FROM categoryInfo WHERE categoryInfo.tableLinkIdx = #{tableLinkIdx} and categoryInfo.depth = #{depth} and status = 1;
+        FROM categoryInfo WHERE categoryInfo.tableLinkIdx = #{tableLinkIdx} and isOpen = 'Y' order by idx ASC;
         	
     </select>
     

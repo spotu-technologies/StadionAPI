@@ -16,10 +16,10 @@ public class CategoryInfoService {
 	@Autowired
 	private CategoryInfoMapper categoryInfoMapper;
 	
-	public List<CategoryInfo> getCategoryInfoName(long tableLinkIdx, long depth) {
+	public List<CategoryInfo> getCategoryInfoBadgeName(long tableLinkIdx) {
 		if(categoryInfoMapper==null) {return null;}
 		
-		List<CategoryInfo> categoryInfoList = categoryInfoMapper.getCategoryInfoName(tableLinkIdx, depth);
+		List<CategoryInfo> categoryInfoList = categoryInfoMapper.getCategoryInfoBadgeName(tableLinkIdx);
 		
 		return categoryInfoList;
 	}
