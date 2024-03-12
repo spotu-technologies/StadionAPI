@@ -11,7 +11,7 @@
     
     <select id="getBadgeInfo" resultType="com.stadion.api.entity.BadgeInfo">	
         SELECT *
-        FROM badgeInfo;
+        FROM badgeInfo where categoryIdx = #{categoryIdx} and status = 1;
         	
     </select>
 

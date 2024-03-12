@@ -11,7 +11,7 @@
     
     <select id="getBadgeAccountLinkInfo" resultType="com.stadion.api.entity.BadgeAccountLinkInfo">	
         SELECT *
-        FROM badgeAccountLinkInfo;
+        FROM badgeAccountLinkInfo WHERE badgeAccountLinkInfo.accountIdx = #{accountIdx} and status = 1;
         	
     </select>
 

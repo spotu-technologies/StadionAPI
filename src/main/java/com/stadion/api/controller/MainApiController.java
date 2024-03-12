@@ -318,16 +318,23 @@ public class MainApiController {
     @Autowired
     public BadgeInfoService badgeInfoService;
     
+    
     @PostMapping(value="/getbadgeInfo", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getBadgeInfo(
+			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
-    	    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long categoryIdx = (long) object.get("categoryIdx");
+    
+    
     	String result;
     	Gson gson = new Gson();
     	
-    	List<BadgeInfo> jsonResult = badgeInfoService.getBadgeInfo();
+    	List<BadgeInfo> jsonResult = badgeInfoService.getBadgeInfo(categoryIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -339,14 +346,20 @@ public class MainApiController {
     
     @PostMapping(value="/getbadgeAccountLinkInfo", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getBadgeAccountLinkInfo(
+			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
-    	    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 userID
+    	long accountIdx = (long) object.get("accountIdx");
+    
+    
     	String result;
     	Gson gson = new Gson();
     	
-    	List<BadgeAccountLinkInfo> jsonResult = badgeAccountLinkInfoService.getBadgeAccountLinkInfo();
+    	List<BadgeAccountLinkInfo> jsonResult =badgeAccountLinkInfoService.getBadgeAccountLinkInfo(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

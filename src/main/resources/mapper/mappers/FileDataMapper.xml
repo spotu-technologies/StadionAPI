@@ -21,8 +21,7 @@
         fileData.fileKind = #{fileKind} 
         and fileData.tableLinkIdx = #{tableLinkIdx} 
         and fileData.pIdx IN (SELECT guideBoard.idx FROM stadion_db_dev.guideBoard)
-        and status=1
-        ;
+        and status=1;
         	
     </select>
     

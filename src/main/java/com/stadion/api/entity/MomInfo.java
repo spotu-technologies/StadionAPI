@@ -14,4 +14,6 @@ public class MomInfo {
 	private Integer regUnixtime;
 	private Integer lastUpdatetime;
 	private Integer orderNo;
+	private Integer isTeamMoM;
+	private Integer teamMemberCnt;
 }

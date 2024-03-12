@@ -17,10 +17,10 @@ public class BadgeInfoService {
 	@Autowired
 	private BadgeInfoMapper badgeInfoMapper;
 	
-	public List<BadgeInfo> getBadgeInfo() {
+	public List<BadgeInfo> getBadgeInfo(long categoryIdx) {
 		if(badgeInfoMapper==null) {return null;}
 		
-		List<BadgeInfo> badgeInfoList = badgeInfoMapper.getBadgeInfo();
+		List<BadgeInfo> badgeInfoList = badgeInfoMapper.getBadgeInfo(categoryIdx);
 		
 		return badgeInfoList;
 	}

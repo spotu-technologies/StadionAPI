@@ -13,7 +13,7 @@ import com.stadion.api.entity.EventBoard;
 public interface BadgeAccountLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public List<BadgeAccountLinkInfo> getBadgeAccountLinkInfo();
+	public List<BadgeAccountLinkInfo> getBadgeAccountLinkInfo(long accountIdx);
 	
 
 }

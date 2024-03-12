@@ -17,10 +17,10 @@ public class BadgeAccountLinkInfoService {
 	@Autowired
 	private BadgeAccountLinkInfoMapper badgeAccountLinkInfoMapper;
 	
-	public List<BadgeAccountLinkInfo> getBadgeAccountLinkInfo() {
+	public List<BadgeAccountLinkInfo> getBadgeAccountLinkInfo(long accountIdx) {
 		if(badgeAccountLinkInfoMapper==null) {return null;}
 		
-		List<BadgeAccountLinkInfo> badgeAccountLinkInfoList = badgeAccountLinkInfoMapper.getBadgeAccountLinkInfo();
+		List<BadgeAccountLinkInfo> badgeAccountLinkInfoList = badgeAccountLinkInfoMapper.getBadgeAccountLinkInfo(accountIdx);
 		
 		return badgeAccountLinkInfoList;
 	}
