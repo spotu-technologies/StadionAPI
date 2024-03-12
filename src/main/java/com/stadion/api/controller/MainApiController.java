@@ -234,6 +234,7 @@ public class MainApiController {
     	String result;
     	Gson gson = new Gson();
     	AccountInfo jsonResult = accountInfoService.getAccountInfoByEmail(emailAddress);
+    	
 
     	result = gson.toJson(jsonResult);
     	
