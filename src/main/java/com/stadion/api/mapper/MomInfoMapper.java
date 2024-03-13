@@ -13,7 +13,7 @@ public interface MomInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public MomInfo getMomInfo(long idx);
-	public List<MomInfo> getMomInfoAll();
-	 
+	public List<MomInfo> getMomInfoThisAll();
+	public List<MomInfo> getMomInfoPastAll(); 
 
 }

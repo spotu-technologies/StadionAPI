@@ -1150,8 +1150,8 @@ public class MainApiController {
     	return result;
 	}
     
-    @PostMapping(value="/getmomInfoAll", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getMomInfoAll(
+    @PostMapping(value="/getmomInfoThisAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMomInfoThisAll(
 			) throws ParseException {
     	
     	//System.out.println(paramJson);
@@ -1159,7 +1159,22 @@ public class MainApiController {
     	String result;
     	Gson gson = new Gson();
     	
-    	List<MomInfo> jsonResult = momInfoService.getMomInfoAll();
+    	List<MomInfo> jsonResult = momInfoService.getMomInfoThisAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getmomInfoPastAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMomInfoPastAll(
+			) throws ParseException {
+    	
+    	//System.out.println(paramJson);
+    	    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MomInfo> jsonResult = momInfoService.getMomInfoPastAll();
 
     	result = gson.toJson(jsonResult);
     	return result;
