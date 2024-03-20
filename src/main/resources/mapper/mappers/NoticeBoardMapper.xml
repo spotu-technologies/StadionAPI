@@ -17,7 +17,7 @@
 
     <select id="getNoticeBoardAll" resultType="com.stadion.api.entity.NoticeBoard">	
         SELECT *
-        FROM noticeBoard ORDER BY lastUpdatetime DESC;
+        FROM noticeBoard where isMain = 'Y' ORDER BY mainStartDate DESC;
         	
     </select>
 
