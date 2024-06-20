@@ -17,12 +17,23 @@
 
     <select id="getNoticeBoardAll" resultType="com.stadion.api.entity.NoticeBoard">	
         SELECT *
-        FROM noticeBoard where isMain = 'Y' ORDER BY mainStartDate DESC;
-        	
+        FROM noticeBoard ORDER BY regUnixtime DESC;        	
     </select>
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+    
+	<select id="getNoticeBoardLast" parameterType="map" resultType="com.stadion.api.entity.NoticeBoard">	
+        SELECT *
+        FROM noticeBoard ORDER BY regUnixtime DESC
+        LIMIT #{count} OFFSET #{start};        	
+    </select>
+    
+    <select id="getNoticeBoardPopup" resultType="com.stadion.api.entity.NoticeBoard">	
+        SELECT *
+        FROM noticeBoard
+        where isMain = 'Y'
+        AND <![CDATA[ mainStartDate <= #{nDay} ]]>         
+        AND <![CDATA[ mainEndDate >= #{nDay} ]]>
+        
+        ORDER BY regUnixtime DESC;
+    </select>
+        
 </mapper>

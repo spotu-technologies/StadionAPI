@@ -15,6 +15,13 @@ public class EventBoardService {
 	@Autowired
 	private EventBoardMapper eventBoardMapper;
 	
+	public List<EventBoard> getEventBoardLast(long start, long count) {
+		if(eventBoardMapper==null) {return null;}
+		
+		List<EventBoard> eventBoardList = eventBoardMapper.getEventBoardLast(start, count);
+		
+		return eventBoardList;
+	}
 	public List<EventBoard> getEventBoardAll() {
 		if(eventBoardMapper==null) {return null;}
 		

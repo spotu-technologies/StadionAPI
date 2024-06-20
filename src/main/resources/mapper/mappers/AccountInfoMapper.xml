@@ -15,24 +15,160 @@
         	WHERE accountInfo.accountID = #{userID}
     </select>
     
+    <update id="loginAccountInfo" parameterType="map">	
+        UPDATE accountInfo 
+        <set>
+			lastLoginUnixtime = UNIX_TIMESTAMP()
+        </set>
+        	WHERE  idx = #{idx}         	
+    </update>
     
+    <update id="updateAccountInfo" parameterType="com.stadion.api.entity.AccountInfo">	
+        UPDATE accountInfo 
+        <set>
+			
+        <if test="accountPW != '' and accountPW != null">
+            accountPW = #{accountPW},
+        </if>
+        <if test="accountNick != '' and accountNick != null">
+            accountNick = #{accountNick},
+        </if>
+        <if test="cellNumber != '' and cellNumber != null">
+            cellNumber = #{cellNumber},
+        </if>
+        
+        <if test="zipcode != '' and zipcode != null">
+            zipcode = #{zipcode},
+        </if>
+		<if test="address1 != '' and address1 != null">
+            address1 = #{address1},
+        </if>
+        <if test="address2 != '' and address2 != null">
+            address2 = #{address2},
+        </if>
+        
+        <if test="height != '' and height != null">
+            height = #{height},
+        </if>
+        <if test="weight != '' and weight != null">
+            weight = #{weight},
+        </if>
+        <if test="heightGroup != '' and heightGroup != null">
+            heightGroup = #{heightGroup},
+        </if>
+        <if test="weightGroup != '' and weightGroup != null">
+            weightGroup = #{weightGroup},
+        </if>        
+        
+        <if test="preferWeight != '' and preferWeight != null">
+            preferWeight = #{preferWeight},
+        </if>
+        
+        
+        <if test="exercisePreferenceMode != '' and exercisePreferenceMode != null">
+            exercisePreferenceMode = #{exercisePreferenceMode},
+        </if>
+        
+        <if test="agreeEmail != '' and agreeEmail != null">
+            agreeEmail = #{agreeEmail},
+        </if>
+        <if test="agreeSms != '' and agreeSms != null">
+            agreeSms = #{agreeSms},
+        </if>
+        <if test="agreePush != '' and agreePush != null">
+            agreePush = #{agreePush},
+        </if>
+        
+        <if test="selCoach >= 0 and selCoach != null">
+            selCoach = #{selCoach},
+        </if>
+        <if test="welcomeStr != '' and welcomeStr != null">
+            welcomeStr = #{welcomeStr},
+        </if>
+        <if test="firstMenu != '' and firstMenu != null">
+            firstMenu = #{firstMenu},
+        </if>
+        
+        lastUpdatetime = UNIX_TIMESTAMP()
+         
+        </set>
+        	WHERE  idx = #{idx} 
+        	
+    </update>
 
+
+	<insert id="insertAccountInfo" parameterType="com.stadion.api.entity.AccountInfo">
+		INSERT accountInfo 
+			( accountID, accountPW, accountName, accountNick, 
+            cellNumber, emailAddress,zipcode,address1,address2,
+			regionGroup, gender, birthday, birthdayType, ageGroup,
+			height, heightGroup, weight, weightGroup, preferWeight,
+			recommenderIdx, joinFrom, exercisePreferenceMode,
+        <if test="agreeEmail != '' and agreeEmail != null">
+            agreeEmail,
+        </if>
+        <if test="agreeSms != '' and agreeSms != null">
+            agreeSms,
+        </if>
+        <if test="agreePush != '' and agreePush != null">
+            agreePush,
+        </if>
+
+			writer, 
+        <if test="status != '' and status != null">
+            status,
+        </if>
+			
+			regUnixtime, lastUpdatetime, mailUnixtime, lastLoginUnixtime
+		<if test="firstMenu != '' and firstMenu != null">
+            ,firstMenu
+        </if>			) 
+			
+			VALUES 
+			( #{accountID}, #{accountPW}, #{accountName}, #{accountNick},
+            #{cellNumber},#{emailAddress},#{zipcode},#{address1},#{address2}, 
+			#{regionGroup}, #{gender}, #{birthday}, #{birthdayType}, #{ageGroup},
+			#{height}, #{heightGroup}, #{weight}, #{weightGroup}, #{preferWeight},
+			#{recommenderIdx}, #{joinFrom}, #{exercisePreferenceMode},
+        <if test="agreeEmail != '' and agreeEmail != null">
+            #{agreeEmail},
+        </if>
+        <if test="agreeSms != '' and agreeSms != null">
+            #{agreeSms},
+        </if>
+        <if test="agreePush != '' and agreePush != null">
+            #{agreePush},
+        </if>
+			#{writer},
+		<if test="status != '' and status != null">
+            #{status},
+        </if>		
+			 
+			UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), NULL, NULL
+        <if test="firstMenu != '' and firstMenu != null">
+            ,#{firstMenu}
+        </if>			
+        	);
+	</insert>
+	
     <select id="getAccountInfoByEmail" resultType="com.stadion.api.entity.AccountInfo">
     SELECT * FROM accountInfo WHERE accountInfo.emailAddress = #{userEmail}
     </select>
     
-    
     <select id="getAccountInfoAll" resultType="com.stadion.api.entity.AccountInfo">	
         SELECT *
-        FROM accountInfo; 
-        	
+        FROM accountInfo;        	
     </select>
     
+    <select id="getAccountInfoLast" parameterType="map" resultType="com.stadion.api.entity.AccountInfo">	
+        SELECT *
+        FROM accountInfo LIMIT #{count} OFFSET #{start};        	
+    </select>
     
+    <select id="getAccountInfoLogin" resultType="com.stadion.api.entity.AccountInfo">	
+        SELECT *
+        FROM accountInfo where accountID=#{userID};        	
+    </select>
     
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

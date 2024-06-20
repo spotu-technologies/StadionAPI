@@ -14,8 +14,7 @@
         FROM wodItem3RmData
         	WHERE wodItem3RmData.idx = #{idx}
     </select>
-    
-    
+        
     <select id="getWodItem3RmDataPersonalDetail" resultType="com.stadion.api.entity.WodItem3RmData">	
         WITH RankedData AS (
     SELECT
@@ -34,9 +33,4 @@
     </select>
     
 
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

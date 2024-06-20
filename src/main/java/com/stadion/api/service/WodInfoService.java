@@ -35,4 +35,12 @@ public class WodInfoService {
 		return wodInfoList;
 	}
 	
+	public List<WodInfo> getWodInfoClass() {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfo> wodInfoList = wodInfoMapper.getWodInfoClass();
+		
+		return wodInfoList;
+	}
+	
 }

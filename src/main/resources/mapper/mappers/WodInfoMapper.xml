@@ -4,9 +4,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<!-- SQL Mapping -->
-
-<!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.WodInfoMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
     <select id="getWodInfo" resultType="com.stadion.api.entity.WodInfo">	
@@ -16,17 +13,27 @@
     </select>
     
     
-    <select id="getWodInfoAll" resultType="com.stadion.api.entity.WodInfo">	
+    <select id="getWodInfoAll" resultType="com.stadion.api.entity.WodInfo">
+		SELECT wi.*
+        FROM wodInfo as wi
+        JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37
+        
+        ORDER BY wi.lastUpdatetime DESC;	
+<!--
         SELECT *
-        FROM wodInfo ORDER BY lastUpdatetime DESC;
+        FROM wodInfo
+        WHERE isOpen = 'Y' 
+        ORDER BY lastUpdatetime DESC;
+        -->
         	
     </select>
     
-    
+    <select id="getWodInfoClass" resultType="com.stadion.api.entity.WodInfo">	
+        SELECT * FROM stadion_db_dev.wodInfo 
+        WHERE progressDate = CURDATE() ORDER BY orderNo ASC;
+        	
+    </select>
 
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

@@ -14,7 +14,8 @@ import com.stadion.api.entity.MovementRecordData;
 public interface LevelDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public LevelData getLevelData(long idx);
+	public List<LevelData> getLevelData(long accountIdx);
 	public List<LevelData> getLevelDataLevel( @Param ("accountIdx") long accountIdx, @Param ("longYear") long year);
+	public int insertLevelData(LevelData arg);
 	
 }

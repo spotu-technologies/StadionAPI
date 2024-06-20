@@ -24,6 +24,13 @@ public class BwHistoryService {
 		return bwHistory;
 	}
 	
+	public long insertBwHistory(BwHistory bw) 
+	{
+		if(bwHistoryMapper==null) {return 0;}
+		
+		return bwHistoryMapper.insertBwHistory(bw);
+	}
+	
 	
 	public List<BwHistory> getBwHistorWeight(long accountIdx) {
 		if(bwHistoryMapper==null) {return null;}

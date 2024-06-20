@@ -12,7 +12,7 @@
     <select id="getLevelData" resultType="com.stadion.api.entity.LevelData">	
         SELECT *
         FROM levelData
-        	WHERE levelData.idx = #{idx};
+        	WHERE levelData.accountIdx = #{accountIdx} ORDER BY lastUpdatetime DESC;
     </select>
     
     <select id="getLevelDataLevel" parameterType="long" resultType="com.stadion.api.entity.LevelData">	
@@ -21,9 +21,471 @@
         	
     </select>
 
+<insert id="insertLevelData" parameterType="com.stadion.api.entity.LevelData">
+		INSERT INTO stadion_db_dev.levelData
+			 (accountIdx, year, 
+		<if test="totalGradeLevel != '' and totalGradeLevel != null">
+			totalGradeLevel,
+        </if>			  
+		<if test="totalPoint != '' and totalPoint != null">
+			totalPoint,
+        </if>			  
+		<if test="airGradeLevel != '' and airGradeLevel != null">
+			airGradeLevel,
+        </if>			  
+			 
+		<if test="airPoint != '' and airPoint != null">
+			airPoint,
+        </if>			  
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+		<if test="forceGradeLevel != '' and forceGradeLevel != null">
+			forceGradeLevel,
+        </if>
+        
+		<if test="forcePoint != '' and forcePoint != null">
+			forcePoint,
+        </if>        	
+        
+		<if test="flyGradeLevel != '' and flyGradeLevel != null">
+			flyGradeLevel,
+        </if>        		  
+
+		<if test="flyPoint != '' and flyPoint != null">
+			flyPoint,
+        </if>
+        
+		<if test="airRunGradeLevel != '' and airRunGradeLevel != null">
+			airRunGradeLevel,
+        </if>        			 
+		<if test="airRunPoint != '' and airRunPoint != null">
+			airRunPoint,
+        </if>
+		<if test="airRun1GradeLevel != '' and airRun1GradeLevel != null">
+			airRun1GradeLevel,
+        </if>        
+		<if test="airRun1Point != '' and airRun1Point != null">
+			airRun1Point,
+        </if>                
+		<if test="airRun2GradeLevel != '' and airRun2GradeLevel != null">
+			airRun2GradeLevel,
+        </if>
+		<if test="airRun2Point != '' and airRun2Point != null">
+			airRun2Point,
+        </if>
+        <if test="airBikeGradeLevel != '' and airBikeGradeLevel != null">
+			airBikeGradeLevel,
+        </if>
+        <if test="airBikePoint != '' and airBikePoint != null">
+			airBikePoint,
+        </if>        
+        <if test="airBike1GradeLevel != '' and airBike1GradeLevel != null">
+			airBike1GradeLevel,
+        </if>        
+        <if test="airBike1Point != '' and airBike1Point != null">
+			airBike1Point,
+        </if>
+        <if test="airBike2GradeLevel != '' and airBike2GradeLevel != null">
+			airBike2GradeLevel,
+        </if>
+        <if test="airBike2Point != '' and airBike2Point != null">
+			airBike2Point,
+        </if>
+         
+        <if test="airJumpRopeGradeLevel != '' and airJumpRopeGradeLevel != null">
+			airJumpRopeGradeLevel,
+        </if>
+        <if test="airJumpRopePoint != '' and airJumpRopePoint != null">
+			airJumpRopePoint,
+        </if>
+        <if test="airJumpRope1GradeLevel != '' and airJumpRope1GradeLevel != null">
+			airJumpRope1GradeLevel,
+        </if>
+        <if test="airJumpRope1Point != '' and airJumpRope1Point != null">
+			airJumpRope1Point,
+        </if>
+         
+        <if test="airJumpRope2GradeLevel != '' and airJumpRope2GradeLevel != null">
+			airJumpRope2GradeLevel,
+        </if>
+        <if test="airJumpRope2Point != '' and airJumpRope2Point != null">
+			airJumpRope2Point,
+        </if>
+         
+        <if test="forcePullGradeLevel != '' and forcePullGradeLevel != null">
+			forcePullGradeLevel,
+        </if>
+        <if test="forcePullPoint != '' and forcePullPoint != null">
+			forcePullPoint,
+        </if>
+        <if test="forcePull1GradeLevel != '' and forcePull1GradeLevel != null">
+			forcePull1GradeLevel,
+        </if>
+        <if test="forcePull1Point != '' and forcePull1Point != null">
+			forcePull1Point,
+        </if>
+        
+        <if test="forcePull2GradeLevel != '' and forcePull2GradeLevel != null">
+			forcePull2GradeLevel,
+        </if>
+        <if test="forcePull2Point != '' and forcePull2Point != null">
+			forcePull2Point,
+        </if> 
+		<if test="forcePressGradeLevel != '' and forcePressGradeLevel != null">
+			forcePressGradeLevel,
+        </if>
+        <if test="forcePressPoint != '' and forcePressPoint != null">
+			forcePressPoint,
+        </if>
+        
+        <if test="forcePress1GradeLevel != '' and forcePress1GradeLevel != null">
+			forcePress1GradeLevel,
+        </if>    
+        <if test="forcePress1Point != '' and forcePress1Point != null">
+			forcePress1Point,
+        </if>
+		<if test="forcePress2GradeLevel != '' and forcePress2GradeLevel != null">
+			forcePress2GradeLevel,
+        </if>	
+        <if test="forcePress2Point != '' and forcePress2Point != null">
+			forcePress2Point,
+        </if>  
+        
+        <if test="forceSquatGradeLevel != '' and forceSquatGradeLevel != null">
+			forceSquatGradeLevel,
+        </if>
+        <if test="forceSquatPoint != '' and forceSquatPoint != null">
+			forceSquatPoint,
+        </if>
+ 		<if test="forceSquat1GradeLevel != '' and forceSquat1GradeLevel != null">
+			forceSquat1GradeLevel,
+        </if>
+        <if test="forceSquat1Point != '' and forceSquat1Point != null">
+			forceSquat1Point,
+        </if>
+        
+        <if test="forceSquat2GradeLevel != '' and forceSquat2GradeLevel != null">
+			forceSquat2GradeLevel,
+        </if>
+		<if test="forceSquat2Point != '' and forceSquat2Point != null">
+			forceSquat2Point,
+        </if>
+        <if test="flyHangingGradeLevel != '' and flyHangingGradeLevel != null">
+			flyHangingGradeLevel,
+        </if>
+        <if test="flyHangingPoint != '' and flyHangingPoint != null">
+			flyHangingPoint,
+        </if>
+        
+        <if test="flyHanging1GradeLevel != '' and flyHanging1GradeLevel != null">
+			flyHanging1GradeLevel,
+        </if>	 	 
+        <if test="flyHanging1Point != '' and flyHanging1Point != null">
+			flyHanging1Point,
+        </if>	 	  
+		<if test="flyHanging2GradeLevel != '' and flyHanging2GradeLevel != null">
+			flyHanging2GradeLevel,
+        </if>
+        <if test="flyHanging2Point != '' and flyHanging2Point != null">
+			flyHanging2Point,
+        </if>
+        
+        <if test="flyCoreGradeLevel != '' and flyCoreGradeLevel != null">
+			flyCoreGradeLevel,
+        </if>
+        <if test="flyCorePoint != '' and flyCorePoint != null">
+			flyCorePoint,
+        </if>	  
+        <if test="flyCore1GradeLevel != '' and flyCore1GradeLevel != null">
+			flyCore1GradeLevel,
+        </if>
+		<if test="flyCore1Point != '' and flyCore1Point != null">
+			flyCore1Point,
+        </if>
+        
+        <if test="flyCore2GradeLevel != '' and flyCore2GradeLevel != null">
+			flyCore2GradeLevel,
+        </if>
+        <if test="flyCore2Point != '' and flyCore2Point != null">
+			flyCore2Point,
+        </if>	  
+		<if test="flyPushGradeLevel != '' and flyPushGradeLevel != null">
+			flyPushGradeLevel,
+        </if>
+        <if test="flyPushPoint != '' and flyPushPoint != null">
+			flyPushPoint,
+        </if>
+        
+        <if test="flyPush1GradeLevel != '' and flyPush1GradeLevel != null">
+			flyPush1GradeLevel,
+        </if>	  
+		<if test="flyPush1Point != '' and flyPush1Point != null">
+			flyPush1Point,
+        </if>
+        <if test="flyPush2GradeLevel != '' and flyPush2GradeLevel != null">
+			flyPush2GradeLevel,
+        </if>
+        <if test="flyPush2Point != '' and flyPush2Point != null">
+			flyPush2Point,
+        </if>
+        	
+        <if test="longRunGradeLevel != '' and longRunGradeLevel != null">
+			longRunGradeLevel,
+        </if>	 	 	 	  
+		<if test="longRunPoint != '' and longRunPoint != null">
+			longRunPoint,
+        </if>	 
+			  
+		<if test="roundLongRunGradeLevel != '' and roundLongRunGradeLevel != null">
+			roundLongRunGradeLevel,
+        </if>
+        <if test="roundLongRunPoint != '' and roundLongRunPoint != null">
+			roundLongRunPoint,
+        </if>	 
+		<if test="backSqaut3RMGradeLevel != '' and backSqaut3RMGradeLevel != null">
+			backSqaut3RMGradeLevel,
+        </if>	  
+        <if test="backSqaut3RMPoint != '' and backSqaut3RMPoint != null">
+			backSqaut3RMPoint,
+        </if>
+       
+        <if test="status != '' and status != null">
+			status,
+        </if>
+
+                	writer,
+        	regUnixtime, lastUpdatetime ) 
+
+			VALUES (#{accountIdx}, #{year}, 
+		<if test="totalGradeLevel != '' and totalGradeLevel != null">
+			#{totalGradeLevel},
+        </if>			  
+		<if test="totalPoint != '' and totalPoint != null">
+			#{totalPoint},
+        </if>			  
+		<if test="airGradeLevel != '' and airGradeLevel != null">
+			#{airGradeLevel},
+        </if>			  
+			 
+		<if test="airPoint != '' and airPoint != null">
+			#{airPoint},
+        </if>			  
+
+		<if test="forceGradeLevel != '' and forceGradeLevel != null">
+			#{forceGradeLevel},
+        </if>
+        
+		<if test="forcePoint != '' and forcePoint != null">
+			#{forcePoint},
+        </if>        	
+        
+		<if test="flyGradeLevel != '' and flyGradeLevel != null">
+			#{flyGradeLevel},
+        </if>        		  
+
+		<if test="flyPoint != '' and flyPoint != null">
+			#{flyPoint},
+        </if>
+        
+		<if test="airRunGradeLevel != '' and airRunGradeLevel != null">
+			#{airRunGradeLevel},
+        </if>        			 
+		<if test="airRunPoint != '' and airRunPoint != null">
+			#{airRunPoint},
+        </if>
+		<if test="airRun1GradeLevel != '' and airRun1GradeLevel != null">
+			#{airRun1GradeLevel},
+        </if>        
+		<if test="airRun1Point != '' and airRun1Point != null">
+			#{airRun1Point},
+        </if>                
+		<if test="airRun2GradeLevel != '' and airRun2GradeLevel != null">
+			#{airRun2GradeLevel},
+        </if>
+		<if test="airRun2Point != '' and airRun2Point != null">
+			#{airRun2Point},
+        </if>
+        <if test="airBikeGradeLevel != '' and airBikeGradeLevel != null">
+			#{airBikeGradeLevel},
+        </if>
+        <if test="airBikePoint != '' and airBikePoint != null">
+			#{airBikePoint},
+        </if>        
+        <if test="airBike1GradeLevel != '' and airBike1GradeLevel != null">
+			#{airBike1GradeLevel},
+        </if>        
+        <if test="airBike1Point != '' and airBike1Point != null">
+			#{airBike1Point},
+        </if>
+        <if test="airBike2GradeLevel != '' and airBike2GradeLevel != null">
+			#{airBike2GradeLevel},
+        </if>
+        <if test="airBike2Point != '' and airBike2Point != null">
+			#{airBike2Point},
+        </if>
+         
+        <if test="airJumpRopeGradeLevel != '' and airJumpRopeGradeLevel != null">
+			#{airJumpRopeGradeLevel},
+        </if>
+        <if test="airJumpRopePoint != '' and airJumpRopePoint != null">
+			#{airJumpRopePoint},
+        </if>
+        <if test="airJumpRope1GradeLevel != '' and airJumpRope1GradeLevel != null">
+			#{airJumpRope1GradeLevel},
+        </if>
+        <if test="airJumpRope1Point != '' and airJumpRope1Point != null">
+			#{airJumpRope1Point},
+        </if>
+         
+        <if test="airJumpRope2GradeLevel != '' and airJumpRope2GradeLevel != null">
+			#{airJumpRope2GradeLevel},
+        </if>
+        <if test="airJumpRope2Point != '' and airJumpRope2Point != null">
+			#{airJumpRope2Point},
+        </if>
+         
+        <if test="forcePullGradeLevel != '' and forcePullGradeLevel != null">
+			#{forcePullGradeLevel},
+        </if>
+        <if test="forcePullPoint != '' and forcePullPoint != null">
+			#{forcePullPoint},
+        </if>
+        <if test="forcePull1GradeLevel != '' and forcePull1GradeLevel != null">
+			#{forcePull1GradeLevel},
+        </if>
+        <if test="forcePull1Point != '' and forcePull1Point != null">
+			#{forcePull1Point},
+        </if>
+        
+        <if test="forcePull2GradeLevel != '' and forcePull2GradeLevel != null">
+			#{forcePull2GradeLevel},
+        </if>
+        <if test="forcePull2Point != '' and forcePull2Point != null">
+			#{forcePull2Point},
+        </if> 
+		<if test="forcePressGradeLevel != '' and forcePressGradeLevel != null">
+			#{forcePressGradeLevel},
+        </if>
+        <if test="forcePressPoint != '' and forcePressPoint != null">
+			#{forcePressPoint},
+        </if>
+        
+        <if test="forcePress1GradeLevel != '' and forcePress1GradeLevel != null">
+			#{forcePress1GradeLevel},
+        </if>    
+        <if test="forcePress1Point != '' and forcePress1Point != null">
+			#{forcePress1Point},
+        </if>
+		<if test="forcePress2GradeLevel != '' and forcePress2GradeLevel != null">
+			#{forcePress2GradeLevel},
+        </if>	
+        <if test="forcePress2Point != '' and forcePress2Point != null">
+			#{forcePress2Point},
+        </if>  
+        
+        <if test="forceSquatGradeLevel != '' and forceSquatGradeLevel != null">
+			#{forceSquatGradeLevel},
+        </if>
+        <if test="forceSquatPoint != '' and forceSquatPoint != null">
+			#{forceSquatPoint},
+        </if>
+ 		<if test="forceSquat1GradeLevel != '' and forceSquat1GradeLevel != null">
+			#{forceSquat1GradeLevel},
+        </if>
+        <if test="forceSquat1Point != '' and forceSquat1Point != null">
+			#{forceSquat1Point},
+        </if>
+        
+        <if test="forceSquat2GradeLevel != '' and forceSquat2GradeLevel != null">
+			#{forceSquat2GradeLevel},
+        </if>
+		<if test="forceSquat2Point != '' and forceSquat2Point != null">
+			#{forceSquat2Point},
+        </if>
+        <if test="flyHangingGradeLevel != '' and flyHangingGradeLevel != null">
+			#{flyHangingGradeLevel},
+        </if>
+        <if test="flyHangingPoint != '' and flyHangingPoint != null">
+			#{flyHangingPoint},
+        </if>
+        
+        <if test="flyHanging1GradeLevel != '' and flyHanging1GradeLevel != null">
+			#{flyHanging1GradeLevel},
+        </if>	 	 
+        <if test="flyHanging1Point != '' and flyHanging1Point != null">
+			#{flyHanging1Point},
+        </if>	 	  
+		<if test="flyHanging2GradeLevel != '' and flyHanging2GradeLevel != null">
+			#{flyHanging2GradeLevel},
+        </if>
+        <if test="flyHanging2Point != '' and flyHanging2Point != null">
+			#{flyHanging2Point},
+        </if>
+        
+        <if test="flyCoreGradeLevel != '' and flyCoreGradeLevel != null">
+			#{flyCoreGradeLevel},
+        </if>
+        <if test="flyCorePoint != '' and flyCorePoint != null">
+			#{flyCorePoint},
+        </if>	  
+        <if test="flyCore1GradeLevel != '' and flyCore1GradeLevel != null">
+			#{flyCore1GradeLevel},
+        </if>
+		<if test="flyCore1Point != '' and flyCore1Point != null">
+			#{flyCore1Point},
+        </if>
+        
+        <if test="flyCore2GradeLevel != '' and flyCore2GradeLevel != null">
+			#{flyCore2GradeLevel},
+        </if>
+        <if test="flyCore2Point != '' and flyCore2Point != null">
+			#{flyCore2Point},
+        </if>	  
+		<if test="flyPushGradeLevel != '' and flyPushGradeLevel != null">
+			#{flyPushGradeLevel},
+        </if>
+        <if test="flyPushPoint != '' and flyPushPoint != null">
+			#{flyPushPoint},
+        </if>
+        
+        <if test="flyPush1GradeLevel != '' and flyPush1GradeLevel != null">
+			#{flyPush1GradeLevel},
+        </if>	  
+		<if test="flyPush1Point != '' and flyPush1Point != null">
+			#{flyPush1Point},
+        </if>
+        <if test="flyPush2GradeLevel != '' and flyPush2GradeLevel != null">
+			#{flyPush2GradeLevel},
+        </if>
+        <if test="flyPush2Point != '' and flyPush2Point != null">
+			#{flyPush2Point},
+        </if>
+        	
+        <if test="longRunGradeLevel != '' and longRunGradeLevel != null">
+			#{longRunGradeLevel},
+        </if>	 	 	 	  
+		<if test="longRunPoint != '' and longRunPoint != null">
+			#{longRunPoint},
+        </if>	 
+			  
+		<if test="roundLongRunGradeLevel != '' and roundLongRunGradeLevel != null">
+			#{roundLongRunGradeLevel},
+        </if>
+        <if test="roundLongRunPoint != '' and roundLongRunPoint != null">
+			#{roundLongRunPoint},
+        </if>	 
+		<if test="backSqaut3RMGradeLevel != '' and backSqaut3RMGradeLevel != null">
+			#{backSqaut3RMGradeLevel},
+        </if>	  
+        <if test="backSqaut3RMPoint != '' and backSqaut3RMPoint != null">
+			#{backSqaut3RMPoint},
+        </if>
+        
+        <if test="status != '' and status != null">
+			#{status},
+        </if>
+			 
+			 #{writer}, 
+			 UNIX_TIMESTAMP(), UNIX_TIMESTAMP()			 );
+	</insert>
+	
 </mapper>

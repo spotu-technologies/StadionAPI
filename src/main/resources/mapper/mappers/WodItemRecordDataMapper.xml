@@ -17,13 +17,21 @@
     
     <select id="getWodItemRecordDataRecent" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
-        FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx} AND wodItemRecordData.wodItemIdx IS NOT NULL ORDER BY lastUpdatetime DESC;
+        FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx}
+        AND wodItemRecordData.wodStepIdx IN (SELECT wodInfo.idx FROM stadion_db_dev.wodInfo) 
+        And wodItemRecordData.wodItemIdx IS NOT NULL
+        ORDER BY lastUpdatetime DESC;
+        	
+    </select>
+    
+    <select id="getWodItemRecordDatarecord" resultType="com.stadion.api.entity.WodItemRecordData">	
+        SELECT *
+        FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx}
+        AND wodItemRecordData.idx IN (SELECT wodStepInfo.wodIdx FROM stadion_db_dev.wodStepInfo) 
+        And wodItemRecordData.wodItemIdx IS NOT NULL
+        ORDER BY lastUpdatetime DESC;
         	
     </select>
 
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

@@ -2,11 +2,14 @@ package com.stadion.api.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stadion.api.entity.WodItemInsertRmData;
 import com.stadion.api.entity.WodItemOneRmData;
 import com.stadion.api.entity.WodItemRecordData;
+import com.stadion.api.entity.WodItemRmData;
 import com.stadion.api.mapper.WodItemOneRmDataMapper;
 
 
@@ -77,6 +80,21 @@ public class WodItemOneRmDataService {
 		
 		return wodItemOneRmDataList;
 	}
+	
+	
+	public List<WodItemRmData> getWodItemRmData(String rmType, long accountIdx){
+		if(wodItemOneRmDataMapper==null) {return null;}
+		
+		List<WodItemRmData> list = wodItemOneRmDataMapper.getWodItemRmData(rmType, accountIdx);
+		
+		return list;
+	}
+
+	public int insertPersonalBest(WodItemInsertRmData arg) {
+		if(wodItemOneRmDataMapper==null) {return 0;}	
+		return wodItemOneRmDataMapper.insertPersonalBest(arg);		
+	}
+	
 	
 	
 }

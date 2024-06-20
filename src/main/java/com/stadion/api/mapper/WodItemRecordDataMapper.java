@@ -14,6 +14,6 @@ public interface WodItemRecordDataMapper {
 	//public List<AccountInfo> getAccountInfoList();
 	public WodItemRecordData getWodItemRecordData(long idx);
 	public List<WodItemRecordData> getWodItemRecordDataRecent(long accountIdx);
-
+	public List<WodItemRecordData> getWodItemRecordDatarecord(long accountIdx);
 
 }

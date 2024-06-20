@@ -2,22 +2,23 @@ package com.stadion.api.entity;
 
 public class MomRankData {
 
-	private Integer idx;
-	private Integer momIdx;
-	private Integer accountIdx;
-	private Integer mpLinkIdx;
-	private Integer point;
-	private String gender;
-	private Integer age;
-	private Integer ageGroup;
-	private String height;
-	private Integer heightGroup;
-	private String weight;
-	private Integer weightGroup;
-	private String region;
-	private String regionGroup;
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
+	public Integer idx;
+	public Integer momIdx;
+	public Integer accountIdx;
+	public Integer mpLinkIdx;
+	public Integer point;
+	public String gender;
+	public Integer age;
+	public Integer ageGroup;
+	public String height;
+	public Integer heightGroup;
+	public String weight;
+	public Integer weightGroup;
+	public String region;
+	public String regionGroup;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
+	
 }

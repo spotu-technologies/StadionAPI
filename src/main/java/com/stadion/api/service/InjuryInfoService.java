@@ -15,6 +15,14 @@ public class InjuryInfoService {
 	@Autowired
 	private InjuryInfoMapper injuryInfoMapper;
 	
+	public List<InjuryInfo> getInjuryInfoLast() {
+		if(injuryInfoMapper==null) {return null;}
+		
+		List<InjuryInfo> injuryInfoList = injuryInfoMapper.getInjuryInfoLast();
+		
+		return injuryInfoList;
+	}
+	
 	public List<InjuryInfo> getInjuryInfoAll() {
 		if(injuryInfoMapper==null) {return null;}
 		

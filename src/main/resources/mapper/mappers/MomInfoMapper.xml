@@ -15,24 +15,15 @@
         	WHERE momInfo.idx = #{idx}
     </select>
     
-    <select id="getMomInfoThisAll" resultType="com.stadion.api.entity.MomInfo">	
+    <select id="getMomInfoAll" resultType="com.stadion.api.entity.MomInfo">	
         SELECT *
         FROM momInfo
         WHERE isOpen = "Y" 
-        AND YEAR(endDate) = YEAR(CURRENT_DATE)
-        AND MONTH(endDate) = MONTH(CURRENT_DATE)
         ORDER BY lastUpdatetime DESC;
         	
     </select>
     
-    <select id="getMomInfoPastAll" resultType="com.stadion.api.entity.MomInfo">	
-        SELECT *
-        FROM momInfo
-        WHERE isOpen = "Y" 
-        AND YEAR(endDate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
-        AND MONTH(endDate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);
-        	
-    </select>
+   
 
 
         <!-- SQL문 작성

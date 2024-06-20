@@ -20,9 +20,34 @@
         FROM injuryData WHERE injuryData.accountIdx = #{accountIdx} and injuryData.status = 1;
         	
     </select>
+    
+    <select id="getInjuryDataLast" parameterType="long" resultType="com.stadion.api.entity.InjuryData">	
+        SELECT *
+        FROM injuryData WHERE injuryData.accountIdx = #{accountIdx} and injuryData.status = 1;
+        	
+    </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+    <insert id="insertInjuryData" parameterType="com.stadion.api.entity.InjuryData">
+		INSERT INTO stadion_db_dev.injuryData
+ 			(tableLinkIdx, pIdx, accountIdx, 
+ 			injuryPartIdx, injuryExtentIdx, injuryTreatIdx,
+        
+        <if test="content != '' and content != null">
+            content,
+        </if>
+ 			writer, status, regUnixtime, lastUpdatetime
+			) 
+			
+			VALUES (
+			#{tableLinkIdx}, #{pIdx}, #{accountIdx}, 
+ 			#{injuryPartIdx}, #{injuryExtentIdx}, #{injuryTreatIdx},
+        
+        <if test="content != '' and content != null">
+            #{content},
+        </if>
+
+ 			#{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP()			
+        	);
+	</insert>
+	
 </mapper>

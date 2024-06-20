@@ -20,9 +20,12 @@
         FROM injuryInfo;
         	
     </select>
+    
+    <select id="getInjuryInfoLast" resultType="com.stadion.api.entity.InjuryInfo">	
+        SELECT *
+        FROM injuryInfo;
+        	
+    </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+        
 </mapper>

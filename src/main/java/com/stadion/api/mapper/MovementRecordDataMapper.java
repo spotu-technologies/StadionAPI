@@ -14,7 +14,7 @@ import com.stadion.api.entity.NoticeBoard;
 public interface MovementRecordDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public MovementRecordData getMovementRecordData(long idx);
+	public List<MovementRecordData> getMovementRecordData(long accoutIdx);
 	public List<MovementRecordData> getMovementRecordDataAll();
 	public List<MovementRecordData> getMovementRecordDataRecent(long accountIdx);
 	public List<MovementRecordData> getMovementRecordDataBest(long accountIdx);
@@ -23,6 +23,6 @@ public interface MovementRecordDataMapper {
 	public List<MovementRecordData> getMovementRecordDataRecentDetail(@Param ("accountIdx") long accountIdx, @Param ("movementIdx") long movementIdx);
 	public List<MovementRecordData> getMovementRecordDatMomLevel(long accountIdx);
 	public List<MovementRecordData> getMovementRecordDatChallenge(long accountIdx);
-
+	public int insertRecordData(MovementRecordData arg);
 	
 }

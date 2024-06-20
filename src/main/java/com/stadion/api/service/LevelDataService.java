@@ -24,12 +24,16 @@ public class LevelDataService {
 	}
 	
 
-	public LevelData getLevelData(long idx) {
+	public List<LevelData> getLevelData(long accountIdx) {
 		if(levelDataMapper==null) {return null;}
 		
-		LevelData levelData = levelDataMapper.getLevelData(idx);
+		List<LevelData> levelData = levelDataMapper.getLevelData(accountIdx);
 		
 		return levelData;
 	}
 	
+	public int insertLevelData(LevelData arg) {
+		if(levelDataMapper==null) {return 0;}	
+		return levelDataMapper.insertLevelData(arg);
+	}
 }

@@ -12,7 +12,7 @@
     <select id="getMovementRecordData" resultType="com.stadion.api.entity.MovementRecordData">	
         SELECT *
         FROM movementRecordData
-        	WHERE movementRecordData.idx = #{idx}
+        	WHERE movementRecordData.accountIdx = #{accoutIdx} ORDER BY lastUpdatetime DESC;
     </select>
     
     
@@ -76,9 +76,47 @@
         	
     </select>
 
+	<insert id="insertRecordData" parameterType="com.stadion.api.entity.MovementRecordData">
+		INSERT INTO stadion_db_dev.movementRecordData
+ 			(movementIdx, 
+        <if test="momIdx != '' and momIdx != null">
+            momIdx,
+        </if>
+        <if test="mvLinkIdx != '' and mvLinkIdx != null">
+            mvLinkIdx,
+        </if>
+        <if test="mpLinkIdx != '' and mpLinkIdx != null">
+            mpLinkIdx,
+        </if>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+ 				accountIdx,
+				value, value2, recordType, point, gradeLevel, gender, 
+			    age, ageGroup, height, heightGroup, weight, weightGroup, region, regionGroup, 
+        <if test="agreeEmail != '' and agreeEmail != null">
+            agreeEmail,
+        </if>
+			
+			    dateYmd, writer, status, regUnixtime, lastUpdatetime) 
+			) 
+			
+			VALUES 
+			(#{movementIdx}, 
+        <if test="momIdx != '' and momIdx != null">
+            #{momIdx},
+        </if>
+        <if test="mvLinkIdx != '' and mvLinkIdx != null">
+            #{mvLinkIdx},
+        </if>
+        <if test="mpLinkIdx != '' and mpLinkIdx != null">
+            #{mpLinkIdx},
+        </if>
+        
+			 #{accountIdx},
+				#{value}, #{value2}, #{recordType}, #{point}, #{gradeLevel}, #{gender}, 
+			    #{age}, #{ageGroup}, #{height}, #{heightGroup}, #{weight}, #{weightGroup}, #{region}, #{regionGroup}, 
+		
+			    #{dateYmd}, #{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+        	);
+	</insert>
+
 </mapper>

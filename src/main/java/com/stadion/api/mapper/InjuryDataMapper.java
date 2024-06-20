@@ -15,6 +15,8 @@ public interface InjuryDataMapper {
 	//public List<AccountInfo> getAccountInfoList();
 	public InjuryData getInjuryData(long idx);
 	public List<InjuryData> getInjuryDataLook(long accountIdx);
+	public List<InjuryData> getInjuryDataLast(long accountIdx);
 	
+	public int insertInjuryData(InjuryData data);
 
 }

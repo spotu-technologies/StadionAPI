@@ -15,9 +15,4 @@
         	WHERE wodItemRankData.idx = #{idx}
     </select>
 
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

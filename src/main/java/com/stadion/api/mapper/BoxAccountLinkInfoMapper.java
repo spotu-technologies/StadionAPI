@@ -12,6 +12,7 @@ public interface BoxAccountLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public BoxAccountLinkInfo getBoxAccountLinkInfo(long idx);
+	public int insertBoxAccountLinkInfo(BoxAccountLinkInfo arg);
 	    
 
 }

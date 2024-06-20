@@ -156,10 +156,33 @@
     FROM RankedData ORDER BY FIELD(wodItemIdx, 15, 12, 4), value2;
         	
     </select>
+    
+    <sql id="rmTypeFilter">
+        FROM ${rmType}
+    </sql>
+    
+    <sql id="rmTypeFilterInsert">
+        INTO ${rmType}
+    </sql>
 
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+	<select id="getWodItemRmData" parameterType="map" resultType="com.stadion.api.entity.WodItemRmData">
+	SELECT * 
+	 <include refid="rmTypeFilter"/> 
+        	WHERE  accountIdx = #{accountIdx}         	
+    </select>
+    
+    <insert id="insertPersonalBest" parameterType="com.stadion.api.entity.WodItemInsertRmData">
+	INSERT 
+	 <include refid="rmTypeFilterInsert"/> 
+	 (accountIdx, wodItemIdx, recordType, recordUnit,
+	 value, value2, writer, status,
+	 regUnixtime, lastUpdatetime) 
+        	
+     VALUES(
+     #{accountIdx}, #{wodItemIdx}, #{recordType}, #{recordUnit},
+	 #{value}, #{value2}, #{writer}, #{status},
+     UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+     );         	
+    </insert>
+    
 </mapper>

@@ -17,10 +17,14 @@
     
     <select id="getEventBoardAll" resultType="com.stadion.api.entity.EventBoard">	
         SELECT *
-        FROM eventBoard ORDER BY lastUpdatetime DESC;
+        FROM eventBoard ORDER BY regUnixtime DESC;
         	
     </select>
     
+    <select id="getEventBoardLast" parameterType="map" resultType="com.stadion.api.entity.EventBoard">	
+        SELECT *
+        FROM eventBoard ORDER BY regUnixtime DESC LIMIT #{count} OFFSET #{start};        	
+    </select>
 
 
         <!-- SQL문 작성

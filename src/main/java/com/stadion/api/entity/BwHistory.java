@@ -2,11 +2,11 @@ package com.stadion.api.entity;
 
 public class BwHistory {
 
-	private Integer idx;
-	private Integer accountIdx;
-	private String weight;
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
+	public Integer idx;
+	public Integer accountIdx;
+	public String weight;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
 }

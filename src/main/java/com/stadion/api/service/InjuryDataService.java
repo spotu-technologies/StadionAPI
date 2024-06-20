@@ -15,6 +15,14 @@ public class InjuryDataService {
 	@Autowired
 	private InjuryDataMapper injuryDataMapper;
 	
+	public List<InjuryData> getInjuryDataLast(long accountIdx) {
+		if(injuryDataMapper==null) {return null;}
+		
+		List<InjuryData> injuryDataList = injuryDataMapper.getInjuryDataLast(accountIdx);
+		
+		return injuryDataList;
+	}
+	
 	public List<InjuryData> getInjuryDataLook(long accountIdx) {
 		if(injuryDataMapper==null) {return null;}
 		
@@ -32,4 +40,9 @@ public class InjuryDataService {
 		return injuryData;
 	}
 	
+	
+	public int insertInjuryData(InjuryData data) {
+		if(injuryDataMapper==null) {return 0;}		
+		return injuryDataMapper.insertInjuryData(data);		
+	}
 }

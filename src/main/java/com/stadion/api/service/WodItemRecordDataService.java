@@ -23,6 +23,14 @@ public class WodItemRecordDataService {
 		return wodItemRecordDataList;
 	}
 	
+	public List<WodItemRecordData> getWodItemRecordDatarecord(long accountIdx) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<WodItemRecordData> wodItemRecordDataList = wodItemRecordDataMapper.getWodItemRecordDatarecord(accountIdx);
+		
+		return wodItemRecordDataList;
+	}
+	
 	
 	public WodItemRecordData getWodItemRecordData(long idx) {
 		if(wodItemRecordDataMapper==null) {return null;}

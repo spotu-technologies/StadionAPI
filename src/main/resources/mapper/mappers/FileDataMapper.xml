@@ -32,11 +32,11 @@
         and fileData.tableLinkIdx = #{tableLinkIdx} 
         and fileData.pIdx = #{pIdx}
         and status=1
-        ;
+        order by regUnixtime desc;
         	
     </select>
     
-    <select id="getFileDataMts" parameterType="map" resultType="com.stadion.api.entity.FileData">	
+    <select id="getFileDataMtc" parameterType="map" resultType="com.stadion.api.entity.FileData">	
         SELECT *
         FROM fileData WHERE 
         fileData.fileKind = #{fileKind} 
@@ -47,9 +47,36 @@
         	
     </select>
 
+	<insert id="insertFileData" parameterType="com.stadion.api.entity.FileData">
+		INSERT fileData 
+			(tableLinkIdx, pIdx, filePath, fileTitle, fileNameOrg, fileNameNew, fileNameThumb,
+				 fileSize, fileExt, fileType, fileKind, 
+        <if test="fileSort != '' and fileSort != null">
+            fileSort,
+        </if>
+        <if test="writer != '' and writer != null">
+            writer,
+        </if>
+        <if test="status != '' and status != null">
+            status,
+        </if>
+			regUnixtime, lastUpdatetime) 
+			
+			VALUES 
+			(#{tableLinkIdx}, #{pIdx}, #{filePath}, #{fileTitle}, #{fileNameOrg}, #{fileNameNew}, #{fileNameThumb},
+				 #{fileSize}, #{fileExt}, #{fileType}, #{fileKind}, 
+        <if test="fileSort != '' and fileSort != null">
+            #{fileSort},
+        </if>
+        <if test="writer != '' and writer != null">
+            writer,
+        </if>
+		<if test="status != '' and status != null">
+            #{status},
+        </if>		
+			 
+			UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+        	);
+	</insert>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

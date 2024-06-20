@@ -6,7 +6,6 @@
 
 <!-- SQL Mapping -->
 
-<!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.MomRankDataMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
     <select id="getMomRankData" resultType="com.stadion.api.entity.MomRankData">	
@@ -15,8 +14,85 @@
         	WHERE momRankData.idx = #{idx}
     </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+    <sql id="gradeList">
+        ld.${levelField} as lfl,
+    </sql>
+    <sql id="gradeLevel">
+        ${levelField}
+    </sql>
+    <sql id="orderType">
+        ${orderType}
+    </sql>
+    
+    <!-- min(value) AS recordValue -->
+	<sql id="minMax">
+        ${minMax}(value) AS recordValue
+    </sql>
+
+
+
+    <select id="getMomRankingDataList" parameterType="com.stadion.api.entity.RankingDataParameter"   resultType="com.stadion.api.entity.MomRankDataResult">
+		SELECT 
+		    mrd.*, 
+		    ai.accountID, 
+		    ai.accountName, 
+		    ai.accountNick, 
+		    ai.emailAddress, 
+		    ai.cellNumber,
+		    
+		    <include refid="gradeList"/>
+		    
+		     
+		    rd.recordValue
+		FROM 
+		    momRankData AS mrd
+		JOIN 
+		    accountInfo AS ai ON mrd.accountIdx = ai.idx
+		LEFT JOIN 
+		    (
+		        SELECT 
+		            accountIdx, 
+		            <include refid="gradeLevel"/>		            
+		        FROM 
+		            levelData
+		        WHERE 
+		            status = 1 
+		            and year = #{year}
+		            
+		    ) AS ld ON mrd.accountIdx = ld.accountIdx
+		LEFT JOIN 
+		    (
+		        SELECT 
+		            accountIdx, 
+		            <include refid="minMax"/>
+		            
+		        FROM 
+		            movementRecordData
+		        WHERE 
+		            status = 1 
+		            AND momIdx = #{momIdx}
+		            AND recordType IN (1, 2)
+		        GROUP BY 
+		            accountIdx
+		    ) AS rd ON mrd.accountIdx = rd.accountIdx
+		WHERE 
+		    mrd.status = 1 
+		    AND mrd.momIdx = #{momIdx}
+        <if test="weight != 0 and weight != null">
+             and mrd.weightGroup = #{weight}
+        </if>
+        <if test="age != 0 and age != null">
+             and mrd.ageGroup = #{age}
+        </if>        
+        
+        <if test="gender != '' and gender != null">
+             and mrd.gender = #{gender}
+        </if>
+        <if test="region != '' and region != null">
+             and mrd.regionGroup = #{region}
+        </if>		    
+		    ORDER by recordValue <include refid="orderType"/>
+		    LIMIT #{count} OFFSET #{start};
+
+    </select>
 </mapper>

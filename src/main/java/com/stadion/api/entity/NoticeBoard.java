@@ -2,16 +2,16 @@ package com.stadion.api.entity;
 
 public class NoticeBoard {
 
-	private Integer idx;
-	private String title;
-	private String content;
-	private Integer viewCnt;
-	private String isMain;
-	private String isOpen;
-	private Integer mainStartDate;
-	private Integer mainEndDate;
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
+	public Integer idx;
+	public String title;
+	public String content;
+	public Integer viewCnt;
+	public String isMain;
+	public String isOpen;
+	public Integer mainStartDate;
+	public Integer mainEndDate;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
 }

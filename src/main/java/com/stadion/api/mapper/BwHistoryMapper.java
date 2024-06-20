@@ -15,5 +15,6 @@ public interface BwHistoryMapper {
 	public BwHistory getBwHistory(long idx);
 	public List<BwHistory> getBwHistorWeight(long accountIdx);
 
+	public long insertBwHistory(BwHistory bw);
 
 }

@@ -23,4 +23,9 @@ public class PolicyAgreeDataService {
 		return policyAgreeData;
 	}
 	
+	public int insertPolicyAgreeData(PolicyAgreeData arg) {
+		if(policyAgreeDataMapper==null) {return 0;}		
+		return policyAgreeDataMapper.insertPolicyAgreeData(arg);
+	}
+	
 }

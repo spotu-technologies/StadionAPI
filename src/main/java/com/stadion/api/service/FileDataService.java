@@ -15,10 +15,10 @@ public class FileDataService {
 	@Autowired
 	private FileDataMapper fileDataMapper;
 	
-	public List<FileData> getFileDataMts(String fileKind, long tableLinkIdx, long pIdx) {
+	public List<FileData> getFileDataMtc(String fileKind, long tableLinkIdx, long pIdx) {
 		if(fileDataMapper==null) {return null;}
 		
-		List<FileData> fileDataList = fileDataMapper.getFileDataMts(fileKind, tableLinkIdx, pIdx);
+		List<FileData> fileDataList = fileDataMapper.getFileDataMtc(fileKind, tableLinkIdx, pIdx);
 		
 		return fileDataList;
 	}
@@ -46,6 +46,11 @@ public class FileDataService {
 		FileData fileData = fileDataMapper.getFileData(idx);
 		
 		return fileData;
+	}
+	
+	public int insertFileData(FileData arg) {
+		if(fileDataMapper==null) {return 0;}	
+		return fileDataMapper.insertFileData(arg);
 	}
 	
 }

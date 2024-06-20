@@ -15,7 +15,8 @@
         FROM ticketPaymentData 
         	WHERE ticketPaymentData.accountIdx = #{accountIdx}
         	 and ticketPaymentData.status=1 
-        and ticketPaymentData.startDate <= date_format(now(),"%Y-%m-%d") and ticketPaymentData.endDate >= date_format(now(),"%Y-%m-%d")
+        and ticketPaymentData.startDate <= date_format(now(),"%Y-%m-%d") 
+        and ticketPaymentData.endDate >= date_format(now(),"%Y-%m-%d")
         	 ]]>
         	 </select> 
         	 

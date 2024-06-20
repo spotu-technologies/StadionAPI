@@ -18,12 +18,14 @@
     
     <select id="getBwHistorWeight" parameterType="long" resultType="com.stadion.api.entity.BwHistory">	
         SELECT *
-        FROM bwHistory WHERE bwHistory.accountIdx = #{accountIdx};
-        	
+        FROM bwHistory WHERE bwHistory.accountIdx = #{accountIdx} 
+         order by lastUpdatetime DESC;        	
     </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+    <insert id="insertBwHistory" parameterType="com.stadion.api.entity.BwHistory">
+		INSERT INTO stadion_db_dev.bwHistory
+			 (accountIdx, weight, writer, status, regUnixtime, lastUpdatetime)
+			 VALUES ( #{accountIdx}, #{weight}, #{accountIdx}, '1', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+	</insert>
+
 </mapper>

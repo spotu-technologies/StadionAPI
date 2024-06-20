@@ -4,9 +4,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<!-- SQL Mapping -->
-
-<!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.MomMovementLinkInfoMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
     <select id="getMomMovementLinkInfo" resultType="com.stadion.api.entity.MomMovementLinkInfo">	
@@ -15,9 +12,16 @@
         	WHERE momMovementLinkInfo.idx = #{idx}
     </select>
 
+    <select id="getMomMovementRankInfo" resultType="com.stadion.api.entity.MomMovementRankInfo">	
+        
+	select linkInfo.*,mvmInfo.levelFieldName , mvmInfo.orderType, mvmInfo.movement, mvmInfo.theme, mvmInfo.flow
+    FROM momMovementLinkInfo as linkInfo
+	inner join movementInfo as mvmInfo
+    ON   linkInfo.movementIdx = mvmInfo.idx
+		where mvmInfo.status =1 and linkInfo.momIdx =#{idx}
+        order by sort asc
+        
+    </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+        
 </mapper>

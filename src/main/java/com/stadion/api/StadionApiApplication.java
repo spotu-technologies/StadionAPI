@@ -1,24 +1,40 @@
 package com.stadion.api;
 
-import org.mybatis.spring.annotation.MapperScan;
+
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
-//@Configuration
-//@EnableAutoConfiguration(exclude = { DataSourceTransactionManagerAutoConfiguration.class, DataSourceAutoConfiguration.class })
-//@ComponentScan(basePackages = "com.stadion.api")
-//@MapperScan (basePackages = "com.stadion.api.mapper") 
 @SpringBootApplication
-public class StadionApiApplication {
+public class StadionApiApplication extends SpringBootServletInitializer  {
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(StadionApiApplication.class);
+	}
+	
 	public static void main(String[] args) {
+		 String javaVersion = System.getProperty("java.version");
+		    System.out.format("JavaVersion = '%s'\n", javaVersion);
+		    if (javaVersion.startsWith("1.8")) {
+		        System.out.format("Version 1.8\n");
+		    } else {
+		        System.out.format("Version is not 1.8\n");
+		    }
 		SpringApplication.run(StadionApiApplication.class, args);
 	}
+	
+    @Bean
+    public ViewResolver viewResolver() {
+         final InternalResourceViewResolver r = new InternalResourceViewResolver();
+         r.setPrefix("/WEB-INF/jsp/");
+         r.setSuffix(".jsp");
+         return r;
+    }
 
 }

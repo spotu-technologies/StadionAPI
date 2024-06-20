@@ -14,6 +14,12 @@
         FROM wodBoxLinkInfo
         	WHERE wodBoxLinkInfo.idx = #{idx}
     </select>
+    
+    <select id="getWodBoxLinkInfoAll" resultType="com.stadion.api.entity.WodBoxLinkInfo">	
+        SELECT *
+        FROM wodBoxLinkInfo ORDER BY progressTime ASC;
+        	
+    </select>
 
 
         <!-- SQL문 작성

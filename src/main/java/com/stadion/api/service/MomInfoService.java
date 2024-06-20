@@ -15,19 +15,10 @@ public class MomInfoService {
 	@Autowired
 	private MomInfoMapper momInfoMapper;
 	
-	public List<MomInfo> getMomInfoThisAll() {
+	public List<MomInfo> getMomInfoAll() {
 		if(momInfoMapper==null) {return null;}
 		
-		List<MomInfo> momInfoList = momInfoMapper.getMomInfoThisAll();
-		
-		return momInfoList;
-	}
-	
-	
-	public List<MomInfo> getMomInfoPastAll() {
-		if(momInfoMapper==null) {return null;}
-		
-		List<MomInfo> momInfoList = momInfoMapper.getMomInfoPastAll();
+		List<MomInfo> momInfoList = momInfoMapper.getMomInfoAll();
 		
 		return momInfoList;
 	}

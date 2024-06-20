@@ -12,6 +12,6 @@ public interface PolicyAgreeDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public PolicyAgreeData getPolicyAgreeData(long idx);
-	
+	public int insertPolicyAgreeData(PolicyAgreeData arg);
 
 }

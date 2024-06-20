@@ -21,6 +21,20 @@ public class NoticeBoardService {
 		
 		return noticeBoardList;
 	}
+	public List<NoticeBoard> getNoticeBoardPopup(long nDay) {
+		if(noticeBoardMapper==null) {return null;}
+		
+		List<NoticeBoard> noticeBoardList = noticeBoardMapper.getNoticeBoardPopup(nDay);
+		
+		return noticeBoardList;
+	}
+	public List<NoticeBoard> getNoticeBoardLast(long start, long count) {
+		if(noticeBoardMapper==null) {return null;}
+		
+		List<NoticeBoard> noticeBoardList = noticeBoardMapper.getNoticeBoardLast(start, count);
+		
+		return noticeBoardList;
+	}
 	
 	public NoticeBoard getNoticeBoard(long idx) {
 		if(noticeBoardMapper==null) {return null;}

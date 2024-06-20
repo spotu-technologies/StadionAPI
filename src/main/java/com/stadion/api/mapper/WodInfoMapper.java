@@ -18,6 +18,6 @@ public interface WodInfoMapper {
 	//public List<AccountInfo> getAccountInfoList();
 	public WodInfo getWodInfo(long idx);
 	public List<WodInfo> getWodInfoAll();
-	
+	public List<WodInfo> getWodInfoClass();
 
 }

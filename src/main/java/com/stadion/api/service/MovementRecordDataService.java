@@ -15,10 +15,10 @@ public class MovementRecordDataService {
 	@Autowired
 	private MovementRecordDataMapper movementRecordDataMapper;
 	
-	public MovementRecordData getMovementRecordData(long idx) {
+	public List<MovementRecordData> getMovementRecordData(long accoutIdx) {
 		if(movementRecordDataMapper==null) {return null;}
 		
-		MovementRecordData movementRecordData = movementRecordDataMapper.getMovementRecordData(idx);
+		List<MovementRecordData> movementRecordData = movementRecordDataMapper.getMovementRecordData(accoutIdx);
 		
 		return movementRecordData;
 	}
@@ -95,7 +95,9 @@ public class MovementRecordDataService {
 		return movementRecordDataList;
 	}
 	
-	
-	
+	public int insertRecordData(MovementRecordData arg) {
+		if(movementRecordDataMapper==null) {return 0;}		
+		return movementRecordDataMapper.insertRecordData(arg);
+	}
 	
 }

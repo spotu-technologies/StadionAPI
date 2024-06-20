@@ -14,8 +14,13 @@ public class BoxAccountLinkInfoService {
 	@Autowired
 	private BoxAccountLinkInfoMapper boxAccountLinkInfoMapper;
 	
-	
-	public BoxAccountLinkInfo getBoxAccountLinkInfo(long idx) {
+	public int insertBoxAccountLinkInfo(BoxAccountLinkInfo arg)
+	{
+		if(boxAccountLinkInfoMapper==null) {return 0;}
+		return  boxAccountLinkInfoMapper.insertBoxAccountLinkInfo(arg);
+	}
+	public BoxAccountLinkInfo getBoxAccountLinkInfo(long idx) 
+	{
 		if(boxAccountLinkInfoMapper==null) {return null;}
 		
 		BoxAccountLinkInfo boxAccountLinkInfo = boxAccountLinkInfoMapper.getBoxAccountLinkInfo(idx);
