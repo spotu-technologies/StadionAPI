@@ -3152,8 +3152,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-    
-   
+       
     @PostMapping("/getwodInfoSearch")
 	public String getWodInfoSearch(
 			@RequestBody String paramJson
@@ -3174,7 +3173,6 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-
     
     @Autowired
     public WodItem3RmDataService wodItem3RmDataService;
