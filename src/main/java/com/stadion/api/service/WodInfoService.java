@@ -43,4 +43,13 @@ public class WodInfoService {
 		return wodInfoList;
 	}
 	
+	public List<WodInfo> getwodInfoSearch(String keyword) 
+	{
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfo> wodInfoList = wodInfoMapper.getwodInfoSearch(keyword);
+		
+		return wodInfoList;
+	}
+	
 }

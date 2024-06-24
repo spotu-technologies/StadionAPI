@@ -2035,7 +2035,8 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-
+    
+    
 
     
     @Autowired
@@ -2314,6 +2315,12 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
         	long momIdx = (long) object.get("momIdx");
         	long movementIdx = (long) object.get("movementIdx");
         	String value = (String) object.get("value");
+        	
+        	long dateYmd = (long) object.get("dateYmd");
+        	long point = (long) object.get("point");
+        	
+        	String gradeLevel = (String) object.get("gradeLevel");
+        	
         	//mvLinkIdx, mpLinkIdx,
         	AccountInfo ai = accountInfoService.getAccountInfo(accountID);
         	//				value, value2, recordType, point, gradeLevel, gender, 
@@ -2342,6 +2349,13 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
         	
         	arg.value = value;
         	arg.value2 = value;
+        	arg.writer = ai.idx;// Account Idx
+        	arg.status = 1;
+        	
+        	arg.point = (int) point; // Can NOT be null
+        	arg.dateYmd = (int) dateYmd;
+        	arg.recordType = 1;
+        	arg.gradeLevel = gradeLevel;//
         	
 			System.out.printf(" new record: %s \n", arg.toString());
 
@@ -3084,7 +3098,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodInfoService wodInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodInfo")
 	public String getWodInfo(
 			// 인자 전달, json으로 옴
@@ -3140,6 +3154,26 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	}
     
    
+    @PostMapping("/getwodInfoSearch")
+	public String getWodInfoSearch(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 keyword
+    	String keyword = (String) object.get("keyword");
+    	
+    	System.out.println("search keyword? " + keyword);
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfo> jsonResult = wodInfoService.getwodInfoSearch(keyword);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
     
     @Autowired

@@ -88,15 +88,12 @@
         <if test="mpLinkIdx != '' and mpLinkIdx != null">
             mpLinkIdx,
         </if>
-
  				accountIdx,
-				value, value2, recordType, point, gradeLevel, gender, 
+				value, value2, recordType, 
+            point,
+				gradeLevel, gender, 
 			    age, ageGroup, height, heightGroup, weight, weightGroup, region, regionGroup, 
-        <if test="agreeEmail != '' and agreeEmail != null">
-            agreeEmail,
-        </if>
-			
-			    dateYmd, writer, status, regUnixtime, lastUpdatetime) 
+			    dateYmd, writer, status, regUnixtime, lastUpdatetime
 			) 
 			
 			VALUES 
@@ -112,7 +109,9 @@
         </if>
         
 			 #{accountIdx},
-				#{value}, #{value2}, #{recordType}, #{point}, #{gradeLevel}, #{gender}, 
+				#{value}, #{value2}, #{recordType}, 
+	         #{point},
+				#{gradeLevel}, #{gender}, 
 			    #{age}, #{ageGroup}, #{height}, #{heightGroup}, #{weight}, #{weightGroup}, #{region}, #{regionGroup}, 
 		
 			    #{dateYmd}, #{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 

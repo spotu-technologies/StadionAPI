@@ -21,13 +21,7 @@
         WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37
         
         ORDER BY wi.lastUpdatetime DESC;	
-<!--
-        SELECT *
-        FROM wodInfo
-        WHERE isOpen = 'Y' 
-        ORDER BY lastUpdatetime DESC;
-        -->
-        	
+
     </select>
     
     <select id="getWodInfoClass" resultType="com.stadion.api.entity.WodInfo">	
@@ -35,5 +29,12 @@
         WHERE progressDate = CURDATE() ORDER BY orderNo ASC;
         	
     </select>
+    
+    <select id="getwodInfoSearch" resultType="com.stadion.api.entity.WodInfo">	
+        SELECT *
+        FROM wodInfo 
+        	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
+    </select>
+    
 
 </mapper>

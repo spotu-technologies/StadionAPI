@@ -19,5 +19,5 @@ public interface WodInfoMapper {
 	public WodInfo getWodInfo(long idx);
 	public List<WodInfo> getWodInfoAll();
 	public List<WodInfo> getWodInfoClass();
-
+	public List<WodInfo> getwodInfoSearch(String keyword);
 }
