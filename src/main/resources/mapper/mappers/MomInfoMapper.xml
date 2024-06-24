@@ -23,11 +23,56 @@
         	
     </select>
     
+    <select id="getMomTeamInfo" resultType="com.stadion.api.entity.MomTeamInfo">	
+        SELECT *
+        FROM momTeamInfo
+        	WHERE momTeamInfo.leaderAccountIdx = #{leaderAccountIdx}
+    </select>
+    
+    <insert id="insertMomTeamInfo" parameterType="com.stadion.api.entity.MomTeamInfo">
+		INSERT momTeamInfo 
+			( momIdx, name, leaderAccountIdx,
+
+        <if test="status != '' and status != null">
+            status,
+        </if>        	
+			
+			regAccountIdx, regUnixtime, lastUpdatetime
+			) 
+			
+			VALUES 
+			( #{momIdx}, #{name}, #{leaderAccountIdx},
+        
+		<if test="status != '' and status != null">
+            #{status},
+        </if>		
+        	#{regAccountIdx},			 
+			UNIX_TIMESTAMP(), UNIX_TIMESTAMP()			
+        	);
+	</insert>
+	
+	<insert id="insertMomTeamMemberInfo" parameterType="com.stadion.api.entity.MomTeamMemberInfo">
+		INSERT momTeamMemberInfo 
+			( momIdx, 
+
+        <if test="momTeamIdx != '' and momTeamIdx != null">
+            momTeamIdx,
+        </if>     
+        	accountIdx, status,
+			regAccountIdx, regUnixtime, lastUpdatetime
+			) 
+			
+			VALUES 
+			( #{momIdx},
+        
+		<if test="momTeamIdx != '' and momTeamIdx != null">
+            momTeamIdx,
+        </if>
+        	#{accountIdx}, #{status},
+        	#{regAccountIdx},			 
+			UNIX_TIMESTAMP(), UNIX_TIMESTAMP()			
+        	);
+	</insert>
    
 
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

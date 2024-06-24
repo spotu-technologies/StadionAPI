@@ -56,6 +56,8 @@ import com.stadion.api.entity.MomMovementRankInfo;
 import com.stadion.api.entity.MomParticipantLinkInfo;
 import com.stadion.api.entity.MomRankData;
 import com.stadion.api.entity.MomRankDataResult;
+import com.stadion.api.entity.MomTeamInfo;
+import com.stadion.api.entity.MomTeamMemberInfo;
 import com.stadion.api.entity.MovementInfo;
 import com.stadion.api.entity.MovementParticipantLinkInfo;
 import com.stadion.api.entity.MovementPointData;
@@ -1742,21 +1744,15 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @Autowired
     public MomInfoService momInfoService;
-     
-    // POST는 @PostMapping 사용
+
     @PostMapping("/getmomInfo")
 	public String getMomInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -1782,6 +1778,74 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getMomTeamInfo")
+	public String getMomTeamInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	long leaderAccountIdx = (long) object.get("leaderAccountIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MomTeamInfo> jsonResult = momInfoService.getMomTeamInfo(leaderAccountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping(value="/insertMomTeamInfo", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String insertMomTeamInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	String result="";
+    	Gson gson = new Gson();    	
+    	
+    	ObjectMapper mapper = new ObjectMapper();
+    	try {
+        	// 필요값: json -> MomTeamInfo 
+    		MomTeamInfo arg = new MomTeamInfo(); // = mapper.readValue(paramJson.toString(), MovementRecordData.class);
+    		
+    		long accountIdx = (long) object.get("accountIdx");
+        	long momIdx = (long) object.get("momIdx");        	
+        	String name = (String) object.get("name");
+        	
+        	arg.momIdx = (int) momIdx;
+        	arg.leaderAccountIdx = (int) accountIdx;
+        	arg.regAccountIdx = (int) accountIdx;
+        	arg.name = name;
+        	arg.status = 1;
+        	
+        	
+			System.out.printf(" new MomTeamInfo: %s \n", arg.toString());
+
+	    	int jsonResult = (int) momInfoService.insertMomTeamInfo(arg);
+	    	
+	    	MomTeamMemberInfo arg2 = new MomTeamMemberInfo();
+        	arg2.momIdx = (int) momIdx;
+        	arg2.accountIdx = (int) accountIdx;
+        	arg2.regAccountIdx = (int) accountIdx;
+        	arg2.status = 1;
+
+        	List<MomTeamInfo> teamInfo = momInfoService.getMomTeamInfo(accountIdx);
+        	arg2.momTeamIdx = teamInfo.get(0).idx;
+        	
+	    	int jsonResult2 = (int) momInfoService.insertMomTeamMemberInfo(arg2);
+
+	    	result = gson.toJson(jsonResult);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    	
+
+    	return result;
+    }
     
     
     @Autowired
