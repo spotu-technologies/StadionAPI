@@ -82,6 +82,7 @@ import com.stadion.api.entity.WithdrawData;
 import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodCategoryInfo;
 import com.stadion.api.entity.WodInfo;
+import com.stadion.api.entity.WodInfoWithFile;
 import com.stadion.api.entity.WodItem3RmData;
 import com.stadion.api.entity.WodItem5RmData;
 import com.stadion.api.entity.WodItemCategoryInfo;
@@ -3187,12 +3188,20 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	return result;
 	}
     
-    
-    @PostMapping(value="/gewodInfoAll", produces="text/plain;charset=UTF-8")
+    @PostMapping(value="/getwodInfoAll", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodInfoAll(
 			) throws ParseException {
+    	String result;
+    	Gson gson = new Gson();
     	
-    
+    	List<WodInfo> jsonResult = wodInfoService.getWodInfoAll();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}    
+    @PostMapping(value="/gewodInfoAll", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String geWodInfoAll(
+			) throws ParseException {
     	String result;
     	Gson gson = new Gson();
     	
@@ -3202,6 +3211,40 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	return result;
 	}
     
+    @PostMapping(value="/getwodInfoToday", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String geWodInfoToday(
+			) throws ParseException {
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getWodInfoToday();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping(value="/getwodInfoTomorrow", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodInfoTomorrow(
+			) throws ParseException {
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoTomorrow();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getwodInfoPast", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodInfoPast(
+			) throws ParseException {
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoPast();
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
     
     @PostMapping(value="/getwodInfoClass", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodInfoClass(

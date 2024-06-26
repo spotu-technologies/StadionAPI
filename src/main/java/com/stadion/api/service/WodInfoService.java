@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodInfo;
+import com.stadion.api.entity.WodInfoWithFile;
 import com.stadion.api.mapper.WodInfoMapper;
 
 
@@ -31,6 +32,28 @@ public class WodInfoService {
 		if(wodInfoMapper==null) {return null;}
 		
 		List<WodInfo> wodInfoList = wodInfoMapper.getWodInfoAll();
+		
+		return wodInfoList;
+	}
+	
+	public List<WodInfoWithFile> getWodInfoToday() {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoWithFile> wodInfoList = wodInfoMapper.getWodInfoToday();
+		
+		return wodInfoList;
+	}
+	public List<WodInfoWithFile> getwodInfoTomorrow() {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoWithFile> wodInfoList = wodInfoMapper.getwodInfoTomorrow();
+		
+		return wodInfoList;
+	}
+	public List<WodInfoWithFile> getwodInfoPast() {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoWithFile> wodInfoList = wodInfoMapper.getwodInfoPast();
 		
 		return wodInfoList;
 	}

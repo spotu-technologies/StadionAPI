@@ -36,5 +36,44 @@
         	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
     </select>
     
+    <select id="getWodInfoToday" resultType="com.stadion.api.entity.WodInfoWithFile">
+		SELECT wi.*, fd.filePath, fd.fileNameThumb
+        FROM wodInfo as wi
+        JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+        
+        ORDER BY wi.lastUpdatetime DESC;
+    </select>
+    
+    <select id="getwodInfoTomorrow" resultType="com.stadion.api.entity.WodInfoWithFile">
+		SELECT wi.*, fd.filePath, fd.fileNameThumb
+        FROM wodInfo as wi
+        JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+        
+        ORDER BY wi.lastUpdatetime DESC;
+    </select>
+
+        <!--
+        
+        과거 전체
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and STR_TO_DATE(wi.progressDate, '%Y-%m-%d')<CURDATE()
+        과거 이번달
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        -->
+
+    <select id="getwodInfoPast" resultType="com.stadion.api.entity.WodInfoWithFile">
+    <![CDATA[
+		SELECT wi.*, fd.filePath, fd.fileNameThumb
+        FROM wodInfo as wi
+        JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        ORDER BY wi.lastUpdatetime DESC;
+          ]]>
+    </select>
+    
 
 </mapper>
