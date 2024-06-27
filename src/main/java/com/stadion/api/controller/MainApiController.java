@@ -3246,6 +3246,65 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	return result;
 	}
     
+    @PostMapping(value="/getwodInfoTodayByBox", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String geWodInfoTodayByBox(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 boxIdx
+    	long boxIdx = (long) object.get("boxIdx");
+
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoTodayByBox(boxIdx);
+    	
+    	System.out.println("size is " +jsonResult.size() + " of boxIdx " + boxIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping(value="/getwodInfoTomorrowByBox", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodInfoTomorrowByBox(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 boxIdx
+    	long boxIdx = (long) object.get("boxIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoTomorrowByBox(boxIdx);
+    	System.out.println("size is " +jsonResult.size() + " of boxIdx " + boxIdx);
+    	
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getwodInfoPastByBox", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodInfoPastByBox(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 boxIdx
+    	long boxIdx = (long) object.get("boxIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoPastByBox(boxIdx);
+
+    	System.out.println("size is " +jsonResult.size() + " of boxIdx " + boxIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
     @PostMapping(value="/getwodInfoClass", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodInfoClass(
 			) throws ParseException {

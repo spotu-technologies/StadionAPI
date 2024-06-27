@@ -58,6 +58,28 @@ public class WodInfoService {
 		return wodInfoList;
 	}
 	
+	public List<WodInfoWithFile> getwodInfoTodayByBox(long boxIdx) {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoWithFile> wodInfoList = wodInfoMapper.getwodInfoTodayByBox(boxIdx);
+		
+		return wodInfoList;
+	}
+	public List<WodInfoWithFile> getwodInfoTomorrowByBox(long boxIdx) {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoWithFile> wodInfoList = wodInfoMapper.getwodInfoTomorrowByBox(boxIdx);
+		
+		return wodInfoList;
+	}
+	public List<WodInfoWithFile> getwodInfoPastByBox(long boxIdx) {
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoWithFile> wodInfoList = wodInfoMapper.getwodInfoPastByBox(boxIdx);
+		
+		return wodInfoList;
+	}
+	
 	public List<WodInfo> getWodInfoClass() {
 		if(wodInfoMapper==null) {return null;}
 		

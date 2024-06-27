@@ -22,6 +22,11 @@ public interface WodInfoMapper {
 	public List<WodInfoWithFile> getWodInfoToday();
 	public List<WodInfoWithFile> getwodInfoTomorrow();
 	public List<WodInfoWithFile> getwodInfoPast();
+	
+	public List<WodInfoWithFile> getwodInfoTodayByBox(long boxIdx);
+	public List<WodInfoWithFile> getwodInfoTomorrowByBox(long boxIdx);
+	public List<WodInfoWithFile> getwodInfoPastByBox(long boxIdx);
+	
 	public List<WodInfo> getWodInfoClass();
 	public List<WodInfo> getwodInfoSearch(String keyword);
 }

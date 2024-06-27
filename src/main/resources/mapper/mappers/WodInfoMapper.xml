@@ -74,6 +74,63 @@
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>
+
+    <select id="getwodInfoTodayByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
+    	SELECT DISTINCT wi.*, fd.filePath, fd.fileNameThumb, wbi.boxIdx
+		FROM wodBoxLinkInfo as wbi, wodInfo as wi
+		
+        LEFT JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+		    and fd.fileKind='C' 
+            and fd.tableLinkIdx=37  
+        LEFT JOIN 
+		    wodBoxLinkInfo AS bi ON wi.idx = bi.wodIdx
+        WHERE wi.isOpen = 'Y' 
+        	and wi.idx = fd.pIdx
+            and wi.idx = wbi.wodIdx	        
+    	    and wbi.boxIdx = #{boxIdx}
+    	    and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+        
+        ORDER BY wi.lastUpdatetime DESC;
+    </select>
     
+    <select id="getwodInfoTomorrowByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
+    	SELECT DISTINCT wi.*, fd.filePath, fd.fileNameThumb, wbi.boxIdx
+		FROM wodBoxLinkInfo as wbi, wodInfo as wi
+		
+        LEFT JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+		    and fd.fileKind='C' 
+            and fd.tableLinkIdx=37  
+        LEFT JOIN 
+		    wodBoxLinkInfo AS bi ON wi.idx = bi.wodIdx
+        WHERE wi.isOpen = 'Y' 
+        	and wi.idx = fd.pIdx
+            and wi.idx = wbi.wodIdx	        
+    	    and wbi.boxIdx = #{boxIdx}
+        and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+        
+        ORDER BY wi.lastUpdatetime DESC;
+    </select>
+    
+    <select id="getwodInfoPastByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
+    <![CDATA[
+    	SELECT DISTINCT wi.*, fd.filePath, fd.fileNameThumb, wbi.boxIdx
+		FROM wodBoxLinkInfo as wbi, wodInfo as wi
+		
+        LEFT JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+		    and fd.fileKind='C' 
+            and fd.tableLinkIdx=37  
+        LEFT JOIN 
+		    wodBoxLinkInfo AS bi ON wi.idx = bi.wodIdx
+        WHERE wi.isOpen = 'Y' 
+        	and wi.idx = fd.pIdx
+            and wi.idx = wbi.wodIdx	        
+    	    and wbi.boxIdx = #{boxIdx}
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        ORDER BY wi.lastUpdatetime DESC;
+          ]]>
+    </select>
 
 </mapper>
