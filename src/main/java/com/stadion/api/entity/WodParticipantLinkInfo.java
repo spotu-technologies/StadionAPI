@@ -2,14 +2,21 @@ package com.stadion.api.entity;
 
 public class WodParticipantLinkInfo {
 
-	private Integer idx;
-	private Integer wodIdx;
-	private Integer boxIdx;
-	private Integer wbLinkIdx;
-	private Integer accountIdx;
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
-	private String isAttend;
+	@Override
+	public String toString() {
+		return "WodParticipantLinkInfo [idx=" + idx + ", wodIdx=" + wodIdx + ", boxIdx=" + boxIdx + ", wbLinkIdx="
+				+ wbLinkIdx + ", accountIdx=" + accountIdx + ", writer=" + writer + ", status=" + status
+				+ ", regUnixtime=" + regUnixtime + ", lastUpdatetime=" + lastUpdatetime + ", isAttend=" + isAttend
+				+ "]";
+	}
+	public Integer idx;
+	public Integer wodIdx;
+	public Integer boxIdx;
+	public Integer wbLinkIdx;
+	public Integer accountIdx;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
+	public String isAttend;
 }

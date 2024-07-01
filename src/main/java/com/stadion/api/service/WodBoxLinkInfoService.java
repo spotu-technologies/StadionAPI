@@ -31,4 +31,12 @@ public class WodBoxLinkInfoService {
 		return wodBoxLinkInfo;
 	}
 	
+	public List<WodBoxLinkInfo> getwodBoxLinkInfoByWodIdx(Long[] arr) {
+		if(wodBoxLinkInfoMapper==null) {return null;}
+		
+		List<WodBoxLinkInfo> wodBoxLinkInfoList = wodBoxLinkInfoMapper.getwodBoxLinkInfoByWodIdx(arr);
+		
+		return wodBoxLinkInfoList;
+	}
+	
 }

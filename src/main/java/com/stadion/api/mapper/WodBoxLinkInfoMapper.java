@@ -14,5 +14,6 @@ public interface WodBoxLinkInfoMapper {
 	//public List<AccountInfo> getAccountInfoList();
 	public WodBoxLinkInfo getWodBoxLinkInfo(long idx);
 	public List<WodBoxLinkInfo> getWodBoxLinkInfoAll();
+	public List<WodBoxLinkInfo> getwodBoxLinkInfoByWodIdx(Long[] arr);
 
 }

@@ -26,6 +26,13 @@ public class WodInfoService {
 		
 		return wodInfo;
 	}
+	public WodInfo getwodInfoWodIdx(long idx) {
+		if(wodInfoMapper==null) {return null;}
+		
+		WodInfo wodInfo = wodInfoMapper.getwodInfoWodIdx(idx);
+		
+		return wodInfo;
+	}
 	
 	
 	public List<WodInfo> getWodInfoAll() {
@@ -93,6 +100,15 @@ public class WodInfoService {
 		if(wodInfoMapper==null) {return null;}
 		
 		List<WodInfo> wodInfoList = wodInfoMapper.getwodInfoSearch(keyword);
+		
+		return wodInfoList;
+	}
+	
+	public List<String> getwodInfoSearchName(String keyword) 
+	{
+		if(wodInfoMapper==null) {return null;}
+		
+		List<String> wodInfoList = wodInfoMapper.getwodInfoSearchName(keyword);
 		
 		return wodInfoList;
 	}

@@ -48,9 +48,36 @@
         	
     </select>
 
+	<select id="getwodParticipantCount" resultType="Long">	
+        SELECT count(*)
+        FROM wodParticipantLinkInfo
+        	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx}
+    </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+
+	<insert id="insertWodParticipantLinkInfo" parameterType="com.stadion.api.entity.WodParticipantLinkInfo">
+		INSERT INTO wodParticipantLinkInfo
+ 			(wodIdx, boxIdx,   
+        <if test="wbLinkIdx != 0 and wbLinkIdx != null">
+            wbLinkIdx,
+        </if>
+        <if test="accountIdx != 0 and accountIdx != null">
+            accountIdx,
+        </if>
+ 			writer, status, regUnixtime, lastUpdatetime
+			) 
+			
+			VALUES 
+			 (
+			 #{wodIdx}, #{boxIdx},   
+        <if test="wbLinkIdx != 0 and wbLinkIdx != null">
+            #{wbLinkIdx},
+        </if>
+        <if test="accountIdx != 0 and accountIdx != null">
+            #{accountIdx},
+        </if>
+ 			#{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+        	);
+	</insert>
+
 </mapper>

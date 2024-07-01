@@ -2,15 +2,15 @@ package com.stadion.api.entity;
 
 public class BoxInfo {
 
-	private Integer idx;
-	private String name;
-	private String telNumber;
-	private String address;
-	private String homepageUrl;
-	private String explanation;
-	private String isOpen;
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
+	public Integer idx;
+	public String name;
+	public String telNumber;
+	public String address;
+	public String homepageUrl;
+	public String explanation;
+	public String isOpen;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
 }

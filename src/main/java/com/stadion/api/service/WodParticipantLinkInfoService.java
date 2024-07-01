@@ -43,4 +43,14 @@ public class WodParticipantLinkInfoService {
 		return wodParticipantLinkInfo;
 	}
 	
+	public long getwodParticipantCount(long idx) {
+		if(wodParticipantLinkInfoMapper==null) {return 0;}		
+		return wodParticipantLinkInfoMapper.getwodParticipantCount(idx);
+	}
+	
+	public long insertWodParticipantLinkInfo(WodParticipantLinkInfo arg) {
+		if(wodParticipantLinkInfoMapper==null) {return 0;}		
+		return wodParticipantLinkInfoMapper.insertWodParticipantLinkInfo(arg);
+	}
+	
 }

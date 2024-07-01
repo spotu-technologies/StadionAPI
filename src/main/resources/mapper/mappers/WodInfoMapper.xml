@@ -12,7 +12,7 @@
         	WHERE wodInfo.idx = #{idx}
     </select>
     
-    
+        
     <select id="getWodInfoAll" resultType="com.stadion.api.entity.WodInfo">
 		SELECT wi.*
         FROM wodInfo as wi
@@ -28,6 +28,12 @@
         SELECT * FROM stadion_db_dev.wodInfo 
         WHERE progressDate = CURDATE() ORDER BY orderNo ASC;
         	
+    </select>
+    
+    <select id="getwodInfoSearchName" resultType="String">	
+        SELECT name
+        FROM wodInfo 
+        	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
     </select>
     
     <select id="getwodInfoSearch" resultType="com.stadion.api.entity.WodInfo">	
@@ -132,5 +138,7 @@
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>
+    
+    
 
 </mapper>

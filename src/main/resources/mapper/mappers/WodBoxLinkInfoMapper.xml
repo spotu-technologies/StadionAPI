@@ -7,23 +7,36 @@
 <!-- SQL Mapping -->
 
 <!-- mapper 인터페이스가 위치하는 경로 -->
-<mapper namespace="com.stadion.api.mapper.WodBoxLinkInfoMapper">	
-    <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
-    <select id="getWodBoxLinkInfo" resultType="com.stadion.api.entity.WodBoxLinkInfo">	
+<mapper namespace="com.stadion.api.mapper.WodBoxLinkInfoMapper">
+	<!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
+	<select id="getWodBoxLinkInfo"
+		resultType="com.stadion.api.entity.WodBoxLinkInfo">
+		SELECT *
+		FROM wodBoxLinkInfo
+		WHERE wodBoxLinkInfo.idx =
+		#{idx}
+	</select>
+
+	<select id="getWodBoxLinkInfoAll"
+		resultType="com.stadion.api.entity.WodBoxLinkInfo">
+		SELECT *
+		FROM wodBoxLinkInfo ORDER BY progressTime ASC;
+
+	</select>
+
+	<select id="getwodBoxLinkInfoByWodIdx"
+		resultType="com.stadion.api.entity.WodBoxLinkInfo">
+    <![CDATA[	
+        ]]>
         SELECT *
         FROM wodBoxLinkInfo
-        	WHERE wodBoxLinkInfo.idx = #{idx}
-    </select>
-    
-    <select id="getWodBoxLinkInfoAll" resultType="com.stadion.api.entity.WodBoxLinkInfo">	
-        SELECT *
-        FROM wodBoxLinkInfo ORDER BY progressTime ASC;
-        	
-    </select>
+        	WHERE wodIdx IN 
+        	<foreach collection="array" item="arr" open="(" close=")" separator=",">
+				 #{arr}
+			</foreach>
+        	ORDER BY progressTime , wodIdx ASC;
+	</select>
 
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+
 </mapper>

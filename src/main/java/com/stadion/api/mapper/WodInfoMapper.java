@@ -18,6 +18,7 @@ public interface WodInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodInfo getWodInfo(long idx);
+	public WodInfo getwodInfoWodIdx(long idx);
 	public List<WodInfo> getWodInfoAll();
 	public List<WodInfoWithFile> getWodInfoToday();
 	public List<WodInfoWithFile> getwodInfoTomorrow();
@@ -29,4 +30,5 @@ public interface WodInfoMapper {
 	
 	public List<WodInfo> getWodInfoClass();
 	public List<WodInfo> getwodInfoSearch(String keyword);
+	public List<String> getwodInfoSearchName(String keyword) ;
 }
