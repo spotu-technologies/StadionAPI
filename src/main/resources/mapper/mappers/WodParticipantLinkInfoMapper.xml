@@ -54,6 +54,12 @@
         	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx}
     </select>
 
+	<select id="getwodParticipantReserved" resultType="Long">	
+        SELECT count(*)
+        FROM wodParticipantLinkInfo
+        	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx} 
+        	and accountIdx=#{accountIdx}
+    </select>
 
 	<insert id="insertWodParticipantLinkInfo" parameterType="com.stadion.api.entity.WodParticipantLinkInfo">
 		INSERT INTO wodParticipantLinkInfo

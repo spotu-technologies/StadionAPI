@@ -3136,17 +3136,20 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
     	JSONArray arrBoxIdx = (JSONArray) object.get("arrBoxIdx");
+    	long accountIdx = (long) object.get("accountIdx");
+    	
+    	// convert json to array 
     	Long[] arrIdx = new Long[arrBoxIdx.size()];
     	for(int i =0;i<arrBoxIdx.size();i++) {
     		arrIdx[i] = (Long) arrBoxIdx.get(i);
     	}
    			
-    	
+    	/*
     	System.out.println("getwodBoxLinkInfoByWodIdx " + arrIdx);
     	
     	for(int i=0;i<arrIdx.length;i++) {
     		System.out.println("idx? "+arrIdx[i]);
-    	}
+    	}*/
     	
     	String result;
     	Gson gson = new Gson();
@@ -3158,7 +3161,9 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	for(int i=0;i<wbliList.size();i++) {
     		Integer wbLinkIdx = wbliList.get(i).idx;    		
     		long count = wodParticipantLinkInfoService.getwodParticipantCount(wbLinkIdx);
-    		
+    		long reserved = wodParticipantLinkInfoService.getwodParticipantReserved(wbLinkIdx, accountIdx);
+    
+//    		System.out.println("reserved? " + reserved);
 //    		System.out.println("count  " + count    				+ " limit " + wbliList.get(i).limitCount   				+ " time " + wbliList.get(i).progressTime   				+ " wodidx " + wbliList.get(i).wodIdx    				);
     		WodBoxInfoTime infoTime = new WodBoxInfoTime();
     		infoTime.count = (int) count;
@@ -3168,6 +3173,9 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     		WodInfo wi = wodInfoService.getWodInfo(infoTime.wodIdx);
     		infoTime.name = wi.name;
     		infoTime.isOpen = wi.isOpen;
+    		infoTime.wbLinkIdx = wbliList.get(i).idx;
+    		infoTime.reserved = (int) reserved;
+
     		infoTimeList.add(infoTime);
     		
 //    		System.out.println("infoTime: " + infoTime.toString());

@@ -42,12 +42,16 @@
         	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
     </select>
     
+            <!-- TEST 06/26
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')    			-->
+    
     <select id="getWodInfoToday" resultType="com.stadion.api.entity.WodInfoWithFile">
 		SELECT wi.*, fd.filePath, fd.fileNameThumb
         FROM wodInfo as wi
         JOIN 
 		    fileData AS fd ON wi.idx = fd.pIdx
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate='2024-06-26'
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
@@ -57,7 +61,7 @@
         FROM wodInfo as wi
         JOIN 
 		    fileData AS fd ON wi.idx = fd.pIdx
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate='2024-06-27'
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
@@ -65,9 +69,14 @@
         <!--
         
         과거 전체
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and STR_TO_DATE(wi.progressDate, '%Y-%m-%d')<CURDATE()
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  
+        and STR_TO_DATE(wi.progressDate, '%Y-%m-%d')<CURDATE()
         과거 이번달
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        
         -->
 
     <select id="getwodInfoPast" resultType="com.stadion.api.entity.WodInfoWithFile">
@@ -76,11 +85,17 @@
         FROM wodInfo as wi
         JOIN 
 		    fileData AS fd ON wi.idx = fd.pIdx
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  
+        and progressDate like '2024-06-2%'
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>
 
+<!--  test
+    	    and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+        and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+
+ -->
     <select id="getwodInfoTodayByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
     	SELECT DISTINCT wi.*, fd.filePath, fd.fileNameThumb, wbi.boxIdx
 		FROM wodBoxLinkInfo as wbi, wodInfo as wi
@@ -95,7 +110,7 @@
         	and wi.idx = fd.pIdx
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
-    	    and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+    	    and progressDate='2024-06-26'
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
@@ -114,11 +129,14 @@
         	and wi.idx = fd.pIdx
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
-        and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+        and wi.progressDate='2024-06-27'
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
-    
+
+<!--
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m') 
+ -->    
     <select id="getwodInfoPastByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
     <![CDATA[
     	SELECT DISTINCT wi.*, fd.filePath, fd.fileNameThumb, wbi.boxIdx
@@ -134,7 +152,7 @@
         	and wi.idx = fd.pIdx
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
-        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        and wi.progressDate like '2024-06-2%'
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>

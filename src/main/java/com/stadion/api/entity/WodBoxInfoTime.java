@@ -13,4 +13,6 @@ public class WodBoxInfoTime {
 	public Integer count;
 	public String name;
 	public String isOpen;
+	public Integer wbLinkIdx;
+	public Integer reserved;
 }

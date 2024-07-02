@@ -48,6 +48,11 @@ public class WodParticipantLinkInfoService {
 		return wodParticipantLinkInfoMapper.getwodParticipantCount(idx);
 	}
 	
+	public long getwodParticipantReserved(long idx, long accountIdx) {
+		if(wodParticipantLinkInfoMapper==null) {return 0;}		
+		return wodParticipantLinkInfoMapper.getwodParticipantReserved(idx, accountIdx);
+	}
+	
 	public long insertWodParticipantLinkInfo(WodParticipantLinkInfo arg) {
 		if(wodParticipantLinkInfoMapper==null) {return 0;}		
 		return wodParticipantLinkInfoMapper.insertWodParticipantLinkInfo(arg);

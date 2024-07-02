@@ -26,11 +26,5 @@
         	
     </select>
 
-        <!-- SQL문 작성
-        	 and ticketPaymentData.startDate <= #{dateNow}
-   
-    select date_format(now(),"%Y-%m-%d");	
-                SELECT *
-        FROM test_table
-         -->
+  
 </mapper>
