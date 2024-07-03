@@ -15,4 +15,6 @@ public class WodBoxInfoTime {
 	public String isOpen;
 	public Integer wbLinkIdx;
 	public Integer reserved;
+	public Integer status;
+	
 }

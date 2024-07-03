@@ -40,4 +40,9 @@ public class WodItemRecordDataService {
 		return wodItemRecordData;
 	}
 	
+	public long getWodItemRecordDataBest(long wodIdx) {
+		if(wodItemRecordDataMapper==null) {return 0;}
+		return wodItemRecordDataMapper.getWodItemRecordDataBest(wodIdx);
+	}
+	
 }

@@ -3159,11 +3159,20 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	ArrayList<WodBoxInfoTime> infoTimeList = new ArrayList<>();
     	
     	for(int i=0;i<wbliList.size();i++) {
-    		Integer wbLinkIdx = wbliList.get(i).idx;    		
+    		Integer wbLinkIdx = wbliList.get(i).idx;
+    		//System.out.println("wbLinkIdx? " + wbLinkIdx);
     		long count = wodParticipantLinkInfoService.getwodParticipantCount(wbLinkIdx);
     		long reserved = wodParticipantLinkInfoService.getwodParticipantReserved(wbLinkIdx, accountIdx);
+    		long status = 0;
+    		try {
+    			status = wodParticipantLinkInfoService.getwodParticipantStatus(wbLinkIdx, accountIdx);
+    		}
+    		catch(Exception ex) {
+    			//System.out.println(ex);
+    		}
+    		
     
-//    		System.out.println("reserved? " + reserved);
+//    		System.out.println("status? " + status);
 //    		System.out.println("count  " + count    				+ " limit " + wbliList.get(i).limitCount   				+ " time " + wbliList.get(i).progressTime   				+ " wodidx " + wbliList.get(i).wodIdx    				);
     		WodBoxInfoTime infoTime = new WodBoxInfoTime();
     		infoTime.count = (int) count;
@@ -3175,6 +3184,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     		infoTime.isOpen = wi.isOpen;
     		infoTime.wbLinkIdx = wbliList.get(i).idx;
     		infoTime.reserved = (int) reserved;
+    		infoTime.status = (int) status;
 
     		infoTimeList.add(infoTime);
     		
@@ -3867,17 +3877,12 @@ const myPBCategoryList = [
     // POST는 @PostMapping 사용
     @PostMapping("/getwodItemRecordData")
 	public String getWodItemRecordData(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -3888,6 +3893,26 @@ const myPBCategoryList = [
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getwodItemRecordDataBest")
+	public String getWodItemRecordDataBest(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	long jsonResult = wodItemRecordDataService.getWodItemRecordDataBest(wodIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @PostMapping(value="/getwodItemRecordDataRecent", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodItemRecordDataRecent(
@@ -3956,12 +3981,11 @@ const myPBCategoryList = [
     	return result;
 	}
     
-    
+/*    
     @PostMapping(value="/getwodParticipantLinkInfoIsAttend", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodParticipantLinkInfoIsAttend(
 						@RequestBody String paramJson
 			) throws ParseException {
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	long accountIdx = (long) object.get("accountIdx");
@@ -3972,7 +3996,8 @@ const myPBCategoryList = [
 
     	result = gson.toJson(jsonResult);
     	return result;
-	}
+	}*/
+    
     @PostMapping("/getwodParticipantCount")
 	public String getwodParticipantCount(
 			@RequestBody String paramJson
@@ -4043,6 +4068,102 @@ const myPBCategoryList = [
     		System.out.println(e.toString());
     		jsonResult = 0;
     	}
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getwodParticipantIdx")
+	public String getwodParticipantIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 wbLinkIdx, accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	long wbLinkIdx = (long) object.get("wbLinkIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	Long jsonResult = wodParticipantLinkInfoService.getwodParticipantIdx(accountIdx, wbLinkIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/cancelwodParticipantLinkInfo", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String cancelWodParticipantLinkInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 wbLinkIdx, accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	long wbLinkIdx = (long) object.get("wbLinkIdx");
+    	
+    	long idx = wodParticipantLinkInfoService.getwodParticipantIdx(accountIdx, wbLinkIdx);
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	long jsonResult = 0;
+    	try {
+    		jsonResult = wodParticipantLinkInfoService.cancelWodParticipantLinkInfo(idx);
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.toString());
+    		jsonResult = 0;
+    	}
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/reservewodParticipantLinkInfo", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String reserveWodParticipantLinkInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 wbLinkIdx, accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	long wbLinkIdx = (long) object.get("wbLinkIdx");
+    	
+    	long idx = wodParticipantLinkInfoService.getwodParticipantIdx(accountIdx, wbLinkIdx);
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	long jsonResult = 0;
+    	try {
+    		jsonResult = wodParticipantLinkInfoService.reserveWodParticipantLinkInfo(idx);
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.toString());
+    		jsonResult = 0;
+    	}
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
+    @PostMapping("/getwodParticipantAttend")
+	public String getWodParticipantAttend(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();    	
+    	Long jsonResult = wodParticipantLinkInfoService.getWodParticipantAttend(wodIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

@@ -52,12 +52,51 @@
         SELECT count(*)
         FROM wodParticipantLinkInfo
         	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx}
+        	and status = 1
     </select>
 
 	<select id="getwodParticipantReserved" resultType="Long">	
         SELECT count(*)
         FROM wodParticipantLinkInfo
         	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx} 
+        	and accountIdx=#{accountIdx}
+    </select>
+    
+    <select id="getWodParticipantAttend" resultType="Long">	
+        SELECT count(*)
+        FROM wodParticipantLinkInfo
+        	WHERE wodParticipantLinkInfo.wodIdx = #{idx} 
+        	 and isAttend='Y' and status=1
+    </select>
+    
+    <select id="getwodParticipantStatus" resultType="Long">	
+        SELECT status
+        FROM wodParticipantLinkInfo
+        	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx} 
+        	and accountIdx=#{accountIdx}
+    </select>
+    
+    
+    <update id="cancelWodParticipantLinkInfo">	
+        UPDATE wodParticipantLinkInfo 
+        <set>
+			status = 9
+        </set>
+        	WHERE  idx = #{idx}         	
+    </update>
+    
+    <update id="reserveWodParticipantLinkInfo">	
+        UPDATE wodParticipantLinkInfo 
+        <set>
+			status = 1
+        </set>
+        	WHERE  idx = #{idx}         	
+    </update>    
+    
+    <select id="getwodParticipantIdx" resultType="Long">	
+        SELECT idx
+        FROM wodParticipantLinkInfo
+        	WHERE wodParticipantLinkInfo.wbLinkIdx = #{wbLinkIdx} 
         	and accountIdx=#{accountIdx}
     </select>
 
