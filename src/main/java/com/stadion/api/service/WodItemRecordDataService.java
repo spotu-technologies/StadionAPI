@@ -43,6 +43,21 @@ public class WodItemRecordDataService {
 	public long getWodItemRecordDataBest(long wodIdx) {
 		if(wodItemRecordDataMapper==null) {return 0;}
 		return wodItemRecordDataMapper.getWodItemRecordDataBest(wodIdx);
+	}	
+	
+	public List<WodItemRecordData> getRankingScale(long wodIdx) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<WodItemRecordData> wodItemRecordDataList = wodItemRecordDataMapper.getRankingScale(wodIdx);
+		
+		return wodItemRecordDataList;
 	}
 	
+	public List<String> getRankingScaleString(long wodIdx) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<String> wodItemRecordDataList = wodItemRecordDataMapper.getRankingScaleString(wodIdx);
+		
+		return wodItemRecordDataList;
+	}
 }

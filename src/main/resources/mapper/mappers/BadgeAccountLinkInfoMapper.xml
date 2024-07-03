@@ -11,13 +11,10 @@
     
     <select id="getBadgeAccountLinkInfo" resultType="com.stadion.api.entity.BadgeAccountLinkInfo">	
         SELECT *
-        FROM badgeAccountLinkInfo WHERE badgeAccountLinkInfo.accountIdx = #{accountIdx} and status = 1;
+        FROM badgeAccountLinkInfo 
+        WHERE badgeAccountLinkInfo.accountIdx = #{accountIdx} 
+        and status = 1;
         	
     </select>
 
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
 </mapper>

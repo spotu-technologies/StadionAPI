@@ -28,8 +28,7 @@
         FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx}
         AND wodItemRecordData.idx IN (SELECT wodStepInfo.wodIdx FROM stadion_db_dev.wodStepInfo) 
         And wodItemRecordData.wodItemIdx IS NOT NULL
-        ORDER BY lastUpdatetime DESC;
-        	
+        ORDER BY lastUpdatetime DESC;        	
     </select>
     
     <select id="getWodItemRecordDataBest" resultType="Long">	
@@ -37,6 +36,25 @@
         FROM wodItemRecordData 
         WHERE wodItemRecordData.wodIdx = #{wodIdx}
     </select>
+    
+    <select id="getRankingScale" resultType="com.stadion.api.entity.WodItemRecordData">	
+        SELECT *
+        FROM wodItemRecordData 
+        where wodRecordIdx IN (
+			SELECT idx
+			FROM stadion_db_dev.wodRecordInfo
+			where wodIdx = #{wodIdx} and useScaled='Y'
+			)        	
+    </select>    
 
+	<select id="getRankingScaleString" resultType="String">	
+        SELECT value
+        FROM wodItemRecordData 
+        where wodRecordIdx IN (
+			SELECT idx
+			FROM stadion_db_dev.wodRecordInfo
+			where wodIdx = #{wodIdx} and useScaled='Y'
+			)        	
+    </select>    
 
 </mapper>

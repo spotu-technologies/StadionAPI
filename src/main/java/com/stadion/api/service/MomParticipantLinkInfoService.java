@@ -32,4 +32,14 @@ public class MomParticipantLinkInfoService {
 		return momParticipantLinkInfo;
 	}
 	
+	public long getMomParticipantLinkInfoAttend(long accountIdx) {
+		if(momParticipantLinkInfoMapper==null) {return 0;}
+		return momParticipantLinkInfoMapper.getMomParticipantLinkInfoAttend(accountIdx);
+	}
+	
+	public long getMomParticipantLinkInfoCount(long accountIdx) {
+		if(momParticipantLinkInfoMapper==null) {return 0;}
+		return momParticipantLinkInfoMapper.getMomParticipantLinkInfoCount(accountIdx);
+	}
+	
 }

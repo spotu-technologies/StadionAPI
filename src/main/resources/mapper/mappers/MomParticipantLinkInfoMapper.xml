@@ -18,12 +18,31 @@
     <select id="getMomParticipantLinkInfoName" resultType="com.stadion.api.entity.MomParticipantLinkInfo">	
         SELECT *
         FROM momParticipantLinkInfo WHERE momParticipantLinkInfo.accountIdx = #{accountIdx} ORDER BY lastUpdatetime DESC;
-        	
     </select>
-
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+    
+        <!--
+     momInfo (status = 1 and isOpen = Y), momParticipantLinkInfo 테이블에서 참여, 
+     movementRecordData 테이블에 기록이 1개 이상 있는 경우  
+        TEST 2022~현재 -->
+    <select id="getMomParticipantLinkInfoAttend" resultType="Long">	
+		SELECT count(*) 
+		FROM stadion_db_dev.movementRecordData
+		where momIdx IN (		
+		        SELECT mi.idx
+		        FROM stadion_db_dev.momParticipantLinkInfo mpli
+		        INNER JOIN stadion_db_dev.momInfo mi ON mpli.momIdx = mi.idx
+		        WHERE mpli.accountIdx = #{accountIdx}
+		        and mi.isOpen = 'Y'
+		)
+		AND accountIdx = #{accountIdx}    
+		AND YEAR(dateYmd) IN ( 2022, 2023, YEAR(CURRENT_DATE()) )
+    </select>
+    
+    <select id="getMomParticipantLinkInfoCount" resultType="Long">	
+		SELECT count(*) 
+		FROM stadion_db_dev.movementRecordData
+		where accountIdx = #{accountIdx}
+    </select>
+    
+        
 </mapper>

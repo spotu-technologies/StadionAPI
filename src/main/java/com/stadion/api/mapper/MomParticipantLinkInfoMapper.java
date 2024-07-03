@@ -13,6 +13,8 @@ public interface MomParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public MomParticipantLinkInfo getMomParticipantLinkInfo(long idx);
+	public long getMomParticipantLinkInfoAttend(long accountIdx);
+	public long getMomParticipantLinkInfoCount(long accountIdx);
 	public List<MomParticipantLinkInfo> getMomParticipantLinkInfoName(long accountIdx);
 
 }

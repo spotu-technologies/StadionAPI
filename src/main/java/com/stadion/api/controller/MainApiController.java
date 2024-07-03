@@ -81,6 +81,7 @@ import com.stadion.api.entity.TokenList;
 import com.stadion.api.entity.WithdrawData;
 import com.stadion.api.entity.WodBoxInfoTime;
 import com.stadion.api.entity.WodBoxLinkInfo;
+import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodCategoryInfo;
 import com.stadion.api.entity.WodInfo;
 import com.stadion.api.entity.WodInfoWithFile;
@@ -333,8 +334,8 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	WodParticipantLinkInfo wodParticipantLinkInfo = wodParticipantLinkInfoService.getWodParticipantLinkInfo(idx);
     	loginInfo.wodParticipantLinkInfo = wodParticipantLinkInfo;
     	
-    	List<WodParticipantLinkInfo> wodParticipantLinkInfoList = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsNonappearance(idx);
-    	loginInfo.wodParticipantLinkInfoList = wodParticipantLinkInfoList;
+    	//List<WodParticipantLinkInfo> wodParticipantLinkInfoList = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsNonappearance(idx);
+    	//loginInfo.wodParticipantLinkInfoList = wodParticipantLinkInfoList;
     	
     	List<WodItemOneRmData> wodItemOneRmDataPersonalDetailList = wodItemOneRmDataService.getWodItemOneRmDataPersonalDetail(idx);
     	loginInfo.wodItemOneRmDataPersonalDetailList = wodItemOneRmDataPersonalDetailList;
@@ -1907,6 +1908,34 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getMomParticipantLinkInfoAttend")
+	public String getMomParticipantLinkInfoAttend(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	long jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfoAttend(accountIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping("/getMomParticipantLinkInfoCount")
+	public String getMomParticipantLinkInfoCount(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	long jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfoCount(accountIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @PostMapping(value="/getmomParticipantLinkInfoName", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getMomParticipantLinkInfoName(
@@ -3894,7 +3923,7 @@ const myPBCategoryList = [
     	return result;
 	}
     
-    @PostMapping("/getwodItemRecordDataBest")
+    @PostMapping("/getRankingBest")
 	public String getWodItemRecordDataBest(
 			@RequestBody String paramJson
 			) throws ParseException {
@@ -3912,7 +3941,35 @@ const myPBCategoryList = [
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-
+    
+    @PostMapping("/getRankingScale")
+	public String getRankingScale(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getRankingScale(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping("/getRankingScaleString")
+	public String getRankingScaleString(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<String> jsonResult = wodItemRecordDataService.getRankingScaleString(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
     
     @PostMapping(value="/getwodItemRecordDataRecent", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodItemRecordDataRecent(
@@ -3981,9 +4038,9 @@ const myPBCategoryList = [
     	return result;
 	}
     
-/*    
-    @PostMapping(value="/getwodParticipantLinkInfoIsAttend", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getWodParticipantLinkInfoIsAttend(
+    
+    @PostMapping(value="/getwodParticipantLinkInfoAttend", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodParticipantLinkInfoAttend(
 						@RequestBody String paramJson
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
@@ -3992,11 +4049,11 @@ const myPBCategoryList = [
     	String result;
     	Gson gson = new Gson();
     	
-    	List<WodParticipantLinkInfo> jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsAttend(accountIdx);
+    	long jsonResult = wodParticipantLinkInfoService.getwodParticipantLinkInfoAttend(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
-	}*/
+	}
     
     @PostMapping("/getwodParticipantCount")
 	public String getwodParticipantCount(
@@ -4018,8 +4075,8 @@ const myPBCategoryList = [
 	}
     
     
-    @PostMapping(value="/getwodParticipantLinkInfoIsNonappearance", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getWodParticipantLinkInfoIsNonappearance(
+    @PostMapping(value="/getwodParticipantLinkInfoNoAttend", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodParticipantLinkInfoNoAttend(
 						@RequestBody String paramJson
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
@@ -4030,7 +4087,7 @@ const myPBCategoryList = [
     	String result;
     	Gson gson = new Gson();
     	
-    	List<WodParticipantLinkInfo> jsonResult = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsNonappearance(accountIdx);
+    	long jsonResult = wodParticipantLinkInfoService.getwodParticipantLinkInfoNoAttend(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -4088,6 +4145,25 @@ const myPBCategoryList = [
     	Gson gson = new Gson();
     	
     	Long jsonResult = wodParticipantLinkInfoService.getwodParticipantIdx(accountIdx, wbLinkIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getwodParticipantRecent")
+	public String getwodParticipantRecent(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값  accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	//long wbLinkIdx = (long) object.get("wbLinkIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	WodBoxLinkInfoName jsonResult = wodParticipantLinkInfoService.getwodParticipantRecent(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -4151,7 +4227,7 @@ const myPBCategoryList = [
     	return result;
 	}
 
-    @PostMapping("/getwodParticipantAttend")
+    @PostMapping("/getWodRankingAttend")
 	public String getWodParticipantAttend(
 			@RequestBody String paramJson
 			) throws ParseException {

@@ -16,5 +16,7 @@ public interface WodItemRecordDataMapper {
 	public List<WodItemRecordData> getWodItemRecordDataRecent(long accountIdx);
 	public List<WodItemRecordData> getWodItemRecordDatarecord(long accountIdx);
 	public long getWodItemRecordDataBest(long wodIdx) ;
+	public List<WodItemRecordData> getRankingScale(long wodIdx);
+	public List<String> getRankingScaleString(long wodIdx);
 
 }

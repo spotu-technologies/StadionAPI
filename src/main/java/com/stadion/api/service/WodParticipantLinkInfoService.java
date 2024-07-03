@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stadion.api.entity.WodBoxLinkInfo;
+import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodInfo;
 import com.stadion.api.entity.WodParticipantLinkInfo;
 import com.stadion.api.mapper.WodParticipantLinkInfoMapper;
@@ -15,23 +17,15 @@ public class WodParticipantLinkInfoService {
 	@Autowired
 	private WodParticipantLinkInfoMapper wodParticipantLinkInfoMapper;
 	
-	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsAttend(long accountIdx) {
-		if(wodParticipantLinkInfoMapper==null) {return null;}
-		
-		List<WodParticipantLinkInfo> wodParticipantLinkInfoList 
-		   = wodParticipantLinkInfoMapper.getWodParticipantLinkInfoIsAttend(accountIdx);
-		
-		return wodParticipantLinkInfoList;
+	public long getwodParticipantLinkInfoAttend(long accountIdx) {
+		if(wodParticipantLinkInfoMapper==null) {return 0;}		
+		return wodParticipantLinkInfoMapper.getwodParticipantLinkInfoAttend(accountIdx);
 	}
 	
 	
-	public List<WodParticipantLinkInfo> getWodParticipantLinkInfoIsNonappearance(long accountIdx) {
-		if(wodParticipantLinkInfoMapper==null) {return null;}
-		
-		List<WodParticipantLinkInfo> wodParticipantLinkInfoList 
-		   = wodParticipantLinkInfoMapper.getWodParticipantLinkInfoIsNonappearance(accountIdx);
-		
-		return wodParticipantLinkInfoList;
+	public long getwodParticipantLinkInfoNoAttend(long accountIdx) {
+		if(wodParticipantLinkInfoMapper==null) {return 0;}
+		return wodParticipantLinkInfoMapper.getwodParticipantLinkInfoNoAttend(accountIdx);
 	}
 	
 	
@@ -82,5 +76,13 @@ public class WodParticipantLinkInfoService {
 		if(wodParticipantLinkInfoMapper==null) {return 0;}		
 		return wodParticipantLinkInfoMapper.getWodParticipantAttend(idx);
 	}
-	
+
+	public WodBoxLinkInfoName getwodParticipantRecent(long accountIdx) {
+		if(wodParticipantLinkInfoMapper==null) {return null;}
+		
+		WodBoxLinkInfoName wodParticipantLinkInfo = wodParticipantLinkInfoMapper.getwodParticipantRecent(accountIdx);
+		
+		return wodParticipantLinkInfo;
+	}
+
 }

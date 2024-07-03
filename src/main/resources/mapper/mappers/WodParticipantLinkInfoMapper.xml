@@ -14,38 +14,41 @@
         FROM wodParticipantLinkInfo
         	WHERE wodParticipantLinkInfo.idx = #{idx}
     </select>
+
+    <select id="getwodParticipantRecent" resultType="com.stadion.api.entity.WodBoxLinkInfoName">	
+		SELECT wbli.*, wi.name
+        FROM stadion_db_dev.wodBoxLinkInfo as wbli
+        JOIN stadion_db_dev.wodInfo as wi 
+			ON wi.idx = wbli.wodIdx
+			where wbli.idx = (
+			SELECT wbLinkIdx 
+			FROM stadion_db_dev.wodParticipantLinkInfo
+			where accountIdx =#{accountIdx} 
+			order by regUnixtime DESC LIMIT 1
+			)
+
+    </select>    
     
-    <select id="getWodParticipantLinkInfoIsAttend" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
-        SELECT *
-        FROM (
-        SELECT wpli2.*, ROW_NUMBER() OVER (PARTITION BY wpli2.accountIdx ORDER BY wpli2.accountIdx) AS rn
-        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
-        INNER JOIN stadion_db_dev.wodParticipantLinkInfo wpli2 ON wpli1.wodIdx = wpli2.wodIdx
-        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
-        WHERE wpli1.accountIdx = #{accountIdx}
-        AND wpli2.isAttend = 'Y'
-        AND YEAR(wi.progressDate) = YEAR(CURRENT_DATE())
-        AND MONTH(wi.progressDate) = MONTH(CURRENT_DATE())
-        ) AS subquery
-        WHERE rn = 1;
-        	
+    <!--  TEST 2023년, 1~12월 전체 -->
+    <select id="getwodParticipantLinkInfoAttend" resultType="Long">	
+        SELECT count(*)
+	        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
+	        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+	        WHERE wpli1.accountIdx = #{accountIdx}
+	        AND wpli1.isAttend = 'Y'
+	        AND YEAR(wi.progressDate) IN ( 2023, YEAR(CURRENT_DATE()) )
+	        AND MONTH(wi.progressDate) IN ( 1,2,3,4,5,6,7,8,9,10,11,12,  MONTH(CURRENT_DATE()) )
     </select>
     
     
-    <select id="getWodParticipantLinkInfoIsNonappearance" resultType="com.stadion.api.entity.WodParticipantLinkInfo">	
-        SELECT *
-        FROM (
-        SELECT wpli2.*, ROW_NUMBER() OVER (PARTITION BY wpli2.accountIdx ORDER BY wpli2.accountIdx) AS rn
-        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
-        INNER JOIN stadion_db_dev.wodParticipantLinkInfo wpli2 ON wpli1.wodIdx = wpli2.wodIdx
-        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
-        WHERE wpli1.accountIdx = #{accountIdx}
-        AND wpli2.isAttend = 'N'
-        AND YEAR(wi.progressDate) = YEAR(CURRENT_DATE())
-        AND MONTH(wi.progressDate) = MONTH(CURRENT_DATE())
-        ) AS subquery
-        WHERE rn = 1;
-        	
+    <select id="getwodParticipantLinkInfoNoAttend" resultType="Long">	
+        SELECT count(*)
+	        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
+	        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+	        WHERE wpli1.accountIdx = #{accountIdx}
+	        AND wpli1.isAttend = 'N'
+	        AND YEAR(wi.progressDate) IN ( 2023, YEAR(CURRENT_DATE()) )
+	        AND MONTH(wi.progressDate) IN ( 1,2,3,4,5,6,7,8,9,10,11,12,  MONTH(CURRENT_DATE()) )
     </select>
 
 	<select id="getwodParticipantCount" resultType="Long">	
