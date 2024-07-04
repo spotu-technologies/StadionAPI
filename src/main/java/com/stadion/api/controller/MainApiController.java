@@ -4010,6 +4010,23 @@ const myPBCategoryList = [
     	return result;
 	}
 
+    @PostMapping("/getWodItemRecordRankingList")
+	public String getWodItemRecordRankingList(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String orderType = (String) object.get("orderType");
+    	
+    	String result="";
+    	Gson gson = new Gson();
+//   	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordRankingList(wodIdx, orderType);
+//    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @PostMapping("/getRankingBest")
 	public String getWodItemRecordDataBest(
