@@ -15,6 +15,30 @@
         	WHERE wodItemRecordData.idx = #{idx}
     </select>
     
+    <select id="getWodItemRecordDataByWodIdx" resultType="com.stadion.api.entity.WodItemRecordData">	
+        SELECT *
+        FROM wodItemRecordData
+        	WHERE wodItemRecordData.wodIdx = #{wodIdx}
+    </select>
+    
+    <select id="getWodItemRecordDataByWodAvg" resultType="Double">	
+        SELECT AVG(value)
+        FROM wodItemRecordData
+        	WHERE wodItemRecordData.wodIdx = #{wodIdx}
+    </select>
+    
+        <!-- min(value) AS recordValue -->
+	<sql id="minMax">
+        ${minMax}(value) 
+    </sql>
+    
+    <select id="getWodItemRecordDataByWodBest" resultType="Double">	
+        SELECT <include refid="minMax"/>
+        FROM wodItemRecordData
+        	WHERE wodItemRecordData.wodIdx = #{wodIdx}
+    </select>
+    
+
     <select id="getWodItemRecordDataRecent" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
         FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx}
@@ -56,5 +80,36 @@
 			where wodIdx = #{wodIdx} and useScaled='Y'
 			)        	
     </select>    
+    
+	<insert id="insertWodItemRecord" parameterType="com.stadion.api.entity.WodItemRecordData">
+		INSERT INTO stadion_db_dev.wodItemRecordData
+ 			(wodIdx, boxIdx, accountIdx, wbLinkIdx, wodStepIdx, 
+        <if test="wodItemIdx != 0 and wodItemIdx != null">
+            wodItemIdx,
+        </if>
+        
+        	wodRecordIdx, recordType, recordUnit,
+        <if test="grade !='' and grade != null">
+            grade,
+        </if>
+        		value, value2, gender, 
+			    age, ageGroup, height, heightGroup, weight, weightGroup, region, regionGroup, 
+			    dateYmd, writer, status, regUnixtime, lastUpdatetime
+			) 
+			
+			VALUES 
+			 (#{wodIdx}, #{boxIdx}, #{accountIdx}, #{wbLinkIdx}, #{wodStepIdx}, 
+        <if test="wodItemIdx != 0 and wodItemIdx != null">
+            #{wodItemIdx},
+        </if>
+        	#{wodRecordIdx}, #{recordType}, #{recordUnit},
+        <if test="grade != '' and grade != null">
+            #{grade},
+        </if>
+        		#{value}, #{value2}, #{gender}, 
+			    #{age}, #{ageGroup}, #{height}, #{heightGroup}, #{weight}, #{weightGroup}, #{region}, #{regionGroup}, 
+			    #{dateYmd}, #{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+        	);
+	</insert>    
 
 </mapper>

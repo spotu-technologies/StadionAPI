@@ -171,12 +171,35 @@ import com.stadion.api.service.WodTemplateRoundInfoService;
 import com.stadion.api.service.WodTemplateRoundItemInfoService;
 import com.stadion.api.service.WodTemplateStepInfoService;
 
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 
 @RestController
 public class MainApiController {
+    public static final String ACCOUNT_ID = "사용자 ID";
+    public static final String ACCOUNT_IDX = "사용자 idx";
+    public static final String WOD_IDX = "wod idx";
+	
+    String lbsToKg(String lb) {
+		double lbs = Double.parseDouble(lb);
+		//kg = lbs / 2.20462
+		double kg = lbs / 2.20462;
+		return String.format("%.1f", kg);
+    }
+    String kgToLbs(String kg) {
+		double kgs = Double.parseDouble(kg);
+		//lbs = kg*2.20462
+		double lbs = kgs * 2.20462;
+		return String.format("%.1f", lbs);
+    }
+
+
+	
 	@GetMapping(path="/")
 	public String RootController()
 	{
@@ -446,6 +469,24 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    @PostMapping(value="/getaccountinfobyidx", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getAccountInfoByIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	long accountIdx = (long) object.get("accountIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	AccountInfo jsonResult = accountInfoService.getAccountInfoByIdx(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
     @PostMapping(value="/insertaccountinfo", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String insertAccountInfo(
 			@RequestBody String paramJson
@@ -3902,8 +3943,7 @@ const myPBCategoryList = [
     
     @Autowired
     public WodItemRecordDataService wodItemRecordDataService;
-     
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItemRecordData")
 	public String getWodItemRecordData(
 			@RequestBody String paramJson
@@ -3922,6 +3962,54 @@ const myPBCategoryList = [
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getwodItemRecordDataByWodIdx")
+	public String getwodItemRecordDataByWodIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordDataByWodIdx(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getwodItemRecordDataByWodAvg")
+	public String getwodItemRecordDataByWodAvg(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	Double jsonResult = wodItemRecordDataService.getWodItemRecordDataByWodAvg(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping("/getwodItemRecordDataByWodBest")
+	public String getwodItemRecordDataByWodBest(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String minMax = (String) object.get("minMax");
+		System.out.println("minMax: " + minMax);
+
+    	String result;
+    	Gson gson = new Gson();
+    	Double jsonResult = wodItemRecordDataService.getWodItemRecordDataByWodBest(wodIdx, minMax);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @PostMapping("/getRankingBest")
 	public String getWodItemRecordDataBest(
@@ -3956,6 +4044,7 @@ const myPBCategoryList = [
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
     @PostMapping("/getRankingScaleString")
 	public String getRankingScaleString(
 			@RequestBody String paramJson
@@ -3975,14 +4064,10 @@ const myPBCategoryList = [
 	public @ResponseBody String getWodItemRecordDataRecent(
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
     	long accountIdx = (long) object.get("accountIdx");
- 
-    
     	String result;
     	Gson gson = new Gson();
     	
@@ -3996,23 +4081,105 @@ const myPBCategoryList = [
 	public @ResponseBody String getWodItemRecordDatarecord(
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long accountIdx = (long) object.get("accountIdx");
- 
-    
     	String result;
     	Gson gson = new Gson();
-    	
     	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordDatarecord(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
 
+    // rrrr
+    @PostMapping("/insertWodItemRecord")
+	public String insertWodItemRecord(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	long accountIdx = (long) object.get("accountIdx");
+    	long boxIdx = (long) object.get("boxIdx");
+    	long wodIdx = (long) object.get("wodIdx");
+    	long wodStepIdx = (long) object.get("wodStepIdx");
+    	
+    	long wbLinkIdx = (long) object.get("wbLinkIdx");
+    	// wodRecordInfo idx
+    	long wodRecordInfoIdx = (long) object.get("wodRecordInfoIdx");
+    	
+    	long recordType = (long) object.get("recordType");
+    	long recordUnit = (long) object.get("recordUnit");
+    	
+    	long dateYmd = (long) object.get("dateYmd");
+    	String value = (String) object.get("value");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	int jsonResult = 0;
+    	try {
+	    	WodItemRecordData arg = new WodItemRecordData();
+	    	arg.accountIdx = (int) accountIdx;
+
+        	
+        	//mvLinkIdx, mpLinkIdx,
+        	AccountInfo ai = accountInfoService.getAccountInfoByIdx(accountIdx);
+        	arg.accountIdx = ai.idx;
+        	arg.gender = ai.gender;
+
+        	arg.age = ai.getAge();
+        	
+        	arg.ageGroup = ai.ageGroup;
+        	arg.height = ai.height;
+        	arg.heightGroup = ai.heightGroup;
+        	arg.weight = ai.weight;
+        	arg.weightGroup = ai.weightGroup;
+        	//arg.region // TODO 
+        	arg.regionGroup = ai.regionGroup;
+        	arg.writer = ai.idx;// Account Idx
+        	arg.status = 1;
+        	
+        	arg.dateYmd = (int) dateYmd;
+        	
+        	arg.isOneRm = "N";
+        	
+        	arg.recordType = (int) recordType;
+        	arg.recordUnit = (int) recordUnit;
+        	
+        	arg.boxIdx = (int) boxIdx;
+        	arg.wodIdx = (int) wodIdx;
+        	arg.wbLinkIdx = (int) wbLinkIdx;
+        	arg.wodStepIdx = (int) wodStepIdx;
+        	arg.wodRecordIdx = (int) wodRecordInfoIdx;
+        	
+        	if(recordType==2 && recordUnit==4) {
+            	arg.value = value;
+            	arg.value2 = value;
+        	}
+        	else {
+        		if(recordType==1 && recordUnit ==1) { // kg, lbs
+                	arg.value = value;
+        			arg.value2 = kgToLbs(value);
+        		}
+            	else {
+                	arg.value = value;
+                	arg.value2 = value;
+               	}
+        	}
+        	
+        	System.out.println("insertWodItemRecord: " + arg.toString());
+        	
+	    	jsonResult = (int) wodItemRecordDataService.insertWodItemRecord(arg);
+    	}
+    	catch(Exception ex) {
+    		System.out.println(ex);
+    	}
+    	    	
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
     
     @Autowired
@@ -4252,17 +4419,12 @@ const myPBCategoryList = [
     // POST는 @PostMapping 사용
     @PostMapping("/getwodRecordInfo")
 	public String getWodRecordInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -4273,7 +4435,30 @@ const myPBCategoryList = [
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @Operation(summary = "WodRecordInfo 조회", description = "wodIdx로 WodRecordInfo를 조회")    
+    @PostMapping("/getWodRecordInfoByWodIdx")
+	public String getWodRecordInfoByWodIdx(
+			@Parameter(description = WOD_IDX)
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
 
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodRecordInfo> jsonResult = wodRecordInfoService.getWodRecordInfoByWodIdx(wodIdx);
+    	for(int i=0;i<jsonResult.size();i++) {
+    		System.out.println("WodRecordInfo " + i + " " + jsonResult.get(i).toString());
+    	}
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
 
     
     @Autowired
@@ -4339,40 +4524,44 @@ const myPBCategoryList = [
     @Autowired
     public WodStepInfoService wodStepInfoService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getwodStepInfo")
 	public String getWodStepInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	WodStepInfo jsonResult = wodStepInfoService.getWodStepInfo(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+
+    @PostMapping("/getWodStepInfoByWodIdx")
+	public String getWodStepInfoByWodIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<WodStepInfo> jsonResult = wodStepInfoService.getWodStepInfoByWodIdx(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
 
 
     
     @Autowired
     public WodTemplateInfoService wodTemplateInfoService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getwodTemplateInfo")
 	public String getWodTemplateInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
     	

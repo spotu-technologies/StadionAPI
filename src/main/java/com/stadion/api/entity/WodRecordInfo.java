@@ -2,23 +2,32 @@ package com.stadion.api.entity;
 
 public class WodRecordInfo {
 
-	private Integer idx;
-	private Integer wodIdx;
-	private Integer wodStepIdx;
-	private Integer wodItemCategoryIdx;
-	private Integer wodItemIdx;
+	@Override
+	public String toString() {
+		return "WodRecordInfo [idx=" + idx + ", wodIdx=" + wodIdx + ", wodStepIdx=" + wodStepIdx
+				+ ", wodItemCategoryIdx=" + wodItemCategoryIdx + ", wodItemIdx=" + wodItemIdx + ", useScaled="
+				+ useScaled + ", kind=" + kind + ", recordType=" + recordType + ", recordUnit=" + recordUnit
+				+ ", orderType=" + orderType + ", isRmAdjust=" + isRmAdjust + ", explanation=" + explanation
+				+ ", writer=" + writer + ", status=" + status + ", regUnixtime=" + regUnixtime + ", lastUpdatetime="
+				+ lastUpdatetime + ", scaleGrade=" + scaleGrade + "]";
+	}
+	public Integer idx;
+	public Integer wodIdx;
+	public Integer wodStepIdx;
+	public Integer wodItemCategoryIdx;
+	public Integer wodItemIdx;
 	
-	private String useScaled;
-	private String kind;
-	private Integer recordType;
-	private Integer recordUnit;
-	private String orderType;
-	private String isRmAdjust;
-	private String explanation;
+	public String useScaled;
+	public String kind;
+	public Integer recordType;
+	public Integer recordUnit;
+	public String orderType;
+	public String isRmAdjust;
+	public String explanation;
 	
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
-	private Integer scaleGrade;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
+	public Integer scaleGrade;
 }

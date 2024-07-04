@@ -8,16 +8,17 @@
 
 <!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.WodRecordInfoMapper">	
-    <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
     <select id="getWodRecordInfo" resultType="com.stadion.api.entity.WodRecordInfo">	
         SELECT *
         FROM wodRecordInfo
         	WHERE wodRecordInfo.idx = #{idx}
     </select>
 
+    <select id="getWodRecordInfoByWodIdx" resultType="com.stadion.api.entity.WodRecordInfo">	
+        SELECT *
+        FROM wodRecordInfo
+        	WHERE wodRecordInfo.wodIdx = #{wodIdx}
+    </select>
 
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+
 </mapper>

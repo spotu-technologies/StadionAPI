@@ -23,4 +23,12 @@ public class WodRecordInfoService {
 		return wodRecordInfo;
 	}
 	
+	public List<WodRecordInfo> getWodRecordInfoByWodIdx(long wodIdx) {
+		if(wodRecordInfoMapper==null) {return null;}
+		
+		List<WodRecordInfo> wodRecordInfo = wodRecordInfoMapper.getWodRecordInfoByWodIdx(wodIdx);
+		
+		return wodRecordInfo;
+	}
+	
 }

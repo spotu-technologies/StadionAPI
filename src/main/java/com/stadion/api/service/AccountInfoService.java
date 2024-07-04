@@ -68,6 +68,14 @@ public class AccountInfoService {
 		
 		return accountInfo;
 	}
+	
+	public AccountInfo getAccountInfoByIdx(long accountIdx) {
+		if(accountInfoMapper==null) {return null;}
+		
+		AccountInfo accountInfo = accountInfoMapper.getAccountInfoByIdx(accountIdx);
+		
+		return accountInfo;
+	}
 		
 	public int insertAccountInfo(AccountInfo account) 
 	{

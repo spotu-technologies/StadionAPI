@@ -23,4 +23,11 @@ public class WodStepInfoService {
 		return wodStepInfo;
 	}
 	
+	public List<WodStepInfo> getWodStepInfoByWodIdx(long wodIdx) {
+		if(wodStepInfoMapper==null) {return null;}
+		List<WodStepInfo> wodStepInfo = wodStepInfoMapper.getWodStepInfoByWodIdx(wodIdx);
+		return wodStepInfo;
+	}
+	
+	
 }

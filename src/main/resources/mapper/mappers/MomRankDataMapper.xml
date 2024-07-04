@@ -39,9 +39,7 @@
 		    ai.accountNick, 
 		    ai.emailAddress, 
 		    ai.cellNumber,
-		    
 		    <include refid="gradeList"/>
-		    
 		     
 		    rd.recordValue
 		FROM 

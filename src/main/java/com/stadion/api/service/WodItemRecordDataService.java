@@ -40,6 +40,25 @@ public class WodItemRecordDataService {
 		return wodItemRecordData;
 	}
 	
+	public List<WodItemRecordData> getWodItemRecordDataByWodIdx(long wodidx) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<WodItemRecordData> wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordDataByWodIdx(wodidx);
+		
+		return wodItemRecordData;
+	}
+	
+	public Double getWodItemRecordDataByWodAvg(long wodidx) {
+		if(wodItemRecordDataMapper==null) {return 0.0;}
+		return wodItemRecordDataMapper.getWodItemRecordDataByWodAvg(wodidx);
+	}
+	
+	public Double getWodItemRecordDataByWodBest(long wodidx, String minMax) {
+		if(wodItemRecordDataMapper==null) {return 0.0;}
+		return wodItemRecordDataMapper.getWodItemRecordDataByWodBest(wodidx, minMax);
+	}
+
+	
 	public long getWodItemRecordDataBest(long wodIdx) {
 		if(wodItemRecordDataMapper==null) {return 0;}
 		return wodItemRecordDataMapper.getWodItemRecordDataBest(wodIdx);
@@ -59,5 +78,10 @@ public class WodItemRecordDataService {
 		List<String> wodItemRecordDataList = wodItemRecordDataMapper.getRankingScaleString(wodIdx);
 		
 		return wodItemRecordDataList;
+	}
+	
+	public int insertWodItemRecord(WodItemRecordData arg) {
+		if(wodItemRecordDataMapper==null) {return 0;}		
+		return wodItemRecordDataMapper.insertWodItemRecord(arg);
 	}
 }

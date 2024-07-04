@@ -12,6 +12,7 @@ public interface WodStepInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodStepInfo getWodStepInfo(long idx);
+	public List<WodStepInfo> getWodStepInfoByWodIdx(long wodIdx);
 	
 
 }

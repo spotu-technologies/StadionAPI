@@ -10,8 +10,7 @@ import com.stadion.api.entity.WodRecordInfo;
 @Mapper
 public interface WodRecordInfoMapper {
 
-	//public List<AccountInfo> getAccountInfoList();
 	public WodRecordInfo getWodRecordInfo(long idx);
-	
+	public List<WodRecordInfo> getWodRecordInfoByWodIdx(long wodIdx);
 
 }
