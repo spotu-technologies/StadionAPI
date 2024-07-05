@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.stadion.api.entity.AccountInfo;
 import com.stadion.api.entity.MovementRecordData;
+import com.stadion.api.entity.RankingDataParameter;
 import com.stadion.api.entity.WodItemRecordData;
 
 @Mapper
@@ -23,5 +24,6 @@ public interface WodItemRecordDataMapper {
 	public List<WodItemRecordData> getRankingScale(long wodIdx);
 	public List<String> getRankingScaleString(long wodIdx);
 	public int insertWodItemRecord(WodItemRecordData arg);
-
+	public List<WodItemRecordData> getWodItemRecordRankingList(RankingDataParameter param);
+	public List<WodItemRecordData> getWodItemRecordListByWodIdx(long wodIdx);
 }

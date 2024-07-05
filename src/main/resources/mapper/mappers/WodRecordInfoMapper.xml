@@ -5,8 +5,6 @@
 
 
 <!-- SQL Mapping -->
-
-<!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.WodRecordInfoMapper">	
     <select id="getWodRecordInfo" resultType="com.stadion.api.entity.WodRecordInfo">	
         SELECT *
@@ -21,4 +19,14 @@
     </select>
 
 
+    <select id="getWodRecordInfoRecentByWod" resultType="com.stadion.api.entity.WodRecordInfoWithBox">	
+        SELECT *, wpli.boxIdx, wpli.wbLinkIdx
+        FROM wodRecordInfo AS wri
+        JOIN wodParticipantLinkInfo as wpli
+			ON wpli.accountIdx = #{accountIdx}
+        	WHERE wri.wodIdx = #{wodIdx}
+            and accountIdx = #{accountIdx}
+		GROUP by wpli.boxIdx
+        order by wpli.regUnixtime DESC
+    </select>    
 </mapper>

@@ -9,6 +9,7 @@ import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodInfo;
 import com.stadion.api.entity.WodParticipantLinkInfo;
+import com.stadion.api.entity.WodRecordInfoWithBox;
 import com.stadion.api.mapper.WodParticipantLinkInfoMapper;
 
 

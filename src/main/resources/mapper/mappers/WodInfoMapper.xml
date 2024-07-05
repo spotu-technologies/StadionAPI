@@ -5,13 +5,19 @@
 
 
 <mapper namespace="com.stadion.api.mapper.WodInfoMapper">	
-    <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
+
     <select id="getWodInfo" resultType="com.stadion.api.entity.WodInfo">	
         SELECT *
         FROM wodInfo 
         	WHERE wodInfo.idx = #{idx}
     </select>
     
+    <select id="getWodInfoIdx" resultType="Long">	
+        SELECT idx
+        FROM wodInfo 
+        	WHERE wodInfo.name = #{name}
+        	LIMIT 1
+    </select>
         
     <select id="getWodInfoAll" resultType="com.stadion.api.entity.WodInfo">
 		SELECT wi.*
@@ -32,6 +38,12 @@
     
     <select id="getwodInfoSearchName" resultType="String">	
         SELECT name
+        FROM wodInfo 
+        	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
+    </select>
+
+    <select id="getwodInfoSearchNameIdx" resultType="com.stadion.api.entity.WodInfoNameIdx">	
+        SELECT idx, name
         FROM wodInfo 
         	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
     </select>

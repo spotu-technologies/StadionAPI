@@ -29,6 +29,7 @@
 
     </select>    
     
+
     <!--  TEST 2023년, 1~12월 전체 -->
     <select id="getwodParticipantLinkInfoAttend" resultType="Long">	
         SELECT count(*)

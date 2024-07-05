@@ -79,7 +79,18 @@
 			FROM stadion_db_dev.wodRecordInfo
 			where wodIdx = #{wodIdx} and useScaled='Y'
 			)        	
+    </select>        
+    
+    <select id="getWodItemRecordListByWodIdx" resultType="com.stadion.api.entity.WodItemRecordData">	
+        SELECT *
+        FROM wodItemRecordData 
+        where wodRecordIdx IN (
+			SELECT idx
+			FROM stadion_db_dev.wodRecordInfo
+			where wodIdx = #{wodIdx}
+			)    	
     </select>    
+    
     
 	<insert id="insertWodItemRecord" parameterType="com.stadion.api.entity.WodItemRecordData">
 		INSERT INTO stadion_db_dev.wodItemRecordData
@@ -111,5 +122,35 @@
 			    #{dateYmd}, #{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
         	);
 	</insert>    
+
+    <sql id="orderType">
+        ${orderType}
+    </sql>
+    
+
+    <select id="getWodItemRecordRankingList" parameterType="com.stadion.api.entity.RankingDataParameter" resultType="com.stadion.api.entity.WodItemRecordData">	
+	    Select *
+			FROM stadion_db_dev.wodItemRecordData
+			where  wodIdx = #{wodIdx}
+			and status=1
+        
+        <if test="gender != '' and gender != null">
+             and gender = #{gender}
+        </if>
+        <if test="boxIdx != '' and boxIdx != null">
+             and boxIdx = #{boxIdx}
+        </if>
+        <if test="scale != '' and scale != null">
+             and gender = #{gender}
+        </if>
+
+			GROUP BY accountIdx 
+			
+			ORDER by
+			 value 
+			 <include refid="orderType"/>
+		    LIMIT #{count} OFFSET #{start};
+	
+	  </select>    
 
 </mapper>

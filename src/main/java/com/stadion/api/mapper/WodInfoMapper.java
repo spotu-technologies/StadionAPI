@@ -10,6 +10,7 @@ import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.InjuryData;
 import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodInfo;
+import com.stadion.api.entity.WodInfoNameIdx;
 import com.stadion.api.entity.WodInfoWithFile;
 import com.stadion.api.entity.WodParticipantLinkInfo;
 
@@ -18,6 +19,7 @@ public interface WodInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodInfo getWodInfo(long idx);
+	public long getWodInfoIdx(String name);
 	public WodInfo getwodInfoWodIdx(long idx);
 	public List<WodInfo> getWodInfoAll();
 	public List<WodInfoWithFile> getWodInfoToday();
@@ -30,5 +32,7 @@ public interface WodInfoMapper {
 	
 	public List<WodInfo> getWodInfoClass();
 	public List<WodInfo> getwodInfoSearch(String keyword);
-	public List<String> getwodInfoSearchName(String keyword) ;
+	public List<String> getwodInfoSearchName(String keyword);
+	public List<WodInfoNameIdx> getwodInfoSearchNameIdx(String keyword);
+	
 }

@@ -84,6 +84,7 @@ import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodCategoryInfo;
 import com.stadion.api.entity.WodInfo;
+import com.stadion.api.entity.WodInfoNameIdx;
 import com.stadion.api.entity.WodInfoWithFile;
 import com.stadion.api.entity.WodItem3RmData;
 import com.stadion.api.entity.WodItem5RmData;
@@ -96,6 +97,7 @@ import com.stadion.api.entity.WodItemRecordData;
 import com.stadion.api.entity.WodItemRmData;
 import com.stadion.api.entity.WodParticipantLinkInfo;
 import com.stadion.api.entity.WodRecordInfo;
+import com.stadion.api.entity.WodRecordInfoWithBox;
 import com.stadion.api.entity.WodRoundInfo;
 import com.stadion.api.entity.WodRoundItemInfo;
 import com.stadion.api.entity.WodStepInfo;
@@ -3320,6 +3322,26 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getWodInfoIdx")
+	public String getWodInfoIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 name
+    	String name = (String) object.get("name");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	long jsonResult = wodInfoService.getWodInfoIdx(name);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
         
     @PostMapping(value="/getwodInfoAll", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodInfoAll(
@@ -3497,6 +3519,30 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getwodInfoSearchNameIdx")
+	public String getWodInfoSearchNameIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 keyword
+    	String keyword = (String) object.get("keyword");
+    	
+    	keyword += "%";//: 뒤에 % 붙여서 사용
+    	
+    	System.out.println("search keyword? " + keyword);
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoNameIdx> jsonResult = wodInfoService.getwodInfoSearchNameIdx(keyword);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @Autowired
     public WodItem3RmDataService wodItem3RmDataService;
@@ -4010,6 +4056,21 @@ const myPBCategoryList = [
     	return result;
 	}
 
+    @PostMapping("/getWodItemRecordListByWodIdx")
+	public String getWodItemRecordListByWodIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordListByWodIdx(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	    }
+    
     @PostMapping("/getWodItemRecordRankingList")
 	public String getWodItemRecordRankingList(
 			@RequestBody String paramJson
@@ -4018,12 +4079,49 @@ const myPBCategoryList = [
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	// 필요값 wodIdx
     	long wodIdx = (long) object.get("wodIdx");
+    	long start = (long) object.get("start");
+    	long count = (long) object.get("count");
     	String orderType = (String) object.get("orderType");
     	
-    	String result="";
+    	String filterStr = "";
+    	long filterInt = 0;    	
+    	String category = "";
+    	
+    	try {
+    		category = (String) object.get("category");    		
+    	}
+    	catch(Exception ex) {
+    		System.out.println("No type or category " + ex.toString());
+    	}
+    	System.out.println("category: " + category);
+    	
+    	RankingDataParameter param = new RankingDataParameter();
+    	param.wodIdx = wodIdx;
+    	param.count = count;
+    	param.start = start;
+    	param.orderType = orderType;
+    	if("gender".equals(category)) {
+			param.gender = filterStr;
+			System.out.println("gender filter");
+		}
+		else if("box".equals(category)) {
+			filterStr = (String) object.get("box");
+			filterInt = Integer.parseInt(filterStr);
+			param.boxIdx = filterInt;
+			System.out.println("box filter");
+		}
+		else if("scale".equals(category)) {
+			filterStr = (String) object.get("scales");
+			filterInt = Integer.parseInt(filterStr);
+			param.boxIdx = filterInt;
+			System.out.println("box filter");
+		}
+    	System.out.println(param.toString());
+	
+    	String result;
     	Gson gson = new Gson();
-//   	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordRankingList(wodIdx, orderType);
-//    	result = gson.toJson(jsonResult);
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordRankingList(param);
+    	result = gson.toJson(jsonResult);
     	return result;
 	}
 
@@ -4432,8 +4530,7 @@ const myPBCategoryList = [
 
     @Autowired
     public WodRecordInfoService wodRecordInfoService;
-     
-    // POST는 @PostMapping 사용
+
     @PostMapping("/getwodRecordInfo")
 	public String getWodRecordInfo(
 			@RequestBody String paramJson
@@ -4469,9 +4566,25 @@ const myPBCategoryList = [
     	Gson gson = new Gson();
     	
     	List<WodRecordInfo> jsonResult = wodRecordInfoService.getWodRecordInfoByWodIdx(wodIdx);
-    	for(int i=0;i<jsonResult.size();i++) {
-    		System.out.println("WodRecordInfo " + i + " " + jsonResult.get(i).toString());
-    	}
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+
+    @PostMapping("/getWodRecordInfoRecentByWod")
+	public String getWodRecordInfoRecentByWod(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값  accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	long wodIdx = (long) object.get("wodIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodRecordInfoWithBox> jsonResult = wodRecordInfoService.getWodRecordInfoRecentByWod(accountIdx, wodIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

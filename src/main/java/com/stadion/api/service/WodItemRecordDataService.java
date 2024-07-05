@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.MovementRecordData;
+import com.stadion.api.entity.RankingDataParameter;
 import com.stadion.api.entity.WodItemRecordData;
 import com.stadion.api.mapper.WodItemRecordDataMapper;
 
@@ -83,5 +84,21 @@ public class WodItemRecordDataService {
 	public int insertWodItemRecord(WodItemRecordData arg) {
 		if(wodItemRecordDataMapper==null) {return 0;}		
 		return wodItemRecordDataMapper.insertWodItemRecord(arg);
+	}
+	
+	public List<WodItemRecordData> getWodItemRecordRankingList(RankingDataParameter param) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<WodItemRecordData> wodItemRecordDataList = wodItemRecordDataMapper.getWodItemRecordRankingList(param);
+		
+		return wodItemRecordDataList;
+	}
+
+	public List<WodItemRecordData> getWodItemRecordListByWodIdx(long wodIdx) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<WodItemRecordData> wodItemRecordDataList = wodItemRecordDataMapper.getWodItemRecordListByWodIdx(wodIdx);
+		
+		return wodItemRecordDataList;
 	}
 }

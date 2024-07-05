@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodInfo;
+import com.stadion.api.entity.WodInfoNameIdx;
 import com.stadion.api.entity.WodInfoWithFile;
 import com.stadion.api.mapper.WodInfoMapper;
 
@@ -26,6 +27,13 @@ public class WodInfoService {
 		
 		return wodInfo;
 	}
+
+	public long getWodInfoIdx(String name) {
+		if(wodInfoMapper==null) {return 0;}
+		
+		return wodInfoMapper.getWodInfoIdx(name);	
+	}
+	
 	public WodInfo getwodInfoWodIdx(long idx) {
 		if(wodInfoMapper==null) {return null;}
 		
@@ -112,5 +120,13 @@ public class WodInfoService {
 		
 		return wodInfoList;
 	}
-	
+
+	public List<WodInfoNameIdx> getwodInfoSearchNameIdx(String keyword) 
+	{
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfoNameIdx> wodInfoList = wodInfoMapper.getwodInfoSearchNameIdx(keyword);
+		
+		return wodInfoList;
+	}
 }

@@ -10,6 +10,7 @@ import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodParticipantLinkInfo;
+import com.stadion.api.entity.WodRecordInfoWithBox;
 
 @Mapper
 public interface WodParticipantLinkInfoMapper {
@@ -27,4 +28,5 @@ public interface WodParticipantLinkInfoMapper {
 	public long reserveWodParticipantLinkInfo(long idx);
 	public long getWodParticipantAttend(long idx);
 	public WodBoxLinkInfoName getwodParticipantRecent(long accountIdx);
+
 }
