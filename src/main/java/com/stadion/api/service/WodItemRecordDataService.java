@@ -9,6 +9,7 @@ import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.entity.RankingDataParameter;
 import com.stadion.api.entity.ScaleGender;
 import com.stadion.api.entity.WodItemRecordData;
+import com.stadion.api.entity.WodItemRecordDataRanking;
 import com.stadion.api.mapper.WodItemRecordDataMapper;
 
 
@@ -42,10 +43,10 @@ public class WodItemRecordDataService {
 		return wodItemRecordData;
 	}
 	
-	public List<WodItemRecordData> getWodItemRecordDataByWodIdx(long wodidx) {
+	public List<WodItemRecordData> getWodItemRecordDataByWodIdx(long wodIdx) {
 		if(wodItemRecordDataMapper==null) {return null;}
 		
-		List<WodItemRecordData> wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordDataByWodIdx(wodidx);
+		List<WodItemRecordData> wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordDataByWodIdx(wodIdx);
 		
 		return wodItemRecordData;
 	}

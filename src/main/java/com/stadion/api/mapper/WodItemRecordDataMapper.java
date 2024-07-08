@@ -10,13 +10,15 @@ import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.entity.RankingDataParameter;
 import com.stadion.api.entity.ScaleGender;
 import com.stadion.api.entity.WodItemRecordData;
+import com.stadion.api.entity.WodItemRecordDataRanking;
 
 @Mapper
 public interface WodItemRecordDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodItemRecordData getWodItemRecordData(long idx);
-	public List<WodItemRecordData> getWodItemRecordDataByWodIdx(long wodidx);
+	public List<WodItemRecordData> getWodItemRecordDataByWodIdx(long wodIdx);
+
 	public Double getWodItemRecordDataByWodAvg(long wodidx);
 	public Double getWodItemRecordDataByWodBest(@Param("wodIdx") long wodidx, @Param("minMax") String minMax);
 	public List<WodItemRecordData> getWodItemRecordDataRecent(long accountIdx);

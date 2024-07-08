@@ -95,6 +95,7 @@ import com.stadion.api.entity.WodItemInsertRmData;
 import com.stadion.api.entity.WodItemOneRmData;
 import com.stadion.api.entity.WodItemRankData;
 import com.stadion.api.entity.WodItemRecordData;
+import com.stadion.api.entity.WodItemRecordDataRanking;
 import com.stadion.api.entity.WodItemRmData;
 import com.stadion.api.entity.WodParticipantLinkInfo;
 import com.stadion.api.entity.WodRecordInfo;
@@ -3367,6 +3368,21 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	return result;
 	}
     
+    @PostMapping(value="/getWodInfoFile", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String geWodInfoFile(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long idx = (long) object.get("idx");
+    	String result;
+    	Gson gson = new Gson();    	
+    	WodInfoWithFile jsonResult = wodInfoService.geWodInfoFile(idx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
     @PostMapping(value="/getwodInfoToday", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String geWodInfoToday(
 			) throws ParseException {
@@ -4025,6 +4041,52 @@ const myPBCategoryList = [
     	return result;
 	}
     
+    @PostMapping(value="/getWodItemRecordDataRankingByWodIdx", produces="text/plain;charset=UTF-8")
+	public String getWodItemRecordDataRankingByWodIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");    	
+    	Gson gson = new Gson();
+
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordDataByWodIdx(wodIdx);
+    	int n = jsonResult.size();
+    	ArrayList<WodItemRecordDataRanking> rankingList = new ArrayList<>();
+    	
+    	for(int i=0;i<n;i++) {
+    		WodItemRecordData item = jsonResult.get(i);
+    		WodItemRecordDataRanking data = new WodItemRecordDataRanking();
+    		data.accountIdx = item.accountIdx;
+    		data.boxIdx = item.boxIdx;
+    		data.gender = item.gender;
+    		data.recordType = item.recordType;
+    		data.recordUnit = item.recordUnit;
+    		data.value = item.value;
+    		data.value2 = item.value2;
+    		data.wodRecordIdx = item.wodRecordIdx;
+    		data.wodStepIdx = item.wodStepIdx;
+    		data.wbLinkIdx = item.wbLinkIdx;
+    		
+    		String path = "";
+    		List<FileData> pathList = fileDataService.getFileDataImage("C", 1, item.accountIdx);
+    		if(pathList.size()>0) {
+    			path = pathList.get(0).filePath + "/" + pathList.get(0).fileNameThumb;
+    		}
+    		data.profileImagePath = path;
+    		
+    		AccountInfo info = accountInfoService.getAccountInfoByIdx(item.accountIdx);    		
+    		data.accountNick = info.accountNick;
+    		rankingList.add(data);
+    		//System.out.println("rank data: "+i + " " + data.toString());
+    		
+    	}
+    	
+    	String result = gson.toJson(rankingList);
+    	return result;
+	}
+    
     @PostMapping("/getwodItemRecordDataByWodAvg")
 	public String getwodItemRecordDataByWodAvg(
 			@RequestBody String paramJson
@@ -4246,6 +4308,7 @@ const myPBCategoryList = [
     	
     	long dateYmd = (long) object.get("dateYmd");
     	String value = (String) object.get("value");
+    	String value2 = (String) object.get("value2");
     	String result;
     	Gson gson = new Gson();
     	
@@ -4287,7 +4350,7 @@ const myPBCategoryList = [
         	
         	if(recordType==2 && recordUnit==4) {
             	arg.value = value;
-            	arg.value2 = value;
+            	arg.value2 = value2;
         	}
         	else {
         		if(recordType==1 && recordUnit ==1) { // kg, lbs
@@ -4296,11 +4359,11 @@ const myPBCategoryList = [
         		}
             	else {
                 	arg.value = value;
-                	arg.value2 = value;
+                	arg.value2 = value2;
                	}
         	}
         	
-        	System.out.println("insertWodItemRecord: " + arg.toString());
+//        	System.out.println("insertWodItemRecord: " + arg.toString());
         	
 	    	jsonResult = (int) wodItemRecordDataService.insertWodItemRecord(arg);
     	}

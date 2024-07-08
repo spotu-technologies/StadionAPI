@@ -39,19 +39,21 @@
     <select id="getwodInfoSearchName" resultType="String">	
         SELECT name
         FROM wodInfo 
-        	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
+        	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )        	
     </select>
 
     <select id="getwodInfoSearchNameIdx" resultType="com.stadion.api.entity.WodInfoNameIdx">	
-        SELECT idx, name
+        SELECT wodInfo.idx, name
         FROM wodInfo 
         	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
+        	order by name
     </select>
     
     <select id="getwodInfoSearch" resultType="com.stadion.api.entity.WodInfo">	
         SELECT *
         FROM wodInfo 
         	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
+        	order by name
     </select>
     
             <!-- TEST 06/26
@@ -167,6 +169,18 @@
         and wi.progressDate like '2024-06-2%'
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
+    </select>
+
+    <select id="geWodInfoFile" resultType="com.stadion.api.entity.WodInfoWithFile">
+		SELECT wi.*, fd.filePath, fd.fileNameThumb
+        FROM wodInfo as wi
+        JOIN 
+		    fileData AS fd ON wi.idx = fd.pIdx
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' 
+        and fd.tableLinkIdx=37  
+        and wi.idx=#{idx}
+        
+        ORDER BY wi.lastUpdatetime DESC LIMIT 1;
     </select>
     
     

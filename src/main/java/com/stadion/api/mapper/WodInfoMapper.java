@@ -21,6 +21,7 @@ public interface WodInfoMapper {
 	public WodInfo getWodInfo(long idx);
 	public long getWodInfoIdx(String name);
 	public WodInfo getwodInfoWodIdx(long idx);
+	public WodInfoWithFile geWodInfoFile(long idx);
 	public List<WodInfo> getWodInfoAll();
 	public List<WodInfoWithFile> getWodInfoToday();
 	public List<WodInfoWithFile> getwodInfoTomorrow();
