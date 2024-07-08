@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.entity.RankingDataParameter;
+import com.stadion.api.entity.ScaleGender;
 import com.stadion.api.entity.WodItemRecordData;
 import com.stadion.api.mapper.WodItemRecordDataMapper;
 
@@ -81,6 +82,14 @@ public class WodItemRecordDataService {
 		return wodItemRecordDataList;
 	}
 	
+	public List<ScaleGender> getRankingScaleGender(long wodIdx) {
+		if(wodItemRecordDataMapper==null) {return null;}
+		
+		List<ScaleGender> wodItemRecordDataList = wodItemRecordDataMapper.getRankingScaleGender(wodIdx);
+		
+		return wodItemRecordDataList;
+	}
+		
 	public int insertWodItemRecord(WodItemRecordData arg) {
 		if(wodItemRecordDataMapper==null) {return 0;}		
 		return wodItemRecordDataMapper.insertWodItemRecord(arg);

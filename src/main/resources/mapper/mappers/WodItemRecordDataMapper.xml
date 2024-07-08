@@ -79,7 +79,17 @@
 			FROM stadion_db_dev.wodRecordInfo
 			where wodIdx = #{wodIdx} and useScaled='Y'
 			)        	
-    </select>        
+    </select>       
+    
+    <select id="getRankingScaleGender" resultType="com.stadion.api.entity.ScaleGender">	
+        SELECT value AS scale, gender
+        FROM wodItemRecordData 
+        where wodRecordIdx IN (
+			SELECT idx
+			FROM stadion_db_dev.wodRecordInfo
+			where wodIdx = #{wodIdx} and useScaled='Y'
+			)        	
+    </select> 
     
     <select id="getWodItemRecordListByWodIdx" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *

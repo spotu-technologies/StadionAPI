@@ -72,6 +72,7 @@ import com.stadion.api.entity.RankingDataParameter;
 import com.stadion.api.entity.ReportWodItemRecommend;
 import com.stadion.api.entity.ReportWodItems;
 import com.stadion.api.entity.RestAccountInfo;
+import com.stadion.api.entity.ScaleGender;
 import com.stadion.api.entity.StardionLevelData;
 import com.stadion.api.entity.TableLinkInfo;
 import com.stadion.api.entity.TicketInfo;
@@ -4171,6 +4172,21 @@ const myPBCategoryList = [
     	String result;
     	Gson gson = new Gson();
     	List<String> jsonResult = wodItemRecordDataService.getRankingScaleString(wodIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getRankingScaleGender")
+	public String getRankingScaleGender(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 wodIdx
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<ScaleGender> jsonResult = wodItemRecordDataService.getRankingScaleGender(wodIdx);
     	result = gson.toJson(jsonResult);
     	return result;
 	}
