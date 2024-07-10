@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.NumbersRankData;
+import com.stadion.api.entity.NumbersRankDataIdx;
 import com.stadion.api.entity.WodItemInsertRmData;
 import com.stadion.api.entity.WodItemOneRmData;
 import com.stadion.api.entity.WodItemOneRmDataHistory;
@@ -65,9 +66,9 @@ public class WodItemOneRmDataService {
 		return wodItemOneRmDataList;
 	}
 	
-	public List<Long> getWodItemOneRmPoundClubByGender(String gender) {
+	public List<NumbersRankDataIdx> getWodItemOneRmPoundClubByGender(String gender) {
 		if(wodItemOneRmDataMapper==null) {return null;}
-		List<Long> wodItemOneRmDataList = wodItemOneRmDataMapper.getWodItemOneRmPoundClubByGender(gender);
+		List<NumbersRankDataIdx> wodItemOneRmDataList = wodItemOneRmDataMapper.getWodItemOneRmPoundClubByGender(gender);
 		return wodItemOneRmDataList;
 	}
 

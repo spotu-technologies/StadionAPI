@@ -1,7 +1,7 @@
 package com.stadion.api.entity;
 
-public class WodItemOneRmDataHistory {
+public class NumbersRankDataIdx {
 	public long accountIdx;
-	public long month;
+	public String accountNick;
 	public String total;
 }

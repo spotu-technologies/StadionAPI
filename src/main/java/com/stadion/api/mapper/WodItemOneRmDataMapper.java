@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.stadion.api.entity.AccountInfo;
 import com.stadion.api.entity.NumbersRankData;
+import com.stadion.api.entity.NumbersRankDataIdx;
 import com.stadion.api.entity.WodItemInsertRmData;
 import com.stadion.api.entity.WodItemOneRmData;
 import com.stadion.api.entity.WodItemOneRmDataHistory;
@@ -22,7 +23,7 @@ public interface WodItemOneRmDataMapper {
 	public List<WodItemOneRmDataHistory> getWodItemOneRmDataPoundHistory(long accountIdx);
 	public List<WodItemOneRmData> getWodItemOneRmDataPersonalDetail(long accountIdx);
 	public List<WodItemOneRmData> getWodItemOneRmDataClub(long accountIdx);
-	public List<Long> getWodItemOneRmPoundClubByGender(@Param("gender") String gender);
+	public List<NumbersRankDataIdx> getWodItemOneRmPoundClubByGender(@Param("gender") String gender);
 	public NumbersRankData getNumbersRankData(long accountIdx);
 	public List<WodItemOneRmData> getWodItemOneRmDataClubMan();
 	public List<WodItemOneRmData> getWodItemOneRmDataClubWoman();

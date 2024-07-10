@@ -36,10 +36,54 @@
     FROM RankedData
     WHERE rnk = 1
     ORDER BY FIELD(wodItemIdx, 15, 12, 11, 23, 4, 35, 25, 14, 7, 3), value2 DESC;
-        	
     </select>
     
-    <select id="getWodItemOneRmPoundClubByGender" resultType="Long">
+    <select id="getWodItemOneRmDataPoundHistory" parameterType="map" resultType="com.stadion.api.entity.WodItemOneRmDataHistory">
+    <![CDATA[
+		SELECT accountIdx, DATE_FORMAT( FROM_UNIXTIME(regUnixTime), '%m') AS month, SUM(value2) AS total
+		FROM wodItemOneRmData
+        	WHERE  accountIdx = #{accountIdx}
+            and wodItemIdx IN (15, 12, 4)
+        	and DATE_FORMAT( FROM_UNIXTIME(regUnixTime), '%Y')=DATE_FORMAT(CURDATE(), '%Y')
+            GROUP BY month    
+        	]]>         	
+    </select>
+    
+    
+    <select id="getWodItemOneRmPoundClubByGender" resultType="com.stadion.api.entity.NumbersRankDataIdx">
+		select accountIdx, ai.accountNick, sum(wt) AS total
+			from 
+			(
+				SELECT accountIdx, max(value2) AS wt, max(value2) AS lift
+				FROM stadion_db_dev.wodItemOneRmData AS wiord
+				JOIN accountInfo AS ai
+				ON ai.idx = wiord.accountIdx and ai.gender = #{gender}
+				where wodItemIdx = 15
+				GROUP BY accountIdx
+			
+				Union all
+				SELECT accountIdx, max(value2) AS wt, max(value2) AS squat
+				FROM stadion_db_dev.wodItemOneRmData AS wiord
+				JOIN accountInfo AS ai
+				ON ai.idx = wiord.accountIdx and ai.gender = #{gender}
+				where wodItemIdx = 12
+				GROUP BY accountIdx
+			
+				Union all
+				SELECT accountIdx, max(value2) AS wt, max(value2) AS press
+				FROM stadion_db_dev.wodItemOneRmData AS wiord
+				JOIN accountInfo AS ai
+				ON ai.idx = wiord.accountIdx and ai.gender = #{gender}
+				where wodItemIdx = 4
+				GROUP BY accountIdx
+				order by wt DESC
+			) AS T
+			JOIN accountInfo as ai
+			ON ai.idx = accountIdx
+			group by accountIdx
+			order by total DESC
+			LIMIT 10
+    <!-- 
     SELECT accountIdx, sum(value2) AS wt
 		FROM stadion_db_dev.wodItemOneRmData AS wiord
 		JOIN accountInfo AS ai
@@ -48,10 +92,11 @@
 		GROUP BY accountIdx
 		order by wt DESC
 		LIMIT 10
+		-->
     </select>
     
     <select id="getNumbersRankData" resultType="com.stadion.api.entity.NumbersRankData">
-    SELECT ai.idx, ai.accountNick, SUM(WIORD1.value2) AS deadLift, SUM(WIORD2.value2) AS backSquat, SUM(WIORD3.value2) AS benchPress, SUM(WIORD4.value2) AS total
+    SELECT ai.idx, ai.accountNick, MAX(WIORD1.value2) AS deadLift, MAX(WIORD2.value2) AS backSquat, MAX(WIORD3.value2) AS benchPress, SUM(WIORD4.value2) AS total
 		FROM accountInfo AS ai
 		JOIN stadion_db_dev.wodItemOneRmData AS WIORD1
 		ON WIORD1.wodItemIdx = 15 and WIORD1.accountIdx=ai.idx
@@ -193,15 +238,6 @@
 	SELECT * 
 	 <include refid="rmTypeFilter"/> 
         	WHERE  accountIdx = #{accountIdx}         	
-    </select>
-    
-    <select id="getWodItemOneRmDataPoundHistory" parameterType="map" resultType="com.stadion.api.entity.WodItemOneRmDataHistory">
-    <![CDATA[
-		SELECT *, DATE_FORMAT( FROM_UNIXTIME(regUnixTime), '%m') AS month
-		FROM wodItemOneRmData
-        	WHERE  accountIdx = #{accountIdx}
-        	and DATE_FORMAT( FROM_UNIXTIME(regUnixTime), '%Y')=DATE_FORMAT(CURDATE(), '%Y')
-        	]]>         	
     </select>
     
     

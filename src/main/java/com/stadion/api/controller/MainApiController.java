@@ -64,6 +64,7 @@ import com.stadion.api.entity.MovementPointData;
 import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.entity.NoticeBoard;
 import com.stadion.api.entity.NumbersRankData;
+import com.stadion.api.entity.NumbersRankDataIdx;
 import com.stadion.api.entity.PolicyAgreeData;
 import com.stadion.api.entity.PolicyBoard;
 import com.stadion.api.entity.PolicyHistory;
@@ -3570,24 +3571,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @PostMapping("/getwodItemOneRmData")
 	public String getWodItemOneRmData(
-			
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	WodItemOneRmData jsonResult = wodItemOneRmDataService.getWodItemOneRmData(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3668,10 +3659,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	String result;
     	Gson gson = new Gson();
     	
-    	List<Long> rankIdxs = wodItemOneRmDataService.getWodItemOneRmPoundClubByGender(gender);
+    	List<NumbersRankDataIdx> rankIdxs = wodItemOneRmDataService.getWodItemOneRmPoundClubByGender(gender);
     	ArrayList<NumbersRankData> jsonResult =  new ArrayList<>();
     	for(int i=0;i<rankIdxs.size();i++) {
-    		NumbersRankData data = wodItemOneRmDataService.getNumbersRankData(rankIdxs.get(i));
+    		NumbersRankData data = wodItemOneRmDataService.getNumbersRankData(rankIdxs.get(i).accountIdx);
+    		data.total = rankIdxs.get(i).total; 
     		jsonResult.add(data);
     	}
 
