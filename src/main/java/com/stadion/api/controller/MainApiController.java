@@ -63,6 +63,7 @@ import com.stadion.api.entity.MovementParticipantLinkInfo;
 import com.stadion.api.entity.MovementPointData;
 import com.stadion.api.entity.MovementRecordData;
 import com.stadion.api.entity.NoticeBoard;
+import com.stadion.api.entity.NumbersRankData;
 import com.stadion.api.entity.PolicyAgreeData;
 import com.stadion.api.entity.PolicyBoard;
 import com.stadion.api.entity.PolicyHistory;
@@ -93,6 +94,7 @@ import com.stadion.api.entity.WodItemCategoryInfo;
 import com.stadion.api.entity.WodItemInfo;
 import com.stadion.api.entity.WodItemInsertRmData;
 import com.stadion.api.entity.WodItemOneRmData;
+import com.stadion.api.entity.WodItemOneRmDataHistory;
 import com.stadion.api.entity.WodItemRankData;
 import com.stadion.api.entity.WodItemRecordData;
 import com.stadion.api.entity.WodItemRecordDataRanking;
@@ -248,7 +250,7 @@ public class MainApiController {
        
     @PostMapping(value="/getaccountinfologin", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getAccountInfoLogin(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
@@ -256,7 +258,7 @@ public class MainApiController {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	System.out.println("Start time : " + dateFormat.format(date));
     	long startLong = System.currentTimeMillis();
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -702,14 +704,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public ActionHistoryService actionHistoryService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getactionHistory")
 	public String getActionHistory(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -731,14 +733,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public BoxAccountLinkInfoService boxAccountLinkInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getboxAccountLinkInfo")
 	public String getBoxAccountLinkInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -832,14 +834,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public BoxInfoService boxInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getboxInfo")
 	public String getBoxInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -861,7 +863,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getBoxInfoAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -876,14 +878,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public BoxMatchTemplateInfoService boxMatchTemplateInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getboxMatchTemplateInfo")
 	public @ResponseBody String getBoxMatchTemplateInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -906,14 +908,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public BoxMatchTemplateLinkInfoService boxMatchTemplateLinkInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getboxMatchTemplateLinkInfo")
 	public String getBoxMatchTemplateLinkInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -935,14 +937,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public BwHistoryService bwHistoryService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getbwHistory")
 	public String getBwHistory(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -991,7 +993,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @PostMapping("/getbwHistorWeight")
 	public String getBwHistorWeight(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
@@ -1017,14 +1019,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public CategoryInfoService categoryInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getcategoryInfo")
 	public String getCategoryInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1045,11 +1047,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
    
     @PostMapping(value="/getcategoryInfoBadgeName", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getCategoryInfoBadgeName(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1072,14 +1074,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public CommentDataService commentDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getcommentData")
 	public String getCommentData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1101,14 +1103,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public EventBoardService eventBoardService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping(value="/geteventBoard", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getEventBoard(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1131,7 +1133,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getEventBoardAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -1151,7 +1153,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	long start = (long) object.get("start");
     	long count = (long) object.get("count");
     	
-    	//System.out.println(paramJson);    	System.out.printf("start %d count %d\n", start, count);
+    	    	System.out.printf("start %d count %d\n", start, count);
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -1167,14 +1169,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public FaqBoardService faqBoardService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getfaqBoard")
 	public String getFaqBoard(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1197,7 +1199,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getFaqBoardAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -1212,14 +1214,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public FileDataService fileDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getfileData")
 	public String getFileData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1240,11 +1242,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @PostMapping(value="/getfileDataFile", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getFileDataFile(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1267,11 +1269,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @PostMapping(value="/getfileDataImage", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getFileDataImage(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1374,11 +1376,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
      
     @PostMapping(value="/getfollowLinkInfoFollow", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getFollowLinkInfoFollow(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1400,11 +1402,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @PostMapping(value="/getfollowLinkInfoReg", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getFollowLinkInfoReg(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1427,14 +1429,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public GuideBoardService guideBoardService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getguideBoard")
 	public String getGuideBoard(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1456,7 +1458,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getGuideBoardAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -1472,14 +1474,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public InjuryDataService injuryDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getinjuryData")
 	public String getInjuryData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1594,14 +1596,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public InjuryInfoService injuryInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getinjuryInfo")
 	public String getInjuryInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1623,7 +1625,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getInjuryInfoAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -1638,7 +1640,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getInjuryInfoLast(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -1655,14 +1657,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public LevelDataService levelDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getlevelData")
 	public String getLevelData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1682,11 +1684,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @PostMapping("/getlevelDataLevel")
 	public String getLevelDataLevel(
-			// 인자 전달, json으로 옴
+			
 						@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1733,14 +1735,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public LikeDataService likeDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getlikeData")
 	public String getLikeData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1763,14 +1765,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MemoDataService memoDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getmemoData")
 	public String getMemoData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1799,15 +1801,10 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 idx
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	MomInfo jsonResult = momInfoService.getMomInfo(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -1815,9 +1812,6 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @PostMapping(value="/getmomInfoAll", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getMomInfoAll(
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	    	
     	String result;
     	Gson gson = new Gson();
     	
@@ -1899,14 +1893,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MomMovementLinkInfoService momMovementLinkInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getmomMovementLinkInfo")
 	public String getMomMovementLinkInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -1929,27 +1923,17 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MomParticipantLinkInfoService momParticipantLinkInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getmomParticipantLinkInfo")
 	public String getMomParticipantLinkInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	MomParticipantLinkInfo jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfo(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2028,6 +2012,9 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 
 
     // UTF8 필수, 한글 깨짐 
+    @Operation(summary = "getMomRankingData MtC 랭킹", 
+    		description = "JSON Ex: { \"momIdx\": 66 , \"year\": 2023, \"start\": 0, \"count\": 15 }" 
+    + " \r\n  Option: \"category\":\"gender\", \"filter\":\"W\"  \"category\":\"region\", \"filter\": \"031\"  \"category\":\"age\", \"filter\": \"30\"  \"category\":\"weigth\", \"filter\": \"50\" ")
     @PostMapping(value="/getMomRankingData", produces="text/plain;charset=UTF-8")
 	public String getMomRankingData(
 			@RequestBody String paramJson
@@ -2040,13 +2027,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	long start = (long) object.get("start");
     	long count = (long) object.get("count");
     	
-    	
     	String filterStr = "";
     	long filterInt = 0;
     	String category = "";
     	
     	try {
-    		//type = (String) object.get("type");
     		category = (String) object.get("category");    		
     	}
     	catch(Exception ex) {
@@ -2119,14 +2104,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 			System.out.println("weight filter");
 		}
     	
-    	System.out.println(param.toString());
+    	//System.out.println(param.toString());
     	
 		List<MomRankDataResult> list = momRankDataService.getMomRankingDataList(param);
 				//momIdx, levelField, orderType, year, start, count, minMax);
 		for(int i=0; i< list.size(); i++) {
-			System.out.println(list.get(i).toString());
+			//System.out.println(list.get(i).toString());
+			System.out.println(list.get(i).lfl);
 		}
-		
 		result = gson.toJson(list);
 
     	
@@ -2137,14 +2122,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MovementInfoService movementInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getmovementInfo")
 	public String getMovementInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -2182,14 +2167,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MovementParticipantLinkInfoService movementParticipantLinkInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getmovementParticipantLinkInfo")
 	public String getMovementParticipantLinkInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -2212,20 +2197,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MovementPointDataService movementPointDataService;
      
-    // POST는 @PostMapping 사용
+
     @PostMapping("/getmovementPointData")
 	public String getMovementPointData(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -2242,7 +2223,6 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public MovementRecordDataService movementRecordDataService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getmovementRecordData")
 	public String getMovementRecordData(
 			@RequestBody String paramJson
@@ -2250,7 +2230,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 accountIdx
     	long accountIdx = (long) object.get("accountIdx");
     	
     	String result;
@@ -2266,7 +2246,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getMovementRecordDataAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	/*
     	String hash = BCrypt.hashpw("only4u%!62", "TmekEldhszmfhTmvltdlqslEk");
     	boolean s = BCrypt.checkpw("$2y$12$wmCug.Pp3Abt3Z61236VUet83RJmkOMvLgzbD.9UyQKthJST.K0Vy", hash);
@@ -2514,21 +2494,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @Autowired
     public NoticeBoardService noticeBoardService;
-     
-    // POST는 @PostMapping 사용
+
     @PostMapping("/getnoticeBoard")
 	public String getNoticeBoard(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -2609,20 +2584,15 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public PolicyAgreeDataService policyAgreeDataService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getpolicyAgreeData")
 	public String getPolicyAgreeData(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -2659,20 +2629,15 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public PolicyBoardService policyBoardService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getpolicyBoard")
 	public String getPolicyBoard(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 idx
     	long idx = (long) object.get("idx");
     	
     	String result;
@@ -2688,27 +2653,19 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 
     @PostMapping(value="/getpolicyBoardAll", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getPolicyBoardAll(
-			// 인자 전달, json으로 옴
 						@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	
-    	// 필요값 userID
+    	// 필요값 isOpen, policyType
     	String isOpen = (String) object.get("isOpen");
     	long policyType = (long) object.get("policyType");
     	
-    
-    	    	
     	String result;
     	Gson gson = new Gson();
-    	
     	List<PolicyBoard> jsonResult = policyBoardService.getPolicyBoardAll(policyType, isOpen);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2716,88 +2673,53 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     
     @Autowired
     public PolicyHistoryService policyHistoryService;
-     
-    // POST는 @PostMapping 사용
     @PostMapping("/getpolicyHistory")
 	public String getPolicyHistory(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	PolicyHistory jsonResult = policyHistoryService.getPolicyHistory(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-
-
     
     @Autowired
     public PushBoardService pushBoardService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getpushBoard")
 	public String getPushBoard(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	PushBoard jsonResult = pushBoardService.getPushBoard(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-
 
     
     @Autowired
     public QnaBoardService qnaBoardService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getqnaBoard")
 	public String getQnaBoard(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	QnaBoard jsonResult = qnaBoardService.getQnaBoard(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2807,27 +2729,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public ReportWodItemRecommendService reportWodItemRecommendService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getreportWodItemRecommend")
 	public String getReportWodItemRecommend(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	ReportWodItemRecommend jsonResult = reportWodItemRecommendService.getReportWodItemRecommend(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2837,27 +2748,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public ReportWodItemsService reportWodItemsService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getreportWodItems")
 	public String getReportWodItems(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	ReportWodItems jsonResult = reportWodItemsService.getReportWodItems(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2867,16 +2767,10 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public RestAccountInfoService restAccountInfoService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getrestAccountInfo")
 	public String getRestAccountInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
@@ -2885,9 +2779,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	
     	String result;
     	Gson gson = new Gson();
-    	
     	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfo(userID);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2895,21 +2787,17 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 
     @PostMapping("/getrestAccountInfobyemail")
 	public String getRestAccountInfoByEmailAddress(
-			// 인자 전달, json으로 옴
 						@RequestBody String paramJson
 			) throws ParseException {
-		// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값을 get 해서 전달
+    	// 필요값을 get 해서 전달: emailAddress
     	String emailAddress = (String) object.get("emailAddress");
     	String result;
     	Gson gson = new Gson();
     	RestAccountInfo jsonResult = restAccountInfoService.getRestAccountInfoByEmail(emailAddress);
-
     	result = gson.toJson(jsonResult);
-    	
 		return result;
 	}
 
@@ -2918,27 +2806,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public StardionLevelDataService stardionLevelDataService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getstardionLevelData")
 	public String getStardionLevelData(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	StardionLevelData jsonResult = stardionLevelDataService.getStardionLevelData(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2948,25 +2825,15 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public TableLinkInfoService tableLinkInfoService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/gettableLinkInfo")
 	public String getTableLinkInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	TableLinkInfo jsonResult = tableLinkInfoService.getTableLinkInfo(idx);
 
     	result = gson.toJson(jsonResult);
@@ -2978,27 +2845,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public TicketInfoService ticketInfoService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getticketInfo")
 	public String getTicketInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	TicketInfo jsonResult = ticketInfoService.getTicketInfo(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3006,14 +2862,9 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @PostMapping(value="/getticketInfoAll", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getTicketInfoAll(
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	    	
     	String result;
     	Gson gson = new Gson();
-    	
     	List<TicketInfo> jsonResult = ticketInfoService.getTicketInfoAll();
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3023,27 +2874,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public TicketPaymentDataService ticketPaymentDataService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/getticketPaymentData")
 	public String getTicketPaymentData(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long accountIdx = (long) object.get("accountIdx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	TicketPaymentData jsonResult = ticketPaymentDataService.getTicketPaymentData(accountIdx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3052,14 +2892,10 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getTicketPaymentDataBox(
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long accountIdx = (long) object.get("accountIdx");
     	System.out.println("ticketPaymentDataBox" + accountIdx);
-    
     	String result;
     	Gson gson = new Gson();
     	
@@ -3074,27 +2910,16 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public TokenDataService tokenDataService;
      
-    // POST는 @PostMapping 사용
     @PostMapping("/gettokenData")
 	public String getTokenData(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	TokenData jsonResult = tokenDataService.getTokenData(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3104,14 +2929,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public TokenListService tokenListService;
      
- // POST는 @PostMapping 사용
+ 
     @PostMapping("/gettokenList")
 	public String getTokenList(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3133,14 +2958,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WithdrawDataService withdrawDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwithdrawData")
 	public String getWithdrawData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3163,7 +2988,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodBoxLinkInfoService wodBoxLinkInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodBoxLinkInfo")
 	public String getWodBoxLinkInfo(
 			@RequestBody String paramJson
@@ -3188,7 +3013,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getWodBoxLinkInfoAll(
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	    	
     	String result;
     	Gson gson = new Gson();
@@ -3275,14 +3100,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodCategoryInfoService wodCategoryInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodCategoryInfo")
 	public String getWodCategoryInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3369,7 +3194,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	}
     
     @PostMapping(value="/getWodInfoFile", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String geWodInfoFile(
+	public @ResponseBody String getWodInfoFile(
 			@RequestBody String paramJson
 			) throws ParseException {
     	
@@ -3378,7 +3203,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	long idx = (long) object.get("idx");
     	String result;
     	Gson gson = new Gson();    	
-    	WodInfoWithFile jsonResult = wodInfoService.geWodInfoFile(idx);
+    	WodInfoWithFile jsonResult = wodInfoService.getWodInfoFile(idx);
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3564,14 +3389,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodItem3RmDataService wodItem3RmDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItem3RmData")
 	public String getWodItem3RmData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3616,14 +3441,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodItem5RmDataService wodItem5RmDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItem5RmData")
 	public String getWodItem5RmData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3668,14 +3493,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodItemCategoryInfoService wodItemCategoryInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItemCategoryInfo")
 	public String getWodItemCategoryInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3698,14 +3523,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodItemInfoService wodItemInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItemInfo")
 	public String getWodItemInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3742,14 +3567,14 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     @Autowired
     public WodItemOneRmDataService wodItemOneRmDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItemOneRmData")
 	public String getWodItemOneRmData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -3772,41 +3597,44 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getWodItemOneRmDataPersonal(
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
+    	// 필요값 accountIdx
     	long accountIdx = (long) object.get("accountIdx");
- 
-    
     	String result;
     	Gson gson = new Gson();
-    	
     	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataPersonal(accountIdx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
     
+    @PostMapping(value="/getWodItemOneRmDataPoundHistory", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmDataPoundHistory(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<WodItemOneRmDataHistory> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataPoundHistory(accountIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @PostMapping(value="/getwodItemOneRmDataPersonalDetail", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodItemOneRmDataPersonalDetail(
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
+    	// 필요값 accountIdx
     	long accountIdx = (long) object.get("accountIdx");
- 
-    
     	String result;
     	Gson gson = new Gson();
-    	
     	List<WodItemOneRmData> jsonResult = wodItemOneRmDataService.getWodItemOneRmDataPersonalDetail(accountIdx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3816,14 +3644,10 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 	public @ResponseBody String getWodItemOneRmDataClub(
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
+    	// 필요값 accountIdx
     	long accountIdx = (long) object.get("accountIdx");
- 
-    
     	String result;
     	Gson gson = new Gson();
     	
@@ -3832,13 +3656,32 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-    
+
+    @PostMapping(value="/getWodItemOneRmPoundClubByGender", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getWodItemOneRmPoundClubByGender(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 gender
+    	String gender = (String) object.get("gender");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<Long> rankIdxs = wodItemOneRmDataService.getWodItemOneRmPoundClubByGender(gender);
+    	ArrayList<NumbersRankData> jsonResult =  new ArrayList<>();
+    	for(int i=0;i<rankIdxs.size();i++) {
+    		NumbersRankData data = wodItemOneRmDataService.getNumbersRankData(rankIdxs.get(i));
+    		jsonResult.add(data);
+    	}
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
     
     @PostMapping(value="/getwodItemOneRmDataClubMan", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getWodItemOneRmDataClubMan(
 			) throws ParseException {
-    	
-
     	String result;
     	Gson gson = new Gson();
     	
@@ -3977,14 +3820,14 @@ const myPBCategoryList = [
     @Autowired
     public WodItemRankDataService wodItemRankDataService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodItemRankData")
 	public String getWodItemRankData(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4673,14 +4516,14 @@ const myPBCategoryList = [
     @Autowired
     public WodRoundInfoService wodRoundInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodRoundInfo")
 	public String getWodRoundInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4703,14 +4546,14 @@ const myPBCategoryList = [
     @Autowired
     public WodRoundItemInfoService wodRoundItemInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodRoundItemInfo")
 	public String getWodRoundItemInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4774,7 +4617,7 @@ const myPBCategoryList = [
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4797,14 +4640,14 @@ const myPBCategoryList = [
     @Autowired
     public WodTemplateRecordInfoService wodTemplateRecordInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodTemplateRecordInfo")
 	public String getWodTemplateRecordInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4827,14 +4670,14 @@ const myPBCategoryList = [
     @Autowired
     public WodTemplateRoundInfoService wodTemplateRoundInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodTemplateRoundInfo")
 	public String getWodTemplateRoundInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4857,14 +4700,14 @@ const myPBCategoryList = [
     @Autowired
     public WodTemplateRoundItemInfoService wodTemplateRoundItemInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodTemplateRoundItemInfo")
 	public String getWodTemplateRoundItemInfo(
-			// 인자 전달, json으로 옴
+			
 			@RequestBody String paramJson
 			) throws ParseException {
     	
-    	//System.out.println(paramJson);
+    	
     	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
@@ -4887,15 +4730,11 @@ const myPBCategoryList = [
     @Autowired
     public WodTemplateStepInfoService wodTemplateStepInfoService;
      
-    // POST는 @PostMapping 사용
+    
     @PostMapping("/getwodTemplateStepInfo")
 	public String getWodTemplateStepInfo(
-			// 인자 전달, json으로 옴
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	//System.out.println(paramJson);
-    	
     	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);

@@ -58,14 +58,16 @@
     
             <!-- TEST 06/26
         WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')    			-->
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate='2024-06-26'    			
+        -->
     
     <select id="getWodInfoToday" resultType="com.stadion.api.entity.WodInfoWithFile">
 		SELECT wi.*, fd.filePath, fd.fileNameThumb
         FROM wodInfo as wi
         JOIN 
 		    fileData AS fd ON wi.idx = fd.pIdx
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate='2024-06-26'
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
@@ -75,7 +77,7 @@
         FROM wodInfo as wi
         JOIN 
 		    fileData AS fd ON wi.idx = fd.pIdx
-        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate='2024-06-27'
+        WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
@@ -89,6 +91,7 @@
         WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  
         and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
         
+        and progressDate like '2024-06-2%'
         and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
         
         -->
@@ -100,7 +103,7 @@
         JOIN 
 		    fileData AS fd ON wi.idx = fd.pIdx
         WHERE wi.isOpen = 'Y' and fd.fileKind='C' and fd.tableLinkIdx=37  
-        and progressDate like '2024-06-2%'
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>
@@ -108,6 +111,7 @@
 <!--  test
     	    and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
         and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
+        and progressDate='2024-06-26'
 
  -->
     <select id="getwodInfoTodayByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
@@ -124,7 +128,7 @@
         	and wi.idx = fd.pIdx
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
-    	    and progressDate='2024-06-26'
+    	    and progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
@@ -143,13 +147,14 @@
         	and wi.idx = fd.pIdx
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
-        and wi.progressDate='2024-06-27'
+        and progressDate=DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL+1 DAY), '%Y-%m-%d')
         
         ORDER BY wi.lastUpdatetime DESC;
     </select>
 
 <!--
-        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m') 
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+        and wi.progressDate like '2024-06-2%' 
  -->    
     <select id="getwodInfoPastByBox" resultType="com.stadion.api.entity.WodInfoWithFile">
     <![CDATA[
@@ -166,12 +171,12 @@
         	and wi.idx = fd.pIdx
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
-        and wi.progressDate like '2024-06-2%'
+        and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>
 
-    <select id="geWodInfoFile" resultType="com.stadion.api.entity.WodInfoWithFile">
+    <select id="getWodInfoFile" resultType="com.stadion.api.entity.WodInfoWithFile">
 		SELECT wi.*, fd.filePath, fd.fileNameThumb
         FROM wodInfo as wi
         JOIN 

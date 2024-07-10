@@ -18,8 +18,7 @@
     
     <select id="getWodItemOneRmDataPersonal" resultType="com.stadion.api.entity.WodItemOneRmData">	
         SELECT *
-        FROM wodItemOneRmData WHERE wodItemOneRmData.accountIdx = #{accountIdx} AND wodItemOneRmData.wodItemIdx IN (15,12,11,23,4,35,25,14,7,3) ORDER BY lastUpdatetime DESC;
-        	
+        FROM wodItemOneRmData WHERE wodItemOneRmData.accountIdx = #{accountIdx} AND wodItemOneRmData.wodItemIdx IN (15,12,11,23,4,35,25,14,7,3) ORDER BY lastUpdatetime DESC;        	
     </select>
     
     
@@ -40,6 +39,31 @@
         	
     </select>
     
+    <select id="getWodItemOneRmPoundClubByGender" resultType="Long">
+    SELECT accountIdx, sum(value2) AS wt
+		FROM stadion_db_dev.wodItemOneRmData AS wiord
+		JOIN accountInfo AS ai
+		ON ai.idx = wiord.accountIdx and ai.gender = #{gender}
+		where wodItemIdx in (15,12, 4)
+		GROUP BY accountIdx
+		order by wt DESC
+		LIMIT 10
+    </select>
+    
+    <select id="getNumbersRankData" resultType="com.stadion.api.entity.NumbersRankData">
+    SELECT ai.idx, ai.accountNick, SUM(WIORD1.value2) AS deadLift, SUM(WIORD2.value2) AS backSquat, SUM(WIORD3.value2) AS benchPress, SUM(WIORD4.value2) AS total
+		FROM accountInfo AS ai
+		JOIN stadion_db_dev.wodItemOneRmData AS WIORD1
+		ON WIORD1.wodItemIdx = 15 and WIORD1.accountIdx=ai.idx
+		JOIN stadion_db_dev.wodItemOneRmData AS WIORD2
+		ON WIORD2.wodItemIdx = 12 and WIORD2.accountIdx=ai.idx
+		JOIN stadion_db_dev.wodItemOneRmData AS WIORD3
+		ON WIORD3.wodItemIdx = 4 and WIORD3.accountIdx=ai.idx
+		JOIN stadion_db_dev.wodItemOneRmData AS WIORD4
+		ON WIORD4.wodItemIdx IN (15,12,4) and WIORD4.accountIdx=ai.idx
+		
+		where ai.idx = #{accountIdx}
+    </select>    
     
     <select id="getWodItemOneRmDataClub" resultType="com.stadion.api.entity.WodItemOneRmData">	
         WITH RankedData AS (
@@ -170,6 +194,16 @@
 	 <include refid="rmTypeFilter"/> 
         	WHERE  accountIdx = #{accountIdx}         	
     </select>
+    
+    <select id="getWodItemOneRmDataPoundHistory" parameterType="map" resultType="com.stadion.api.entity.WodItemOneRmDataHistory">
+    <![CDATA[
+		SELECT *, DATE_FORMAT( FROM_UNIXTIME(regUnixTime), '%m') AS month
+		FROM wodItemOneRmData
+        	WHERE  accountIdx = #{accountIdx}
+        	and DATE_FORMAT( FROM_UNIXTIME(regUnixTime), '%Y')=DATE_FORMAT(CURDATE(), '%Y')
+        	]]>         	
+    </select>
+    
     
     <insert id="insertPersonalBest" parameterType="com.stadion.api.entity.WodItemInsertRmData">
 	INSERT 

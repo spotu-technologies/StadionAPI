@@ -50,10 +50,10 @@ public class WodInfoService {
 		
 		return wodInfoList;
 	}
-	public WodInfoWithFile geWodInfoFile(long idx) {
+	public WodInfoWithFile getWodInfoFile(long idx) {
 		if(wodInfoMapper==null) {return null;}
 		
-		WodInfoWithFile wodInfo = wodInfoMapper.geWodInfoFile(idx);
+		WodInfoWithFile wodInfo = wodInfoMapper.getWodInfoFile(idx);
 		
 		return wodInfo;
 	}

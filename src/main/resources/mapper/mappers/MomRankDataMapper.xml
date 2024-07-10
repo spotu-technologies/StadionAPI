@@ -8,11 +8,13 @@
 
 <mapper namespace="com.stadion.api.mapper.MomRankDataMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
+    
     <select id="getMomRankData" resultType="com.stadion.api.entity.MomRankData">	
         SELECT *
         FROM momRankData 
         	WHERE momRankData.idx = #{idx}
     </select>
+    
 
     <sql id="gradeList">
         ld.${levelField} as lfl,
