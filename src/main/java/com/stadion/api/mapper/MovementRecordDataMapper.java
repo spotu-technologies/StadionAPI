@@ -24,5 +24,6 @@ public interface MovementRecordDataMapper {
 	public List<MovementRecordData> getMovementRecordDatMomLevel(long accountIdx);
 	public List<MovementRecordData> getMovementRecordDatChallenge(long accountIdx);
 	public int insertRecordData(MovementRecordData arg);
+	public Long getmovementRecordDataMtcCount(long momIdx);
 	
 }

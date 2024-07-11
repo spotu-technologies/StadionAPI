@@ -23,9 +23,8 @@
         <!--
      momInfo (status = 1 and isOpen = Y), momParticipantLinkInfo 테이블에서 참여, 
      movementRecordData 테이블에 기록이 1개 이상 있는 경우  
-        TEST 2022~현재 -->
-    <select id="getMomParticipantLinkInfoAttend" resultType="Long">	
-		SELECT count(*) 
+        TEST 2022~현재
+         		SELECT count(*) 
 		FROM stadion_db_dev.movementRecordData
 		where momIdx IN (		
 		        SELECT mi.idx
@@ -36,6 +35,14 @@
 		)
 		AND accountIdx = #{accountIdx}    
 		AND YEAR(dateYmd) IN ( 2022, 2023, YEAR(CURRENT_DATE()) )
+         
+        -->
+    <select id="getMomParticipantLinkInfoAttend" resultType="Long">	
+		SELECT count(*) 
+		FROM stadion_db_dev.momParticipantLinkInfo
+		where momIdx = #{momIdx}
+		AND accountIdx = #{accountIdx}   
+		
     </select>
     
     <select id="getMomParticipantLinkInfoCount" resultType="Long">	
@@ -44,5 +51,31 @@
 		where accountIdx = #{accountIdx}
     </select>
     
+	<insert id="insertMomParticipantLinkInfo" parameterType="com.stadion.api.entity.MomParticipantLinkInfo">
+		INSERT INTO momParticipantLinkInfo
+ 			(momIdx,    
+        <if test="accountIdx != 0 and accountIdx != null">
+            accountIdx,
+        </if>
+ 			writer, status, regUnixtime, lastUpdatetime
+			) 
+			
+			VALUES 
+			 (
+			 #{momIdx},    
+        <if test="accountIdx != 0 and accountIdx != null">
+            #{accountIdx},
+        </if>
+ 			#{writer}, #{status}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+        	);
+	</insert>
+	
+	<delete id="deleteMomParticipantLinkInfo" parameterType="com.stadion.api.entity.MomParticipantLinkInfo">
+		DELETE FROM momParticipantLinkInfo
+            WHERE accountIdx=#{accountIdx}
+            and momIdx=#{momIdx}
+            ;
+	</delete>
+	
         
 </mapper>

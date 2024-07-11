@@ -95,6 +95,25 @@
 		-->
     </select>
     
+    <select id="getNumbersRankDataDeadLift" resultType="String">
+	    SELECT MAX(value2) AS deadLif
+			FROM stadion_db_dev.wodItemOneRmData
+			where  wodItemIdx=15
+			and accountIdx = #{accountIdx}
+    </select>
+    <select id="getNumbersRankDataBenchPress" resultType="String">
+	    SELECT MAX(value2) AS benchPress
+			FROM stadion_db_dev.wodItemOneRmData
+			where  wodItemIdx=4
+			and accountIdx = #{accountIdx}
+    </select>
+    <select id="getNumbersRankDataSquat" resultType="String">
+	    SELECT MAX(value2) AS backSquat
+			FROM stadion_db_dev.wodItemOneRmData
+			where  wodItemIdx=12
+			and accountIdx = #{accountIdx}
+    </select>
+    
     <select id="getNumbersRankData" resultType="com.stadion.api.entity.NumbersRankData">
     SELECT ai.idx, ai.accountNick, MAX(WIORD1.value2) AS deadLift, MAX(WIORD2.value2) AS backSquat, MAX(WIORD3.value2) AS benchPress, SUM(WIORD4.value2) AS total
 		FROM accountInfo AS ai

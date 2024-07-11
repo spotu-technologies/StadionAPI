@@ -18,5 +18,8 @@ public class WodInfoWithFile {
 	
 	public String filePath;
 	public String fileNameThumb;
+	public int likeCount;
+	public int participantCount;
+	public int accountCount;
 
 }

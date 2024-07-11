@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.AccountInfo;
+import com.stadion.api.entity.AccountNameNick;
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.LoginInfo;
@@ -69,6 +70,12 @@ public class AccountInfoService {
 		return accountInfo;
 	}
 	
+	public List<AccountNameNick> getAccountNameList() {
+		if(accountInfoMapper==null) {return null;}
+		List<AccountNameNick> accountInfo = accountInfoMapper.getAccountNameList();
+		return accountInfo;
+	}
+
 	public AccountInfo getAccountInfoByIdx(long accountIdx) {
 		if(accountInfoMapper==null) {return null;}
 		

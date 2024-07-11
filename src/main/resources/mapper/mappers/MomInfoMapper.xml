@@ -20,14 +20,78 @@
         FROM momInfo
         WHERE isOpen = "Y" 
         ORDER BY lastUpdatetime DESC;
-        	
     </select>
+    
+    <select id="getMomInfoListDetail" resultType="com.stadion.api.entity.MomInfoWithFile">	
+		SELECT 
+			    mi.idx AS momIdx, 
+			    mi.*, 
+			    fd.filePath, 
+			    fd.fileNameThumb,
+			    IFNULL(likeCounts.countParticipant, 0) AS likeCount,
+			    IFNULL(participantCounts.countParticipant, 0) AS participantCount,
+			    IFNULL(accountCounts.countParticipant, 0) AS accountCount,
+			    IFNULL(movementCounts.countParticipant, 0) AS movementCount
+			FROM 
+			    momInfo AS mi
+			JOIN 
+			    fileData AS fd 
+			    ON mi.idx = fd.pIdx 
+			    AND fd.status = 1
+			    AND fd.fileKind = 'C' 
+			    AND fd.tableLinkIdx = 37
+			LEFT JOIN 
+			    (SELECT pIdx AS momIdx, COUNT(*) AS countParticipant
+			     FROM likeData
+			     WHERE tableLinkIdx = 17 AND status = 1
+			     GROUP BY pIdx) AS likeCounts 
+			    ON mi.idx = likeCounts.momIdx
+			LEFT JOIN 
+			    (SELECT momIdx, COUNT(*) AS countParticipant
+			     FROM momParticipantLinkInfo
+			     WHERE status = 1
+			     GROUP BY momIdx) AS participantCounts 
+			    ON mi.idx = participantCounts.momIdx
+			LEFT JOIN 
+			    (SELECT momIdx, COUNT(*) AS countParticipant
+			     FROM momParticipantLinkInfo
+			     WHERE accountIdx = #{accountIdx} AND status = 1
+			     GROUP BY momIdx) AS accountCounts 
+			    ON mi.idx = accountCounts.momIdx
+			LEFT JOIN 
+			    (SELECT momIdx, COUNT(*) AS countParticipant
+			     FROM movementRecordData
+			     WHERE status = 1
+			     GROUP BY momIdx) AS movementCounts 
+			    ON mi.idx = movementCounts.momIdx
+			WHERE 
+			    mi.isOpen = 'Y' 
+			ORDER BY 
+			    mi.regUnixtime DESC;
+    </select>
+    
     
     <select id="getMomTeamInfo" resultType="com.stadion.api.entity.MomTeamInfo">	
         SELECT *
         FROM momTeamInfo
         	WHERE momTeamInfo.leaderAccountIdx = #{leaderAccountIdx}
     </select>
+    
+    <select id="getMomTeamInfoByMomIdx" resultType="com.stadion.api.entity.MomTeamInfo">	
+        SELECT *
+        FROM momTeamInfo
+        	WHERE momTeamInfo.momIdx = #{momIdx}
+    </select>
+    
+    <select id="getMomTeamInfoIdx" resultType="Long">	
+        SELECT idx
+        FROM momTeamInfo
+        	WHERE momTeamInfo.leaderAccountIdx = #{leaderAccountIdx}
+        	AND momTeamInfo.momIdx = #{momIdx}
+        	LIMIT 1
+    </select>
+    
+    
     
     <insert id="insertMomTeamInfo" parameterType="com.stadion.api.entity.MomTeamInfo">
 		INSERT momTeamInfo 
@@ -53,21 +117,13 @@
 	
 	<insert id="insertMomTeamMemberInfo" parameterType="com.stadion.api.entity.MomTeamMemberInfo">
 		INSERT momTeamMemberInfo 
-			( momIdx, 
-
-        <if test="momTeamIdx != '' and momTeamIdx != null">
-            momTeamIdx,
-        </if>     
+			( momIdx,         momTeamIdx,        
         	accountIdx, status,
 			regAccountIdx, regUnixtime, lastUpdatetime
 			) 
 			
 			VALUES 
-			( #{momIdx},
-        
-		<if test="momTeamIdx != '' and momTeamIdx != null">
-            momTeamIdx,
-        </if>
+			( #{momIdx}, #{momTeamIdx},        
         	#{accountIdx}, #{status},
         	#{regAccountIdx},			 
 			UNIX_TIMESTAMP(), UNIX_TIMESTAMP()			

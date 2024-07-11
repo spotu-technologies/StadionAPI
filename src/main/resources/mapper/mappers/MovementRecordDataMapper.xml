@@ -118,4 +118,12 @@
         	);
 	</insert>
 
+    <select id="getmovementRecordDataMtcCount" parameterType="long" resultType="Long">	
+        SELECT count(*)
+        FROM movementRecordData 
+        WHERE movementRecordData.momIdx = #{momIdx} 
+        AND status=1
+        	
+    </select>
+
 </mapper>

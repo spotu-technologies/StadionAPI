@@ -25,6 +25,9 @@ public interface WodItemOneRmDataMapper {
 	public List<WodItemOneRmData> getWodItemOneRmDataClub(long accountIdx);
 	public List<NumbersRankDataIdx> getWodItemOneRmPoundClubByGender(@Param("gender") String gender);
 	public NumbersRankData getNumbersRankData(long accountIdx);
+	public String getNumbersRankDataDeadLift(long accountIdx);
+	public String getNumbersRankDataBenchPress(long accountIdx);
+	public String getNumbersRankDataSquat(long accountIdx);
 	public List<WodItemOneRmData> getWodItemOneRmDataClubMan();
 	public List<WodItemOneRmData> getWodItemOneRmDataClubWoman();
 	public List<WodItemOneRmData> getWodItemOneRmDataClubAll();

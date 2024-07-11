@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.MomInfo;
+import com.stadion.api.entity.MomInfoWithFile;
 import com.stadion.api.entity.MomTeamInfo;
 import com.stadion.api.entity.MomTeamMemberInfo;
 import com.stadion.api.mapper.MomInfoMapper;
@@ -25,6 +26,14 @@ public class MomInfoService {
 		return momInfoList;
 	}
 	
+	public List<MomInfoWithFile> getMomInfoListDetail(long accountIdx) {
+		if(momInfoMapper==null) {return null;}
+		
+		List<MomInfoWithFile> momInfoList = momInfoMapper.getMomInfoListDetail(accountIdx);
+		
+		return momInfoList;
+	}
+
 	
 	public MomInfo getMomInfo(long idx) {
 		if(momInfoMapper==null) {return null;}
@@ -34,12 +43,19 @@ public class MomInfoService {
 		return momInfo;
 	}
 	
+	public Long getMomTeamInfoIdx(long leaderAccountIdx, long momIdx) {
+		if(momInfoMapper==null) {return 0L;}
+		return momInfoMapper.getMomTeamInfoIdx(leaderAccountIdx, momIdx);
+	}
+	public List<MomTeamInfo> getMomTeamInfoByMomIdx(long momIdx) {
+		if(momInfoMapper==null) {return null;}
+		List<MomTeamInfo> momInfo = momInfoMapper.getMomTeamInfoByMomIdx(momIdx);
+		return momInfo;
+	}
 	
 	public List<MomTeamInfo> getMomTeamInfo(long leaderAccountIdx) {
 		if(momInfoMapper==null) {return null;}
-		
 		List<MomTeamInfo> momInfo = momInfoMapper.getMomTeamInfo(leaderAccountIdx);
-		
 		return momInfo;
 	}
 	

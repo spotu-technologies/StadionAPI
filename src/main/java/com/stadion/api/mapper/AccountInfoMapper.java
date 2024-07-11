@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.stadion.api.entity.AccountInfo;
+import com.stadion.api.entity.AccountNameNick;
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.LoginInfo;
@@ -15,6 +16,7 @@ public interface AccountInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public AccountInfo getAccountInfo(String accountID);
+	public List<AccountNameNick> getAccountNameList();
 	public int insertAccountInfo(AccountInfo account);
 	public AccountInfo getAccountInfoByIdx(long accountIdx);
 	

@@ -27,6 +27,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.stadion.api.entity.AccountInfo;
+import com.stadion.api.entity.AccountNameNick;
 import com.stadion.api.entity.ActionHistory;
 import com.stadion.api.entity.BadgeAccountLinkInfo;
 import com.stadion.api.entity.BadgeInfo;
@@ -51,6 +52,7 @@ import com.stadion.api.entity.LoginInfoV2;
 import com.stadion.api.entity.Member;
 import com.stadion.api.entity.MemoData;
 import com.stadion.api.entity.MomInfo;
+import com.stadion.api.entity.MomInfoWithFile;
 import com.stadion.api.entity.MomMovementLinkInfo;
 import com.stadion.api.entity.MomMovementRankInfo;
 import com.stadion.api.entity.MomParticipantLinkInfo;
@@ -452,6 +454,15 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	return result;
 	}
 	
+    @PostMapping(value="/getAccountNameList", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getAccountNameList(
+			) throws ParseException {
+    	String result;
+    	Gson gson = new Gson();
+    	List<AccountNameNick> jsonResult = accountInfoService.getAccountNameList();
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
     
     @PostMapping(value="/getaccountinfo", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getAccountInfo(
@@ -1822,28 +1833,71 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	return result;
 	}
     
+    @PostMapping(value="/getMomInfoListDetail", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getMomInfoListDetail(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<MomInfoWithFile> jsonResult = momInfoService.getMomInfoListDetail(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
     @PostMapping("/getMomTeamInfo")
 	public String getMomTeamInfo(
 			@RequestBody String paramJson
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
     	long leaderAccountIdx = (long) object.get("leaderAccountIdx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	List<MomTeamInfo> jsonResult = momInfoService.getMomTeamInfo(leaderAccountIdx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getMomTeamInfoByMomIdx")
+	public String getMomTeamInfoByMomIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long momIdx = (long) object.get("momIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<MomTeamInfo> jsonResult = momInfoService.getMomTeamInfoByMomIdx(momIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
+    @PostMapping("/getMomTeamInfoIdx")
+	public String getMomTeamInfoIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long momIdx = (long) object.get("momIdx");
+    	long leaderAccountIdx = (long) object.get("leaderAccountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	Long jsonResult = momInfoService.getMomTeamInfoIdx(leaderAccountIdx, momIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
+    @Operation(summary = "insertMomTeamInfo Team MoM 만들기", 
+    		description = "JSON Ex: { \"momIdx\": 71 , \"accountIdx\": 9401, \"name\": \"Test momTeam name\"} ")     
     @PostMapping(value="/insertMomTeamInfo", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String insertMomTeamInfo(
 			@RequestBody String paramJson
 			) throws ParseException {
-
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
@@ -1865,10 +1919,11 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
         	arg.name = name;
         	arg.status = 1;
         	
-        	
 			System.out.printf(" new MomTeamInfo: %s \n", arg.toString());
 
 	    	int jsonResult = (int) momInfoService.insertMomTeamInfo(arg);
+	    	
+	    	long momTeamIdx = momInfoService.getMomTeamInfoIdx(accountIdx, momIdx);
 	    	
 	    	MomTeamMemberInfo arg2 = new MomTeamMemberInfo();
         	arg2.momIdx = (int) momIdx;
@@ -1876,8 +1931,8 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
         	arg2.regAccountIdx = (int) accountIdx;
         	arg2.status = 1;
 
-        	List<MomTeamInfo> teamInfo = momInfoService.getMomTeamInfo(accountIdx);
-        	arg2.momTeamIdx = teamInfo.get(0).idx;
+        	arg2.momTeamIdx = (int)momTeamIdx;
+        	System.out.printf(" new MomTeamMemberInfo: %s \n", arg2.toString());
         	
 	    	int jsonResult2 = (int) momInfoService.insertMomTeamMemberInfo(arg2);
 
@@ -1938,7 +1993,50 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
-    
+    @Operation(summary = "insertMomParticipantLinkInfo MtC 참여하기", 
+    		description = "JSON Ex: { \"momIdx\": 71 , \"accountIdx\": 9401} ")
+    @PostMapping("/insertMomParticipantLinkInfo")
+	public String insertMomParticipantLinkInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	long momIdx = (long) object.get("momIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	MomParticipantLinkInfo arg = new MomParticipantLinkInfo();
+    	arg.momIdx = (int) momIdx;
+    	arg.accountIdx = (int) accountIdx;
+    	arg.writer = (int) accountIdx;
+    	arg.status = 1;
+    	long jsonResult = momParticipantLinkInfoService.insertMomParticipantLinkInfo(arg);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @Operation(summary = "deleteMomParticipantLinkInfo MtC 취소하기", 
+    		description = "JSON Ex: { \"momIdx\": 71 , \"accountIdx\": 9401} ")
+    @PostMapping("/deleteMomParticipantLinkInfo")
+	public String deleteMomParticipantLinkInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	long momIdx = (long) object.get("momIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	MomParticipantLinkInfo arg = new MomParticipantLinkInfo();
+    	arg.momIdx = (int) momIdx;
+    	arg.accountIdx = (int) accountIdx;
+    	arg.writer = (int) accountIdx;
+    	arg.status = 1;
+    	long jsonResult = momParticipantLinkInfoService.deleteMomParticipantLinkInfo(arg);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}    
     @PostMapping("/getMomParticipantLinkInfoAttend")
 	public String getMomParticipantLinkInfoAttend(
 			@RequestBody String paramJson
@@ -1946,9 +2044,13 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	long accountIdx = (long) object.get("accountIdx");
+    	long momIdx = (long) object.get("momIdx");
+    	MomParticipantLinkInfo arg = new MomParticipantLinkInfo();
+    	arg.momIdx = (int) momIdx;
+    	arg.accountIdx = (int) accountIdx;
     	String result;
     	Gson gson = new Gson();
-    	long jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfoAttend(accountIdx);
+    	long jsonResult = momParticipantLinkInfoService.getMomParticipantLinkInfoAttend(arg);
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2230,24 +2332,34 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
     	// 필요값 accountIdx
     	long accountIdx = (long) object.get("accountIdx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordData(accountIdx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
     
+    @PostMapping("/getmovementRecordDataMtcCount")
+	public String getmovementRecordDataMtcCount(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 momIdx
+    	long momIdx = (long) object.get("momIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	Long jsonResult = movementRecordDataService.getmovementRecordDataMtcCount(momIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
+    
     @PostMapping(value="/getmovementRecordDataAll", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getMovementRecordDataAll(
 			) throws ParseException {
-    	
-    	
     	/*
     	String hash = BCrypt.hashpw("only4u%!62", "TmekEldhszmfhTmvltdlqslEk");
     	boolean s = BCrypt.checkpw("$2y$12$wmCug.Pp3Abt3Z61236VUet83RJmkOMvLgzbD.9UyQKthJST.K0Vy", hash);
@@ -2257,9 +2369,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	  */  	
     	String result;
     	Gson gson = new Gson();
-    	
     	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordDataAll();
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -2402,7 +2512,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 userID
+    	// 필요값 accountIdx
     	long accountIdx = (long) object.get("accountIdx");
   
     
@@ -3663,7 +3773,17 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	ArrayList<NumbersRankData> jsonResult =  new ArrayList<>();
     	for(int i=0;i<rankIdxs.size();i++) {
     		NumbersRankData data = wodItemOneRmDataService.getNumbersRankData(rankIdxs.get(i).accountIdx);
-    		data.total = rankIdxs.get(i).total; 
+    		data.total = rankIdxs.get(i).total;
+    		if(data.backSquat==null) {
+    			data.backSquat = wodItemOneRmDataService.getNumbersRankDataSquat(rankIdxs.get(i).accountIdx);
+    		}
+    		if(data.benchPress==null) {
+    			data.benchPress = wodItemOneRmDataService.getNumbersRankDataBenchPress(rankIdxs.get(i).accountIdx);
+    		}
+    		if(data.deadLift==null) {
+    			data.deadLift = wodItemOneRmDataService.getNumbersRankDataDeadLift(rankIdxs.get(i).accountIdx);
+    		}
+
     		jsonResult.add(data);
     	}
 

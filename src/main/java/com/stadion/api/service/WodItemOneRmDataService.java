@@ -78,6 +78,23 @@ public class WodItemOneRmDataService {
 		return data;
 	}
 	
+	public String getNumbersRankDataDeadLift(long accountIdx) {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		String data = wodItemOneRmDataMapper.getNumbersRankDataDeadLift(accountIdx);
+		return data;
+	}
+	public String getNumbersRankDataBenchPress(long accountIdx) {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		String data = wodItemOneRmDataMapper.getNumbersRankDataBenchPress(accountIdx);
+		return data;
+	}
+	public String getNumbersRankDataSquat(long accountIdx) {
+		if(wodItemOneRmDataMapper==null) {return null;}
+		String data = wodItemOneRmDataMapper.getNumbersRankDataSquat(accountIdx);
+		return data;
+	}
+
+	
 	
 	public List<WodItemOneRmData> getWodItemOneRmDataClubMan() {
 		if(wodItemOneRmDataMapper==null) {return null;}

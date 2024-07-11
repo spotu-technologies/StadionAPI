@@ -2,11 +2,11 @@ package com.stadion.api.entity;
 
 public class MomParticipantLinkInfo {
 
-	private Integer idx;
-	private Integer momIdx;
-	private Integer accountIdx;
-	private Integer writer;
-	private Integer status;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
+	public Integer idx;
+	public Integer momIdx;
+	public Integer accountIdx;
+	public Integer writer;
+	public Integer status;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
 }

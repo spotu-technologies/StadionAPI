@@ -99,5 +99,10 @@ public class MovementRecordDataService {
 		if(movementRecordDataMapper==null) {return 0;}		
 		return movementRecordDataMapper.insertRecordData(arg);
 	}
-	
+
+	public Long getmovementRecordDataMtcCount(long momIdx) {
+		if(movementRecordDataMapper==null) {return (long) 0;}		
+		return movementRecordDataMapper.getmovementRecordDataMtcCount(momIdx);
+	}
+
 }
