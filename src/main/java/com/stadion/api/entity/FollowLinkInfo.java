@@ -2,11 +2,11 @@ package com.stadion.api.entity;
 
 public class FollowLinkInfo {
 
-	private Integer idx;
-	private Integer followAccountIdx;
-	private Integer status;
-	private Integer regAccountIdx;
-	private Integer regUnixtime;
-	private Integer lastUpdatetime;
+	public Integer idx;
+	public Integer followAccountIdx;
+	public Integer status;
+	public Integer regAccountIdx;
+	public Integer regUnixtime;
+	public Integer lastUpdatetime;
 	
 }

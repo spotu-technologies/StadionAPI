@@ -40,4 +40,6 @@ public class MomRankDataResult {
 	
 	public String lfl;
 	public String recordValue;
+	public String filePath; 
+	public String fileNameThumb;
 }

@@ -254,6 +254,104 @@
         ORDER BY wi.lastUpdatetime DESC LIMIT 1;
     </select>
     
+
+
+    <select id="getWodInfoTodayByAccount" resultType="com.stadion.api.entity.WodInfoWithFile">
+		SELECT 
+			    wi.*, 
+			    fd.filePath, 
+			    fd.fileNameThumb,
+			    -- likeData 테이블에서 wodIdx에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM likeData 
+			     WHERE tableLinkIdx = 37 
+			     AND pIdx = wi.idx) AS likeCount,
+			    -- wodParticipantLinkInfo 테이블에서 wodIdx에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM wodParticipantLinkInfo 
+			     WHERE wodIdx = wi.idx) AS participantCount,
+			    -- wodParticipantLinkInfo 테이블에서 wodIdx와 accountIdx=9401에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM wodParticipantLinkInfo 
+			     WHERE wodIdx = wi.idx 
+			     AND accountIdx = #{accountIdx}) AS accountCount
+			FROM 
+			    wodInfo AS wi
+			JOIN 
+			    fileData AS fd ON wi.idx = fd.pIdx
+			WHERE 
+			    wi.isOpen = 'Y' 
+			    AND fd.fileKind = 'C' 
+			    AND fd.tableLinkIdx = 37
+			    AND progressDate=DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+			ORDER BY 
+			    wi.lastUpdatetime DESC;
+    </select>
     
+    <select id="getwodInfoTomorrowByAccount" resultType="com.stadion.api.entity.WodInfoWithFile">
+		SELECT 
+			    wi.*, 
+			    fd.filePath, 
+			    fd.fileNameThumb,
+			    -- likeData 테이블에서 wodIdx에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM likeData 
+			     WHERE tableLinkIdx = 37 
+			     AND pIdx = wi.idx) AS likeCount,
+			    -- wodParticipantLinkInfo 테이블에서 wodIdx에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM wodParticipantLinkInfo 
+			     WHERE wodIdx = wi.idx) AS participantCount,
+			    -- wodParticipantLinkInfo 테이블에서 wodIdx와 accountIdx=9401에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM wodParticipantLinkInfo 
+			     WHERE wodIdx = wi.idx 
+			     AND accountIdx = #{accountIdx}) AS accountCount
+			FROM 
+			    wodInfo AS wi
+			JOIN 
+			    fileData AS fd ON wi.idx = fd.pIdx
+			WHERE 
+			    wi.isOpen = 'Y' 
+			    AND fd.fileKind = 'C' 
+			    AND fd.tableLinkIdx = 37  
+			    AND progressDate = DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL +1 DAY), '%Y-%m-%d')
+			ORDER BY 
+			    wi.lastUpdatetime DESC;
+    </select>
+    
+    <select id="getwodInfoPastByAccount" resultType="com.stadion.api.entity.WodInfoWithFile">
+    <![CDATA[
+		SELECT 
+			    wi.*, 
+			    fd.filePath, 
+			    fd.fileNameThumb,
+			    -- likeData 테이블에서 wodIdx에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM likeData 
+			     WHERE tableLinkIdx = 37 
+			     AND pIdx = wi.idx) AS likeCount,
+			    -- wodParticipantLinkInfo 테이블에서 wodIdx에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM wodParticipantLinkInfo 
+			     WHERE wodIdx = wi.idx) AS participantCount,
+			    -- wodParticipantLinkInfo 테이블에서 wodIdx와 accountIdx=9401에 해당하는 row의 count
+			    (SELECT COUNT(*) 
+			     FROM wodParticipantLinkInfo 
+			     WHERE wodIdx = wi.idx 
+			     AND accountIdx = #{accountIdx}) AS accountCount
+			FROM 
+			    wodInfo AS wi
+			JOIN 
+			    fileData AS fd ON wi.idx = fd.pIdx
+			WHERE 
+			    wi.isOpen = 'Y' 
+			    AND fd.fileKind = 'C' 
+			    AND fd.tableLinkIdx = 37
+			    AND DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+			ORDER BY 
+			    wi.lastUpdatetime DESC;
+          ]]>
+    </select>
 
 </mapper>

@@ -23,9 +23,14 @@ public interface WodInfoMapper {
 	public WodInfo getwodInfoWodIdx(long idx);
 	public WodInfoWithFile getWodInfoFile(long idx);
 	public List<WodInfo> getWodInfoAll();
-	public List<WodInfoWithFile> getWodInfoToday();
-	public List<WodInfoWithFile> getwodInfoTomorrow();
-	public List<WodInfoWithFile> getwodInfoPast();
+	public List<WodInfoWithFile> getWodInfoTodayByAccount(long accountIdx);
+	public List<WodInfoWithFile> getwodInfoTomorrowByAccount(long accountIdx);
+	public List<WodInfoWithFile> getwodInfoPastByAccount(long accountIdx);
+	
+	public List<WodInfoWithFile> getWodInfoToday( );
+	public List<WodInfoWithFile> getwodInfoTomorrow( );
+	public List<WodInfoWithFile> getwodInfoPast( );
+
 	
 	public List<WodInfoWithFile> getwodInfoTodayByBox(long boxIdx);
 	public List<WodInfoWithFile> getwodInfoTomorrowByBox(long boxIdx);

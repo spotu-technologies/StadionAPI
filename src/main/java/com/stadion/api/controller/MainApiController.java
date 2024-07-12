@@ -42,6 +42,7 @@ import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.FaqBoard;
 import com.stadion.api.entity.FileData;
 import com.stadion.api.entity.FollowLinkInfo;
+import com.stadion.api.entity.FollowList;
 import com.stadion.api.entity.GuideBoard;
 import com.stadion.api.entity.InjuryData;
 import com.stadion.api.entity.InjuryInfo;
@@ -1388,51 +1389,85 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
      
     @PostMapping(value="/getfollowLinkInfoFollow", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getFollowLinkInfoFollow(
-			
 						@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-    	
-    	// 필요값 userID
     	long followAccountIdx = (long) object.get("followAccountIdx");
-    
-    	    	
     	String result;
     	Gson gson = new Gson();
-    	
     	List<FollowLinkInfo> jsonResult = followLinkInfoService.getFollowLinkInfoFollow(followAccountIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getfollowLinkInfoReg", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFollowLinkInfoReg(
+						@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long regAccountIdx = (long) object.get("regAccountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<FollowLinkInfo> jsonResult = followLinkInfoService.getFollowLinkInfoReg(regAccountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getFollowList", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getFollowList(
+						@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<FollowList> jsonResult = followLinkInfoService.getFollowList(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;
 	}
     
     
-    @PostMapping(value="/getfollowLinkInfoReg", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getFollowLinkInfoReg(
-			
+    @Operation(summary = "insertFollowLinkInfoFollow follow 추가", 
+    		description = "JSON Ex: {\"followAccountIdx\":9401,\"regAccountIdx\": 9402 } ")     
+    @PostMapping(value="/insertFollowLinkInfoFollow", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String insertFollowLinkInfoFollow(
 						@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-    	
-    	// 필요값 userID
+    	long followAccountIdx = (long) object.get("followAccountIdx");
     	long regAccountIdx = (long) object.get("regAccountIdx");
-    
-    	    	
     	String result;
     	Gson gson = new Gson();
-    	
-    	List<FollowLinkInfo> jsonResult = followLinkInfoService.getFollowLinkInfoReg(regAccountIdx);
-
+    	FollowLinkInfo arg = new FollowLinkInfo();
+    	arg.followAccountIdx = (int) followAccountIdx;
+    	arg.regAccountIdx = (int) regAccountIdx;
+    	long jsonResult = followLinkInfoService.insertFollowLinkInfoFollow(arg);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @Operation(summary = "deleteFollowLinkInfoFollow follow 삭제", 
+    		description = "JSON Ex: {\"followAccountIdx\":9401,\"regAccountIdx\": 9402 } ")     
+    @PostMapping(value="/deleteFollowLinkInfoFollow", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String deleteFollowLinkInfoFollow(
+						@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long followAccountIdx = (long) object.get("followAccountIdx");
+    	long regAccountIdx = (long) object.get("regAccountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	FollowLinkInfo arg = new FollowLinkInfo();
+    	arg.followAccountIdx = (int) followAccountIdx;
+    	arg.regAccountIdx = (int) regAccountIdx;
+    	long jsonResult = followLinkInfoService.deleteFollowLinkInfoFollow(arg);
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3324,9 +3359,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 			) throws ParseException {
     	String result;
     	Gson gson = new Gson();
-    	
     	List<WodInfoWithFile> jsonResult = wodInfoService.getWodInfoToday();
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -3340,8 +3373,7 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
 
     	result = gson.toJson(jsonResult);
     	return result;
-	}
-    
+	}    
     @PostMapping(value="/getwodInfoPast", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getwodInfoPast(
 			) throws ParseException {
@@ -3353,6 +3385,55 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping(value="/getWodInfoTodayByAccount", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String geWodInfoTodayByAccount(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getWodInfoTodayByAccount(accountIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    @PostMapping(value="/getWodInfoTomorrowByAccount", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodInfoTomorrowByAccount(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoTomorrowByAccount(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getWodInfoPastByAccount", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getwodInfoPastByAccount(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	List<WodInfoWithFile> jsonResult = wodInfoService.getwodInfoPastByAccount(accountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
     
     @PostMapping(value="/getwodInfoTodayByBox", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String geWodInfoTodayByBox(

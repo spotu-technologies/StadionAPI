@@ -43,7 +43,10 @@
 		    ai.cellNumber,
 		    <include refid="gradeList"/>
 		     
-		    rd.recordValue
+		    rd.recordValue,
+			fd.filePath, 
+			fd.fileNameThumb
+		    
 		FROM 
 		    momRankData AS mrd
 		JOIN 
@@ -75,6 +78,10 @@
 		        GROUP BY 
 		            accountIdx
 		    ) AS rd ON mrd.accountIdx = rd.accountIdx
+		LEFT JOIN 
+		    fileData AS fd ON fd.pIdx = mrd.accountIdx
+		    AND fd.fileKind = 'C' 
+		    AND fd.tableLinkIdx = 1		    
 		WHERE 
 		    mrd.status = 1 
 		    AND mrd.momIdx = #{momIdx}

@@ -9,6 +9,7 @@ import com.stadion.api.entity.ActionHistory;
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.FileData;
 import com.stadion.api.entity.FollowLinkInfo;
+import com.stadion.api.entity.FollowList;
 import com.stadion.api.mapper.ActionHistoryMapper;
 import com.stadion.api.mapper.FollowLinkInfoMapper;
 
@@ -34,7 +35,24 @@ public class FollowLinkInfoService {
 		
 		return followLinkInfoList;
 	}
+	
+	public List<FollowList> getFollowList(long accountIdx) {
+		if(followLinkInfoMapper==null) {return null;}
+		
+		List<FollowList> followLinkInfoList = followLinkInfoMapper.getFollowList(accountIdx);
+		
+		return followLinkInfoList;
+	}
+	
 
+	public long insertFollowLinkInfoFollow(FollowLinkInfo arg) {
+		if(followLinkInfoMapper==null) {return 0;}
+		return followLinkInfoMapper.insertFollowLinkInfoFollow(arg);
+	}
+	public long deleteFollowLinkInfoFollow(FollowLinkInfo arg) {
+		if(followLinkInfoMapper==null) {return 0;}
+		return followLinkInfoMapper.deleteFollowLinkInfoFollow(arg);
+	}
 
 }
 

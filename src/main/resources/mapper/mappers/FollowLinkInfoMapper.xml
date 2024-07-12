@@ -3,10 +3,8 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <!-- SQL Mapping -->
 
-<!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.FollowLinkInfoMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
     <select id="getFollowLinkInfoFollow" resultType="com.stadion.api.entity.FollowLinkInfo">	
@@ -17,12 +15,38 @@
         SELECT * FROM followLinkInfo WHERE followLinkInfo.regAccountIdx = #{regAccountIdx};
     </select>
     
+    <select id="getFollowList" resultType="com.stadion.api.entity.FollowList">	
+		SELECT 
+		    SUM(CASE WHEN followLinkInfo.regAccountIdx = #{accountIdx} THEN 1 ELSE 0 END) AS countReg,
+		    SUM(CASE WHEN followLinkInfo.followAccountIdx = #{accountIdx} THEN 1 ELSE 0 END) AS countFollow
+		FROM 
+		    followLinkInfo;    
+	</select>
     
     
-
-
-        <!-- SQL문 작성
-                SELECT *
-        FROM test_table
-         -->
+	<insert id="insertFollowLinkInfoFollow" parameterType="com.stadion.api.entity.FollowLinkInfo">
+		INSERT INTO stadion_db_dev.followLinkInfo
+ 			(followAccountIdx, 
+        <if test="status != 0 and status != null">
+            status,
+        </if>
+        	regAccountIdx, regUnixtime, lastUpdatetime
+			) 
+						
+			VALUES 
+			 (#{followAccountIdx}, 
+        <if test="status != 0 and status != null">
+            #{status},
+        </if>
+      		#{regAccountIdx}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+        	);
+	</insert>    
+    
+	<delete id="deleteFollowLinkInfoFollow" parameterType="com.stadion.api.entity.FollowLinkInfo">
+		DELETE FROM 
+		 stadion_db_dev.followLinkInfo
+			WHERE regAccountIdx = #{regAccountIdx}
+			and followAccountIdx = #{followAccountIdx};  
+	</delete>
+    
 </mapper>
