@@ -21,6 +21,8 @@ public interface WodParticipantLinkInfoMapper {
 	public long getwodParticipantLinkInfoNoAttend(long accountIdx) ;
 	public long getwodParticipantCount(long idx);
 	public long getwodParticipantIdx(@Param ("accountIdx")long accountIdx, @Param ("wbLinkIdx") long wbLinkIdx);
+	public long getWodParticipantCountByAccount(@Param ("accountIdx")long accountIdx, @Param ("wodIdx") long wodIdx);
+	
 	public long getwodParticipantReserved(@Param ("idx") long idx, @Param ("accountIdx") long accountIdx);
 	public long getwodParticipantStatus(@Param ("idx") long idx, @Param ("accountIdx") long accountIdx);
 	public long insertWodParticipantLinkInfo(WodParticipantLinkInfo arg);

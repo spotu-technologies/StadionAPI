@@ -4547,6 +4547,26 @@ const myPBCategoryList = [
     	return result;
 	}
     
+    @PostMapping("/getWodParticipantCountByAccount")
+	public String getWodParticipantCount(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+
+    	// 필요값 wodIdx, accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
+    	long wodIdx = (long) object.get("wodIdx");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	Long jsonResult = wodParticipantLinkInfoService.getWodParticipantCountByAccount(accountIdx, wodIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
     @PostMapping("/getwodParticipantRecent")
 	public String getwodParticipantRecent(
 			@RequestBody String paramJson
