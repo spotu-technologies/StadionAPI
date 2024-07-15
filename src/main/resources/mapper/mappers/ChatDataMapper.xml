@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+
+<mapper namespace="com.stadion.api.mapper.ChatDataMapper">	
+
+    <select id="getChatData" resultType="com.stadion.api.entity.ChatData">	
+        SELECT *
+        FROM chatData 
+        	WHERE idx = #{idx}
+    </select>
+    
+    <select id="getChatDataByAccountIdx" resultType="com.stadion.api.entity.ChatData">	
+        SELECT *
+        FROM chatData 
+        	WHERE accountIdx = #{accountIdx}
+    </select>
+    
+    
+    <insert id="insertChatData" parameterType="com.stadion.api.entity.ChatData">
+    
+		INSERT INTO 
+			stadion_db_dev.chatData 
+			(accountIdx, regAccountIdx, msg,
+			 
+		<if test="readStatusUser != 0 and readStatusUser != null">
+            readStatusUser,
+        </if>			 
+		<if test="readStatusManager != 0 and readStatusManager != null">
+            readStatusManager,
+        </if>			 
+		<if test="isAdmin != 0 and isAdmin != null">
+            isAdmin,
+        </if>			 
+		<if test="status != 0 and status != null">
+            status,
+        </if>		
+			
+			regUnixtime, lastUpdatetime)
+			
+			 VALUES (#{accountIdx}, #{regAccountIdx}, #{msg}, 
+		<if test="readStatusUser != 0 and readStatusUser != null">
+            #{readStatusUser},
+        </if>			 
+		<if test="readStatusManager != 0 and readStatusManager != null">
+            #{readStatusManager},
+        </if>			 
+		<if test="isAdmin != 0 and isAdmin != null">
+            #{isAdmin},
+        </if>			 
+		<if test="status != 0 and status != null">
+            #{status},
+        </if>			 
+			 
+			 UNIX_TIMESTAMP(), UNIX_TIMESTAMP() ) ;    
+	</insert>
+	
+    <update id="updateChatData"  parameterType="com.stadion.api.entity.ChatData">	
+        UPDATE chatData 
+		<if test="status != 0 and status != null">
+        <set>
+			status = #{status}
+        </set>
+        </if>if>
+        	WHERE  idx = #{idx}         	
+    </update>	
+    
+</mapper>

@@ -37,6 +37,7 @@ import com.stadion.api.entity.BoxMatchTemplateInfo;
 import com.stadion.api.entity.BoxMatchTemplateLinkInfo;
 import com.stadion.api.entity.BwHistory;
 import com.stadion.api.entity.CategoryInfo;
+import com.stadion.api.entity.ChatData;
 import com.stadion.api.entity.CommentData;
 import com.stadion.api.entity.EventBoard;
 import com.stadion.api.entity.FaqBoard;
@@ -114,6 +115,7 @@ import com.stadion.api.entity.WodTemplateRecordInfo;
 import com.stadion.api.entity.WodTemplateRoundInfo;
 import com.stadion.api.entity.WodTemplateRoundItemInfo;
 import com.stadion.api.entity.WodTemplateStepInfo;
+import com.stadion.api.mapper.ChatDataMapper;
 import com.stadion.api.service.AccountInfoService;
 import com.stadion.api.service.ActionHistoryService;
 import com.stadion.api.service.BadgeAccountLinkInfoService;
@@ -952,25 +954,15 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
      
     
     @PostMapping("/getbwHistory")
-	public String getBwHistory(
-			
+	public String getBwHistory(			
 			@RequestBody String paramJson
 			) throws ParseException {
-    	
-    	
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 userID
     	long idx = (long) object.get("idx");
-    	
     	String result;
     	Gson gson = new Gson();
-    	
     	BwHistory jsonResult = bwHistoryService.getBwHistory(idx);
-
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -1023,6 +1015,61 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	
     	List<BwHistory> jsonResult = bwHistoryService.getBwHistorWeight(accountIdx);
 
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
+    
+    @Autowired
+    public ChatDataMapper chatDataMapper;
+     
+    
+    @PostMapping("/getChatData")
+	public String getChatData(			
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long idx = (long) object.get("idx");
+    	String result;
+    	Gson gson = new Gson();    	
+    	ChatData jsonResult = chatDataMapper.getChatData(idx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getChatDataByAccountIdx")
+	public String getChatDataByAccountIdx(			
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String result;
+    	Gson gson = new Gson();    	
+    	List<ChatData> jsonResult = chatDataMapper.getChatDataByAccountIdx(accountIdx);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
+    
+    @Operation(summary = "insertChatData chat 추가", 
+    		description = "JSON Ex: {\"accountIdx\":9401, \"msg\": \"chat test123\"} ")     
+    @PostMapping("/insertChatData")
+	public String insertChatData(			
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String msg = (String) object.get("msg");
+    	String result;
+    	Gson gson = new Gson();    	
+    	ChatData arg = new ChatData();
+    	arg.accountIdx = (int) accountIdx;
+    	arg.regAccountIdx =(int) accountIdx;
+    	arg.msg = msg;
+    	long jsonResult = chatDataMapper.insertChatData(arg);
     	result = gson.toJson(jsonResult);
     	return result;
 	}
@@ -1411,6 +1458,25 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	String result;
     	Gson gson = new Gson();
     	List<FollowLinkInfo> jsonResult = followLinkInfoService.getFollowLinkInfoReg(regAccountIdx);
+
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping(value="/getIsFollow", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getIsFollow(
+						@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long regAccountIdx = (long) object.get("regAccountIdx");
+    	long followAccountIdx = (long) object.get("followAccountIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	FollowLinkInfo arg = new FollowLinkInfo();
+    	arg.regAccountIdx = (int) regAccountIdx;
+    	arg.followAccountIdx = (int) followAccountIdx;
+    	long jsonResult = followLinkInfoService.getIsFollow(arg);
 
     	result = gson.toJson(jsonResult);
     	return result;
@@ -4583,6 +4649,26 @@ const myPBCategoryList = [
     	WodBoxLinkInfoName jsonResult = wodParticipantLinkInfoService.getwodParticipantRecent(accountIdx);
 
     	result = gson.toJson(jsonResult);
+    	return result;
+	}
+    
+    @PostMapping("/getWbLinkIdx")
+	public String getWbLinkIdx(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	long wodIdx = (long) object.get("wodIdx");
+    	String result;
+    	Gson gson = new Gson();
+    	try {	    	
+	    	long jsonResult = wodParticipantLinkInfoService.getWbLinkIdx(accountIdx, wodIdx);
+	    	result = gson.toJson(jsonResult);
+    	}
+    	catch(Exception e) {
+    		result = gson.toJson(0);
+    	}
     	return result;
 	}
     

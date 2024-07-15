@@ -44,6 +44,10 @@ public class FollowLinkInfoService {
 		return followLinkInfoList;
 	}
 	
+	public long getIsFollow(FollowLinkInfo arg) {
+		if(followLinkInfoMapper==null) {return 0;}
+		return followLinkInfoMapper.getIsFollow(arg);
+	}
 
 	public long insertFollowLinkInfoFollow(FollowLinkInfo arg) {
 		if(followLinkInfoMapper==null) {return 0;}

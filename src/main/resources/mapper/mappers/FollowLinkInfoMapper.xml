@@ -15,6 +15,13 @@
         SELECT * FROM followLinkInfo WHERE followLinkInfo.regAccountIdx = #{regAccountIdx};
     </select>
     
+    <select id="getIsFollow" parameterType="com.stadion.api.entity.FollowLinkInfo" resultType="Long">	
+        SELECT count(*)
+        FROM followLinkInfo 
+ 			WHERE regAccountIdx = #{regAccountIdx}
+			and followAccountIdx = #{followAccountIdx};  
+    </select>    
+    
     <select id="getFollowList" resultType="com.stadion.api.entity.FollowList">	
 		SELECT 
 		    SUM(CASE WHEN followLinkInfo.regAccountIdx = #{accountIdx} THEN 1 ELSE 0 END) AS countReg,

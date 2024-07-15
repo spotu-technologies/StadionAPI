@@ -91,5 +91,10 @@ public class WodParticipantLinkInfoService {
 		
 		return wodParticipantLinkInfo;
 	}
+	
+	public long getWbLinkIdx(long accountIdx, long wodIdx) {
+		if(wodParticipantLinkInfoMapper==null) {return 0;}
+		return wodParticipantLinkInfoMapper.getWbLinkIdx(accountIdx, wodIdx);
+	}
 
 }

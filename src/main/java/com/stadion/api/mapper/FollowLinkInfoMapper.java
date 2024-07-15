@@ -16,6 +16,7 @@ public interface FollowLinkInfoMapper {
 	//public List<FollowLinkInfo> getgetFollowLinkInfoList();
 	public List<FollowLinkInfo> getFollowLinkInfoFollow(long followAccountIdx);
 	public List<FollowLinkInfo> getFollowLinkInfoReg(long regAccountIdx);
+	public long getIsFollow(FollowLinkInfo arg) ;
 	public long insertFollowLinkInfoFollow(FollowLinkInfo arg);
 	public long deleteFollowLinkInfoFollow(FollowLinkInfo arg);
 	public List<FollowList> getFollowList(long accountIdx);

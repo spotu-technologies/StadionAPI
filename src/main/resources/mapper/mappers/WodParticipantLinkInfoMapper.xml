@@ -79,7 +79,15 @@
         	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx} 
         	and accountIdx=#{accountIdx}
     </select>
-    
+
+    <select id="getWbLinkIdx" resultType="Long">	
+        SELECT wbLinkIdx AS wbLinkIdx
+			FROM stadion_db_dev.wodParticipantLinkInfo
+			where accountIdx=#{accountIdx}
+			and wodIdx=#{wodIdx}
+			LIMIT 1
+
+    </select>    
     
     <update id="cancelWodParticipantLinkInfo">	
         UPDATE wodParticipantLinkInfo 

@@ -29,6 +29,7 @@ public interface WodParticipantLinkInfoMapper {
 	public long cancelWodParticipantLinkInfo(long idx);
 	public long reserveWodParticipantLinkInfo(long idx);
 	public long getWodParticipantAttend(long idx);
+	public long getWbLinkIdx(@Param ("accountIdx")long accountIdx, @Param ("wodIdx") long wodIdx);
 	public WodBoxLinkInfoName getwodParticipantRecent(long accountIdx);
 
 }
