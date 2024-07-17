@@ -63,7 +63,8 @@
         SELECT count(*)
         FROM wodParticipantLinkInfo
         	WHERE wodParticipantLinkInfo.wbLinkIdx = #{idx} 
-        	and accountIdx=#{accountIdx}
+        	AND accountIdx=#{accountIdx}
+        	AND status=1
     </select>
     
     <select id="getWodParticipantAttend" resultType="Long">	
@@ -111,6 +112,14 @@
         	WHERE wodParticipantLinkInfo.wbLinkIdx = #{wbLinkIdx} 
         	and accountIdx=#{accountIdx}
     </select>
+    
+    <select id="getWodParticipantStatus" resultType="Long">	
+        SELECT status
+        FROM wodParticipantLinkInfo
+        	WHERE wodParticipantLinkInfo.wbLinkIdx = #{wbLinkIdx} 
+        	and accountIdx=#{accountIdx}
+    </select>
+    
     
     <select id="getWodParticipantCountByAccount" resultType="Long">	
         SELECT count(*)
