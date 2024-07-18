@@ -14,6 +14,7 @@ import com.stadion.api.entity.WodInfoNameIdx;
 import com.stadion.api.entity.WodInfoWithFile;
 import com.stadion.api.entity.WodParticipantLinkInfo;
 
+
 @Mapper
 public interface WodInfoMapper {
 
@@ -40,5 +41,6 @@ public interface WodInfoMapper {
 	public List<WodInfo> getwodInfoSearch(String keyword);
 	public List<String> getwodInfoSearchName(String keyword);
 	public List<WodInfoNameIdx> getwodInfoSearchNameIdx(String keyword);
+	public List<WodInfo> getWodInfoSearchYear(String keyword);
 	
 }

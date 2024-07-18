@@ -35,10 +35,10 @@ public class WodItemRecordDataService {
 	}
 	
 	
-	public WodItemRecordData getWodItemRecordData(long idx) {
+	public List<WodItemRecordData> getWodItemRecordData(long accountIdx) {
 		if(wodItemRecordDataMapper==null) {return null;}
 		
-		WodItemRecordData wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordData(idx);
+		List<WodItemRecordData> wodItemRecordData = wodItemRecordDataMapper.getWodItemRecordData(accountIdx);
 		
 		return wodItemRecordData;
 	}

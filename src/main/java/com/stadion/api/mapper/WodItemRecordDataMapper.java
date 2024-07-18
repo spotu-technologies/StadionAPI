@@ -16,7 +16,7 @@ import com.stadion.api.entity.WodItemRecordDataRanking;
 public interface WodItemRecordDataMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
-	public WodItemRecordData getWodItemRecordData(long idx);
+	public List<WodItemRecordData> getWodItemRecordData(long accountIdx);
 	public List<WodItemRecordData> getWodItemRecordDataByWodIdx(long wodIdx);
 
 	public Double getWodItemRecordDataByWodAvg(long wodidx);

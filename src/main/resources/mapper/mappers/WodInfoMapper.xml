@@ -49,6 +49,13 @@
         	order by name
     </select>
     
+    <select id="getWodInfoSearchYear" resultType="com.stadion.api.entity.WodInfo">	
+        SELECT wodInfo.idx, name, progressDate
+        FROM wodInfo 
+        	WHERE (wodInfo.name like #{keyword} OR wodInfo.progressDate like #{keyword} )
+        	order by progressDate DESC
+    </select>
+    
     <select id="getwodInfoSearch" resultType="com.stadion.api.entity.WodInfo">	
         SELECT *
         FROM wodInfo 

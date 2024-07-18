@@ -3642,6 +3642,24 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @PostMapping("/getWodInfoSearchYear")
+	public String getWodInfoSearchYear(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	// 필요값 keyword
+    	String keyword = (String) object.get("keyword");    	
+    	keyword += "%";//: 뒤에 % 붙여서 사용    	
+    	System.out.println("search keyword? " + keyword);    	
+    	String result;
+    	Gson gson = new Gson();    	
+    	List<WodInfo> jsonResult = wodInfoService.getWodInfoSearchYear(keyword);
+    	result = gson.toJson(jsonResult);
+    	return result;
+	}
+
 
     
     @Autowired
@@ -4108,21 +4126,22 @@ const myPBCategoryList = [
     
     @Autowired
     public WodItemRecordDataService wodItemRecordDataService;
-    
-    @PostMapping("/getwodItemRecordData")
+    @Operation(summary = "getWodItemRecordData 해당 계정의 기록", 
+    		description = "JSON Ex: { \"accountIdx\":9401 } ")     
+    @PostMapping("/getWodItemRecordData")
 	public String getWodItemRecordData(
 			@RequestBody String paramJson
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
 
-    	// 필요값 idx
-    	long idx = (long) object.get("idx");
+    	// 필요값 accountIdx
+    	long accountIdx = (long) object.get("accountIdx");
     	
     	String result;
     	Gson gson = new Gson();
     	
-    	WodItemRecordData jsonResult = wodItemRecordDataService.getWodItemRecordData(idx);
+    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordData(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

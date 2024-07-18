@@ -8,11 +8,11 @@
 
 <!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.WodItemRecordDataMapper">	
-    <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
     <select id="getWodItemRecordData" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
         FROM wodItemRecordData
-        	WHERE wodItemRecordData.idx = #{idx}
+        	WHERE wodItemRecordData.accountIdx = #{accountIdx}
+        	ORDER BY regUnixtime DESC
     </select>
     
     <select id="getWodItemRecordDataByWodIdx" resultType="com.stadion.api.entity.WodItemRecordData">	

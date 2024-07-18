@@ -10,6 +10,7 @@ import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.WodInfo;
 import com.stadion.api.entity.WodInfoNameIdx;
 import com.stadion.api.entity.WodInfoWithFile;
+import com.stadion.api.entity.WodInfoYear;
 import com.stadion.api.mapper.WodInfoMapper;
 
 
@@ -156,6 +157,15 @@ public class WodInfoService {
 		if(wodInfoMapper==null) {return null;}
 		
 		List<WodInfoNameIdx> wodInfoList = wodInfoMapper.getwodInfoSearchNameIdx(keyword);
+		
+		return wodInfoList;
+	}
+	
+	public List<WodInfo> getWodInfoSearchYear(String keyword) 
+	{
+		if(wodInfoMapper==null) {return null;}
+		
+		List<WodInfo> wodInfoList = wodInfoMapper.getWodInfoSearchYear(keyword);
 		
 		return wodInfoList;
 	}
