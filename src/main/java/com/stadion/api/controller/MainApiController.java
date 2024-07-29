@@ -66,6 +66,7 @@ import com.stadion.api.entity.MovementInfo;
 import com.stadion.api.entity.MovementParticipantLinkInfo;
 import com.stadion.api.entity.MovementPointData;
 import com.stadion.api.entity.MovementRecordData;
+import com.stadion.api.entity.MovementRecordDataDetail;
 import com.stadion.api.entity.NoticeBoard;
 import com.stadion.api.entity.NumbersRankData;
 import com.stadion.api.entity.NumbersRankDataIdx;
@@ -102,6 +103,7 @@ import com.stadion.api.entity.WodItemOneRmData;
 import com.stadion.api.entity.WodItemOneRmDataHistory;
 import com.stadion.api.entity.WodItemRankData;
 import com.stadion.api.entity.WodItemRecordData;
+import com.stadion.api.entity.WodItemRecordDataDetail;
 import com.stadion.api.entity.WodItemRecordDataRanking;
 import com.stadion.api.entity.WodItemRmData;
 import com.stadion.api.entity.WodParticipantLinkInfo;
@@ -254,146 +256,6 @@ public class MainApiController {
     @Autowired
     public AccountInfoService accountInfoService;
        
-    @PostMapping(value="/getaccountinfologin", produces="text/plain;charset=UTF-8")
-	public @ResponseBody String getAccountInfoLogin(
-			
-			@RequestBody String paramJson
-			) throws ParseException {
-    	
-    	Date date = new Date();
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	System.out.println("Start time : " + dateFormat.format(date));
-    	long startLong = System.currentTimeMillis();
-    	
-    	
-    	// 들어온 인자 json에서 Mapper 쿼리로 전달할 내용 파싱
-    	JSONParser parser = new JSONParser();
-    	JSONObject object = (JSONObject) parser.parse(paramJson);
-
-    	// 필요값 accountIdx
-    	long accountIdx = (long) object.get("accountIdx");
-    	
-    	String result;
-    	Gson gson = new Gson();
-    	
-    	LoginInfo loginInfo = new LoginInfo();    	
-    	
-    	//List<AccountInfo> accountInfoList = accountInfoService.getAccountInfoLast(0, 15);
-        List<AccountInfo> accountInfoList = accountInfoService.getAccountInfoAll();
-    	List<EventBoard> resultEventBoard = eventBoardService.getEventBoardLast(0, 5);
-    	List<NoticeBoard> resultNoticeBoard = noticeBoardService.getNoticeBoardLast(0, 5);
-
-    	loginInfo.accountInfoList = accountInfoList;
-    	loginInfo.eventBoardList = resultEventBoard;
-    	loginInfo.noticeBoardList = resultNoticeBoard;
-    	
-    	date = new Date();    	System.out.println("after account/board" + dateFormat.format(date));
-    	long middleLong = System.currentTimeMillis();
-    	System.out.println("elasp : " + (middleLong-startLong));
-
-
-    	long pIdx = accountIdx; // accountIdx, 104 is test
-    	String fileKindVideo = "V";
-    	String fileKindImage = "C";
-    	/*
-fetchFileDataItems : "fileKind": "C", "tableLinkIdx": 11, "pIdx": 104,
-fetchFileDataImageItems : "fileKind": "C", "tableLinkIdx": 1, "pIdx": 104,
-fetchFileDataMtcItems : "fileKind": "C", "tableLinkIdx": 17, "pIdx": 104,
-fetchFileDataMomItems : "fileKind": "C", "tableLinkIdx": 17, "pIdx": 104,
-fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
-    	 */
-    	
-    	
-    	//fetchFileDataItems : "fileKind": "C", "tableLinkIdx": 11, "pIdx": 104,
-    	List<FileData> fileDataGuideThumnail = fileDataService.getFileDataFile(fileKindImage, 11, pIdx);    	
-    	List<FileData> fileDataGuideVideo = fileDataService.getFileDataFile(fileKindVideo, 11, pIdx);
-    	List<FileData> fileDataProfileImage = fileDataService.getFileDataImage(fileKindImage, 1, pIdx);
-    	List<FileData> fileDataMtc = fileDataService.getFileDataMtc(fileKindImage, 17, pIdx);
-    	List<FileData> fileDataWod = fileDataService.getFileDataMtc(fileKindImage, 37, pIdx);
-    	//List<FileData> jsonResultFileDataMom = fileDataService.getFileDataMtc(fileKindImage, 17, pIdx); // MTC와 동일
-    	    	
-    	loginInfo.fileDataGuideThumnail = fileDataGuideThumnail;
-    	loginInfo.fileDataGuideVideo = fileDataGuideVideo;
-    	loginInfo.fileDataProfileImage = fileDataProfileImage;
-    	loginInfo.fileDataMtc = fileDataMtc;
-    	loginInfo.fileDataWod = fileDataWod;
-    	
-    	System.out.println("elasp : " + (middleLong-startLong));
-    	
-    	long idx = accountIdx;	//resultAccount.idx;
-    	List<FollowLinkInfo> followLinkInfo = followLinkInfoService.getFollowLinkInfoFollow(idx);
-    	List<FollowLinkInfo> followLinkReg = followLinkInfoService.getFollowLinkInfoReg(idx);
-    	
-    	loginInfo.followLinkInfo = followLinkInfo;
-    	loginInfo.followLinkReg = followLinkReg;
-    	
-    	List<InjuryData> injuryDataList = injuryDataService.getInjuryDataLast(idx);
-    	List<InjuryInfo> injuryInfoList = injuryInfoService.getInjuryInfoLast();
-    	loginInfo.injuryDataList = injuryDataList;
-    	loginInfo.injuryInfoList = injuryInfoList;
-    	
-    	List<LevelData> levelData = levelDataService.getLevelData(idx);
-    	loginInfo.levelData = levelData;
-    	
-    	List<MovementInfo> movementInfoList = movementInfoService.getMovementInfoAll();
-    	loginInfo.movementInfoList = movementInfoList;
-    	
-    	List<MomInfo> momInfoList = momInfoService.getMomInfoAll();
-    	loginInfo.momInfoList = momInfoList;
-    	
-    	List<MovementRecordData> movementRecordDataList = movementRecordDataService.getMovementRecordData(accountIdx);
-    	loginInfo.movementRecordDataList = movementRecordDataList;
-    	
-    	List<WodInfo> wodInfoList = wodInfoService.getWodInfoAll();
-    	loginInfo.wodInfoList = wodInfoList;
-    	System.out.println("wod Info size " + wodInfoList.size());
-    	
-    	List<WodBoxLinkInfo> wodBoxLinkInfoList = wodBoxLinkInfoService.getWodBoxLinkInfoAll();
-    	loginInfo.wodBoxLinkInfoList = wodBoxLinkInfoList;
-    	
-    	List<WodItemInfo> wodItemInfoList = wodItemInfoService.getWodItemInfoAll();
-    	loginInfo.wodItemInfoList = wodItemInfoList;
-    	
-		List<WodItemRecordData> wodItemRecordDataList = wodItemRecordDataService.getWodItemRecordDataRecent(idx);
-    	loginInfo.wodItemRecordDataList = wodItemRecordDataList;
-    	
-    	WodItemOneRmData wodItemOneRmData = wodItemOneRmDataService.getWodItemOneRmData(idx);
-    	loginInfo.wodItemOneRmData = wodItemOneRmData;
-    	
-    	List<WodItemOneRmData> wodItemOneRmDataClubManList = wodItemOneRmDataService.getWodItemOneRmDataClubMan();
-    	loginInfo.wodItemOneRmDataClubManList = wodItemOneRmDataClubManList;
-    	
-    	List<WodItemOneRmData> wodItemOneRmDataClubWomanList = wodItemOneRmDataService.getWodItemOneRmDataClubWoman();
-    	loginInfo.wodItemOneRmDataClubWomanList = wodItemOneRmDataClubWomanList;
-    	
-    	WodParticipantLinkInfo wodParticipantLinkInfo = wodParticipantLinkInfoService.getWodParticipantLinkInfo(idx);
-    	loginInfo.wodParticipantLinkInfo = wodParticipantLinkInfo;
-    	
-    	//List<WodParticipantLinkInfo> wodParticipantLinkInfoList = wodParticipantLinkInfoService.getWodParticipantLinkInfoIsNonappearance(idx);
-    	//loginInfo.wodParticipantLinkInfoList = wodParticipantLinkInfoList;
-    	
-    	List<WodItemOneRmData> wodItemOneRmDataPersonalDetailList = wodItemOneRmDataService.getWodItemOneRmDataPersonalDetail(idx);
-    	loginInfo.wodItemOneRmDataPersonalDetailList = wodItemOneRmDataPersonalDetailList;
-    	
-    	//List<WodItemOneRmData> wodItemOneRmDataClubList = wodItemOneRmDataService.getWodItemOneRmDataClub(idx);
-    	List<WodItemOneRmData> wodItemOneRmDataClubList = wodItemOneRmDataService.getWodItemOneRmDataClubAll();
-    	loginInfo.wodItemOneRmDataClubList = wodItemOneRmDataClubList;
-    	
-    	List<WodItem3RmData> wodItem3RmDataPersonalDetailList = wodItem3RmDataService.getWodItem3RmDataPersonalDetail(idx);
-    	loginInfo.wodItem3RmDataPersonalDetailList = wodItem3RmDataPersonalDetailList;
-    	
-    	List<WodItem5RmData> wodItem5RmDataPersonalDetaiList = wodItem5RmDataService.getWodItem5RmDataPersonalDetail(idx);
-    	loginInfo.wodItem5RmDataPersonalDetaiList = wodItem5RmDataPersonalDetaiList;
-
-    	result = gson.toJson(loginInfo);
-
-    	long endLong = System.currentTimeMillis();
-    	System.out.println("elasp : " + (endLong-startLong));
-
-    	date = new Date();    	System.out.println("End time : " + dateFormat.format(date));
-    	return result;
-	}
-    
     @PostMapping(value="/getaccountinfologinV2", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String getAccountInfoLoginV2(
 			@RequestBody String paramJson
@@ -414,19 +276,6 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	Gson gson = new Gson();
     	
     	LoginInfoV2 loginInfo = new LoginInfoV2();    	
-    	
-        /*
-        List<AccountInfo> accountInfoList = accountInfoService.getAccountInfoAll();
-        loginInfo.accountInfoList = accountInfoList;
-        
-        List<EventBoard> resultEventBoard = eventBoardService.getEventBoardLast(0, 5);
-    	List<NoticeBoard> resultNoticeBoard = noticeBoardService.getNoticeBoardLast(0, 5);
-
-    	loginInfo.eventBoardList = resultEventBoard;
-    	loginInfo.noticeBoardList = resultNoticeBoard;
-
-    	*/
-    	
     	
     	long middleLong = System.currentTimeMillis();
 
@@ -2434,11 +2283,10 @@ fetchFileDataPlayItems : "fileKind": "V", "tableLinkIdx": 11, "pIdx": 104,
     	JSONParser parser = new JSONParser();
     	JSONObject object = (JSONObject) parser.parse(paramJson);
     	// 필요값 accountIdx
-    	long accountIdx = (long) object.get("accountIdx");
-    	String result;
+    	long accountIdx = (long) object.get("accountIdx");    	
     	Gson gson = new Gson();
-    	List<MovementRecordData> jsonResult = movementRecordDataService.getMovementRecordData(accountIdx);
-    	result = gson.toJson(jsonResult);
+    	List<MovementRecordDataDetail> jsonResult = movementRecordDataService.getMovementRecordData(accountIdx);
+    	String result = gson.toJson(jsonResult);
     	return result;
 	}
     
@@ -4128,8 +3976,8 @@ const myPBCategoryList = [
     public WodItemRecordDataService wodItemRecordDataService;
     @Operation(summary = "getWodItemRecordData 해당 계정의 기록", 
     		description = "JSON Ex: { \"accountIdx\":9401 } ")     
-    @PostMapping("/getWodItemRecordData")
-	public String getWodItemRecordData(
+    @PostMapping("/getWodItemRecordDataDetail")
+	public String getWodItemRecordDataDetail(
 			@RequestBody String paramJson
 			) throws ParseException {
     	JSONParser parser = new JSONParser();
@@ -4141,7 +3989,7 @@ const myPBCategoryList = [
     	String result;
     	Gson gson = new Gson();
     	
-    	List<WodItemRecordData> jsonResult = wodItemRecordDataService.getWodItemRecordData(accountIdx);
+    	List<WodItemRecordDataDetail> jsonResult = wodItemRecordDataService.getWodItemRecordDataDetail(accountIdx);
 
     	result = gson.toJson(jsonResult);
     	return result;

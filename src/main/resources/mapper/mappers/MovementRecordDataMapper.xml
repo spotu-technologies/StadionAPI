@@ -9,10 +9,13 @@
 <!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.MovementRecordDataMapper">	
     <!-- id: mapper 인터페이스에서 선언한 메서드 이름과 같아야 한다. resultType: VO 클래스가 위치하는 경로 -->
-    <select id="getMovementRecordData" resultType="com.stadion.api.entity.MovementRecordData">	
-        SELECT *
-        FROM movementRecordData
-        	WHERE movementRecordData.accountIdx = #{accoutIdx} ORDER BY lastUpdatetime DESC;
+    <select id="getMovementRecordData" resultType="com.stadion.api.entity.MovementRecordDataDetail">	
+        SELECT mrd.*, mi.movement, mi.unit
+        FROM movementRecordData AS mrd
+        JOIN movementInfo AS mi
+        ON mi.idx = mrd.movementIdx
+        	WHERE accountIdx = #{accoutIdx} 
+        	ORDER BY mrd.lastUpdatetime DESC;
     </select>
     
     

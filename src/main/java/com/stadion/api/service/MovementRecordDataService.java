@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stadion.api.entity.MovementRecordData;
+import com.stadion.api.entity.MovementRecordDataDetail;
 import com.stadion.api.entity.NoticeBoard;
 import com.stadion.api.mapper.MovementRecordDataMapper;
 
@@ -15,10 +16,10 @@ public class MovementRecordDataService {
 	@Autowired
 	private MovementRecordDataMapper movementRecordDataMapper;
 	
-	public List<MovementRecordData> getMovementRecordData(long accoutIdx) {
+	public List<MovementRecordDataDetail> getMovementRecordData(long accoutIdx) {
 		if(movementRecordDataMapper==null) {return null;}
 		
-		List<MovementRecordData> movementRecordData = movementRecordDataMapper.getMovementRecordData(accoutIdx);
+		List<MovementRecordDataDetail> movementRecordData = movementRecordDataMapper.getMovementRecordData(accoutIdx);
 		
 		return movementRecordData;
 	}

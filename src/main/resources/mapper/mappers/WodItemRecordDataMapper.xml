@@ -8,11 +8,17 @@
 
 <!-- mapper 인터페이스가 위치하는 경로 -->
 <mapper namespace="com.stadion.api.mapper.WodItemRecordDataMapper">	
-    <select id="getWodItemRecordData" resultType="com.stadion.api.entity.WodItemRecordData">	
-        SELECT *
-        FROM wodItemRecordData
-        	WHERE wodItemRecordData.accountIdx = #{accountIdx}
-        	ORDER BY regUnixtime DESC
+    <select id="getWodItemRecordDataDetail" resultType="com.stadion.api.entity.WodItemRecordDataDetail">	
+		SELECT *, wi.name AS programName, wsi.name AS stepName, wsi.explanation AS stepExplanation
+		FROM stadion_db_dev.wodItemRecordData AS wird
+		
+		JOIN wodInfo AS wi
+			ON wi.idx = wird.wodIdx
+		JOIN wodStepInfo AS wsi
+			ON wsi.idx = wird.wodStepIdx
+        
+        	WHERE accountIdx = #{accountIdx}
+        	ORDER BY wird.regUnixtime DESC
     </select>
     
     <select id="getWodItemRecordDataByWodIdx" resultType="com.stadion.api.entity.WodItemRecordData">	
