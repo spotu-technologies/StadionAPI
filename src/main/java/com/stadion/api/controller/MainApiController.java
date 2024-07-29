@@ -2105,68 +2105,74 @@ public class MainApiController {
     	for(int i=0;i<movementCnt;i++) {
     		System.out.println(momMovementRankInfoList.get(i).toString());
     	}
-    	
-		long movementIdx = momMovementRankInfoList.get(0).movementIdx;
-		MovementInfo mvmInfo = movementInfoService.getMovementInfo(movementIdx);
-		//long[] movementIdxList = new long[movementCnt];
-		MomMovementRankInfo rankInfo = momMovementRankInfoList.get(0);
-		String orderType = rankInfo.orderType;// "asc"; // or desc
-		String levelField = rankInfo.levelFieldName + "GradeLevel";
-		String minMax = "min";
-		
-		System.out.println("orderType: " + orderType);
-		if(orderType == "desc") {
-			minMax = "max";
-		}
 
-    	if(movementCnt==1) {
-    		System.out.println(" movement is only ONE, use grade level " + levelField);
+    	List<MomRankDataResult> list = new ArrayList<>();
+    	try {
+			long movementIdx = momMovementRankInfoList.get(0).movementIdx;
+			MovementInfo mvmInfo = movementInfoService.getMovementInfo(movementIdx);
+			//long[] movementIdxList = new long[movementCnt];
+			MomMovementRankInfo rankInfo = momMovementRankInfoList.get(0);
+			String orderType = rankInfo.orderType;// "asc"; // or desc
+			String levelField = rankInfo.levelFieldName + "GradeLevel";
+			String minMax = "min";
+			
+			System.out.println("orderType: " + orderType);
+			if(orderType == "desc") {
+				minMax = "max";
+			}
+	
+	    	if(movementCnt==1) {
+	    		System.out.println(" movement is only ONE, use grade level " + levelField);
+	    	}
+	    	else {
+	    		levelField = "totalGradeLevel";
+	    		System.out.println(" movement are MULTIPLE, use grade level " + levelField);    		
+	    	}
+	    	RankingDataParameter param = new RankingDataParameter();
+	    	param.momIdx = momIdx;
+	    	param.count = count;
+	    	param.start = start;
+	    	param.minMax = minMax;
+	    	param.orderType = orderType;
+	    	param.levelField = levelField;
+	    	param.year = year;
+	    	if("gender".equals(category)) {
+				filterStr = (String) object.get("filter");
+				param.gender = filterStr;
+				System.out.println("gender filter");
+			}
+			else if("region".equals(category)) {
+				filterStr = (String) object.get("filter");
+				param.region = filterStr;
+				System.out.println("region filter");
+			}
+			else if("age".equals(category)) {
+				filterStr = (String) object.get("filter");
+				filterInt = Integer.parseInt(filterStr);
+				param.age = filterInt;
+				System.out.println("age filter");
+			}
+			else if("weight".equals(category)) {
+				filterStr = (String) object.get("filter");
+				filterInt = Integer.parseInt(filterStr);
+				param.weight = filterInt;
+				System.out.println("weight filter");
+			}
+	    	
+	    	//System.out.println(param.toString());	    	
+			list = momRankDataService.getMomRankingDataList(param);
+					//momIdx, levelField, orderType, year, start, count, minMax);
+			for(int i=0; i< list.size(); i++) {
+				//System.out.println(list.get(i).toString());
+				System.out.println(list.get(i).lfl);
+			}			
     	}
-    	else {
-    		levelField = "totalGradeLevel";
-    		System.out.println(" movement are MULTIPLE, use grade level " + levelField);    		
+    	catch (Exception ex) {
+    		System.out.println(ex.toString());   		
+    		
     	}
-    	RankingDataParameter param = new RankingDataParameter();
-    	param.momIdx = momIdx;
-    	param.count = count;
-    	param.start = start;
-    	param.minMax = minMax;
-    	param.orderType = orderType;
-    	param.levelField = levelField;
-    	param.year = year;
-    	if("gender".equals(category)) {
-			filterStr = (String) object.get("filter");
-			param.gender = filterStr;
-			System.out.println("gender filter");
-		}
-		else if("region".equals(category)) {
-			filterStr = (String) object.get("filter");
-			param.region = filterStr;
-			System.out.println("region filter");
-		}
-		else if("age".equals(category)) {
-			filterStr = (String) object.get("filter");
-			filterInt = Integer.parseInt(filterStr);
-			param.age = filterInt;
-			System.out.println("age filter");
-		}
-		else if("weight".equals(category)) {
-			filterStr = (String) object.get("filter");
-			filterInt = Integer.parseInt(filterStr);
-			param.weight = filterInt;
-			System.out.println("weight filter");
-		}
     	
-    	//System.out.println(param.toString());
-    	
-		List<MomRankDataResult> list = momRankDataService.getMomRankingDataList(param);
-				//momIdx, levelField, orderType, year, start, count, minMax);
-		for(int i=0; i< list.size(); i++) {
-			//System.out.println(list.get(i).toString());
-			System.out.println(list.get(i).lfl);
-		}
-		result = gson.toJson(list);
-
+    	result = gson.toJson(list);
     	
     	return result;
 	}
