@@ -3974,7 +3974,7 @@ const myPBCategoryList = [
     
     @Autowired
     public WodItemRecordDataService wodItemRecordDataService;
-    @Operation(summary = "getWodItemRecordData 해당 계정의 기록", 
+    @Operation(summary = "getWodItemRecordDataDetail 해당 계정의 기록", 
     		description = "JSON Ex: { \"accountIdx\":9401 } ")     
     @PostMapping("/getWodItemRecordDataDetail")
 	public String getWodItemRecordDataDetail(
