@@ -81,7 +81,7 @@
 		LEFT JOIN 
 		    fileData AS fd ON fd.pIdx = mrd.accountIdx
 		    AND fd.fileKind = 'C' 
-		    AND fd.tableLinkIdx = 1		    
+		    AND fd.tableLinkIdx = 1 AND fd.status = 1		    
 		WHERE 
 		    mrd.status = 1 
 		    AND mrd.momIdx = #{momIdx}

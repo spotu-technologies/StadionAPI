@@ -245,6 +245,8 @@
             and wi.idx = wbi.wodIdx	        
     	    and wbi.boxIdx = #{boxIdx}
         and DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+	    AND DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m-%d')<DATE_FORMAT(CURDATE(), '%Y-%m-%d')
+
         ORDER BY wi.lastUpdatetime DESC;
           ]]>
     </select>
@@ -359,6 +361,7 @@
 			    AND fd.fileKind = 'C' 
 			    AND fd.tableLinkIdx = 37
 			    AND DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m')
+			    AND DATE_FORMAT(STR_TO_DATE(wi.progressDate, '%Y-%m-%d'), '%Y-%m-%d')<DATE_FORMAT(CURDATE(), '%Y-%m-%d')
 			ORDER BY 
 			    wi.lastUpdatetime DESC;
           ]]>
