@@ -26,6 +26,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.stadion.api.entity.AccountInfo;
 import com.stadion.api.entity.AccountNameNick;
 import com.stadion.api.entity.ActionHistory;
@@ -53,6 +55,9 @@ import com.stadion.api.entity.LoginInfo;
 import com.stadion.api.entity.LoginInfoV2;
 import com.stadion.api.entity.Member;
 import com.stadion.api.entity.MemoData;
+import com.stadion.api.entity.MomAttend;
+import com.stadion.api.entity.MomAttendByDay;
+import com.stadion.api.entity.MomHistory;
 import com.stadion.api.entity.MomInfo;
 import com.stadion.api.entity.MomInfoWithFile;
 import com.stadion.api.entity.MomMovementLinkInfo;
@@ -60,6 +65,7 @@ import com.stadion.api.entity.MomMovementRankInfo;
 import com.stadion.api.entity.MomParticipantLinkInfo;
 import com.stadion.api.entity.MomRankData;
 import com.stadion.api.entity.MomRankDataResult;
+import com.stadion.api.entity.MomSummary;
 import com.stadion.api.entity.MomTeamInfo;
 import com.stadion.api.entity.MomTeamMemberInfo;
 import com.stadion.api.entity.MovementInfo;
@@ -75,6 +81,7 @@ import com.stadion.api.entity.PolicyBoard;
 import com.stadion.api.entity.PolicyHistory;
 import com.stadion.api.entity.PushBoard;
 import com.stadion.api.entity.QnaBoard;
+import com.stadion.api.entity.RangedArg;
 import com.stadion.api.entity.RankingDataParameter;
 import com.stadion.api.entity.ReportWodItemRecommend;
 import com.stadion.api.entity.ReportWodItems;
@@ -1246,7 +1253,22 @@ public class MainApiController {
     	return result;
 	}
     
-    
+    @Operation(summary = "insertFileData 파일 데이터 추가", 
+    		description = "FileData 모델의 항목 	\r\ntableLinkIdx\r\n"
+    				+ "	pIdx\r\n"
+    				+ "	filePath\r\n"
+    				+ "	fileTitle\r\n"
+    				+ "	fileNameOrg\r\n"
+    				+ "	fileNameNew\r\n"
+    				+ "	fileNameThumb\r\n"
+    				+ "	fileSize\r\n"
+    				+ "	fileExt\r\n"
+    				+ "	fileType\r\n"
+    				+ "	fileKind\r\n"
+    				+ "	fileSort\r\n"
+    				+ "	writer\r\n"
+    				+ " ")     
+
     @PostMapping(value="/insertFileData", produces="text/plain;charset=UTF-8")
 	public @ResponseBody String insertFileData(
 			@RequestBody String paramJson
@@ -4354,7 +4376,154 @@ const myPBCategoryList = [
     @Autowired
     public WodParticipantLinkInfoService wodParticipantLinkInfoService;
      
+    @Operation(summary = "getRangedWodParticipantLinkInfo 와드 참/불참 기간별 조회", 
+    		description = "JSON Ex: { \"accountIdx\":9401, \"start\":\"2024-09-01\", \"end\":\"2024-10-04\" } ")     
+    @PostMapping("/getRangedWodParticipantLinkInfo")
+	public String getRangedWodParticipantLinkInfo(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	
+    	String result="";
+    	Gson gson = new Gson();    	
+    	
+    	ObjectMapper mapper = new ObjectMapper();
+    	try {
+    		RangedArg arg = mapper.readValue(paramJson.toString(), RangedArg.class);
+			System.out.printf("args start/end: %s \n", arg.toString());
 
+			MomAttend jsonResult = wodParticipantLinkInfoService.getRangedWodParticipantLinkInfo(arg);
+			if(jsonResult==null) {
+				jsonResult = new MomAttend();
+				jsonResult.attend = 0;
+				jsonResult.noAttend = 0;
+			}
+	    	result = gson.toJson(jsonResult);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+    	/*
+    	long accountIdx = (long) object.get("accountIdx");
+    	String start = (String) object.get("start");
+    	String end = (String) object.get("end");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	MomAttend a = new MomAttend();
+    	a.attend = 10;
+    	a.noAttend = 20;
+    	result = gson.toJson(a);
+    	
+    	
+    	
+    	*/
+    	return result;
+	}    
+
+    @Operation(summary = "getRangedWodParticipantLinkInfoMap 기간 내 와드 참/불참 기록 리스트 조회", 
+    		description = "JSON Ex: { \"accountIdx\":104, \"start\":\"2024-09-01\", \"end\":\"2024-10-04\" } ")     
+    @PostMapping("/getRangedWodParticipantLinkInfoMap")
+	public String getRangedWodParticipantLinkInfoMap(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	ObjectMapper mapper = new ObjectMapper();
+    	Gson gson = new Gson();
+    	String result="";
+    	try {
+    		RangedArg arg = mapper.readValue(paramJson.toString(), RangedArg.class);
+			System.out.printf("args start/end: %s \n", arg.toString());
+
+			List<MomAttendByDay> jsonResult = wodParticipantLinkInfoService.getRangedWodParticipantLinkInfoMap(arg);
+
+			if(jsonResult==null ) {
+				result = gson.toJson(jsonResult);
+			}
+			else {
+		    	JsonObject jsonObject = new JsonObject();	    	
+		    	int [] arr1 = {2,1}; 
+	//	    	jsonObject.add("20240821", gson.toJsonTree(arr1));
+		    	for(int i=0;i<jsonResult.size();i++) {
+		    		arr1[0] = jsonResult.get(i).attend;
+		    		arr1[1] = jsonResult.get(i).noAttend;
+		    		jsonObject.add(jsonResult.get(i).dateAttend, gson.toJsonTree(arr1));
+		    	}
+		    	result = gson.toJson(jsonObject);
+			}
+		} catch (JsonProcessingException e) {
+			result = e.toString();
+			e.printStackTrace();
+		}
+    	
+
+    	return result;
+	}
+    
+    @Operation(summary = "getRangedMomStatSummary 기간 내 몸스터 참여 관련 정보 조회, 현재 테스트 모드 항상 같은 값 반환", 
+    		description = "JSON Ex: { \"accountIdx\":9401, \"start\":\"2024-09-01\", \"end\":\"2024-10-04\" } ")     
+    @PostMapping("/getRangedMomStatSummary")
+	public String getRangedMomStatSummary(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String start = (String) object.get("start");
+    	String end = (String) object.get("end");
+    	
+    	String result;
+    	Gson gson = new Gson();
+    	
+    	MomSummary momSummary = new MomSummary();
+    	momSummary.attend = 10;
+    	momSummary.avgRank = 3.1;
+    	momSummary.avgRecord = 20.2;
+    	result = gson.toJson(momSummary);
+    	return result;
+	}
+    
+    @Operation(summary = "getRangedMyMomHistory 기간 내 참여한 몸스터 기록 조회, 현재 테스트 모드 같은 값 반환", 
+    		description = "JSON Ex: { \"accountIdx\":9401, \"start\":\"2024-09-01\", \"end\":\"2024-10-04\" } ")     
+    @PostMapping("/getRangedMyMomHistory")
+	public String getRangedMyMomHistory(
+			@RequestBody String paramJson
+			) throws ParseException {
+    	JSONParser parser = new JSONParser();
+    	JSONObject object = (JSONObject) parser.parse(paramJson);
+    	long accountIdx = (long) object.get("accountIdx");
+    	String start = (String) object.get("start");
+    	String end = (String) object.get("end");
+    	
+    	String result;
+    	Gson gson = new Gson();
+        
+    	
+    	MomHistory h1 = new MomHistory();    	
+    	h1.title = "test MTC";
+    	h1.bestRecord = 20.0;
+    	h1.myRank = 10;
+    	h1.participantCount = 50;
+    	h1.myRecord = 30.3;
+    	
+    	MomHistory h2 = new MomHistory();
+    	
+    	h2.title = "MTC 10";
+    	h2.bestRecord = 12.1;
+    	h2.myRank = 3;
+    	h2.participantCount = 45;
+    	h2.myRecord = 22.1;
+
+    	List <MomHistory> list = new ArrayList<>();
+    	list.add(h1);
+    	list.add(h2);
+    	
+    	result = gson.toJson(list);
+    	return result;
+	}    
+    
     @PostMapping("/getwodParticipantLinkInfo")
 	public String getWodParticipantLinkInfo(
 			@RequestBody String paramJson

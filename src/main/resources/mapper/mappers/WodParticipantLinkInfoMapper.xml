@@ -28,7 +28,44 @@
 			)
 
     </select>    
-    
+    <select id="getRangedWodParticipantLinkInfo" parameterType ="com.stadion.api.entity.RangedArg"  resultType="com.stadion.api.entity.MomAttend">
+    	<![CDATA[
+    	SELECT 
+			    SUM(CASE WHEN wpli1.isAttend = 'Y' THEN 1 ELSE 0 END) AS attend,
+			    SUM(CASE WHEN wpli1.isAttend = 'N' THEN 1 ELSE 0 END) AS noAttend
+			FROM 
+			    stadion_db_dev.wodParticipantLinkInfo wpli1
+			INNER JOIN 
+			    stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+			WHERE 
+			    wpli1.accountIdx = #{accountIdx}
+			    AND wi.progressDate >= #{start}
+			    AND wi.progressDate <= #{end};
+			    ]]>
+	</select>
+	
+
+    <select id="getRangedWodParticipantLinkInfoMap" parameterType ="com.stadion.api.entity.RangedArg"  resultType="com.stadion.api.entity.MomAttendByDay">
+    	<![CDATA[
+    	SELECT 
+			    DATE_FORMAT(wi.progressDate, '%Y%m%d') AS dateAttend,
+			    SUM(CASE WHEN wpli1.isAttend = 'Y' THEN 1 ELSE 0 END) AS attend,
+			    SUM(CASE WHEN wpli1.isAttend = 'N' THEN 1 ELSE 0 END) AS noAttend
+			FROM 
+			    stadion_db_dev.wodParticipantLinkInfo wpli1
+			INNER JOIN 
+			    stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+			WHERE 
+			    wpli1.accountIdx = #{accountIdx}
+			    AND wi.progressDate >= #{start}
+			    AND wi.progressDate <= #{end}
+			GROUP BY 
+			    wi.progressDate
+			ORDER BY 
+			    wi.progressDate
+			    ]]>        
+	</select>
+	
 
     <!--  TEST 2023년, 1~12월 전체 -->
     <select id="getwodParticipantLinkInfoAttend" resultType="Long">	

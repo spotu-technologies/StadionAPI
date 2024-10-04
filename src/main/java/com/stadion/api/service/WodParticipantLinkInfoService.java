@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stadion.api.entity.MomAttend;
+import com.stadion.api.entity.MomAttendByDay;
+import com.stadion.api.entity.RangedArg;
 import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodInfo;
@@ -23,6 +26,16 @@ public class WodParticipantLinkInfoService {
 		return wodParticipantLinkInfoMapper.getwodParticipantLinkInfoAttend(accountIdx);
 	}
 	
+	public List<MomAttendByDay> getRangedWodParticipantLinkInfoMap(RangedArg arg) {
+		if(wodParticipantLinkInfoMapper==null) {return null;}
+		List<MomAttendByDay> ret = wodParticipantLinkInfoMapper.getRangedWodParticipantLinkInfoMap(arg);
+		return ret;
+	}
+	public MomAttend getRangedWodParticipantLinkInfo(RangedArg arg) {
+		if(wodParticipantLinkInfoMapper==null) {return null;}
+		MomAttend ret = wodParticipantLinkInfoMapper.getRangedWodParticipantLinkInfo(arg);
+		return ret;
+	}
 	
 	public long getwodParticipantLinkInfoNoAttend(long accountIdx) {
 		if(wodParticipantLinkInfoMapper==null) {return 0;}

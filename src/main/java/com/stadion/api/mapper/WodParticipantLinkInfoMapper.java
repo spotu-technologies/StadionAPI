@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.stadion.api.entity.AccountInfo;
 import com.stadion.api.entity.LevelData;
+import com.stadion.api.entity.MomAttend;
+import com.stadion.api.entity.MomAttendByDay;
+import com.stadion.api.entity.RangedArg;
 import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodParticipantLinkInfo;
@@ -17,7 +20,9 @@ public interface WodParticipantLinkInfoMapper {
 
 	//public List<AccountInfo> getAccountInfoList();
 	public WodParticipantLinkInfo getWodParticipantLinkInfo(long idx);
-	public long getwodParticipantLinkInfoAttend(long accountIdx);
+	public long getwodParticipantLinkInfoAttend(long accountIdx);	
+	public List<MomAttendByDay> getRangedWodParticipantLinkInfoMap(RangedArg arg);
+	public MomAttend getRangedWodParticipantLinkInfo(RangedArg arg);
 	public long getwodParticipantLinkInfoNoAttend(long accountIdx) ;
 	public long getwodParticipantCount(long idx);
 	public long getwodParticipantIdx(@Param ("accountIdx")long accountIdx, @Param ("wbLinkIdx") long wbLinkIdx);
