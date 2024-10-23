@@ -43,7 +43,15 @@
 			    AND wi.progressDate <= #{end};
 			    ]]>
 	</select>
-	
+
+
+    <select id="runQuery" parameterType ="com.stadion.api.entity.SqlVO"  resultType="java.util.LinkedHashMap">
+    	<![CDATA[
+    	SELECT A.*
+			    FROM ( ${query} ) A
+			    
+			    ]]>        
+	</select>	
 
     <select id="getRangedWodParticipantLinkInfoMap" parameterType ="com.stadion.api.entity.RangedArg"  resultType="com.stadion.api.entity.MomAttendByDay">
     	<![CDATA[

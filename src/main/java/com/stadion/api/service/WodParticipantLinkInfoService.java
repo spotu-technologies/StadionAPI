@@ -1,5 +1,6 @@
 package com.stadion.api.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.stadion.api.entity.MomAttend;
 import com.stadion.api.entity.MomAttendByDay;
 import com.stadion.api.entity.RangedArg;
+import com.stadion.api.entity.SqlVO;
 import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodInfo;
@@ -64,6 +66,11 @@ public class WodParticipantLinkInfoService {
 	public long getWodParticipantStatus(long accountIdx, long wbLinkIdx) {
 		if(wodParticipantLinkInfoMapper==null) {return 0;}		
 		return wodParticipantLinkInfoMapper.getWodParticipantStatus(accountIdx, wbLinkIdx);
+	}
+	
+	public LinkedHashMap runWodQuery(SqlVO param) {
+		if(wodParticipantLinkInfoMapper==null) {return null;}		
+		return wodParticipantLinkInfoMapper.runQuery(param);
 	}
 	
 	public long getWodParticipantCountByAccount(long accountIdx, long wodIdx) {

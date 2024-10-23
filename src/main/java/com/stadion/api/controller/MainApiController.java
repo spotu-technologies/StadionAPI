@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -87,6 +88,7 @@ import com.stadion.api.entity.ReportWodItemRecommend;
 import com.stadion.api.entity.ReportWodItems;
 import com.stadion.api.entity.RestAccountInfo;
 import com.stadion.api.entity.ScaleGender;
+import com.stadion.api.entity.SqlVO;
 import com.stadion.api.entity.StardionLevelData;
 import com.stadion.api.entity.TableLinkInfo;
 import com.stadion.api.entity.TicketInfo;
@@ -4597,6 +4599,33 @@ const myPBCategoryList = [
     	result = gson.toJson(jsonResult);
     	return result;
 	}
+    
+    @Operation(summary = "runQuery 동적 쿼리", 
+    		description = "JSON Ex: {\r\n"
+    				+ "  \"query\": \"SELECT * FROM stadion_db_dev.wodParticipantLinkInfo where idx =1\"\r\n"
+    				+ "} ")     
+    @PostMapping("/runQuery")
+	public String runQuery(
+			@RequestBody SqlVO param
+			) throws ParseException {
+
+    	String result = "";
+    	Gson gson = new Gson();
+    	System.out.println("param? " + param.toString());
+    	
+    	try {
+    		
+    		LinkedHashMap retMap = wodParticipantLinkInfoService.runWodQuery(param);
+    		result = gson.toJson(retMap);    		
+    	}
+    	catch(Exception exStatus) {
+    		System.out.println(exStatus.toString());
+    		System.out.println("NO result");
+    	}
+    	
+    	return result;
+	}
+
     
     @Operation(summary = "insertwodParticipantLinkInfo wod예약 추가(insert), 기존 데이터 존재할 경우 status 9로 updqte", 
     		description = "JSON Ex: { \"writer\":9401, \"wodIdx\":7121, \"boxIdx\":1, \"wbLinkIdx\":34979 } ")     

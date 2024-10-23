@@ -1,5 +1,6 @@
 package com.stadion.api.mapper;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -10,6 +11,7 @@ import com.stadion.api.entity.LevelData;
 import com.stadion.api.entity.MomAttend;
 import com.stadion.api.entity.MomAttendByDay;
 import com.stadion.api.entity.RangedArg;
+import com.stadion.api.entity.SqlVO;
 import com.stadion.api.entity.WodBoxLinkInfo;
 import com.stadion.api.entity.WodBoxLinkInfoName;
 import com.stadion.api.entity.WodParticipantLinkInfo;
@@ -27,6 +29,7 @@ public interface WodParticipantLinkInfoMapper {
 	public long getwodParticipantCount(long idx);
 	public long getwodParticipantIdx(@Param ("accountIdx")long accountIdx, @Param ("wbLinkIdx") long wbLinkIdx);
 	public long getWodParticipantStatus(@Param ("accountIdx")long accountIdx, @Param ("wbLinkIdx") long wbLinkIdx);
+	public LinkedHashMap runQuery(SqlVO param);
 	public long getWodParticipantCountByAccount(@Param ("accountIdx")long accountIdx, @Param ("wodIdx") long wodIdx);
 	
 	public long getwodParticipantReserved(@Param ("idx") long idx, @Param ("accountIdx") long accountIdx);
