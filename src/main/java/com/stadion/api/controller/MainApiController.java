@@ -3993,7 +3993,8 @@ const myPBCategoryList = [
             data.profileImagePath = path;
 
             AccountInfo info = accountInfoService.getAccountInfoByIdx(item.accountIdx);
-            data.accountNick = info.accountNick;
+            // Null 체크 및 안전한 대입
+            data.accountNick = (info != null && info.accountNick != null) ? info.accountNick : "-";
             rankingList.add(data);
             //System.out.println("rank data: "+i + " " + data.toString());
 
