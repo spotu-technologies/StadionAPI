@@ -17,12 +17,12 @@
 
     <select id="getwodParticipantRecent" resultType="com.stadion.api.entity.WodBoxLinkInfoName">	
 		SELECT wbli.*, wi.name
-        FROM stadion_db_dev.wodBoxLinkInfo as wbli
-        JOIN stadion_db_dev.wodInfo as wi 
+        FROM wodBoxLinkInfo as wbli
+        JOIN wodInfo as wi
 			ON wi.idx = wbli.wodIdx
 			where wbli.idx = (
 			SELECT wbLinkIdx 
-			FROM stadion_db_dev.wodParticipantLinkInfo
+			FROM wodParticipantLinkInfo
 			where accountIdx =#{accountIdx} 
 			order by regUnixtime DESC LIMIT 1
 			)
@@ -34,9 +34,9 @@
 			    SUM(CASE WHEN wpli1.isAttend = 'Y' THEN 1 ELSE 0 END) AS attend,
 			    SUM(CASE WHEN wpli1.isAttend = 'N' THEN 1 ELSE 0 END) AS noAttend
 			FROM 
-			    stadion_db_dev.wodParticipantLinkInfo wpli1
+			    wodParticipantLinkInfo wpli1
 			INNER JOIN 
-			    stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+			    wodInfo wi ON wpli1.wodIdx = wi.idx
 			WHERE 
 			    wpli1.accountIdx = #{accountIdx}
 			    AND wi.progressDate >= #{start}
@@ -60,9 +60,9 @@
 			    SUM(CASE WHEN wpli1.isAttend = 'Y' THEN 1 ELSE 0 END) AS attend,
 			    SUM(CASE WHEN wpli1.isAttend = 'N' THEN 1 ELSE 0 END) AS noAttend
 			FROM 
-			    stadion_db_dev.wodParticipantLinkInfo wpli1
+			    wodParticipantLinkInfo wpli1
 			INNER JOIN 
-			    stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+			    wodInfo wi ON wpli1.wodIdx = wi.idx
 			WHERE 
 			    wpli1.accountIdx = #{accountIdx}
 			    AND wi.progressDate >= #{start}
@@ -78,8 +78,8 @@
     <!--  TEST 2023년, 1~12월 전체 -->
     <select id="getwodParticipantLinkInfoAttend" resultType="Long">	
         SELECT count(*)
-	        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
-	        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+	        FROM wodParticipantLinkInfo wpli1
+	        INNER JOIN wodInfo wi ON wpli1.wodIdx = wi.idx
 	        WHERE wpli1.accountIdx = #{accountIdx}
 	        AND wpli1.isAttend = 'Y'
 	        AND YEAR(wi.progressDate) IN ( 2023, YEAR(CURRENT_DATE()) )
@@ -89,8 +89,8 @@
     
     <select id="getwodParticipantLinkInfoNoAttend" resultType="Long">	
         SELECT count(*)
-	        FROM stadion_db_dev.wodParticipantLinkInfo wpli1
-	        INNER JOIN stadion_db_dev.wodInfo wi ON wpli1.wodIdx = wi.idx
+	        FROM wodParticipantLinkInfo wpli1
+	        INNER JOIN wodInfo wi ON wpli1.wodIdx = wi.idx
 	        WHERE wpli1.accountIdx = #{accountIdx}
 	        AND wpli1.isAttend = 'N'
 	        AND YEAR(wi.progressDate) IN ( 2023, YEAR(CURRENT_DATE()) )
@@ -128,7 +128,7 @@
 
     <select id="getWbLinkIdx" resultType="Long">	
         SELECT wbLinkIdx AS wbLinkIdx
-			FROM stadion_db_dev.wodParticipantLinkInfo
+			FROM wodParticipantLinkInfo
 			where accountIdx=#{accountIdx}
 			and wodIdx=#{wodIdx}
 			LIMIT 1

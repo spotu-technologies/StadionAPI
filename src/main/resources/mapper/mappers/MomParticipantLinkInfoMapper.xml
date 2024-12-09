@@ -39,7 +39,7 @@
         -->
     <select id="getMomParticipantLinkInfoAttend" resultType="Long">	
 		SELECT count(*) 
-		FROM stadion_db_dev.momParticipantLinkInfo
+		FROM momParticipantLinkInfo
 		where momIdx = #{momIdx}
 		AND accountIdx = #{accountIdx}   
 		
@@ -47,7 +47,7 @@
     
     <select id="getMomParticipantLinkInfoCount" resultType="Long">	
 		SELECT count(*) 
-		FROM stadion_db_dev.movementRecordData
+		FROM movementRecordData
 		where accountIdx = #{accountIdx}
     </select>
     

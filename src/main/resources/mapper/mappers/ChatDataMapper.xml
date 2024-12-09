@@ -23,7 +23,7 @@
     <insert id="insertChatData" parameterType="com.stadion.api.entity.ChatData">
     
 		INSERT INTO 
-			stadion_db_dev.chatData 
+			chatData
 			(accountIdx, regAccountIdx, msg,
 			 
 		<if test="readStatusUser != 0 and readStatusUser != null">

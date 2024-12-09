@@ -22,7 +22,7 @@
     </select>
 
 <insert id="insertLevelData" parameterType="com.stadion.api.entity.LevelData">
-		INSERT INTO stadion_db_dev.levelData
+		INSERT INTO levelData
 			 (accountIdx, year, 
 		<if test="totalGradeLevel != '' and totalGradeLevel != null">
 			totalGradeLevel,

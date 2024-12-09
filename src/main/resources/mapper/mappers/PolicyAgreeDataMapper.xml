@@ -16,7 +16,7 @@
     </select>
 
     <insert id="insertPolicyAgreeData" parameterType="com.stadion.api.entity.PolicyAgreeData">
-		INSERT INTO stadion_db_dev.policyAgreeData
+		INSERT INTO policyAgreeData
 			(policyBoardIdx, policyType, writer,
 	<if test="status != '' and status != null">
 			status,

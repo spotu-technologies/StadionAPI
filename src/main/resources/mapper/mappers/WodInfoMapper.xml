@@ -31,7 +31,7 @@
     </select>
     
     <select id="getWodInfoClass" resultType="com.stadion.api.entity.WodInfo">	
-        SELECT * FROM stadion_db_dev.wodInfo 
+        SELECT * FROM wodInfo
         WHERE progressDate = CURDATE() ORDER BY orderNo ASC;
         	
     </select>

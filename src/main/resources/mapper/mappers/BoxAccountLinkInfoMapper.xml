@@ -13,7 +13,7 @@
     </select>
 
     <insert id="insertBoxAccountLinkInfo" parameterType="com.stadion.api.entity.BoxAccountLinkInfo">
-		INSERT INTO stadion_db_dev.boxAccountLinkInfo
+		INSERT INTO boxAccountLinkInfo
 			 (boxIdx, accountIdx,            writer,
 		<if test="status != '' and status != null">
 			status,

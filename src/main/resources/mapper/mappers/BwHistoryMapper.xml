@@ -23,7 +23,7 @@
     </select>
 
     <insert id="insertBwHistory" parameterType="com.stadion.api.entity.BwHistory">
-		INSERT INTO stadion_db_dev.bwHistory
+		INSERT INTO bwHistory
 			 (accountIdx, weight, writer, status, regUnixtime, lastUpdatetime)
 			 VALUES ( #{accountIdx}, #{weight}, #{accountIdx}, '1', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
 	</insert>

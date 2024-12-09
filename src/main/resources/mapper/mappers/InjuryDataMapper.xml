@@ -28,7 +28,7 @@
     </select>
 
     <insert id="insertInjuryData" parameterType="com.stadion.api.entity.InjuryData">
-		INSERT INTO stadion_db_dev.injuryData
+		INSERT INTO injuryData
  			(tableLinkIdx, pIdx, accountIdx, 
  			injuryPartIdx, injuryExtentIdx, injuryTreatIdx,
         

@@ -32,7 +32,7 @@
     
     
 	<insert id="insertFollowLinkInfoFollow" parameterType="com.stadion.api.entity.FollowLinkInfo">
-		INSERT INTO stadion_db_dev.followLinkInfo
+		INSERT INTO followLinkInfo
  			(followAccountIdx, 
         <if test="status != 0 and status != null">
             status,
@@ -51,7 +51,7 @@
     
 	<delete id="deleteFollowLinkInfoFollow" parameterType="com.stadion.api.entity.FollowLinkInfo">
 		DELETE FROM 
-		 stadion_db_dev.followLinkInfo
+		 followLinkInfo
 			WHERE regAccountIdx = #{regAccountIdx}
 			and followAccountIdx = #{followAccountIdx};  
 	</delete>

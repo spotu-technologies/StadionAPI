@@ -22,7 +22,7 @@
     
     <select id="getAccountNameList" resultType="com.stadion.api.entity.AccountNameNick">	
 		SELECT idx AS idx, accountName AS name, accountNick AS nick
-		FROM stadion_db_dev.accountInfo;
+		FROM accountInfo;
     </select>
     
     <update id="loginAccountInfo" parameterType="map">	

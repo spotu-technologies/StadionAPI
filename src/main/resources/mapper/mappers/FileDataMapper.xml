@@ -20,7 +20,7 @@
         FROM fileData WHERE 
         fileData.fileKind = #{fileKind} 
         and fileData.tableLinkIdx = #{tableLinkIdx} 
-        and fileData.pIdx IN (SELECT guideBoard.idx FROM stadion_db_dev.guideBoard)
+        and fileData.pIdx IN (SELECT guideBoard.idx FROM guideBoard)
         and status=1;
         	
     </select>
@@ -41,7 +41,7 @@
         FROM fileData WHERE 
         fileData.fileKind = #{fileKind} 
         and fileData.tableLinkIdx = #{tableLinkIdx} 
-        and fileData.pIdx IN (SELECT momParticipantLinkInfo.momIdx FROM stadion_db_dev.momParticipantLinkInfo)
+        and fileData.pIdx IN (SELECT momParticipantLinkInfo.momIdx FROM momParticipantLinkInfo)
         and status=1
         ;
         	

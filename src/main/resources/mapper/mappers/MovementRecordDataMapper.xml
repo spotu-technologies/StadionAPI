@@ -80,7 +80,7 @@
     </select>
 
 	<insert id="insertRecordData" parameterType="com.stadion.api.entity.MovementRecordData">
-		INSERT INTO stadion_db_dev.movementRecordData
+		INSERT INTO movementRecordData
  			(movementIdx, 
         <if test="momIdx != '' and momIdx != null">
             momIdx,

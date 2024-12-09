@@ -10,7 +10,7 @@
 <mapper namespace="com.stadion.api.mapper.WodItemRecordDataMapper">	
     <select id="getWodItemRecordDataDetail" resultType="com.stadion.api.entity.WodItemRecordDataDetail">	
 		SELECT *, wi.name AS programName, wsi.name AS stepName, wsi.explanation AS stepExplanation
-		FROM stadion_db_dev.wodItemRecordData AS wird
+		FROM wodItemRecordData AS wird
 		
 		JOIN wodInfo AS wi
 			ON wi.idx = wird.wodIdx
@@ -49,7 +49,7 @@
     <select id="getWodItemRecordDataRecent" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
         FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx}
-        AND wodItemRecordData.wodStepIdx IN (SELECT wodInfo.idx FROM stadion_db_dev.wodInfo) 
+        AND wodItemRecordData.wodStepIdx IN (SELECT wodInfo.idx FROM wodInfo)
         And wodItemRecordData.wodItemIdx IS NOT NULL
         ORDER BY lastUpdatetime DESC;        	
     </select>
@@ -57,7 +57,7 @@
     <select id="getWodItemRecordDatarecord" resultType="com.stadion.api.entity.WodItemRecordData">	
         SELECT *
         FROM wodItemRecordData WHERE wodItemRecordData.accountIdx = #{accountIdx}
-        AND wodItemRecordData.idx IN (SELECT wodStepInfo.wodIdx FROM stadion_db_dev.wodStepInfo) 
+        AND wodItemRecordData.idx IN (SELECT wodStepInfo.wodIdx FROM wodStepInfo)
         And wodItemRecordData.wodItemIdx IS NOT NULL
         ORDER BY lastUpdatetime DESC;        	
     </select>
@@ -73,7 +73,7 @@
         FROM wodItemRecordData 
         where wodRecordIdx IN (
 			SELECT idx
-			FROM stadion_db_dev.wodRecordInfo
+			FROM wodRecordInfo
 			where wodIdx = #{wodIdx} and useScaled='Y'
 			)        	
     </select>    
@@ -83,7 +83,7 @@
         FROM wodItemRecordData 
         where wodRecordIdx IN (
 			SELECT idx
-			FROM stadion_db_dev.wodRecordInfo
+			FROM wodRecordInfo
 			where wodIdx = #{wodIdx} and useScaled='Y'
 			)        	
     </select>       
@@ -93,7 +93,7 @@
         FROM wodItemRecordData 
         where wodRecordIdx IN (
 			SELECT idx
-			FROM stadion_db_dev.wodRecordInfo
+			FROM wodRecordInfo
 			where wodIdx = #{wodIdx} and useScaled='Y'
 			)        	
     </select> 
@@ -103,14 +103,14 @@
         FROM wodItemRecordData 
         where wodRecordIdx IN (
 			SELECT idx
-			FROM stadion_db_dev.wodRecordInfo
+			FROM wodRecordInfo
 			where wodIdx = #{wodIdx}
 			)    	
     </select>    
     
     
 	<insert id="insertWodItemRecord" parameterType="com.stadion.api.entity.WodItemRecordData">
-		INSERT INTO stadion_db_dev.wodItemRecordData
+		INSERT INTO wodItemRecordData
  			(wodIdx, boxIdx, accountIdx, wbLinkIdx, wodStepIdx, 
         <if test="wodItemIdx != 0 and wodItemIdx != null">
             wodItemIdx,
@@ -147,7 +147,7 @@
 
     <select id="getWodItemRecordRankingList" parameterType="com.stadion.api.entity.RankingDataParameter" resultType="com.stadion.api.entity.WodItemRecordData">	
 	    Select *
-			FROM stadion_db_dev.wodItemRecordData
+			FROM wodItemRecordData
 			where  wodIdx = #{wodIdx}
 			and status=1
         
